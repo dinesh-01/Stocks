@@ -55,7 +55,6 @@ foreach ($records as $record) {
   if(!empty($row['id'])) {
 
     $driver->manage()->deleteAllCookies();
-    #$driver->get("https://www.nseindia.com/get-quotes/equity?symbol=$symbol");
     echo $url = "https://www1.nseindia.com/live_market/dynaContent/live_watch/get_quote/GetQuote.jsp?symbol=$symbol";
     echo "\n";
     $driver->get($url);
