@@ -1,0 +1,7 @@
+{
+    "require": {
+        "league/csv": "^9.7",
+        "php-webdriver/webdriver": "^1.11",
+        "doctrine/dbal": "^3.1"
+    }
+}
