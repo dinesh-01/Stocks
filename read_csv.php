@@ -19,7 +19,7 @@ $capabilities = DesiredCapabilities::chrome();
 $capabilities->setCapability(ChromeOptions::CAPABILITY_W3C, $chromeOptions);
 $driver = RemoteWebDriver::create($serverUrl, $capabilities);
 
-$csv = Reader::createFromPath('data/MW-NIFTY-200-30-Jul-2021.csv', 'r');
+$csv = Reader::createFromPath('data/MW-NIFTY-200-03-Aug-2021.csv', 'r');
 $csv->setHeaderOffset(0); //set the CSV header offset
 
 $stmt = Statement::create()->offset(1)->limit(300);

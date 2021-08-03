@@ -29,7 +29,7 @@
     <tr class="show">
         <td>{$smarty.foreach.count.iteration}</td>    
         <td>{$value.sName}<input type="hidden" id="sid" value="{$value.id}"/> </td>
-        <td>{$value.symbol}</td>
+        <td><a href = "https://www.google.com/search?q={$value.symbol}" target="_blank">{$value.symbol}</a></td>
         <td><a href="{$value.murl}" target="_blank">Money Control Link</a></td>
         <td><a href="{$value.curl}" target="_blank">ChartInk</a></td>
         <td>  <input type="text" name="qvolume" id="qvolume{$value.id}" size="7" value="{$value.qvolume}"

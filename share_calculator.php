@@ -23,7 +23,7 @@ require_once './include/common.php';
    //Getting symbol name
     $i = 0;
     foreach ($data as $value) {
-            $data[$i]["symbol"] = get_company_detail($value['cSymbol'],"symbol");
+            $data[$i]["symbol"] = $value['cSymbol'];
             $i++;
     }
 
