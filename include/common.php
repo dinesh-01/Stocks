@@ -1,7 +1,7 @@
 <?php
  #session_start();
  //Disable Error Warning
- //error_reporting(0);
+ error_reporting(0);
 
 //including common files
   require_once 'vendor/autoload.php';

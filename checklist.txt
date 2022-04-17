@@ -1,0 +1,7 @@
+Step 1: Change connection file name
+Step 2: Download and replace nify 200 csv file
+Step 3: Run php new_stocks.php
+Step 4: Run Update query => UPDATE stocklist SET dailyEntry='no'
+Step 5: Run php read_csv.php
+Step 6: Run Delete query => DELETE FROM `stocklist` WHERE `dailyEntry` = 'no'
+Step 7: Change connection file name

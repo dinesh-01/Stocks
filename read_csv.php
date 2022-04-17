@@ -90,14 +90,5 @@ foreach ($records as $record) {
 
 }
 
-
-/*
-$money_control = "https://www.google.com/search?q=".$symbol."+moneycontrol";
-$charink = "https://chartink.com/stocks/$symbol.html";
-
-$query  = "INSERT INTO stocklist(sName, cSymbol, murl, curl, ntype) VALUES ('$symbol','$symbol','$money_control','$charink','N200')";
-$result = mysqli_query($GLOBALS['mysqlConnect'],$query);
-*/
-
 $driver->close();
 ?>
