@@ -6,10 +6,10 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Symfony\\Polyfill\\Php80\\' => array($vendorDir . '/symfony/polyfill-php80'),
     'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
     'Symfony\\Component\\Process\\' => array($vendorDir . '/symfony/process'),
-    'PackageVersions\\' => array($vendorDir . '/composer/package-versions-deprecated/src/PackageVersions'),
+    'Psr\\Log\\' => array($vendorDir . '/psr/log/src'),
+    'Psr\\Cache\\' => array($vendorDir . '/psr/cache/src'),
     'League\\Csv\\' => array($vendorDir . '/league/csv/src'),
     'Facebook\\WebDriver\\' => array($vendorDir . '/php-webdriver/webdriver/lib'),
     'Doctrine\\Deprecations\\' => array($vendorDir . '/doctrine/deprecations/lib/Doctrine/Deprecations'),

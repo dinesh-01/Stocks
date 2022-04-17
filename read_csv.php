@@ -3,49 +3,63 @@ require_once './include/common.php';
 
 use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\WebDriverBy;
-use League\Csv\Reader;
-use League\Csv\Statement;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\WebDriverExpectedCondition;
 
 
+
+$file = fopen('data/MW-NIFTY-200-17-Apr-2022.csv', 'r');
+while (($line = fgetcsv($file)) !== FALSE) {
+  $records[] =  $line;
+}
+fclose($file);
+
+array_shift($records); // Removing header
+
+#$query = "UPDATE stocklist SET dailyEntry='no'";
+
 $serverUrl = 'http://localhost:4444';
 
 // Chrome
-$chromeOptions = new ChromeOptions();
-#$chromeOptions->addArguments(['--headless']);
-$capabilities = DesiredCapabilities::chrome();
-$capabilities->setCapability(ChromeOptions::CAPABILITY_W3C, $chromeOptions);
-$driver = RemoteWebDriver::create($serverUrl, $capabilities);
-
-$csv = Reader::createFromPath('data/MW-NIFTY-200-03-Aug-2021.csv', 'r');
-$csv->setHeaderOffset(0); //set the CSV header offset
-
-$stmt = Statement::create()->offset(1)->limit(300);
-
-$records = $stmt->process($csv);
+$driver = RemoteWebDriver::create($serverUrl, DesiredCapabilities::chrome());
 
 $new = "No New Stocks Today";
 $date = date('d-m-Y');
 
-#$query = "UPDATE stocklist SET dailyEntry='no'";
 
 foreach ($records as $record) {
 
 
+  /*
 
-  $symbol =  $record['SYMBOL '];
+   [0] => SYMBOL
+  [1] => OPEN
+  [2] => HIGH
+  [3] => LOW
+  [4] => PREV. CLOSE
+  [5] => LTP
+  [6] => CHNG
+  [7] => %CHNG
+  [8] => VOLUME (shares)
+  [9] => VALUE
+  [10] => 52W H
+  [11] => 52W L
+
+  */
+
+
+  $symbol =  $record[0];
   $symbol = urlencode($symbol);
-  $open =    str_replace( ',', '', $record['OPEN '] );
-  $high =    str_replace( ',', '', $record['HIGH '] );
-  $low =     str_replace( ',', '', $record['LOW '] );
-  $chng =    str_replace( ',', '', $record['CHNG '] );
-  $chng_per =  $record['%CHNG '];
-  $volume =  str_replace( ',', '', $record['VOLUME (shares)'] );
-  $value =   str_replace( ',', '', $record['VALUE '] );
-  $alllow =  str_replace( ',', '', $record['52W L '] );
-  $allhigh = str_replace( ',', '', $record['52W H '] );
+  $open =    str_replace( ',', '', $record[1] );
+  $high =    str_replace( ',', '', $record[2] );
+  $low =     str_replace( ',', '', $record[3] );
+  $chng =    str_replace( ',', '', $record[6] );
+  $chng_per =  $record[7];
+  $volume =  str_replace( ',', '', $record[8] );
+  $value =   str_replace( ',', '', $record[9] );
+  $alllow =  str_replace( ',', '', $record[11] );
+  $allhigh = str_replace( ',', '', $record[10] );
 
 
   $query  = "Select id from stocklist where Csymbol = '$symbol' and dailyEntry = 'no' ";
@@ -86,5 +100,4 @@ $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 */
 
 $driver->close();
-
 ?>

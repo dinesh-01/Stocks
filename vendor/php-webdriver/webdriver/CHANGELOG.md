@@ -1,7 +1,16 @@
 # Changelog
 This project versioning adheres to [Semantic Versioning](http://semver.org/).
 
-## Unreleased
+## 1.12.0 - 2021-10-14
+### Added
+- `RemoteWebElement::getDomProperty()` method to read JavaScript properties of an element (like the value of `innerHTML` etc.) in W3C mode.
+- `WebDriverCommand::newSession()` constructor to create new session command without violating typehints.
+
+### Changed
+- Allow installation of Symfony 6 components.
+
+### Fixed
+- PHP 8.1 compatibility.
 
 ## 1.11.1 - 2021-05-21
 ### Fixed
