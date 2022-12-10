@@ -1,7 +1,10 @@
 <?php
 require_once './include/common.php';
 
-$file = fopen('data/MW-NIFTY-200-17-Apr-2022.csv', 'r');
+
+//url => https://www.nseindia.com/products-services/indices-nifty500-index
+
+$file = fopen('data/500.csv', 'r');
 while (($line = fgetcsv($file)) !== FALSE) {
   $records[] =  $line;
 }
@@ -12,10 +15,12 @@ array_shift($records); // Removing header
 foreach ($records as $record) {
 
 
-  /* [0] => SYMBOL */
+  echo $company = $record[0];
+   $symbol =  $record[2];
+   $stockType = $record[1];
 
-  $symbol =  $record[0];
-  $symbol = urlencode($symbol);
+
+  //$symbol = urlencode($symbol);
 
 
   $query  = "Select id from stocklist where Csymbol = '$symbol'";
@@ -24,12 +29,12 @@ foreach ($records as $record) {
 
   if(empty($row['id'])) {
 
-    echo urldecode($symbol);
+    //echo urldecode($symbol);
 
     $money_control = "https://www.google.com/search?q=".$symbol."+moneycontrol";
     $charink = "https://chartink.com/stocks/$symbol.html";
 
-     $query  = "INSERT INTO stocklist(sName, cSymbol, murl, curl, ntype) VALUES ('$symbol','$symbol','$money_control','$charink','N200')";
+     $query  = "INSERT INTO stocklist(sName, cSymbol, murl, curl, industry, ntype) VALUES ('$company','$symbol','$money_control','$charink','$stockType','N500')";
      $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
     echo "\n";

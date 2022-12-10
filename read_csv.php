@@ -8,8 +8,9 @@ use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\WebDriverExpectedCondition;
 
 
-
-$file = fopen('data/MW-NIFTY-200-17-Apr-2022.csv', 'r');
+//https://www1.nseindia.com/content/historical/EQUITIES/2022/DEC/cm09DEC2022bhav.csv.zip
+//https://www1.nseindia.com/products/content/equities/equities/homepage_eq.htm
+$file = fopen('data/500.csv', 'r');
 while (($line = fgetcsv($file)) !== FALSE) {
   $records[] =  $line;
 }
@@ -19,7 +20,7 @@ array_shift($records); // Removing header
 
 #$query = "UPDATE stocklist SET dailyEntry='no'";
 
-$serverUrl = 'http://localhost:4444';
+$serverUrl = 'http://172.17.0.2:4444';
 
 // Chrome
 $driver = RemoteWebDriver::create($serverUrl, DesiredCapabilities::chrome());
@@ -49,17 +50,7 @@ foreach ($records as $record) {
   */
 
 
-  $symbol =  $record[0];
-  $symbol = urlencode($symbol);
-  $open =    str_replace( ',', '', $record[1] );
-  $high =    str_replace( ',', '', $record[2] );
-  $low =     str_replace( ',', '', $record[3] );
-  $chng =    str_replace( ',', '', $record[6] );
-  $chng_per =  $record[7];
-  $volume =  str_replace( ',', '', $record[8] );
-  $value =   str_replace( ',', '', $record[9] );
-  $alllow =  str_replace( ',', '', $record[11] );
-  $allhigh = str_replace( ',', '', $record[10] );
+  $symbol =  $record[2];
 
 
   $query  = "Select id from stocklist where Csymbol = '$symbol' and dailyEntry = 'no' ";
@@ -70,13 +61,34 @@ foreach ($records as $record) {
 
     $driver->manage()->deleteAllCookies();
     #$driver->get("https://www.nseindia.com/get-quotes/equity?symbol=$symbol");
-    echo $url = "https://www1.nseindia.com/live_market/dynaContent/live_watch/get_quote/GetQuote.jsp?symbol=$symbol";
+    $symbol_url = urlencode($symbol);
+    echo $url = "https://www1.nseindia.com/live_market/dynaContent/live_watch/get_quote/GetQuote.jsp?symbol=$symbol_url";
     echo "\n";
     $driver->get($url);
     sleep(2);
     $element = $driver->findElement(WebDriverBy::xpath("//div[@id='closePrice']"));
     $driver->wait(10, 1000)->until(WebDriverExpectedCondition::visibilityOf($element));
-    $close  = $driver->findElement(WebDriverBy::xpath("//div[@id='closePrice']"))->getText();
+    $open     = $driver->findElement(WebDriverBy::xpath("//div[@id='open']"))->getText();
+    $high     = $driver->findElement(WebDriverBy::xpath("//div[@id='dayHigh']"))->getText();
+    $low      = $driver->findElement(WebDriverBy::xpath("//div[@id='dayLow']"))->getText();
+    $chng     = $driver->findElement(WebDriverBy::xpath("//span[@id='change']"))->getText();
+    $chng_per = $driver->findElement(WebDriverBy::xpath("//a[@id='pChange']"))->getText();
+    $volume   = $driver->findElement(WebDriverBy::xpath("//span[@id='tradedVolume']"))->getText();
+    $value    = $driver->findElement(WebDriverBy::xpath("//span[@id='tradedValue']"))->getText();
+    $alllow   = $driver->findElement(WebDriverBy::xpath("//span[@id='low52']"))->getText();
+    $allhigh  = $driver->findElement(WebDriverBy::xpath("//span[@id='high52']"))->getText();
+    $close    = $driver->findElement(WebDriverBy::xpath("//div[@id='closePrice']"))->getText();
+
+    $open =    str_replace( ',', '', $open );
+    $high =    str_replace( ',', '', $high );
+    $low =     str_replace( ',', '', $low );
+    $chng =    str_replace( ',', '', $chng );
+    $volume =  str_replace( ',', '', $volume );
+    $value =   str_replace( ',', '', $value );
+    $alllow =  str_replace( ',', '', $alllow );
+    $allhigh = str_replace( ',', '', $allhigh );
+    $close = str_replace( ',', '', $close );
+
 
     $sid = $row['id'];
     $query = "INSERT INTO stockvalues(sid, open, high, allHigh, low, allLow, close, schange, schangePercent, volume, stockValues, createdDate)
