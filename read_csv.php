@@ -7,6 +7,12 @@ use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\WebDriverExpectedCondition;
 
+#reseting the dailyentry
+if($argv[1] == "reset") {
+  $query = "UPDATE stocklist SET dailyEntry='no'";
+  $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
+}
+
 
 //https://www1.nseindia.com/content/historical/EQUITIES/2022/DEC/cm09DEC2022bhav.csv.zip
 //https://www1.nseindia.com/products/content/equities/equities/homepage_eq.htm
@@ -18,16 +24,14 @@ fclose($file);
 
 array_shift($records); // Removing header
 
-#$query = "UPDATE stocklist SET dailyEntry='no'";
 
-$serverUrl = 'http://172.17.0.2:4444';
+$serverUrl = 'http://172.17.0.3:4444';
 
 // Chrome
 $driver = RemoteWebDriver::create($serverUrl, DesiredCapabilities::chrome());
 
 $new = "No New Stocks Today";
 $date = date('d-m-Y');
-
 
 foreach ($records as $record) {
 
@@ -57,17 +61,20 @@ foreach ($records as $record) {
   $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
   $row = mysqli_fetch_assoc($result);
 
+
   if(!empty($row['id'])) {
 
     $driver->manage()->deleteAllCookies();
     #$driver->get("https://www.nseindia.com/get-quotes/equity?symbol=$symbol");
-    $symbol_url = urlencode($symbol);
-    echo $url = "https://www1.nseindia.com/live_market/dynaContent/live_watch/get_quote/GetQuote.jsp?symbol=$symbol_url";
+     $symbol_url = urlencode($symbol);
+     echo $symbol_url;
+     $url = "https://www1.nseindia.com/live_market/dynaContent/live_watch/get_quote/GetQuote.jsp?symbol=$symbol_url";
     echo "\n";
     $driver->get($url);
     sleep(2);
     $element = $driver->findElement(WebDriverBy::xpath("//div[@id='closePrice']"));
     $driver->wait(10, 1000)->until(WebDriverExpectedCondition::visibilityOf($element));
+    //sleep(5);
     $open     = $driver->findElement(WebDriverBy::xpath("//div[@id='open']"))->getText();
     $high     = $driver->findElement(WebDriverBy::xpath("//div[@id='dayHigh']"))->getText();
     $low      = $driver->findElement(WebDriverBy::xpath("//div[@id='dayLow']"))->getText();
@@ -98,9 +105,19 @@ foreach ($records as $record) {
     $query = "UPDATE stocklist SET dailyEntry='yes' WHERE id = '$sid'";
     $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
+
   }
 
 }
 
+/*
+//backupß
+$unique = date("d_m_Y_H_i_s",time());
+$tableName  = "stockvalues";
+$tableNameBackup = 'stockvalues_'+$unique;
+$backupFile = "sql/"+$tableNameBackup+".sql";
+$query      = "SELECT * INTO OUTFILE '$backupFile' FROM $tableName";
+$result = mysqli_query($GLOBALS['mysqlConnect'],$query);
+*/
 $driver->close();
 ?>

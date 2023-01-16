@@ -30,6 +30,7 @@ require_once './template/header.php';
          <option value="enpattern"> Engulfing Pattern </option>
          <option value="nhammer"> Negative Hammer </option>
          <option value="pwindow"> Postive Window</option>
+         <option value="bullcandle"> Bullish Candle</option>
          <option value="gdoji"> Grave Stone Doji </option>
        </select>
    </th>

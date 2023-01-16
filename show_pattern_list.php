@@ -36,6 +36,7 @@ require_once './include/common.php';
     <th>Stock Name</th>
     <th>Money Control</th>
     <th>ChartInk</th>
+    <th>Ticker Tape</th>
     <th>Action</th>
 </tr>
 
@@ -45,7 +46,7 @@ require_once './include/common.php';
 //Checking stock already exists in table
     $type      =  $_POST['t'];
     $pattern   =  $_POST['p'];
-    $field     =  array("sName,murl,curl,id");
+    $field     =  array("sName,murl,curl,id,tickertape");
     $table     =  "stocklist";
     $condition =  "sType = '$type' and isWatch = 'no'";
     $order     =  "ntype";
@@ -81,13 +82,16 @@ foreach ($data as $value) {
                 break;   
              case "enpattern":
                 $result = enpattern($value['id']);
-                break;        
+                break;
+             case "bullcandle":
+               $result = bullcandle($value['id']);
+               break;
             default:
                $result = false;
             }
 
 
- if($result == true) {       ?>
+ if($result == 1) {   ?>
 
 <tr class="show">
     <td>
@@ -96,6 +100,7 @@ foreach ($data as $value) {
     </td>
     <td><a href="<?php echo $value['murl'] ?>" target="_blank">Money Control Link</a></td>
    <td><a href="<?php echo $value['curl']?>" target="_blank">ChartInk</a></td>
+    <td><a href="<?php echo $value['tickertape']?>" target="_blank">Ticker Tape</a></td>
    <td><a href="javascript:void(0)" id="<?php echo $value['id']  ?>" class="watch" title="watch">WatchList</a></td>
 </tr>
 

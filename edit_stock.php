@@ -45,10 +45,9 @@ require_once './template/header.php';
      <?php
 
       $company = $data['cSymbol'];
-      $symbol = explode("|",$company);
-       $link   = str_replace(": ","%3A",$symbol[1]);
+
      ?>
-     <td><a href="http://www.google.com/finance?q=<?php echo $link ?>" target="_blank">Company Info</a></td>
+     <td><a href="https://www.google.com/search?q=<?php echo $company ?>+News+today" target="_blank">Company Info</a></td>
  </tr>
 
  <tr>
