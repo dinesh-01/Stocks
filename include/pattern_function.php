@@ -17,8 +17,7 @@ function window($type,$company) {
 
 
     if($data[0]['high'] < $data[1]['low']) {
-        format($data);
-	     	 $result = true; 
+	     	 $result = true;
 	     }
    }
 
@@ -26,8 +25,7 @@ function window($type,$company) {
   if($type == "pwindow") {
 
          if($data[1]['high'] < $data[0]['low']) {
-             format($data);
-	     	 $result = true; 
+	     	 $result = true;
 	     }
    }
 
@@ -110,9 +108,7 @@ function sptop($company) {
    $data = get_value_price($company,"one");
 
     if($data['schange'] > 0 ) {
-
-        format($data);
-
+        
         $percentage = 1;
         $total = $data['open'];
         $perValue = ($percentage / 100) * $total;
@@ -120,6 +116,7 @@ function sptop($company) {
         $value = intval($data['close']);
 
         if (in_array($value, $range)) {
+           // format($data);
             $result = true;
         }
 
@@ -138,7 +135,7 @@ function enpattern($company) {
 
    if($data[0]['schange'] > 0 && $data[1]['schange'] < 0)  {
 
-       if( ($data[1]['high']  < $data[0]['high']) &&  ($data[1]['low']  < $data[0]['low']) ){
+       if( ($data[1]['high']  < $data[0]['high']) &&  ($data[1]['low']  > $data[0]['low']) ){
             $result = true;
        }
 
