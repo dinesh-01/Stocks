@@ -27,7 +27,7 @@
                         <td>{$smarty.foreach.count.iteration}</td>
                         <td>{$value.stock_name}</td>
                         <td>{$value.createdDate}</td>
-                        <td><a href="{$value.curl}" target="_blank">ChartInk</a></td>
+                        <td><a href="{$value.chart_ink}" target="_blank">ChartInk</a></td>
                         <td>{$value.notes}</td>
                         <td><a href="{$value.trend_file_date}" target="_blank">Trend Image</a></td>
 
