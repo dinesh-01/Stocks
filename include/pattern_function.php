@@ -108,7 +108,7 @@ function sptop($company) {
    $data = get_value_price($company,"one");
 
     if($data['schange'] > 0 ) {
-        
+
         $percentage = 1;
         $total = $data['open'];
         $perValue = ($percentage / 100) * $total;
@@ -143,6 +143,23 @@ function enpattern($company) {
    }
 
    return $result;
+
+}
+
+
+
+function upward($company) {
+
+    $result = false;
+    $data = get_value_price($company,"two");
+
+
+
+    if($data[0]['schange'] > 0 && $data[1]['schange'] > 0)  {
+            $result = true;
+        }
+
+    return $result;
 
 }
 

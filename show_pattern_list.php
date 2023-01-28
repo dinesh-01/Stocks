@@ -83,8 +83,8 @@ foreach ($data as $value) {
              case "enpattern":
                 $result = enpattern($value['id']);
                 break;
-             case "bullcandle":
-               $result = bullcandle($value['id']);
+             case "upward":
+               $result = upward($value['id']);
                break;
             default:
                $result = false;

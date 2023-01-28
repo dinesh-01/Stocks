@@ -22,15 +22,15 @@ require_once './template/header.php';
     <th>
        <select name="pattern" id="pattern" onchange="show_pattern_list();">
        	 <option value=""> -- Select Pattern -- </option>
+         <option value="upward">Upward</option>
          <option value="alllow">All Time Low</option>
+         <option value="phammer"> Positive Hammer </option>
          <option value="doji"> Doji </option>
          <option value="nwindow"> Negative Window</option>
-         <option value="phammer"> Positive Hammer </option>
          <option value="sptop"> Spining Top </option>
          <option value="enpattern"> Engulfing Pattern </option>
          <option value="nhammer"> Negative Hammer </option>
          <option value="pwindow"> Postive Window</option>
-         <option value="bullcandle"> Bullish Candle</option>
          <option value="gdoji"> Grave Stone Doji </option>
        </select>
    </th>

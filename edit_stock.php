@@ -15,7 +15,7 @@ require_once './template/header.php';
 
 <br/>
 <center>
-<form action="edit_process.php" method="post">
+<form action="edit_process.php" method="post" enctype="multipart/form-data">
 
  <table class="gridtable">
 
@@ -50,7 +50,13 @@ require_once './template/header.php';
      <td><a href="https://www.google.com/search?q=<?php echo $company ?>+News+today" target="_blank">Company Info</a></td>
  </tr>
 
- <tr>
+     <tr>
+         <td>Upload Trend</td>
+         <td><input type="file" name="fileToUpload" id="fileToUpload"></td>
+     </tr>
+
+
+     <tr>
        <td colspan="2"><input type="submit" name="save" value="Save"></td>
 </tr>
 
