@@ -13,6 +13,8 @@ $serverUrl = 'http://172.17.0.3:4444';
 // Chrome
 $driver = RemoteWebDriver::create($serverUrl, DesiredCapabilities::chrome());
 $driver->manage()->deleteAllCookies();
+$window = $driver->manage()->window();
+$window->maximize();
 
 
 
@@ -24,16 +26,16 @@ foreach ($row as $data) {
 
   $company =  $data[0];
   $sid = $data[1];
-  $driver->get("https://www.tickertape.in/");
-  $element = $driver->findElement(WebDriverBy::xpath("//input[@id='search-stock-input']"));
+  $driver->get("https://groww.in/stocks");
+  $element = $driver->findElement(WebDriverBy::xpath("//input[contains(@id,'globalSearch')]"));
   $driver->wait(10, 1000)->until(WebDriverExpectedCondition::visibilityOf($element));
-  $driver->findElement(WebDriverBy::xpath("//input[@id='search-stock-input']"))->sendKeys($company);
+  $driver->findElement(WebDriverBy::xpath("//input[contains(@id,'globalSearch')]"))->sendKeys($company);
 
   sleep(5);
 
-  $driver->findElement(WebDriverBy::xpath("//div[contains(@class,'search-link')]"))->click();
+  $driver->findElement(WebDriverBy::xpath("//div[contains(@class,'SuggestionText')]"))->click();
 
-  sleep(5);
+  sleep(10);
   $ticker_url =  $driver->getCurrentURL();
 
   echo $query = "UPDATE stocklist SET tickertape='$ticker_url' WHERE id = '$sid'";

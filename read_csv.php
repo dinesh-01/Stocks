@@ -14,77 +14,48 @@ if($argv[1] == "reset") {
 }
 
 
-//https://www1.nseindia.com/content/historical/EQUITIES/2022/DEC/cm09DEC2022bhav.csv.zip
-//https://www1.nseindia.com/products/content/equities/equities/homepage_eq.htm
-$file = fopen('data/500.csv', 'r');
-while (($line = fgetcsv($file)) !== FALSE) {
-  $records[] =  $line;
-}
-fclose($file);
+ $query  = "Select id,tickertape from stocklist where dailyEntry = 'no' ";
+$result = mysqli_query($GLOBALS['mysqlConnect'],$query);
+$records = $result->fetch_all(MYSQLI_ASSOC);
 
-array_shift($records); // Removing header
+
+// Set up desired capabilities
+$capabilities = DesiredCapabilities::chrome();
 
 
 $serverUrl = 'http://172.17.0.3:4444';
 
 // Chrome
-$driver = RemoteWebDriver::create($serverUrl, DesiredCapabilities::chrome());
+$driver = RemoteWebDriver::create($serverUrl, $capabilities);
+$window = $driver->manage()->window();
+$window->maximize();
 
 $new = "No New Stocks Today";
 $date = date('d-m-Y');
 
 foreach ($records as $record) {
 
+ echo $url =  $record['tickertape'];
 
-  /*
-
-   [0] => SYMBOL
-  [1] => OPEN
-  [2] => HIGH
-  [3] => LOW
-  [4] => PREV. CLOSE
-  [5] => LTP
-  [6] => CHNG
-  [7] => %CHNG
-  [8] => VOLUME (shares)
-  [9] => VALUE
-  [10] => 52W H
-  [11] => 52W L
-
-  */
-
-
-  $symbol =  $record[2];
-
-
-  $query  = "Select id from stocklist where Csymbol = '$symbol' and dailyEntry = 'no' ";
-  $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
-  $row = mysqli_fetch_assoc($result);
-
-
-  if(!empty($row['id'])) {
 
     $driver->manage()->deleteAllCookies();
-    #$driver->get("https://www.nseindia.com/get-quotes/equity?symbol=$symbol");
-     $symbol_url = urlencode($symbol);
-     echo $symbol_url;
-     $url = "https://www1.nseindia.com/live_market/dynaContent/live_watch/get_quote/GetQuote.jsp?symbol=$symbol_url";
     echo "\n";
     $driver->get($url);
-    sleep(2);
-    $element = $driver->findElement(WebDriverBy::xpath("//div[@id='closePrice']"));
+    sleep("10");
+    
+   /* $element = $driver->findElement(WebDriverBy::xpath("//span[@id='week52lowVal']"));
     $driver->wait(10, 1000)->until(WebDriverExpectedCondition::visibilityOf($element));
     //sleep(5);
-    $open     = $driver->findElement(WebDriverBy::xpath("//div[@id='open']"))->getText();
-    $high     = $driver->findElement(WebDriverBy::xpath("//div[@id='dayHigh']"))->getText();
-    $low      = $driver->findElement(WebDriverBy::xpath("//div[@id='dayLow']"))->getText();
-    $chng     = $driver->findElement(WebDriverBy::xpath("//span[@id='change']"))->getText();
-    $chng_per = $driver->findElement(WebDriverBy::xpath("//a[@id='pChange']"))->getText();
-    $volume   = $driver->findElement(WebDriverBy::xpath("//span[@id='tradedVolume']"))->getText();
-    $value    = $driver->findElement(WebDriverBy::xpath("//span[@id='tradedValue']"))->getText();
-    $alllow   = $driver->findElement(WebDriverBy::xpath("//span[@id='low52']"))->getText();
-    $allhigh  = $driver->findElement(WebDriverBy::xpath("//span[@id='high52']"))->getText();
-    $close    = $driver->findElement(WebDriverBy::xpath("//div[@id='closePrice']"))->getText();
+    $open     = $driver->findElement(WebDriverBy::xpath("(//table[@id='priceInfoTable']//tr/td)[1]"))->getText();
+    $high     = $driver->findElement(WebDriverBy::xpath("(//table[@id='priceInfoTable']//tr/td)[2]"))->getText();
+    $low      = $driver->findElement(WebDriverBy::xpath("(//table[@id='priceInfoTable']//tr/td)[3]"))->getText();
+    $chng     = $driver->findElement(WebDriverBy::xpath("(//span[@id='priceInfoStatus']/span)[0]"))->getText();
+    $chng_per = $driver->findElement(WebDriverBy::xpath("(//span[@id='priceInfoStatus']/span)[1]"))->getText();
+    $volume   = $driver->findElement(WebDriverBy::xpath("//td[@id='tradevolshare']//following-sibling::td/span"))->getText();
+    $value    = $driver->findElement(WebDriverBy::xpath("//td[@id='tradevalshare']//following-sibling::td/span"))->getText();
+    $alllow   = $driver->findElement(WebDriverBy::xpath("//span[@id='week52lowVal']"))->getText();
+    $allhigh  = $driver->findElement(WebDriverBy::xpath("//span[@id='week52highVal']"))->getText();
+    $close    = $driver->findElement(WebDriverBy::xpath("(//table[@id='priceInfoTable']//tr/td)[4]"))->getText();
 
     $open =    str_replace( ',', '', $open );
     $high =    str_replace( ',', '', $high );
@@ -106,18 +77,12 @@ foreach ($records as $record) {
     $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 
-  }
+  */
 
 }
 
-/*
-//backupß
-$unique = date("d_m_Y_H_i_s",time());
-$tableName  = "stockvalues";
-$tableNameBackup = 'stockvalues_'+$unique;
-$backupFile = "sql/"+$tableNameBackup+".sql";
-$query      = "SELECT * INTO OUTFILE '$backupFile' FROM $tableName";
-$result = mysqli_query($GLOBALS['mysqlConnect'],$query);
-*/
+
 $driver->close();
+
+
 ?>

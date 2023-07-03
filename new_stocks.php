@@ -32,7 +32,7 @@ foreach ($records as $record) {
     $money_control = "https://www.google.com/search?q=".$symbol."+moneycontrol";
     $charink = "https://chartink.com/stocks/$symbol.html";
 
-   echo  $query  = "INSERT INTO stocklist(sName, cSymbol, murl, curl, tickertape, industry, ntype) VALUES ('$company','$symbol','$money_control','$charink','','$stockType','N500')";
+     $query  = "INSERT INTO stocklist(sName, cSymbol, murl, curl, tickertape, industry, ntype) VALUES ('$company','$symbol','$money_control','$charink','','$stockType','N500')";
      $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
     echo "\n";

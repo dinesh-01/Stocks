@@ -9,9 +9,7 @@
             <tr>
             <th> No </th>
             <th>Stock Name</th>
-            <th>MoneyControl</th>
-            <th>ChartInk</th>
-            <th>TickerTape</th>
+            <th>TradingView</th>
             <th> T.Open </th>
             <th> T.Close </th>
             <th> T.High </th>
@@ -32,9 +30,7 @@
             <input type="hidden" id="sname" value="{$value.sName}"/>
             <input type="hidden" id="sid" value="{$value.id}"/>
         </td>
-        <td><a href="{$value.murl}" target="_blank">MoneyControl Link</a></td>
-        <td><a href="{$value.curl}" target="_blank">ChartInk</a></td>
-        <td><a href="{$value.ttape}" target="_blank">TickerTape</a></td>
+         <td><a href="https://in.tradingview.com/symbols/NSE-{$value.cSymbol}" target="_blank">TradingView</a></td>
         <td>{$value.currOpen}</td>
         <td>{$value.currClose}</td>
         <td>{$value.currHigh}</td>
