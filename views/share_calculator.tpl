@@ -15,7 +15,7 @@
     <th>Symbol</th>
     <th>Money Control</th>
     <th>Chart</th>
-    <th>TickerTape</th>
+    <th>TradingView</th>
     <th>Qunatity</th>
      <th>Buy Price</th>
     <th> Total </th>
@@ -33,7 +33,7 @@
         <td><a href = "https://www.google.com/search?q={$value.symbol}" target="_blank">{$value.symbol}</a></td>
         <td><a href="{$value.murl}" target="_blank">Money Control Link</a></td>
         <td><a href="{$value.curl}" target="_blank">ChartInk</a></td>
-        <td><a href="{$value.tickertape}" target="_blank">TickerTape</a></td>
+        <td><a href="https://in.tradingview.com/symbols/NSE-{$value.cSymbol}" target="_blank">TradingView</a></td>
         <td>  <input type="text" name="qvolume" id="qvolume{$value.id}" size="7" value="{$value.qvolume}"
         onkeyup="show_calculator('{$value.id}')" />  </td>
         <td>  <input type="text" name="qbuy" id="qbuy{$value.id}" size="5" value="{$value.qbuy}" 

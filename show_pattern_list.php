@@ -34,7 +34,7 @@ require_once './include/common.php';
 <table class="gridtable">
 <tr>
     <th>Stock Name</th>
-    <th>Money Control</th>
+    <th>TradingView</th>
     <th>ChartInk</th>
     <th>Ticker Tape</th>
     <th>Action</th>
@@ -46,7 +46,7 @@ require_once './include/common.php';
 //Checking stock already exists in table
     $type      =  $_POST['t'];
     $pattern   =  $_POST['p'];
-    $field     =  array("sName,murl,curl,id,tickertape");
+    $field     =  array("sName,murl,curl,id,cSymbol,tickertape");
     $table     =  "stocklist";
     $condition =  "sType = '$type' and isWatch = 'no'";
     $order     =  "ntype";
@@ -98,8 +98,7 @@ foreach ($data as $value) {
         <a href="edit_stock.php?id=<?php echo $value['id']  ?>" target="blank"><?php echo $value['sName'] ?></a>
         <input type="hidden" id="sname" value="<?php echo $value['sName'] ?>"/> 
     </td>
-    <td><a href="<?php echo $value['murl'] ?>" target="_blank">Money Control Link</a></td>
-   <td><a href="<?php echo $value['curl']?>" target="_blank">ChartInk</a></td>
+    <td><a href="https://in.tradingview.com/symbols/NSE-<?php echo $value['cSymbol'] ?>" target="_blank">TradingView</a></td>   <td><a href="<?php echo $value['curl']?>" target="_blank">ChartInk</a></td>
     <td><a href="<?php echo $value['tickertape']?>" target="_blank">Ticker Tape</a></td>
    <td><a href="javascript:void(0)" id="<?php echo $value['id']  ?>" class="watch" title="watch">WatchList</a></td>
 </tr>

@@ -29,7 +29,12 @@
                         <td>{$value.createdDate}</td>
                         <td><a href="{$value.chart_ink}" target="_blank">ChartInk</a></td>
                         <td>{$value.notes}</td>
-                        <td><a href="{$value.trend_file_date}" target="_blank">Trend Image</a></td>
+
+                        {if $value.trend_file_date != "no_image" }
+                           <td><a href="{$value.trend_file_date}" target="_blank">Trend Image</a></td>
+                         {else}
+                          <td>No Image</td>
+                        {/if}
 
                     </tr>
 

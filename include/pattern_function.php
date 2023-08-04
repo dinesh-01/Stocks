@@ -14,8 +14,6 @@ function window($type,$company) {
 
   if($type == "nwindow") {
 
-
-
     if($data[0]['high'] < $data[1]['low']) {
 	     	 $result = true;
 	     }
@@ -39,33 +37,71 @@ function hammer($type,$company) {
   $result = false;
   $data = get_value_price($company,"one");
 
-  
+
+  $close = $data['close'];
+  $open  = $data['open'];
+  $high  = $data['high'];
+  $low   = $data['low'];
+  $change = $data['schange'];
+
+  //Positive Hammer
   if($type == "phammer") {
 
-	     if( ($data['high'] == $data['close'])  && ($data['open'] != $data['high']) ) {
-	     	return $result = true; 
-	     }
+      // Calculate the real body size
+      $realBody = abs($close - $open);
+
+      // Calculate the shadow sizes
+      $upperShadow = $high - max($open, $close);
+      $lowerShadow = min($open, $close) - $low;
+
+      // Check if it's a positive hammer pattern
+      if ($lowerShadow >= 2 * $realBody && $upperShadow < $realBody && $change >= 0) {
+            $result = true;
+      }
+
    }
 
+   //Negative Hammer
    if($type == "nhammer") {
 
-	     if( ($data['low'] == $data['close']) && ($data['open'] != $data['close']) ) {
-	     	return $result = true; 
-	     }
+       // Calculate the real body size
+       $realBody = abs($close - $open);
+
+       // Calculate the shadow sizes
+       $upperShadow = $high - max($open, $close);
+       $lowerShadow = min($open, $close) - $low;
+
+       // Check if it's a negative hammer pattern
+       if ($upperShadow >= 2 * $realBody && $lowerShadow < $realBody) {
+           $result = true;
+       }
+
    }
+
+   return $result;
 }
 
 function doji($company) {
 
- $result = false;
  $data = get_value_price($company,"one");
+ $close = $data['close'];
+ $open  = $data['open'];
+ $high  = $data['high'];
+ $low   = $data['low'];
+ $change = $data['schange'];
+ $tolerance = 0.1;
 
-    if($data['schange'] > 0 ) {
+    $bodySize = abs($open - $close);
 
-        if (($data['open'] == $data['close']) && ($data['open'] != $data['high'])) {
-            return $result = true;
-        }
-    }
+    // Calculate the total range of the candlestick
+    $totalRange = $high - $low;
+
+    // Calculate the tolerance value for the Doji pattern
+    $dojiTolerance = $totalRange * $tolerance;
+
+    // Check if the body size is smaller than the tolerance value
+    $result = $bodySize <= $dojiTolerance;
+    return $result;
   
 
 }
@@ -91,35 +127,39 @@ function all_time_low($company) {
    $result = false;
    $data = get_value_price($company,"one");
 
-    if($data['schange'] > 0 ) {
 
         if($data['low'] == $data['allLow']) {
-            return $result = true;
+             $result = true;
         }
 
-    }
+
+
+    return $result;
+
+
 
 }
 
 
 function sptop($company) {
 
-   $result = false;
-   $data = get_value_price($company,"one");
+    $result = false;
+    $data = get_value_price($company,"one");
+    $close = $data['close'];
+    $open  = $data['open'];
+    $high  = $data['high'];
+    $low   = $data['low'];
 
-    if($data['schange'] > 0 ) {
+    $bodyLength = abs($open - $close);
+    $upperShadowLength = $high - max($open, $close);
+    $lowerShadowLength = min($open, $close) - $low;
 
-        $percentage = 1;
-        $total = $data['open'];
-        $perValue = ($percentage / 100) * $total;
-        $range = range($total, $total + $perValue);
-        $value = intval($data['close']);
+    $bodyRatio = $bodyLength / ($high - $low);
+    $shadowRatio = ($upperShadowLength + $lowerShadowLength) / ($high - $low);
 
-        if (in_array($value, $range)) {
-           // format($data);
-            $result = true;
-        }
-
+    // Check spinning top conditions
+    if ($bodyRatio < 0.4 && $shadowRatio > 2 && $bodyLength < $shadowRatio * 0.2) {
+        $result = true;
     }
 
      return $result;
@@ -133,16 +173,35 @@ function enpattern($company) {
 
 
 
-   if($data[0]['schange'] > 0 && $data[1]['schange'] < 0)  {
+   // Sample price data (you can replace this with your actual price data)
+    $prices = array(
+        $data[1]['open'], // Day 1: Open
+        $data[1]['close'], // Day 1: Close
+        $data[1]['high'], // Day 1: High
+        $data[1]['low'],  // Day 1: Low
+        $data[0]['open'], // Day 2: Open
+        $data[0]['close'],  // Day 2: Close
+        $data[0]['high'], // Day 2: High
+        $data[0]['low']   // Day 2: Low
+    );
 
-       if( ($data[1]['high']  < $data[0]['high']) &&  ($data[1]['low']  > $data[0]['low']) ){
-            $result = true;
-       }
 
 
-   }
+        if (count($prices) < 8) {
+            $result =  false;
+        }
 
-   return $result;
+        // Extracting the relevant data for the two candles
+        $candle1 = array_slice($prices, 0, 4);
+        $candle2 = array_slice($prices, 4, 4);
+
+        // Checking if the second candle completely engulfs the first
+        if ($candle2[0] < $candle1[0] && $candle2[1] > $candle1[1] && $candle2[2] > $candle1[2] && $candle2[3] < $candle1[3]) {
+            $result =  true;
+        }
+
+
+    return $result;
 
 }
 
@@ -207,6 +266,8 @@ function get_value_price($company,$pattern="") {
     $order     =  "id desc";
     $arugment  =  array( "field" => $field , "table" => $table, "condition" => $condition,"order" => $order,"limit" => $limit);
     $data      =  select($arugment,$fetchType);
+
+
 
     return $data;
 

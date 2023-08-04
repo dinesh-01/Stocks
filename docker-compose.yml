@@ -1,0 +1,31 @@
+version: '3.7'
+
+services:
+  php-httpd:
+    image: php:7.3-apache
+    ports:
+      - 8082:80
+    volumes:
+      - "/Users/disingh/Documents/GitHub/Stocks:/var/www/html"
+
+  mariadb:
+    image: mariadb:10.5.2
+    volumes:
+      - mariadb-volume:/var/lib/mysql
+    environment:
+      TZ: "Asia/Kolkata"
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_ROOT_PASSWORD: "rootpwd"
+      MYSQL_USER: 'testuser'
+      MYSQL_PASSWORD: 'testpassword'
+      MYSQL_DATABASE: 'analytics'
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - 'mariadb:db'
+    ports:
+      - 8081:80
+
+volumes:
+  mariadb-volume:

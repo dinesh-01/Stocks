@@ -14,110 +14,67 @@ if($argv[1] == "reset") {
 }
 
 
-//https://www1.nseindia.com/content/historical/EQUITIES/2022/DEC/cm09DEC2022bhav.csv.zip
-//https://www1.nseindia.com/products/content/equities/equities/homepage_eq.htm
-$file = fopen('data/500.csv', 'r');
-while (($line = fgetcsv($file)) !== FALSE) {
-  $records[] =  $line;
-}
-fclose($file);
-
-array_shift($records); // Removing header
-
-
-$serverUrl = 'http://172.17.0.3:4444';
-
-// Chrome
-$driver = RemoteWebDriver::create($serverUrl, DesiredCapabilities::chrome());
-
-$new = "No New Stocks Today";
+$filename = 'data/MW-NIFTY-200-03-Aug-2023.csv'; // Replace with your file name or path
 $date = date('d-m-Y');
 
-foreach ($records as $record) {
+// Open the CSV file for reading
+$file = fopen($filename, 'r');
+
+if ($file) {
+    // Read the header row
+    $header = fgetcsv($file);
 
 
-  /*
+    // Read and output the remaining rows
+    while (($row = fgetcsv($file)) !== false) {
 
-   [0] => SYMBOL
-  [1] => OPEN
-  [2] => HIGH
-  [3] => LOW
-  [4] => PREV. CLOSE
-  [5] => LTP
-  [6] => CHNG
-  [7] => %CHNG
-  [8] => VOLUME (shares)
-  [9] => VALUE
-  [10] => 52W H
-  [11] => 52W L
+        $open     = $row[1];
+        $high     = $row[2];
+        $low      = $row[3];
+        $prev_close = $row[4];
+        $close  = $row[5];
+        $chng   = $row[6];
+        $chng_percentage = $row[7];
+        $volume   = $row[8];
+        $value    = $row[9];
+        $alllow   = $row[10];
+        $allhigh  = $row[11];
 
-  */
-
-
-  $symbol =  $record[2];
-
-
-  $query  = "Select id from stocklist where Csymbol = '$symbol' and dailyEntry = 'no' ";
-  $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
-  $row = mysqli_fetch_assoc($result);
-
-
-  if(!empty($row['id'])) {
-
-    $driver->manage()->deleteAllCookies();
-    #$driver->get("https://www.nseindia.com/get-quotes/equity?symbol=$symbol");
-     $symbol_url = urlencode($symbol);
-     echo $symbol_url;
-     $url = "https://www1.nseindia.com/live_market/dynaContent/live_watch/get_quote/GetQuote.jsp?symbol=$symbol_url";
-    echo "\n";
-    $driver->get($url);
-    sleep(2);
-    $element = $driver->findElement(WebDriverBy::xpath("//div[@id='closePrice']"));
-    $driver->wait(10, 1000)->until(WebDriverExpectedCondition::visibilityOf($element));
-    //sleep(5);
-    $open     = $driver->findElement(WebDriverBy::xpath("//div[@id='open']"))->getText();
-    $high     = $driver->findElement(WebDriverBy::xpath("//div[@id='dayHigh']"))->getText();
-    $low      = $driver->findElement(WebDriverBy::xpath("//div[@id='dayLow']"))->getText();
-    $chng     = $driver->findElement(WebDriverBy::xpath("//span[@id='change']"))->getText();
-    $chng_per = $driver->findElement(WebDriverBy::xpath("//a[@id='pChange']"))->getText();
-    $volume   = $driver->findElement(WebDriverBy::xpath("//span[@id='tradedVolume']"))->getText();
-    $value    = $driver->findElement(WebDriverBy::xpath("//span[@id='tradedValue']"))->getText();
-    $alllow   = $driver->findElement(WebDriverBy::xpath("//span[@id='low52']"))->getText();
-    $allhigh  = $driver->findElement(WebDriverBy::xpath("//span[@id='high52']"))->getText();
-    $close    = $driver->findElement(WebDriverBy::xpath("//div[@id='closePrice']"))->getText();
-
-    $open =    str_replace( ',', '', $open );
-    $high =    str_replace( ',', '', $high );
-    $low =     str_replace( ',', '', $low );
-    $chng =    str_replace( ',', '', $chng );
-    $volume =  str_replace( ',', '', $volume );
-    $value =   str_replace( ',', '', $value );
-    $alllow =  str_replace( ',', '', $alllow );
-    $allhigh = str_replace( ',', '', $allhigh );
-    $close = str_replace( ',', '', $close );
+        $open =    str_replace( ',', '', $open );
+        $high =    str_replace( ',', '', $high );
+        $low =     str_replace( ',', '', $low );
+        $prev_close =     str_replace( ',', '', $prev_close );
+        $close = str_replace( ',', '', $close );
+        $chng =    str_replace( ',', '', $chng );
+        $volume =  str_replace( ',', '', $volume );
+        $value =   str_replace( ',', '', $value );
+        $alllow =  str_replace( ',', '', $alllow );
+        $allhigh = str_replace( ',', '', $allhigh );
 
 
-    $sid = $row['id'];
-    $query = "INSERT INTO stockvalues(sid, open, high, allHigh, low, allLow, close, schange, schangePercent, volume, stockValues, createdDate)
-    VALUES ('$sid','$open','$high','$allhigh','$low','$alllow','$close','$chng','$chng_per','$volume','$value','$date')";
-    $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
+       $query  = "Select id from stocklist where cSymbol = '$row[0]' ";
+       $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
+       $id = $result->fetch_all(MYSQLI_ASSOC);
+       $sid = $id[0]['id'];
 
-    $query = "UPDATE stocklist SET dailyEntry='yes' WHERE id = '$sid'";
-    $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
+         $query = "INSERT INTO stockvalues(sid, open, high, allHigh, low, allLow, close, schange, schangePercent, volume, stockValues, createdDate)
+    VALUES ('$sid','$open','$high','$allhigh','$low','$alllow','$close','$chng','$chng_percentage','$volume','$value','$date')";
+        $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
+
+        $query = "UPDATE stocklist SET dailyEntry='yes' WHERE id = '$sid'";
+        $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 
-  }
+        echo "$row[0]  Completed";
+        echo "\n";
 
+    }
+
+    // Close the file
+    fclose($file);
+} else {
+    echo "Failed to open the file.";
 }
 
-/*
-//backupß
-$unique = date("d_m_Y_H_i_s",time());
-$tableName  = "stockvalues";
-$tableNameBackup = 'stockvalues_'+$unique;
-$backupFile = "sql/"+$tableNameBackup+".sql";
-$query      = "SELECT * INTO OUTFILE '$backupFile' FROM $tableName";
-$result = mysqli_query($GLOBALS['mysqlConnect'],$query);
-*/
-$driver->close();
+
 ?>
