@@ -14,7 +14,7 @@ if($argv[1] == "reset") {
 }
 
 
-$filename = 'data/MW-NIFTY-200-03-Aug-2023.csv'; // Replace with your file name or path
+$filename = 'data/MW-NIFTY-200-08-Aug-2023.csv'; // Replace with your file name or path
 $date = date('d-m-Y');
 
 // Open the CSV file for reading

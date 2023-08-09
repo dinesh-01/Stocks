@@ -100,7 +100,10 @@ function doji($company) {
     $dojiTolerance = $totalRange * $tolerance;
 
     // Check if the body size is smaller than the tolerance value
-    $result = $bodySize <= $dojiTolerance;
+    if($change > 0) {
+        $result = $bodySize <= $dojiTolerance;
+    }
+
     return $result;
   
 
