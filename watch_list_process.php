@@ -7,6 +7,7 @@ $id   = $_POST['id'];
 $field     = array('isWatch' => 'yes');
 $table     = "stocklist";
 $condition = "id = $id";
+$order     =  "volume desc";
 $arugment  =  array( "field" => $field , "table" => $table, "condition" => $condition);
 update($arugment);
 

@@ -8,7 +8,7 @@ require_once './include/common.php';
 
 //Watchlist stocks in share calculator
     $type      =  "nifty";
-    $field     =  array("sName,murl,curl,tickertape,id,qbuy,qvolume,qtotal,cSymbol");
+    $field     =  array("sName,murl,curl,tickertape,id,qbuy,qvolume,qtotal,cSymbol,current_volume,stock_signal,order_type,stop_loss,target");
     $table     =  "stocklist";
     $order     =  "priority";
     $condition =  "isWatch = 'yes' and priority = 1";
@@ -29,7 +29,20 @@ require_once './include/common.php';
 
 
 
-   //Rending to tbl file 
+   //Rending to tbl file
+     $smarty->assign('stock_signal', array(
+        'SELECT' => '=> SELECT <=',
+        'BUY' => 'BUY',
+        'SELL' => 'SELL')
+     );
+
+    //Rending to tbl file
+     $smarty->assign('order_type', array(
+        'SELECT' => '=> SELECT <=',
+        'MARKET' => 'MARKET',
+        'LIMIT' => 'LIMIT')
+     );
+
     $smarty->assign("datas",$data);
     $smarty->assign("total", $tdata['totals'] );
     $smarty->display("share_calculator.tpl");

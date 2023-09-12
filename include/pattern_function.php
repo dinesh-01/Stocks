@@ -47,34 +47,46 @@ function hammer($type,$company) {
   //Positive Hammer
   if($type == "phammer") {
 
-      // Calculate the real body size
-      $realBody = abs($close - $open);
+     if($open == $high) {
 
-      // Calculate the shadow sizes
-      $upperShadow = $high - max($open, $close);
-      $lowerShadow = min($open, $close) - $low;
+         // Calculate the real body size
+         $realBody = abs($close - $open);
 
-      // Check if it's a positive hammer pattern
-      if ($lowerShadow >= 2 * $realBody && $upperShadow < $realBody && $change >= 0) {
-            $result = true;
-      }
+         // Calculate the shadow sizes
+         $upperShadow = $high - max($open, $close);
+         $lowerShadow = min($open, $close) - $low;
+
+         // Check if it's a positive hammer pattern
+         if ($lowerShadow >= 2 * $realBody && $upperShadow < $realBody && $change >= 0) {
+             $result = true;
+         }
+
+     }
+
+
 
    }
 
    //Negative Hammer
    if($type == "nhammer") {
 
-       // Calculate the real body size
-       $realBody = abs($close - $open);
+    if($close == $low) {
 
-       // Calculate the shadow sizes
-       $upperShadow = $high - max($open, $close);
-       $lowerShadow = min($open, $close) - $low;
+        // Calculate the real body size
+        $realBody = abs($close - $open);
 
-       // Check if it's a negative hammer pattern
-       if ($upperShadow >= 2 * $realBody && $lowerShadow < $realBody) {
-           $result = true;
-       }
+        // Calculate the shadow sizes
+        $upperShadow = $high - max($open, $close);
+        $lowerShadow = min($open, $close) - $low;
+
+        // Check if it's a negative hammer pattern
+        if ($upperShadow >= 2 * $realBody && $lowerShadow < $realBody) {
+            $result = true;
+        }
+
+    }
+
+
 
    }
 
@@ -83,13 +95,14 @@ function hammer($type,$company) {
 
 function doji($company) {
 
- $data = get_value_price($company,"one");
- $close = $data['close'];
- $open  = $data['open'];
- $high  = $data['high'];
- $low   = $data['low'];
- $change = $data['schange'];
- $tolerance = 0.1;
+     $result = false;
+     $data = get_value_price($company,"one");
+     $close = $data['close'];
+     $open  = $data['open'];
+     $high  = $data['high'];
+     $low   = $data['low'];
+     $change = $data['schange'];
+     $tolerance = 0.1;
 
     $bodySize = abs($open - $close);
 
@@ -99,10 +112,13 @@ function doji($company) {
     // Calculate the tolerance value for the Doji pattern
     $dojiTolerance = $totalRange * $tolerance;
 
-    // Check if the body size is smaller than the tolerance value
-    if($change > 0) {
+    if($open == $close) {
+        // Check if the body size is smaller than the tolerance value
         $result = $bodySize <= $dojiTolerance;
     }
+
+
+
 
     return $result;
   
@@ -114,13 +130,13 @@ function gdoji($company) {
    $result = false;
    $data = get_value_price($company,"one");
 
-    if($data['schange'] > 0 ) {
 
-        if (($data['close'] == $data['high']) && ($data['open'] == $data['high'])) {
+
+        if (($data['close'] == $data['low']) && ($data['open'] == $data['high'])) {
             return $result = true;
         }
 
-    }
+
   
 
 }
@@ -144,6 +160,26 @@ function all_time_low($company) {
 }
 
 
+function all_time_high($company) {
+
+    $result = false;
+    $data = get_value_price($company,"one");
+
+
+    if($data['high'] == $data['allHigh']) {
+        $result = true;
+    }
+
+
+
+    return $result;
+
+
+
+}
+
+
+
 function sptop($company) {
 
     $result = false;
@@ -152,20 +188,24 @@ function sptop($company) {
     $open  = $data['open'];
     $high  = $data['high'];
     $low   = $data['low'];
+    $change = $data['schange'];
+    $tolerance = 0.25;
 
-    $bodyLength = abs($open - $close);
-    $upperShadowLength = $high - max($open, $close);
-    $lowerShadowLength = min($open, $close) - $low;
+    $bodySize = abs($open - $close);
 
-    $bodyRatio = $bodyLength / ($high - $low);
-    $shadowRatio = ($upperShadowLength + $lowerShadowLength) / ($high - $low);
+    // Calculate the total range of the candlestick
+    $totalRange = $high - $low;
 
-    // Check spinning top conditions
-    if ($bodyRatio < 0.4 && $shadowRatio > 2 && $bodyLength < $shadowRatio * 0.2) {
-        $result = true;
+    // Calculate the tolerance value for the Doji pattern
+    $dojiTolerance = $totalRange * $tolerance;
+
+    if($open != $close) {
+        // Check if the body size is smaller than the tolerance value
+        $result = $bodySize <= $dojiTolerance;
     }
 
-     return $result;
+
+    return $result;
 }
 
 

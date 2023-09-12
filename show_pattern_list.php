@@ -70,8 +70,11 @@ foreach ($data as $value) {
                 break;
             case "alllow":
                 $result = all_time_low($value['id']);
-                break;    
-            case "doji":
+                break;
+            case "allhigh":
+               $result = all_time_high($value['id']);
+               break;
+               case "doji":
                 $result = doji($value['id']);
                 break;  
             case "gdoji":
@@ -98,7 +101,7 @@ foreach ($data as $value) {
         <a href="edit_stock.php?id=<?php echo $value['id']  ?>" target="blank"><?php echo $value['sName'] ?></a>
         <input type="hidden" id="sname" value="<?php echo $value['sName'] ?>"/> 
     </td>
-    <td><a href="https://in.tradingview.com/symbols/NSE-<?php echo $value['cSymbol'] ?>" target="_blank">TradingView</a></td>   <td><a href="<?php echo $value['curl']?>" target="_blank">ChartInk</a></td>
+    <td><a href="https://in.tradingview.com/chart/AINnrOTv/?symbol=NSE%3A<?php echo $value['cSymbol'] ?>" target="_blank">TradingView</a></td>   <td><a href="<?php echo $value['curl']?>" target="_blank">ChartInk</a></td>
     <td><a href="<?php echo $value['tickertape']?>" target="_blank">Ticker Tape</a></td>
    <td><a href="javascript:void(0)" id="<?php echo $value['id']  ?>" class="watch" title="watch">WatchList</a></td>
 </tr>

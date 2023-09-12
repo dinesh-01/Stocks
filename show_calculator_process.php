@@ -4,12 +4,20 @@
 require_once './include/common.php';
 
 
- $sid      = $_POST['sid'];
- $sqbuy    = $_POST['qbuy'];
- $sqvolume = $_POST['qvolume'];
- $sqtotal  = $_POST['qtotal'];
+ $sid           = $_POST['sid'];
+ $sqbuy         = $_POST['qbuy'];
+ $sqvolume      = $_POST['qvolume'];
+ $sqtotal       = $_POST['qtotal'];
+ $stock_signal  = $_POST['stock_signal'];
+ $order_type    = $_POST['order_type'];
+ $stop_loss     = $_POST['stop_loss'];
+ $target        = $_POST['target'];
 
- $field = array('qbuy' => $sqbuy,'qvolume' => $sqvolume, 'qtotal' => $sqtotal );
+
+$field = array('qbuy' => $sqbuy,'qvolume' => $sqvolume, 'qtotal' => $sqtotal,
+                'stock_signal' => $stock_signal, 'order_type' => $order_type, 'stop_loss' => $stop_loss,
+                'target' => $target);
+
  $table = "stocklist";
  $condition = "id = $sid";
  $arugment  =  array( "field" => $field , "table" => $table, "condition" => $condition);
