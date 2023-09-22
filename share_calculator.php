@@ -8,9 +8,9 @@ require_once './include/common.php';
 
 //Watchlist stocks in share calculator
     $type      =  "nifty";
-    $field     =  array("sName,murl,curl,tickertape,id,qbuy,qvolume,qtotal,cSymbol,current_volume,stock_signal,order_type,stop_loss,target");
+    $field     =  array("id,sName,murl,curl,tickertape,id,qbuy,qvolume,qtotal,cSymbol,current_volume,stock_signal,order_type,stop_loss,target");
     $table     =  "stocklist";
-    $order     =  "priority";
+    $order     =  "sName";
     $condition =  "isWatch = 'yes' and priority = 1";
     $arugment  =  array( "field" => $field , "table" => $table, "condition" => $condition,"order" => $order);
     $data      =  select($arugment,"many");
@@ -20,11 +20,28 @@ require_once './include/common.php';
     $tdata      =  select($tarugment,"one");
 
 
-   //Getting symbol name
+
+//Getting symbol name
     $i = 0;
     foreach ($data as $value) {
             $data[$i]["symbol"] = $value['cSymbol'];
-            $i++;
+            $sid =  $value['id'];
+
+
+          if(empty($value['qbuy']) ) {
+
+              $field = array("close");
+              $table = "stockvalues";
+              $order = "id desc limit 0,1";
+              $condition = "sid = '$sid' ";
+              $vrugment = array("field" => $field, "table" => $table, "condition" => $condition, "order" => $order);
+              $vdata = select($vrugment, "one");
+
+              $data[$i]["qbuy"] = $vdata['close'];
+
+          }
+
+        $i++;
     }
 
 

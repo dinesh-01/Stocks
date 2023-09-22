@@ -11,14 +11,21 @@ tar_data = 0;
 stop_loss_data = 0;
 
 result = Number(qb) * Number(qv);
-qt = result;
+qt = Math.round(result * 10) / 10;
 
-$('#qtotal'+id).val(qt);
+//$('#qtotal'+id).val(qt);
 
-pdata = (1.5 / 100) ;
+ qftotal =   $('#qtotal'+id).val()
+ qfvoume =  qftotal / qb
+ qfvoume =   Math.trunc(qfvoume);
+ $('#qvolume'+id).val(qfvoume);
+
+pdata = (0.7 / 100) ;
 sdata = (0.5 / 100) ;
 qbdata = qb * pdata;
 qbsdata = qb * sdata;
+
+
 
 if(stock_signal == "SELL") {
 

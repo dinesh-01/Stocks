@@ -95,7 +95,6 @@ function hammer($type,$company) {
 
 function doji($company) {
 
-     $result = false;
      $data = get_value_price($company,"one");
      $close = $data['close'];
      $open  = $data['open'];
@@ -111,11 +110,9 @@ function doji($company) {
 
     // Calculate the tolerance value for the Doji pattern
     $dojiTolerance = $totalRange * $tolerance;
+   // Check if the body size is smaller than the tolerance value
+    $result = $bodySize <= $dojiTolerance;
 
-    if($open == $close) {
-        // Check if the body size is smaller than the tolerance value
-        $result = $bodySize <= $dojiTolerance;
-    }
 
 
 
@@ -130,14 +127,12 @@ function gdoji($company) {
    $result = false;
    $data = get_value_price($company,"one");
 
-
-
-        if (($data['close'] == $data['low']) && ($data['open'] == $data['high'])) {
-            return $result = true;
+        if (($data['close'] == $data['low']) && ($data['close'] == $data['open'])) {
+             $result = true;
         }
 
 
-  
+    return $result;
 
 }
 
@@ -189,21 +184,18 @@ function sptop($company) {
     $high  = $data['high'];
     $low   = $data['low'];
     $change = $data['schange'];
-    $tolerance = 0.25;
 
-    $bodySize = abs($open - $close);
+    $target = ($high + $low) / 2;
+    $arr  = array($open, $close);
 
-    // Calculate the total range of the candlestick
-    $totalRange = $high - $low;
+    $target = intval($target);
+    $open = intval($open);
+    $close = intval($close);
 
-    // Calculate the tolerance value for the Doji pattern
-    $dojiTolerance = $totalRange * $tolerance;
-
-    if($open != $close) {
-        // Check if the body size is smaller than the tolerance value
-        $result = $bodySize <= $dojiTolerance;
+    if($close < $target) {
+         $range = range($close,$target);
+         $result = in_array($open, $range);
     }
-
 
     return $result;
 }
@@ -214,41 +206,65 @@ function enpattern($company) {
    $result = false;
    $data = get_value_price($company,"two");
 
+        $previous_open   = $data[1]['open']; // Day 1: Open
+        $previous_close  = $data[1]['close']; // Day 1: Close
+        $previous_high   = $data[1]['high']; // Day 1: High
+        $previous_low    = $data[1]['low'];  // Day 1: Low
+        $current_open    = $data[0]['open']; // Day 2: Open
+        $current_close   = $data[0]['close'];  // Day 2: Close
+        $current_high    = $data[0]['high']; // Day 2: High
+        $current_low     = $data[0]['low']; // Day 2: Low
+        $previous_change = $data[1]['schange'];
+        $current_change  = $data[0]['schange'];
 
 
-   // Sample price data (you can replace this with your actual price data)
-    $prices = array(
-        $data[1]['open'], // Day 1: Open
-        $data[1]['close'], // Day 1: Close
-        $data[1]['high'], // Day 1: High
-        $data[1]['low'],  // Day 1: Low
-        $data[0]['open'], // Day 2: Open
-        $data[0]['close'],  // Day 2: Close
-        $data[0]['high'], // Day 2: High
-        $data[0]['low']   // Day 2: Low
-    );
+     if($current_change > 0 && $previous_change < 0)   {
 
+         // Checking if the second candle completely engulfs the first
+         if ( $previous_close > $current_open && $previous_open < $current_close) {
+             $result =  true;
+         }
 
+     }
 
-        if (count($prices) < 8) {
-            $result =  false;
-        }
-
-        // Extracting the relevant data for the two candles
-        $candle1 = array_slice($prices, 0, 4);
-        $candle2 = array_slice($prices, 4, 4);
-
-        // Checking if the second candle completely engulfs the first
-        if ($candle2[0] < $candle1[0] && $candle2[1] > $candle1[1] && $candle2[2] > $candle1[2] && $candle2[3] < $candle1[3]) {
-            $result =  true;
-        }
 
 
     return $result;
 
 }
 
+function brpattern($company) {
 
+    $result = false;
+    $data = get_value_price($company,"two");
+
+    $previous_open   = $data[1]['open']; // Day 1: Open
+    $previous_close  = $data[1]['close']; // Day 1: Close
+    $previous_high   = $data[1]['high']; // Day 1: High
+    $previous_low    = $data[1]['low'];  // Day 1: Low
+    $current_open    = $data[0]['open']; // Day 2: Open
+    $current_close   = $data[0]['close'];  // Day 2: Close
+    $current_high    = $data[0]['high']; // Day 2: High
+    $current_low     = $data[0]['low']; // Day 2: Low
+    $previous_change = $data[1]['schange'];
+    $current_change  = $data[0]['schange'];
+
+
+    if($current_change < 0 && $previous_change > 0)   {
+
+        // Checking if the second candle completely engulfs the first
+        if ( $previous_open > $current_close && $previous_close < $current_open) {
+            $result =  true;
+        }
+
+
+    }
+
+
+
+    return $result;
+
+}
 
 function upward($company) {
 

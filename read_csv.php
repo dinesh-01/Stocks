@@ -1,22 +1,16 @@
 <?php
 require_once './include/common.php';
 
-use Facebook\WebDriver\Chrome\ChromeOptions;
-use Facebook\WebDriver\WebDriverBy;
-use Facebook\WebDriver\Remote\RemoteWebDriver;
-use Facebook\WebDriver\Remote\DesiredCapabilities;
-use Facebook\WebDriver\WebDriverExpectedCondition;
 
 #reseting the dailyentry
-if($argv[1] == "reset") {
-  $query = "UPDATE stocklist SET dailyEntry='no', `qbuy`='0',`qvolume`='0',
-                     `current_volume`='0',`qtotal`='0',`stock_signal`='=> SELECT <=',
-                     `order_type`='=> SELECT <=',`target`='0',`stop_loss`='0' ";
+  $query = "UPDATE stocklist SET `dailyEntry`='no', `qbuy`='0',`qvolume`='0',
+                     `current_volume`='0',`qtotal`='0',`stock_signal`='SELL',
+                     `order_type`='LIMIT',`target`='0',`stop_loss`='0' ";
   $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
-}
 
 
-$filename = 'data/MW-NIFTY-200-11-Sep-2023.csv'; // Replace with your file name or path
+
+$filename = 'data/MW-NIFTY500-MULTICAP-50_25_25-21-Sep-2023.csv'; // Replace with your file name or path
 $date = date('d-m-Y');
 
 // Open the CSV file for reading

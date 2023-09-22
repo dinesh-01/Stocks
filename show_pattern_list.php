@@ -86,6 +86,9 @@ foreach ($data as $value) {
              case "enpattern":
                 $result = enpattern($value['id']);
                 break;
+               case "brpattern":
+               $result = brpattern($value['id']);
+               break;
              case "upward":
                $result = upward($value['id']);
                break;

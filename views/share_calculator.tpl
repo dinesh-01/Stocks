@@ -40,9 +40,9 @@
         <td>  {$value.current_volume}  </td>
         <td>  <input type="text" name="qvolume" id="qvolume{$value.id}" size="7" value="{$value.qvolume}"
         onkeyup="show_calculator('{$value.id}')" />  </td>
-        <td>  <input type="text" name="qbuy" id="qbuy{$value.id}" size="5" value="{$value.qbuy}" 
+        <td>  <input type="text" name="qbuy" id="qbuy{$value.id}" size="7" value="{$value.qbuy}"
         onkeyup="show_calculator('{$value.id}')" />  </td>
-        <td>  <input type="text" name="qtotal" id="qtotal{$value.id}" size="7" value="{$value.qtotal}" readonly="readonly"  /> </td>
+        <td>  <input type="text" name="qtotal" id="qtotal{$value.id}" size="7" value="25000" readonly="readonly"  /> </td>
         <td>
             {html_options onchange="show_calculator('{$value.id}')" name="stock_signal" id="stock_signal{$value.id}" options=$stock_signal selected="{$value.stock_signal}"}
         </td>

@@ -30,6 +30,7 @@ require_once './template/header.php';
          <option value="nwindow"> Negative Window</option>
          <option value="sptop"> Spining Top </option>
          <option value="enpattern"> Engulfing Pattern </option>
+         <option value="brpattern"> Bearish Pattern </option>
          <option value="nhammer"> Hanging  </option>
          <option value="pwindow"> Postive Window</option>
          <option value="gdoji"> Grave Stone Doji </option>
