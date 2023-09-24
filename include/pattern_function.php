@@ -233,6 +233,43 @@ function enpattern($company) {
 
 }
 
+
+function pipattern($company) {
+
+    $result = false;
+    $data = get_value_price($company,"two");
+
+    $previous_open   = $data[1]['open']; // Day 1: Open
+    $previous_close  = $data[1]['close']; // Day 1: Close
+    $previous_high   = $data[1]['high']; // Day 1: High
+    $previous_low    = $data[1]['low'];  // Day 1: Low
+    $current_open    = $data[0]['open']; // Day 2: Open
+    $current_close   = $data[0]['close'];  // Day 2: Close
+    $current_high    = $data[0]['high']; // Day 2: High
+    $current_low     = $data[0]['low']; // Day 2: Low
+    $previous_change = $data[1]['schange']; // Day 1: change
+    $current_change  = $data[0]['schange']; // Day 2: change
+
+
+    if($current_change > 0 && $previous_change < 0)   {
+
+
+
+          if($previous_low >= $current_open || $previous_low == $current_open || $previous_close == $current_open)   {
+
+              $avg = intval(($previous_open + $previous_close) / 2) ;
+              $current_close = intval($current_close);
+              $range = range($avg,$previous_open);
+              $result = in_array($current_close, $range);
+          }
+
+     }
+
+    return $result;
+
+}
+
+
 function brpattern($company) {
 
     $result = false;
