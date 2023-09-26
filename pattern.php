@@ -29,6 +29,7 @@ require_once './template/header.php';
          <option value="doji"> Doji </option>
          <option value="nwindow"> Negative Window</option>
          <option value="sptop"> Spining Top </option>
+           <option value="morningstar"> Morning Star </option>
          <option value="enpattern"> Engulfing Pattern </option>
          <option value="pipattern"> Piercing Pattern </option>
          <option value="brpattern"> Bearish Engulfing Pattern </option>

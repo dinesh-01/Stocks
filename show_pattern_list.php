@@ -82,7 +82,10 @@ foreach ($data as $value) {
                 break;    
              case "sptop":
                 $result = sptop($value['id']);
-                break;   
+                break;
+            case "morningstar":
+               $result = morningstar($value['id']);
+               break;
              case "enpattern":
                 $result = enpattern($value['id']);
                 break;

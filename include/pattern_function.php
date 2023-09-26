@@ -234,6 +234,51 @@ function enpattern($company) {
 }
 
 
+function morningstar($company) {
+
+    $result = false;
+    $data = get_value_price($company,"three");
+
+    # 0 is day 3
+    # 1 is day 2
+    # 2 is day 1
+
+
+    $day_1_open   = $data[2]['open']; // Day 1: Open
+    $day_1_close  = $data[2]['close']; // Day 1: Close
+    $day_1_high   = $data[2]['high']; // Day 1: High
+    $day_1_low    = $data[2]['low'];  // Day 1: Low
+    $day_1_change = $data[2]['schange']; //Day 1: change
+
+    $day_2_open   = $data[1]['open']; // Day 2: Open
+    $day_2_close  = $data[1]['close']; // Day 2: Close
+    $day_2_high   = $data[1]['high']; // Day 2: High
+    $day_2_low    = $data[1]['low'];  // Day 2: Low
+    $day_2_change = $data[1]['schange']; //Day 2: change
+
+    $day_3_open   = $data[0]['open']; // Day 3: Open
+    $day_3_close  = $data[0]['close']; // Day 3: Close
+    $day_3_high   = $data[0]['high']; // Day 3: High
+    $day_3_low    = $data[0]['low'];  // Day 3: Low
+    $day_3_change = $data[0]['schange']; //Day 3: change
+
+
+    if( $day_1_change < 0 && $day_2_change > 0 && $day_3_change > 0 ) {
+
+        if($day_1_close > $day_2_close && $day_3_open > $day_2_close) {
+
+            format($data);
+            $result = true;
+        }
+    }
+
+
+
+    return $result;
+
+}
+
+
 function pipattern($company) {
 
     $result = false;
@@ -355,6 +400,11 @@ function get_value_price($company,$pattern="") {
     if($pattern == "two") {
        $limit = "0,2";
        $fetchType = "many";
+    }
+
+    if($pattern == "three") {
+        $limit = "0,3";
+        $fetchType = "many";
     }
 
     

@@ -60,6 +60,15 @@ require_once './include/common.php';
         'LIMIT' => 'LIMIT')
      );
 
+        //Rending to tbl file
+        $smarty->assign('qprice', array(
+                '25000' => '25K',
+                '50000' => '50K',
+                '75000' => '75K',
+                '100000' => '1L',
+                )
+        );
+
     $smarty->assign("datas",$data);
     $smarty->assign("total", $tdata['totals'] );
     $smarty->display("share_calculator.tpl");
