@@ -1,6 +1,1 @@
-Step 1: Run Update query => UPDATE stocklist SET dailyEntry='no'
-Step 2: Run php read_csv.php
-
-
-
-"SYMBOL ","OPEN ","HIGH ","LOW ","PREV. CLOSE ","LTP ","CHNG ","%CHNG ","VOLUME (shares)","VALUE ","52W H ","52W L ","365 D % CHNG 13-Jul-2022","30 D % CHNG 13-Jun-2023"
+1. Add Patterns in DB

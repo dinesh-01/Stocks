@@ -13,7 +13,8 @@
     <th> No </th>
     <th>Symbol</th>
     <th>Chart</th>
-    <th>TradingView</th>
+    <th>TV SingleLayout</th>
+    <th>TV MultiLayout</th>
     <th>Current Volume </th>
     <th>Place Volume</th>
      <th>Buy Price</th>
@@ -36,13 +37,14 @@
             <input type="hidden" id="sid" value="{$value.id}"/>
             <a href = "https://in.tradingview.com/symbols/NSE-{$value.symbol}" target="_blank">{$value.symbol}</a></td>
         <td><a href="{$value.curl}" target="_blank">ChartInk</a></td>
-        <td><a href="https://in.tradingview.com/chart/AINnrOTv/?symbol=NSE%3A{$value.cSymbol}" target="_blank">TradingView</a></td>
+        <td><a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.cSymbol}" target="_blank">Single Layout</a></td>
+        <td><a href="https://in.tradingview.com/chart/AINnrOTv/?symbol=NSE%3A{$value.cSymbol}" target="_blank">Multi Layout</a></td>
         <td>  {$value.current_volume}  </td>
         <td>  <input type="text" name="qvolume" id="qvolume{$value.id}" size="7" value="{$value.qvolume}"
         onkeyup="show_calculator('{$value.id}')" />  </td>
         <td>  <input type="text" name="qbuy" id="qbuy{$value.id}" size="7" value="{$value.qbuy}"
         onkeyup="show_calculator('{$value.id}')" />  </td>
-        <td>  <input type="text" name="qtotal" id="qtotal{$value.id}" size="7" value="25000" readonly="readonly"  /> </td>
+        <td>  <input type="text" name="qtotal" id="qtotal{$value.id}" size="7" value="100000" readonly="readonly"  /> </td>
         <td>
             {html_options onchange="show_calculator('{$value.id}')" name="stock_signal" id="stock_signal{$value.id}" options=$stock_signal selected="{$value.stock_signal}"}
         </td>

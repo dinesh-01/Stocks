@@ -22,9 +22,10 @@
 <tr>
     <th><a href="list_watch.php">Home</a></th>
     <th><a href="share_calculator.php">Shares Calculator</a> 
-  <!--  <th><a href="list_stocks.php?t=penny">Penny Stocks</a></th> -->
+    <th><a href="list_stocks.php?t=N50">Nifty Stocks</a></th>
     <th><a href="list_stocks.php?t=nifty">Stock Lists</a></th>
-    <th><a href="pattern.php">CandleStick</a>  
+    <th><a href="pattern.php">CandleStick</a>
+    <th><a href="long_trade.php">Long Trade</a>
     <th><a href="https://zerodha.com/brokerage-calculator" target="blank">brokerage</a></th>
 
 </tr>

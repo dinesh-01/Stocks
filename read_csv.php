@@ -4,13 +4,13 @@ require_once './include/common.php';
 
 #reseting the dailyentry
   $query = "UPDATE stocklist SET `dailyEntry`='no', `qbuy`='0',`qvolume`='0',
-                     `current_volume`='0',`qtotal`='0',`stock_signal`='SELL',
+                     `current_volume`='0',`qtotal`='0',`stock_signal`='=> SELECT <=',
                      `order_type`='LIMIT',`target`='0',`stop_loss`='0' ";
   $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 
 
-$filename = 'data/MW-NIFTY500-MULTICAP-50_25_25-25-Sep-2023.csv'; // Replace with your file name or path
+$filename = 'data/MW-NIFTY500-MULTICAP-50_25_25-15-Oct-2023.csv'; // Replace with your file name or path
 $date = date('d-m-Y');
 
 // Open the CSV file for reading
@@ -33,8 +33,8 @@ if ($file) {
         $chng_percentage = $row[7];
         $volume   = $row[8];
         $value    = $row[9];
-        $alllow   = $row[10];
-        $allhigh  = $row[11];
+        $alllow   = $row[11];
+        $allhigh  = $row[10];
 
         $open =    str_replace( ',', '', $open );
         $high =    str_replace( ',', '', $high );
@@ -53,8 +53,8 @@ if ($file) {
        $id = $result->fetch_all(MYSQLI_ASSOC);
        $sid = $id[0]['id'];
 
-         $query = "INSERT INTO stockvalues(sid, open, high, allHigh, low, allLow, close, schange, schangePercent, volume, stockValues, createdDate)
-    VALUES ('$sid','$open','$high','$allhigh','$low','$alllow','$close','$chng','$chng_percentage','$volume','$value','$date')";
+         $query = "INSERT INTO stockvalues(sid, open, high, allHigh, low, allLow, close, schange, schangePercent, volume, stockValues, addClear, createdDate)
+    VALUES ('$sid','$open','$high','$allhigh','$low','$alllow','$close','$chng','$chng_percentage','$volume','$value',1,'$date')";
         $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
         $query = "UPDATE stocklist SET dailyEntry='yes',current_volume='$volume' WHERE id = '$sid'";

@@ -86,12 +86,18 @@ foreach ($data as $value) {
             case "morningstar":
                $result = morningstar($value['id']);
                break;
+             case "eveningstar":
+               $result = eveningstar($value['id']);
+               break;
              case "enpattern":
                 $result = enpattern($value['id']);
                 break;
              case "pipattern":
                $result = pipattern($value['id']);
                break;
+               case "darkcover":
+                   $result = darkcover($value['id']);
+                   break;
                case "brpattern":
                $result = brpattern($value['id']);
                break;

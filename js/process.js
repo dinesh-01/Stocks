@@ -1,6 +1,5 @@
 function show_calculator(id) {
 
- 
 qb = $('#qbuy'+id).val();
 qv = $('#qvolume'+id).val();
 stock_signal =   $('#stock_signal'+id).val();
@@ -20,7 +19,7 @@ qt = Math.round(result * 10) / 10;
  qfvoume =   Math.trunc(qfvoume);
  $('#qvolume'+id).val(qfvoume);
 
-pdata = (0.7 / 100) ;
+pdata = (1.5 / 100) ;
 sdata = (0.5 / 100) ;
 qbdata = qb * pdata;
 qbsdata = qb * sdata;
@@ -51,7 +50,7 @@ $('#target'+id).val(tar_data);
 $('#stop_loss'+id).val(stop_loss_data);
 
 $.post("show_calculator_process.php", { qbuy: qb,
-                                        qvolume: qv,
+                                        qvolume: qfvoume,
                                         qtotal: qt,
                                         stock_signal:stock_signal,
                                         order_type:order_type,
