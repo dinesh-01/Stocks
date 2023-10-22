@@ -25,7 +25,7 @@
     <th><a href="list_stocks.php?t=N50">Nifty Stocks</a></th>
     <th><a href="list_stocks.php?t=nifty">Stock Lists</a></th>
     <th><a href="pattern.php">CandleStick</a>
-    <th><a href="long_trade.php">Long Trade</a>
+    <th><a href="token.php">Generate Token</a>
     <th><a href="https://zerodha.com/brokerage-calculator" target="blank">brokerage</a></th>
 
 </tr>

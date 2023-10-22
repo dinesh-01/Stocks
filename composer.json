@@ -1,6 +1,7 @@
 {
     "require": {
         "php-webdriver/webdriver": "1.12.0",
-        "doctrine/dbal": "3.3.5"
+        "doctrine/dbal": "3.3.5",
+        "guzzlehttp/guzzle": "^7.0"
     }
 }

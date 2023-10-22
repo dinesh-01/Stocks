@@ -10,7 +10,7 @@ require_once './include/common.php';
 
 
 
-$filename = 'data/MW-NIFTY500-MULTICAP-50_25_25-15-Oct-2023.csv'; // Replace with your file name or path
+$filename = 'data/MW-NIFTY-200-20-Oct-2023.csv'; // Replace with your file name or path
 $date = date('d-m-Y');
 
 // Open the CSV file for reading
@@ -61,8 +61,9 @@ if ($file) {
         $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 
-        echo "$row[0]  Completed";
+        echo "$row[0]  Completed - $chng";
         echo "\n";
+        sleep(1);
 
     }
 

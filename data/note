@@ -1,0 +1,4 @@
+source .bash_profile
+cd /Applications/MAMP/htdocs/stocks
+
+php composer.phar install

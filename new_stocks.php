@@ -4,7 +4,7 @@ require_once './include/common.php';
 
 //url => https://www.nseindia.com/products-services/indices-nifty500-index
 
-$filename = 'data/MW-NIFTY500-MULTICAP-50_25_25-20-Sep-2023.csv'; // Replace with your file name or path
+$filename = 'data/MW-NIFTY-TOTAL-MARKET-16-Oct-2023.csv'; // Replace with your file name or path
 
 // Open the CSV file for reading
 $file = fopen($filename, 'r');
@@ -38,6 +38,7 @@ foreach ($records as $record) {
 
      echo $query  = "INSERT INTO stocklist(sName, cSymbol, mcurl, murl, curl, tickertape, industry, ntype) VALUES ('$company','$company','$money_control','','$charink','','','N500')";
      $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
+     sleep(1);
 
     echo "\n";
 

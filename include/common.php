@@ -1,8 +1,8 @@
 <?php
  #session_start();
  //Disable Error Warning
- error_reporting(E_ERROR);
- ini_set('display_errors', '0');
+//error_reporting(E_ALL);
+//ini_set('display_errors', 'On');
 
 
 //including common files
@@ -16,4 +16,6 @@
 //Adding smarty template
 require_once 'smarty/libs/Smarty.class.php';
 $smarty = new Smarty();
+$smarty->caching = false;
+$smarty->force_compile - false;
 $smarty->template_dir = 'views';

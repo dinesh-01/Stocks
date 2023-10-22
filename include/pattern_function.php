@@ -217,11 +217,11 @@ function enpattern($company) {
 
     $threshold = 5; // You can adjust this value
     $bodyLength = abs($current_open - $current_close);
+    $day_1_change = $previous_open > $previous_close;
+    $day_2_change = $current_close > $current_open;
 
 
-    if ($bodyLength >= $threshold) {
-
-        if ($current_change > 0 && $previous_change < 0) {
+        if ($day_1_change == true && $day_2_change == true) {
 
             // Checking if the second candle completely engulfs the first
             if ( ($previous_close > $current_open) && ($previous_open < $current_close) ) {
@@ -229,7 +229,7 @@ function enpattern($company) {
             }
 
         }
-    }
+
 
 
 
@@ -343,9 +343,11 @@ function pipattern($company) {
     $bodyLength = abs($current_open - $current_close);
 
 
-    if ($bodyLength >= $threshold) {
+    $day_1_change = $previous_open > $previous_close;
+    $day_2_change = $current_close > $current_open;
 
-        if ($current_change > 0 && $previous_change < 0) {
+
+        if ($day_1_change == true && $day_2_change == true) {
 
             if ($previous_low >= $current_open || $previous_low == $current_open || $previous_close == $current_open) {
 
@@ -356,7 +358,7 @@ function pipattern($company) {
             }
 
         }
-    }
+
 
     return $result;
 
@@ -379,8 +381,11 @@ function brpattern($company) {
     $previous_change = $data[1]['schange'];
     $current_change  = $data[0]['schange'];
 
+    $day_1_change = $previous_open < $previous_close;
+    $day_2_change = $current_close < $current_open;
 
-    if($current_change < 0 && $previous_change > 0)   {
+
+    if ($day_1_change == true && $day_2_change == true) {
 
         // Checking if the second candle completely engulfs the first
         if ( $previous_open > $current_close && $previous_close < $current_open) {
