@@ -4,7 +4,7 @@ require_once './include/common.php';
 
 //url => https://www.nseindia.com/products-services/indices-nifty500-index
 
-$file = fopen('data/MW-NIFTY-50-18-Oct-2023.csv', 'r');
+$file = fopen('data/nifty.csv', 'r');
 while (($line = fgetcsv($file)) !== FALSE) {
   $records[] =  $line;
 }

@@ -2,6 +2,16 @@
 require_once './include/common.php';
 
 
+$headers = [
+    'Content-Type' => 'application/json',
+    'X-Kite-Version' => '3',
+    'Authorization' => 'token '.KEY.':'.TOKEN
+];
+
+$client = new GuzzleHttp\Client([
+    'headers' => $headers
+]);
+
 #reseting the dailyentry
   $query = "UPDATE stocklist SET `dailyEntry`='no', `qbuy`='0',`qvolume`='0',
                      `current_volume`='0',`qtotal`='0',`stock_signal`='=> SELECT <=',
@@ -24,31 +34,28 @@ if ($file) {
     // Read and output the remaining rows
     while (($row = fgetcsv($file)) !== false) {
 
-        $open     = $row[1];
-        $high     = $row[2];
-        $low      = $row[3];
-        $prev_close = $row[4];
-        $close  = $row[5];
-        $chng   = $row[6];
-        $chng_percentage = $row[7];
-        $volume   = $row[8];
-        $value    = $row[9];
-        $alllow   = $row[11];
-        $allhigh  = $row[10];
+        $api_symbol = $row[0];
+        $end_point = "https://api.kite.trade/quote?i=NSE:$api_symbol";
+        $res = $client->request('GET', $end_point);
+        $response = $res->getBody()->getContents();
+        $response = (json_decode($response,true));
+        $fetch = $response['data']["NSE:$api_symbol"]["ohlc"];
 
-        $open =    str_replace( ',', '', $open );
-        $high =    str_replace( ',', '', $high );
-        $low =     str_replace( ',', '', $low );
-        $prev_close =     str_replace( ',', '', $prev_close );
-        $close = str_replace( ',', '', $close );
-        $chng =    str_replace( ',', '', $chng );
-        $volume =  str_replace( ',', '', $volume );
-        $value =   str_replace( ',', '', $value );
-        $alllow =  str_replace( ',', '', $alllow );
-        $allhigh = str_replace( ',', '', $allhigh );
+        $open = $fetch['open'];
+        $low = $fetch['low'];
+        $high = $fetch['high'];
+        $close = $response['data']["NSE:$api_symbol"]['last_price'];
+        $prev_close = $fetch['close'];
+        $volume = $response['data']["NSE:$api_symbol"]['volume'];
+        $alllow = 0;
+        $allhigh = 0;
+        $value = 0;
+        $chng_percentage = 0;
 
+        $chng =  $close - $prev_close ;
+        $chng = number_format($chng,1);
 
-       $query  = "Select id from stocklist where cSymbol = '$row[0]' ";
+       $query  = "Select id from stocklist where cSymbol = '$api_symbol' ";
        $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
        $id = $result->fetch_all(MYSQLI_ASSOC);
        $sid = $id[0]['id'];
@@ -61,8 +68,9 @@ if ($file) {
         $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 
-        echo "$row[0]  Completed - $chng";
+        echo "$api_symbol  Completed - $chng";
         echo "\n";
+
         sleep(1);
 
     }

@@ -23,8 +23,8 @@ require_once './template/header.php';
        <select name="pattern" id="pattern" onchange="show_pattern_list();">
        	 <option value=""> -- Select Pattern -- </option>
          <option value="upward">Upward</option>
-         <option value="alllow">All Time Low</option>
-         <option value="allhigh">All Time High</option>
+      <!--   <option value="alllow">All Time Low</option>
+         <option value="allhigh">All Time High</option> -->
          <option value="doji"> Doji </option>
          <option value="sptop"> Spining Top </option>
          <option value="phammer"> Hammer </option>

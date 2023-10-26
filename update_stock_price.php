@@ -12,7 +12,7 @@ require_once './include/common.php';
     $client = new GuzzleHttp\Client([
         'headers' => $headers
     ]);
-    
+
 
     $url    = $_GET['trading_view_url'];
     $price  = $_GET['price'];
@@ -56,25 +56,28 @@ require_once './include/common.php';
       $quantity = 55;
       */
 
+    $stock_exclude = array("NIFTYBEES","NETF","JUNIORBEES");
 
-      $end_point = "https://api.kite.trade/orders/$order_id";
-      $res = $client->request('GET', $end_point);
-      $response = $res->getBody()->getContents();
-      $response = (json_decode($response,true));
-      $index = sizeof($response['data']) - 1;
-      $result = $response['data'][$index];
-      $last_price = $result['average_price'];
+    if (!in_array($symbol, $stock_exclude))  {
 
-      //Creating GTT Orders
-      $stop_loss_percentage = (0.7/100) ;
-      $stop_loss_diff =  $last_price * $stop_loss_percentage;
-      $stop_loss = $last_price - $stop_loss_diff;
-      $stop_loss = number_format($stop_loss ,1);
+        $end_point = "https://api.kite.trade/orders/$order_id";
+        $res = $client->request('GET', $end_point);
+        $response = $res->getBody()->getContents();
+        $response = (json_decode($response,true));
+        $index = sizeof($response['data']) - 1;
+        $result = $response['data'][$index];
+        $last_price = $result['average_price'];
 
-      $target_percentage = (1.4/100) ;
-      $target_diff =  $last_price * $target_percentage;
-      $target = $last_price + $target_diff;
-      $target =  number_format($target,1);
+        //Creating GTT Orders
+        $stop_loss_percentage = (0.7/100) ;
+        $stop_loss_diff =  $last_price * $stop_loss_percentage;
+        $stop_loss = $last_price - $stop_loss_diff;
+        $stop_loss = number_format($stop_loss ,1);
+
+        $target_percentage = (1.4/100) ;
+        $target_diff =  $last_price * $target_percentage;
+        $target = $last_price + $target_diff;
+        $target =  number_format($target,1);
 
 
         $condition = "{\"exchange\":\"NSE\",\"tradingsymbol\":\"$symbol\",\"trigger_values\":[$stop_loss,$target],\"last_price\":$last_price}";
@@ -83,7 +86,7 @@ require_once './include/common.php';
                      {\"exchange\":\"NSE\",\"tradingsymbol\":\"$symbol\",\"transaction_type\":\"SELL\",
                      \"quantity\":$quantity,\"order_type\":\"LIMIT\",\"product\":\"CNC\",\"price\":$target}]";
 
-      $end_point = "https://api.kite.trade/gtt/triggers";
+        $end_point = "https://api.kite.trade/gtt/triggers";
 
         $gtt = $client->request('POST', $end_point, [
             'form_params' => [
@@ -94,6 +97,11 @@ require_once './include/common.php';
                 'orders' => $orders
             ]
         ]);
+
+    }
+
+
+
 
 
 
