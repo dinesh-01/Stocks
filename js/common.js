@@ -30,6 +30,52 @@ function show_pattern_list() {
  p = $('#pattern').val();
 $('#show_result').html("<b>Loading...</b>");
 
+//DownTrend
+if(p == "pipattern") {
+    $('#candle_sample').html("<img src='candle_sample/pipattern.png'  alt='candlesample' width='500' height='200'>");
+}
+
+if(p == "phammer") {
+    $('#candle_sample').html("<img src='candle_sample/phammer.png'  alt='candlesample' width='500' height='200'>");
+}
+
+if(p == "enpattern") {
+    $('#candle_sample').html("<img src='candle_sample/enpattern.png'  alt='candlesample' width='500' height='200'>");
+}
+
+if(p == "doji") {
+    $('#candle_sample').html("<img src='candle_sample/doji.png'  alt='candlesample' width='500' height='200'>");
+}
+
+if(p == "sptop") {
+    $('#candle_sample').html("<img src='candle_sample/sptop.png'  alt='candlesample' width='500' height='200'>");
+}
+
+if(p == "sptop") {
+    $('#candle_sample').html("<img src='candle_sample/sptop.png'  alt='candlesample' width='500' height='200'>");
+}
+
+if(p == "morningstar") {
+    $('#candle_sample').html("<img src='candle_sample/morningstar.png'  alt='candlesample' width='500' height='200'>");
+}
+
+//Uptrend
+if(p == "darkcover") {
+    $('#candle_sample').html("<img src='candle_sample/darkcover.png'  alt='candlesample' width='500' height='200'>");
+}
+
+if(p == "eveningstar") {
+    $('#candle_sample').html("<img src='candle_sample/eveningstar.png'  alt='candlesample' width='500' height='200'>");
+}
+
+if(p == "brpattern") {
+    $('#candle_sample').html("<img src='candle_sample/brpattern.png'  alt='candlesample' width='500' height='200'>");
+}
+
+if(p == "nhammer") {
+    $('#candle_sample').html("<img src='candle_sample/nhammer.png'  alt='candlesample' width='500' height='200'>");
+}
+
    $.post("show_pattern_list.php", {t: t,p: p},function(data){
         $('#show_result').html(data);
     });

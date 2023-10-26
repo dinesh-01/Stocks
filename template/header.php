@@ -21,8 +21,9 @@
 <table class="gridtable">
 <tr>
     <th><a href="list_watch.php">Home</a></th>
-    <th><a href="share_calculator.php">Shares Calculator</a> 
+    <th><a href="share_calculator.php">Shares Calculator</a>
     <th><a href="list_stocks.php?t=N50">Nifty Stocks</a></th>
+    <th><a href="list_bees_stocks.php?list=yes">Bees Stocks</a></th>
     <th><a href="list_stocks.php?t=nifty">Stock Lists</a></th>
     <th><a href="pattern.php">CandleStick</a>
     <th><a href="token.php">Generate Token</a>

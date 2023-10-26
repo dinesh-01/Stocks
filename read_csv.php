@@ -10,7 +10,7 @@ require_once './include/common.php';
 
 
 
-$filename = 'data/MW-NIFTY-200-20-Oct-2023.csv'; // Replace with your file name or path
+$filename = 'data/MW-NIFTY-200-25-Oct-2023.csv'; // Replace with your file name or path
 $date = date('d-m-Y');
 
 // Open the CSV file for reading

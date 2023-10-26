@@ -46,7 +46,11 @@ require_once './template/header.php';
 </table>
 <br/>
 
+<div id="candle_sample"></div>
 
-<div id = "show_result"></div>
+<div id = "show_result">
+
+
+</div>
 
 

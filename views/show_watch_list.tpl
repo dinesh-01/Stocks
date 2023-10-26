@@ -19,7 +19,7 @@
             <th> Change </th>
             <th> Volume </th>
             <th>Action</th>
-            <th> Trend List </th>
+        <!--    <th> Trend List </th> -->
             <th>Priority</th>
             </tr>
 
@@ -42,7 +42,7 @@
          <td>{$value.pChange}</td>
         <td>{$value.volume}</td>
         <td><a href="javascript:void(0)" id="{$value.id}" class="unwatch" title="unwatch">UnWatch</a></td>
-        <td> <a href="trend_list_view.php?sid={$value.id}"  target="_blank"> View Trends</a></td>
+        <!--    <td> <a href="trend_list_view.php?sid={$value.id}"  target="_blank"> View Trends</a></td> -->
         <td>
            <select name="pri" id="pri{$value.id}" onchange="change_priority('{$value.id}');">
             <option value="1" {if $value.priority eq 1}   selected="selected"  {/if}> 1 </option>
