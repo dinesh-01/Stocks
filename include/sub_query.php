@@ -7,8 +7,8 @@ function watch_list_query($type) {
                stocklist.priority as priority,stockvalues.open as currOpen,stockvalues.high as currHigh,
                stockvalues.low as currLow,stockvalues.close as currClose,stockvalues.schange as pChange,
                stockvalues.volume as volume From stocklist INNER JOIN  stockvalues 
-               WHERE stocklist.id = stockvalues.sid AND stocklist.isWatch = 'yes' AND stocklist.sType = '$type' AND stockvalues.id = (SELECT MAX(id) from stockvalues 
-               where sid = stocklist.id) order by stocklist.priority asc";
+               WHERE stocklist.id = stockvalues.sid AND stocklist.isWatch = 'yes' AND stocklist.priority = 2  AND stocklist.sType = '$type' AND stockvalues.id = (SELECT MAX(id) from stockvalues 
+               where sid = stocklist.id) order by stocklist.sName asc";
 
 	$result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
