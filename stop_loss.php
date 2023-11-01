@@ -44,7 +44,7 @@ foreach ($data as $value) {
 
 
     //Set Stoploss
-    $end_point = "https://api.kite.trade/orders/amo";
+    $end_point = "https://api.kite.trade/orders/regular";
     $res = $client->request('POST', $end_point, [
         'form_params' => [
             'tradingsymbol' => $symbol,

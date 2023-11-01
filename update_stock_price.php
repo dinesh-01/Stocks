@@ -48,7 +48,7 @@ require_once './include/common.php';
 
         //Fetching order id
         $order_id = $response['data']['order_id'];
-        $query  = "INSERT INTO stockAmo(symbol, order_id, quanity, created_date) VALUES ('$symbol','$order_id','$quantity' ,'$date')";
+        $query  = "INSERT INTO stockAmo(symbol, order_id, quanity, created_date) VALUES ('$symbol','$order_id','$quantity','$date')";
         $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
         echo "$symbol Executed Successfully";
 
