@@ -22,18 +22,9 @@ $data      =  select($arugment,"many");
 
 foreach ($data as $value) {
 
-    $order_id = $value['order_id'];
-    $symbol   = $value['symbol'];
-    $quantity = $value['quanity'];
-
-    #fetch order details
-    $end_point = "https://api.kite.trade/orders/$order_id";
-    $res = $client->request('GET', $end_point);
-    $response = $res->getBody()->getContents();
-    $response = (json_decode($response,true));
-    $index = sizeof($response['data']) - 1;
-    $result = $response['data'][$index];
-    $last_price = $result['average_price'];
+    $last_price = $value['price'];
+    $symbol     = $value['symbol'];
+    $quantity   = $value['quanity'];
 
 
     $stop_loss_percentage = (0.5/100) ;

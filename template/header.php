@@ -22,6 +22,7 @@
 <tr>
     <th><a href="list_watch.php">Home</a></th>
     <th><a href="share_calculator.php">Monitor Stocks</a>
+    <th><a href="checklist_stock.php">Wishlist Stocks</a>
     <th><a href="list_stocks.php?t=N50">Nifty Stocks</a></th>
     <th><a href="list_bees_stocks.php?list=yes">Bees Stocks</a></th>
     <th><a href="list_stocks.php?t=nifty">Stock Lists</a></th>
