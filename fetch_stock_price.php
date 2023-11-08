@@ -41,11 +41,23 @@ if ($file) {
         $response = (json_decode($response,true));
         $fetch = $response['data']["NSE:$api_symbol"]["ohlc"];
 
+
         $open = $fetch['open'];
+        $open = str_replace(",","",$open);
+
         $low = $fetch['low'];
+        $low = str_replace(",","",$low);
+
         $high = $fetch['high'];
+        $high = str_replace(",","",$high);
+
         $close = $response['data']["NSE:$api_symbol"]['last_price'];
+        $close = str_replace(",","",$close);
+
         $prev_close = $fetch['close'];
+        $prev_close = str_replace(",","",$prev_close);
+
+
         $volume = $response['data']["NSE:$api_symbol"]['volume'];
         $alllow = 0;
         $allhigh = 0;
@@ -71,7 +83,6 @@ if ($file) {
         echo "$api_symbol  Completed - $chng";
         echo "\n";
 
-        sleep(1);
 
     }
 

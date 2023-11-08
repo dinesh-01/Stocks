@@ -6,11 +6,11 @@ function format($data) {
     echo "</pre>";
 }
 
-function window($type,$company) {
+function window($type,$company,$trade) {
 
 
    $result = false;
-   $data = get_value_price($company,"two");
+   $data = get_value_price($company,"two",$trade);
 
   if($type == "nwindow") {
 
@@ -32,10 +32,10 @@ function window($type,$company) {
 
 }
 
-function hammer($type,$company) {
+function hammer($type,$company,$trade) {
 
   $result = false;
-  $data = get_value_price($company,"one");
+  $data = get_value_price($company,"one",$trade);
 
 
   $close = $data['close'];
@@ -93,10 +93,10 @@ function hammer($type,$company) {
    return $result;
 }
 
-function doji($company) {
+function doji($company,$trade) {
 
      $result = false;
-     $data = get_value_price($company,"one");
+     $data = get_value_price($company,"one",$trade);
      $close = $data['close'];
      $open  = $data['open'];
      $high  = $data['high'];
@@ -119,10 +119,10 @@ function doji($company) {
 
 }
 
-function gdoji($company) {
+function gdoji($company,$trade) {
 
    $result = false;
-   $data = get_value_price($company,"one");
+   $data = get_value_price($company,"one",$trade);
 
         if (($data['close'] == $data['low']) && ($data['close'] == $data['open'])) {
              $result = true;
@@ -133,10 +133,10 @@ function gdoji($company) {
 
 }
 
-function all_time_low($company) {
+function all_time_low($company,$trade) {
 
    $result = false;
-   $data = get_value_price($company,"one");
+   $data = get_value_price($company,"one",$trade);
 
 
         if($data['low'] == $data['allLow']) {
@@ -151,10 +151,10 @@ function all_time_low($company) {
 
 }
 
-function all_time_high($company) {
+function all_time_high($company,$trade) {
 
     $result = false;
-    $data = get_value_price($company,"one");
+    $data = get_value_price($company,"one",$trade);
 
 
     if($data['high'] == $data['allHigh']) {
@@ -169,10 +169,10 @@ function all_time_high($company) {
 
 }
 
-function sptop($company) {
+function sptop($company,$trade) {
 
     $result = false;
-    $data = get_value_price($company,"one");
+    $data = get_value_price($company,"one",$trade);
     $close = $data['close'];
     $open  = $data['open'];
     $high  = $data['high'];
@@ -199,10 +199,10 @@ function sptop($company) {
     return $result;
 }
 
-function enpattern($company) {
+function enpattern($company,$trade) {
 
    $result = false;
-   $data = get_value_price($company,"two");
+   $data = get_value_price($company,"two",$trade);
 
         $previous_open   = $data[1]['open']; // Day 1: Open
         $previous_close  = $data[1]['close']; // Day 1: Close
@@ -237,10 +237,10 @@ function enpattern($company) {
 
 }
 
-function morningstar($company) {
+function morningstar($company,$trade) {
 
     $result = false;
-    $data = get_value_price($company,"three");
+    $data = get_value_price($company,"three",$trade);
 
     # 0 is day 3
     # 1 is day 2
@@ -279,10 +279,10 @@ function morningstar($company) {
 
 }
 
-function eveningstar($company) {
+function eveningstar($company,$trade) {
 
     $result = false;
-    $data = get_value_price($company,"three");
+    $data = get_value_price($company,"three",$trade);
 
     # 0 is day 3
     # 1 is day 2
@@ -323,10 +323,10 @@ function eveningstar($company) {
 
 
 #Piercing pattern
-function pipattern($company) {
+function pipattern($company,$trade) {
 
     $result = false;
-    $data = get_value_price($company,"two");
+    $data = get_value_price($company,"two",$trade);
 
     $previous_open   = $data[1]['open']; // Day 1: Open
     $previous_close  = $data[1]['close']; // Day 1: Close
@@ -365,10 +365,10 @@ function pipattern($company) {
 }
 
 #Bearish engulfing pattern
-function brpattern($company) {
+function brpattern($company,$trade) {
 
     $result = false;
-    $data = get_value_price($company,"two");
+    $data = get_value_price($company,"two",$trade);
 
     $previous_open   = $data[1]['open']; // Day 1: Open
     $previous_close  = $data[1]['close']; // Day 1: Close
@@ -402,10 +402,10 @@ function brpattern($company) {
 }
 
 #dark cover
-function darkcover($company) {
+function darkcover($company,$trade) {
 
     $result = false;
-    $data = get_value_price($company,"two");
+    $data = get_value_price($company,"two",$trade);
 
     $previous_open   = $data[1]['open']; // Day 1: Open
     $previous_close  = $data[1]['close']; // Day 1: Close
@@ -439,10 +439,10 @@ function darkcover($company) {
 }
 
 
-function upward($company) {
+function upward($company,$trade) {
 
     $result = false;
-    $data = get_value_price($company,"two");
+    $data = get_value_price($company,"two",$trade);
 
 
 
@@ -454,10 +454,10 @@ function upward($company) {
 
 }
 
-function bullcandle($company) {
+function bullcandle($company,$trade) {
 
     $result = false;
-    $data = get_value_price($company,"one");
+    $data = get_value_price($company,"one",$trade);
 
     if($data['schange'] > 0 ) {
          $result = true;
@@ -467,12 +467,19 @@ function bullcandle($company) {
 
 }
 
-function get_value_price($company,$pattern="") {
+function get_value_price($company,$pattern="",$trade="stocks") {
 
 
+
+    if($trade == "stocks") {
+        $table     =  "stockvalues";
+    }
+
+    if($trade == "futures") {
+        $table     =  "stockvaluesfutures";
+    }
 
     $field     =  array("open,close,low,high,allLow,schange");
-    $table     =  "stockvalues";
     $condition =  "sid='$company'";
     
     if($pattern == "one") {

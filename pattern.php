@@ -12,8 +12,8 @@ require_once './template/header.php';
     <th>Stock Type</th>
     <th>
        <select name="type" id="type">
-    <!-- <option value="penny"> -- Penny Lists -- </option> -->
-         <option value="nifty" selected="selected"> -- Nifty Lists -- </option>
+           <option value="stocks" selected="selected"> -- Stocks -- </option>
+           <option value="futures"> -- Futures -- </option>
        </select>
    </th>
 </tr>

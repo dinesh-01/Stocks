@@ -2,3 +2,7 @@ source .bash_profile
 cd /Applications/MAMP/htdocs/stocks
 
 php composer.phar install
+
+
+
+https://api.kite.trade/instruments/NFO

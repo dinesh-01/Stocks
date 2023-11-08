@@ -35,7 +35,7 @@ foreach ($data as $value) {
     $result = $response['data'][$index];
     $last_price = $result['average_price'];
 
-    $target_percentage = (1/100) ;
+    $target_percentage = (1.5/100) ;
     $target_diff =  $last_price * $target_percentage;
     $target = $last_price + $target_diff;
     $target =  number_format($target,1);
