@@ -111,6 +111,20 @@ $('#show_list').html("<b>Loading...</b>");
 
 }
 
+function search_futures_company() {
+
+    r = $('#fname').val();
+
+    $('#show_list').html("<b>Loading...</b>");
+
+    $.post("search_company_futures.php", {r: r},function(data){
+        $('#show_list').html(data);
+    });
+
+
+
+}
+
 function change_priority(id) {
 
 

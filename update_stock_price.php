@@ -54,27 +54,7 @@ require_once './include/common.php';
 
 
 
-        /*
 
-        $condition = "{\"exchange\":\"NSE\",\"tradingsymbol\":\"$symbol\",\"trigger_values\":[$stop_loss,$target],\"last_price\":$last_price}";
-        $orders = "[{\"exchange\":\"NSE\",\"tradingsymbol\":\"$symbol\",\"transaction_type\":\"SELL\",
-                     \"quantity\":$quantity,\"order_type\":\"LIMIT\",\"product\":\"CNC\",\"price\":$stop_loss},
-                     {\"exchange\":\"NSE\",\"tradingsymbol\":\"$symbol\",\"transaction_type\":\"SELL\",
-                     \"quantity\":$quantity,\"order_type\":\"LIMIT\",\"product\":\"CNC\",\"price\":$target}]";
-
-        $end_point = "https://api.kite.trade/gtt/triggers";
-
-        $gtt = $client->request('POST', $end_point, [
-            'form_params' => [
-                'type' => 'two-leg',
-                'exchange' => 'NSE',
-                'transaction_type' => 'SELL',
-                'condition' => $condition,
-                'orders' => $orders
-            ]
-        ]);
-
-      */
 
 
 

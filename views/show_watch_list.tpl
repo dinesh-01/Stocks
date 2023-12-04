@@ -10,7 +10,7 @@
             <th> No </th>
             <th>Stock Name</th>
             <th>TV SingleLayout</th>
-            <th>TV MultiLayout</th>
+            <th>Options</th>
             <th>ChartInk</th>
             <th> T.Open </th>
             <th> T.Close </th>
@@ -19,7 +19,6 @@
             <th> Change </th>
             <th> Volume </th>
             <th>Action</th>
-        <!--    <th> Trend List </th> -->
             <th>Priority</th>
             </tr>
 
@@ -33,7 +32,8 @@
             <input type="hidden" id="sid" value="{$value.id}"/>
         </td>
         <td><a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.cSymbol}" target="_blank">Single Layout</a></td>
-        <td><a href="https://in.tradingview.com/chart/AINnrOTv/?symbol=NSE%3A{$value.cSymbol}" target="_blank">Multi Layout</a></td>
+        <td><a href="https://www.google.com/search?q={$value.sName}%20grow%20option%20chain" target="_blank">List</a></td>
+
         <td><a href="{$value.curl}" target="_blank">ChartInk</a></td>
         <td>{$value.currOpen}</td>
         <td>{$value.currClose}</td>

@@ -1,6 +1,6 @@
 <?php
 
-function watch_list_query($type,$priority=2) {
+function watch_list_query($type,$priority=1) {
 
 	 $query = "Select stocklist.id as id,stocklist.ntype as ntype,stocklist.notes as notes,stocklist.cSymbol as cSymbol,
                stocklist.sName as sName,stocklist.murl as murl,stocklist.curl as curl,stocklist.tickertape as ttape,
@@ -60,6 +60,19 @@ function company_list_bees_query($type) {
 
 }
 
+function company_list_future_query($type) {
+
+    $query = "SELECT * FROM `stocklistfutures` where `isWatch` = '$type'";
+    $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
+
+    while($row = mysqli_fetch_assoc($result)) {
+        $results[] = $row;
+    }
+
+    return $results;
+
+}
+
 
 function company_list_range_query($r1,$r2) {
 
@@ -91,6 +104,18 @@ $query = "Select stocklist.id as id,stocklist.ntype as ntype,stocklist.notes as 
 }
 
 
+function search_single_company_feature_query($string) {
+
+    $query = "select * from stocklistfutures where isWatch='no' and cSymbol like '%$string%'";
+    $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
+
+    while($row = mysqli_fetch_assoc($result)) {
+        $results[] = $row;
+    }
+
+    return $results;
+
+}
 
 
 

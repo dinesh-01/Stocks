@@ -14,14 +14,14 @@ $client = new GuzzleHttp\Client([
 
 
 
+$date = date('d-m-Y');
+
+$delete_query = "DELETE FROM stockvaluesfutures WHERE `createdDate` = '$date'";
+$delete_result = mysqli_query($GLOBALS['mysqlConnect'],$delete_query);
+
 $query  = "Select id,cSymbol from stocklistfutures";
 $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 $data    = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-
-$date = date('d-m-Y');
-
-
 
     // Read and output the remaining rows
     foreach ($data as $value) {
@@ -32,6 +32,9 @@ $date = date('d-m-Y');
         $res = $client->request('GET', $end_point);
         $response = $res->getBody()->getContents();
         $response = (json_decode($response,true));
+
+
+
         $fetch = $response['data']["NFO:$api_symbol"]["ohlc"];
 
         $open = $fetch['open'];
@@ -52,6 +55,9 @@ $date = date('d-m-Y');
 
         $volume = $response['data']["NFO:$api_symbol"]['volume'];
 
+        echo $volume." => Volume";
+        echo "\n";
+
         $alllow = 0;
         $allhigh = 0;
         $value = 0;
@@ -62,11 +68,18 @@ $date = date('d-m-Y');
 
 
          $query = "INSERT INTO stockvaluesfutures(sid, open, high, allHigh, low, allLow, close, schange, schangePercent, volume, stockValues, addClear, createdDate)
-    VALUES ('$sid','$open','$high','$allhigh','$low','$alllow','$close','$chng','$chng_percentage','$volume','$value',1,'$date')";
+    VALUES ('$sid','$open','$high','$allhigh','$low','$alllow','$close','$chng','$chng_percentage','$volume','$value',2,'$date')";
         $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
+
+        $query = "UPDATE stocklistfutures SET current_volume='$volume' WHERE id = '$sid'";
+        $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
+
 
         echo "$api_symbol  Completed - $chng";
         echo "\n";
+        sleep(1);
+
+
 
 
     }

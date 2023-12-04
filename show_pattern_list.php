@@ -5,10 +5,21 @@
  var element = $(this);
  var w_id = element.attr("id");
  var info = 'id=' + w_id;
+ var dtype = $("#dtype").val();
+ var wurl = ""
 
-  $.ajax({
+ if(dtype == "stocks") {
+     wurl = "watch_list_process.php"
+ }
+
+ if(dtype == "futures") {
+     wurl = "watch_list_process_futures.php"
+ }
+
+
+     $.ajax({
     type: "POST",
-    url: "watch_list_process.php",
+    url: wurl,
     data: info,
     success: function(){}
  });
@@ -37,8 +48,6 @@ require_once './include/common.php';
     <th>Stock Name</th>
     <th>TradingView</th>
     <th>ChartInk</th>
-    <th>Expiry</th>
-    <th>Lot Size</th>
     <th>Action</th>
 </tr>
 
@@ -51,7 +60,7 @@ require_once './include/common.php';
 
     if($type == "stocks") {
 
-        $field     =  array("sName,murl,curl,id,cSymbol,tickertape");
+        $field     =  array("sName,murl,curl,id,cSymbol,tickertape,dtype");
         $table     =  "stocklist";
         $condition =  "isWatch = 'no'";
         $order     =  "ntype";
@@ -63,9 +72,10 @@ require_once './include/common.php';
 
     if($type == "futures") {
 
-        $field     =  array("sName,cSymbol,expiry,id,lot_size");
+        $field     =  array("sName,cSymbol,expiry,id,lot_size,dtype");
         $table     =  "stocklistfutures";
-        $arugment  =  array( "field" => $field , "table" => $table);
+        $condition =  "isWatch = 'no'";
+        $arugment  =  array( "field" => $field , "table" => $table, "condition" => $condition);
         $data      =  select($arugment,"many");
 
 
@@ -106,6 +116,12 @@ foreach ($data as $value) {
             case "morningstar":
                $result = morningstar($value['id'],$type);
                break;
+            case "brtrap":
+               $result = brtrap($value['id'],$type);
+               break;
+           case "dfdoji":
+               $result = dfdoji($value['id'],$type);
+               break;
             case "eveningstar":
                $result = eveningstar($value['id'],$type);
                break;
@@ -117,6 +133,9 @@ foreach ($data as $value) {
                break;
             case "darkcover":
                    $result = darkcover($value['id'],$type);
+                   break;
+            case "betrap":
+                   $result = betrap($value['id'],$type);
                    break;
             case "brpattern":
                $result = brpattern($value['id'],$type);
@@ -134,8 +153,9 @@ foreach ($data as $value) {
 <tr class="show">
     <td><?php echo $c ?></td>
     <td>
-        <a href="edit_stock.php?id=<?php echo $value['id']  ?>" target="blank"><?php echo $value['cSymbol'] ?></a>
-        <input type="hidden" id="sname" value="<?php echo $value['sName'] ?>"/> 
+        <?php echo $value['cSymbol'] ?>
+        <input type="hidden" id="sname" value="<?php echo $value['sName'] ?>"/>
+        <input type="hidden" id="dtype" value="<?php echo $value['dtype'] ?>"/>
     </td>
 
 
@@ -144,6 +164,15 @@ foreach ($data as $value) {
     $param = $value['cSymbol'];
 
         if($type == "stocks") {
+
+            if(str_contains($param,"&")) {
+                $param = str_replace("&", "_", $param);
+            }
+
+            if(str_contains($param,"-")) {
+                $param = str_replace("-", "_", $param);
+            }
+
             $turl = "https://in.tradingview.com/chart/AINnrOTv/?symbol=NSE%3A$param";
         }
 
@@ -174,9 +203,8 @@ foreach ($data as $value) {
     ?>
 
     <td><a href="<?php echo $turl ?>" target="_blank">TradingView</a></td>
+
     <td><a href="<?php echo $value['curl']?>" target="_blank">ChartInk</a></td>
-    <td><?php echo $value['expiry'] ?></td>
-    <td><?php echo $value['lot_size'] ?></td>
     <td><a href="javascript:void(0)" id="<?php echo $value['id']  ?>" class="watch" title="watch">WatchList</a></td>
 </tr>
 

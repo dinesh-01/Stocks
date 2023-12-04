@@ -104,8 +104,14 @@ function doji($company,$trade) {
      $change = $data['schange'];
      $tolerance = 0.1;
 
+     $close_near = $close / 100 ;
+     $close_up  = $close + $close_near;
+     $close_down  = $close - $close_near;
 
-     if($open == $close) {
+     $range = range(intval($close_down), intval($close_up));
+
+
+    if (in_array($open, $range) && ($open < $high)) {
 
          $bodySize = abs($open - $close);
          $totalRange = $high - $low;
@@ -121,17 +127,68 @@ function doji($company,$trade) {
 
 function gdoji($company,$trade) {
 
-   $result = false;
-   $data = get_value_price($company,"one",$trade);
+    $result = false;
+    $data = get_value_price($company,"one",$trade);
+    $close = $data['close'];
+    $open  = $data['open'];
+    $high  = $data['high'];
+    $low   = $data['low'];
+    $change = $data['schange'];
+    $tolerance = 0.1;
 
-        if (($data['close'] == $data['low']) && ($data['close'] == $data['open'])) {
-             $result = true;
-        }
+    $close_near = $close / 100 ;
+    $close_up  = $close + $close_near;
+    $close_down  = $close - $close_near;
 
+    $range = range(intval($close_down), intval($close_up));
+
+
+    if (in_array($low, $range)) {
+
+        $bodySize = abs($open - $close);
+        $totalRange = $high - $low;
+        $dojiTolerance = $totalRange * $tolerance;
+        $result = $bodySize <= $dojiTolerance;
+
+    }
 
     return $result;
 
 }
+
+//Dragon Fly Doji
+function dfdoji($company,$trade) {
+
+    $result = false;
+    $data = get_value_price($company,"one",$trade);
+    $close = $data['close'];
+    $open  = $data['open'];
+    $high  = $data['high'];
+    $low   = $data['low'];
+    $change = $data['schange'];
+    $tolerance = 0.1;
+
+    $close_near = $close / 100 ;
+    $close_up  = $close + $close_near;
+    $close_down  = $close - $close_near;
+
+    $range = range(intval($close_down), intval($close_up));
+
+
+    if (in_array($high, $range)) {
+
+        $bodySize = abs($open - $close);
+        $totalRange = $high - $low;
+        $dojiTolerance = $totalRange * $tolerance;
+        $result = $bodySize <= $dojiTolerance;
+
+    }
+
+    return $result;
+
+
+}
+
 
 function all_time_low($company,$trade) {
 
@@ -278,6 +335,92 @@ function morningstar($company,$trade) {
     return $result;
 
 }
+
+function brtrap($company,$trade) {
+
+    $result = false;
+    $data = get_value_price($company,"three",$trade);
+
+    # 0 is day 3
+    # 1 is day 2
+    # 2 is day 1
+
+
+    $day_1_open   = $data[2]['open']; // Day 1: Open
+    $day_1_close  = $data[2]['close']; // Day 1: Close
+    $day_1_high   = $data[2]['high']; // Day 1: High
+    $day_1_low    = $data[2]['low'];  // Day 1: Low
+    $day_1_change = $data[2]['schange']; //Day 1: change
+
+    $day_2_open   = $data[1]['open']; // Day 2: Open
+    $day_2_close  = $data[1]['close']; // Day 2: Close
+    $day_2_high   = $data[1]['high']; // Day 2: High
+    $day_2_low    = $data[1]['low'];  // Day 2: Low
+    $day_2_change = $data[1]['schange']; //Day 2: change
+
+    $day_3_open   = $data[0]['open']; // Day 3: Open
+    $day_3_close  = $data[0]['close']; // Day 3: Close
+    $day_3_high   = $data[0]['high']; // Day 3: High
+    $day_3_low    = $data[0]['low'];  // Day 3: Low
+    $day_3_change = $data[0]['schange']; //Day 3: change
+
+
+    if( $day_1_change > 0 && $day_2_change < 0 && $day_3_change > 0 ) {
+
+        if($day_1_high > $day_2_high && $day_3_high > $day_2_high) {
+            $result = true;
+        }
+    }
+
+
+
+    return $result;
+
+}
+
+
+function betrap($company,$trade) {
+
+    $result = false;
+    $data = get_value_price($company,"three",$trade);
+
+    # 0 is day 3
+    # 1 is day 2
+    # 2 is day 1
+
+
+    $day_1_open   = $data[2]['open']; // Day 1: Open
+    $day_1_close  = $data[2]['close']; // Day 1: Close
+    $day_1_high   = $data[2]['high']; // Day 1: High
+    $day_1_low    = $data[2]['low'];  // Day 1: Low
+    $day_1_change = $data[2]['schange']; //Day 1: change
+
+    $day_2_open   = $data[1]['open']; // Day 2: Open
+    $day_2_close  = $data[1]['close']; // Day 2: Close
+    $day_2_high   = $data[1]['high']; // Day 2: High
+    $day_2_low    = $data[1]['low'];  // Day 2: Low
+    $day_2_change = $data[1]['schange']; //Day 2: change
+
+    $day_3_open   = $data[0]['open']; // Day 3: Open
+    $day_3_close  = $data[0]['close']; // Day 3: Close
+    $day_3_high   = $data[0]['high']; // Day 3: High
+    $day_3_low    = $data[0]['low'];  // Day 3: Low
+    $day_3_change = $data[0]['schange']; //Day 3: change
+
+
+    if( $day_1_change < 0 && $day_2_change > 0 && $day_3_change < 0 ) {
+
+        if($day_1_high > $day_2_high && $day_3_high > $day_2_high) {
+            $result = true;
+        }
+    }
+
+
+
+    return $result;
+
+}
+
 
 function eveningstar($company,$trade) {
 
@@ -468,7 +611,6 @@ function bullcandle($company,$trade) {
 }
 
 function get_value_price($company,$pattern="",$trade="stocks") {
-
 
 
     if($trade == "stocks") {

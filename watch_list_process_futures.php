@@ -4,8 +4,8 @@ require_once './include/common.php';
 
 $id   = $_POST['id'];
 
-$field     = array('isWatch' => 'yes', 'priority' => 2);
-$table     = "stocklist";
+$field     = array('isWatch' => 'yes');
+$table     = "stocklistfutures";
 $condition = "id = $id";
 $order     =  "volume desc";
 $arugment  =  array( "field" => $field , "table" => $table, "condition" => $condition);

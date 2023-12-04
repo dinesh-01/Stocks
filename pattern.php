@@ -21,23 +21,26 @@ require_once './template/header.php';
     <th>Click Pattern to Find</th>
     <th>
        <select name="pattern" id="pattern" onchange="show_pattern_list();">
-       	 <option value=""> -- Select Pattern -- </option>
-         <option value="upward">Upward</option>
-      <!--   <option value="alllow">All Time Low</option>
-         <option value="allhigh">All Time High</option> -->
-         <option value="doji"> Doji </option>
-         <option value="sptop"> Spining Top </option>
-         <option value="phammer"> Hammer </option>
-         <option value="morningstar"> Morning Star </option>
-         <option value="enpattern"> Engulfing Pattern </option>
-         <option value="pipattern"> Piercing Pattern </option>
-         <option value="eveningstar"> Evening Star </option>
+       	  <option value=""> -- Select Pattern -- </option>
+      <!--<option value="alllow">All Time Low</option>
+          <option value="allhigh">All Time High</option> -->
+           <option value="upward">Upward</option>
+           <option value="drdoji"> DragonFly Doji </option>
+           <option value="phammer"> Hammer </option>
+           <option value="morningstar"> Morning Star </option>
+           <option value="enpattern"> Engulfing Pattern </option>
+           <option value="pipattern"> Piercing Pattern </option>
+           <option value="brtrap"> BullishTrap Pattern </option>
+           <option value="sptop"> Spining Top </option>
+           <option value="doji"> Doji </option>
+           <option value="eveningstar"> Evening Star </option>
            <option value="darkcover"> Dark Cover </option>
-         <option value="brpattern"> Bearish Engulfing Pattern </option>
-         <option value="nhammer"> Hanging  </option>
-         <option value="gdoji"> Grave Stone Doji </option>
-         <option value="nwindow"> Negative Window</option>
-         <option value="pwindow"> Postive Window</option>
+           <option value="brpattern"> Bearish Engulfing Pattern </option>
+           <option value="betrap"> BearishTrap Pattern </option>
+           <option value="nhammer"> Hanging  </option>
+           <option value="gdoji"> Grave Stone Doji </option>
+           <option value="nwindow"> Negative Window</option>
+           <option value="pwindow"> Postive Window</option>
 
 
        </select>

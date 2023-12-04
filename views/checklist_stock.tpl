@@ -18,6 +18,7 @@
     <th>Trend Analysis</th>
     <th>Price Selection</th>
     <th>Priority</th>
+    <th>Action</th>
 </tr>
 
 
@@ -40,6 +41,7 @@
                 <option value="3" {if $value.priority eq 3}   selected="selected"  {/if}> 3 </option>
             </select>
         </td>
+        <td><a href="javascript:void(0)" id="{$value.id}" class="unwatch" title="unwatch">UnWatch</a></td>
     </tr>
 
 

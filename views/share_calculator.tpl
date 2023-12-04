@@ -23,6 +23,7 @@
     <th> Total </th>
     <th> Signal</th> -->
     <th>Priority</th>
+    <th>Action</th>
    <!-- <th> Reset </th> -->
 </tr>
 
@@ -51,19 +52,22 @@
         <td>
 
             <select name="pri" id="pri{$value.id}" onchange="change_priority('{$value.id}');">
-                <option value="1" {if $value.priority eq 1}   selected="selected"  {/if}> 1 </option>
-                <option value="2" {if $value.priority eq 2}   selected="selected"  {/if}> 2 </option>
-                <option value="3" {if $value.priority eq 3}   selected="selected"  {/if}> 3 </option>
+                <option value="1"  > 1 </option>
+                <option value="2" selected="selected" }> 2 </option>
+                <option value="3" > 3 </option>
             </select>
         </td>
 
-     <!--   <td> <input type="button" id="reset{$value.id}" value="Clear"  onclick="show_calculator_reset('{$value.id}')" /></td>
-    </tr>
+        <td><a href="javascript:void(0)" id="{$value.id}" class="unwatch" title="unwatch">UnWatch</a></td>
 
-    <script type="text/javascript">
-        window.onload=show_calculator('{$value.id}')
-    </script>
-    -->
+
+        <!--   <td> <input type="button" id="reset{$value.id}" value="Clear"  onclick="show_calculator_reset('{$value.id}')" /></td>
+       </tr>
+
+       <script type="text/javascript">
+           window.onload=show_calculator('{$value.id}')
+       </script>
+       -->
 
 {/foreach}
 
