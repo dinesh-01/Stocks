@@ -20,6 +20,7 @@
             <th> Volume </th>
             <th>Action</th>
             <th>Priority</th>
+            <th> Notes </th>
             </tr>
 
 {foreach $datas as $value name=count}
@@ -31,7 +32,8 @@
             <input type="hidden" id="sname" value="{$value.sName}"/>
             <input type="hidden" id="sid" value="{$value.id}"/>
         </td>
-        <td><a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.cSymbol}" target="_blank">Single Layout</a></td>
+
+        <td><a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'}" target="_blank">Single Layout</a></td>
         <td><a href="https://www.google.com/search?q={$value.sName}%20grow%20option%20chain" target="_blank">List</a></td>
 
         <td><a href="{$value.curl}" target="_blank">ChartInk</a></td>
@@ -50,6 +52,7 @@
             <option value="3" {if $value.priority eq 3}   selected="selected"  {/if}> 3 </option>
            </select>
         </td>
+        <td>{$value.notes}</td>
     </tr>
 
 

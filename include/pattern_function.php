@@ -229,22 +229,28 @@ function all_time_high($company,$trade) {
 function sptop($company,$trade) {
 
     $result = false;
-    $data = get_value_price($company,"one",$trade);
-    $close = $data['close'];
-    $open  = $data['open'];
-    $high  = $data['high'];
-    $low   = $data['low'];
-    $change = $data['schange'];
+    $data = get_value_price($company,"two",$trade);
+
+    $previous_open   = $data[1]['open']; // Day 1: Open
+    $previous_close  = $data[1]['close']; // Day 1: Close
+    $previous_high   = $data[1]['high']; // Day 1: High
+    $previous_low    = $data[1]['low'];  // Day 1: Low
+    $current_open    = $data[0]['open']; // Day 2: Open
+    $current_close   = $data[0]['close'];  // Day 2: Close
+    $current_high    = $data[0]['high']; // Day 2: High
+    $current_low     = $data[0]['low']; // Day 2: Low
+    $previous_change = $data[1]['schange'];
+    $current_change  = $data[0]['schange'];
 
 
-  if( ($change >= 0) && ($open != $close) ) {
+  if($previous_close < $current_low || $current_high < $previous_close) {
 
-      $target = ($high + $low) / 2;
-      $arr  = array($open, $close);
+      $target = ($current_high + $current_low) / 2;
+      $arr  = array($current_open, $current_close);
 
       $target = intval($target);
-      $open = intval($open);
-      $close = intval($close);
+      $open = intval($current_open);
+      $close = intval($current_close);
 
       if($close < $target) {
           $range = range($close,$target);
@@ -597,18 +603,66 @@ function upward($company,$trade) {
 
 }
 
-function bullcandle($company,$trade) {
+function longbullish($company,$trade) {
+
 
     $result = false;
-    $data = get_value_price($company,"one",$trade);
+    $data = get_value_price($company,"two",$trade);
 
-    if($data['schange'] > 0 ) {
-         $result = true;
+    $previous_close  = $data[1]['close']; // Day 1: Close
+    $current_close   = $data[0]['close'];  // Day 2: Close
+    $current_change  = $data[0]['schange'];
+
+
+
+    if ($current_change > 0) {
+
+      $close =  $current_close - $previous_close ;
+      $percentage = ($close / $current_close) * 100;
+
+      if($percentage > 3) {
+          $result = true;
+      }
+
+
     }
+
+
 
     return $result;
 
 }
+
+function longbearish($company,$trade) {
+
+
+    $result = false;
+    $data = get_value_price($company,"two",$trade);
+
+    $previous_close  = $data[1]['close']; // Day 1: Close
+    $current_close   = $data[0]['close'];  // Day 2: Close
+    $current_change  = $data[0]['schange'];
+
+
+
+    if ($current_change < 0) {
+
+        $close =  $previous_close - $current_close ;
+        $percentage = ($close / $current_close) * 100;
+
+        if($percentage > 3) {
+            $result = true;
+        }
+
+
+    }
+
+
+
+    return $result;
+
+}
+
 
 function get_value_price($company,$pattern="",$trade="stocks") {
 

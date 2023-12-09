@@ -3,8 +3,7 @@
 <center>
     <br/>
 
-    Future name :- <input type="text" id="fname" onkeyup="search_futures_company()">
-    <br/> <br/>
+
 
     <div id="show_list">
 

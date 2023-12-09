@@ -21,15 +21,15 @@ require_once './template/header.php';
  
  <tr>
      <td>Percentage</td>
-     <td><input type="text" name="percentage" readonly value="10"></td>
+     <td><input type="text" name="percentage"  value="10"></td>
  </tr>
  
 <tr>
      <td>Option</td>
-     <td><input type="radio" id="call" name="option" value="call">
-         <label for="call">CALL</label><br>
+     <td><input type="radio" id="call" name="option" checked="checked" value="call">
+         <label for="call">BUY</label><br>
          <input type="radio" id="put" name="option" value="put">
-         <label for="put">PUT</label><br>
+         <label for="put">SELL</label><br>
      </td>
  </tr>
 

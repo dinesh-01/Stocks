@@ -132,13 +132,19 @@ foreach ($data as $value) {
                $result = pipattern($value['id'],$type);
                break;
             case "darkcover":
-                   $result = darkcover($value['id'],$type);
-                   break;
+               $result = darkcover($value['id'],$type);
+               break;
             case "betrap":
-                   $result = betrap($value['id'],$type);
-                   break;
+               $result = betrap($value['id'],$type);
+               break;
             case "brpattern":
                $result = brpattern($value['id'],$type);
+               break;
+            case "longbullish":
+               $result = longbullish($value['id'],$type);
+               break;
+            case "longbearish":
+               $result = longbearish($value['id'],$type);
                break;
             case "upward":
                $result = upward($value['id'],$type);
@@ -173,7 +179,7 @@ foreach ($data as $value) {
                 $param = str_replace("-", "_", $param);
             }
 
-            $turl = "https://in.tradingview.com/chart/AINnrOTv/?symbol=NSE%3A$param";
+            $turl = "https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A$param";
         }
 
         if($type == "futures") {

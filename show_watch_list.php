@@ -10,6 +10,10 @@ require_once './include/common.php';
 
 //Rending to tbl file
 $smarty->assign("datas",$data);
+
+
+
+
 $smarty->display("show_watch_list.tpl");
 
 ?>
