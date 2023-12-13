@@ -3,7 +3,7 @@ require_once './include/common.php';
 
 
 #reseting the dailyentry
-  $query = "UPDATE stocklist SET `dailyEntry`='no', `qbuy`='0',`qvolume`='0',
+  $query = "UPDATE stocklistbackup SET `dailyEntry`='no', `qbuy`='0',`qvolume`='0',
                      `current_volume`='0',`qtotal`='0',`stock_signal`='=> SELECT <=',
                      `order_type`='LIMIT',`target`='0',`stop_loss`='0' ";
   $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
@@ -48,7 +48,7 @@ if ($file) {
         $allhigh = str_replace( ',', '', $allhigh );
 
 
-       $query  = "Select id from stocklist where cSymbol = '$row[0]' ";
+       $query  = "Select id from stocklistbackup where cSymbol = '$row[0]' ";
        $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
        $id = $result->fetch_all(MYSQLI_ASSOC);
        $sid = $id[0]['id'];
@@ -57,7 +57,7 @@ if ($file) {
     VALUES ('$sid','$open','$high','$allhigh','$low','$alllow','$close','$chng','$chng_percentage','$volume','$value',1,'$date')";
         $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
-        $query = "UPDATE stocklist SET dailyEntry='yes',current_volume='$volume' WHERE id = '$sid'";
+        $query = "UPDATE stocklistbackup SET dailyEntry='yes',current_volume='$volume' WHERE id = '$sid'";
         $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 
