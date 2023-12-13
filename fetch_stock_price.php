@@ -29,7 +29,7 @@ $date = date('d-m-Y');
 
 
 
-$query  = "Select DISTINCT sName from stocklistbackupfutures";
+$query  = "Select DISTINCT cSymbol from stocklistbackup";
 $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 $row    = mysqli_fetch_all($result);
 
