@@ -4,7 +4,7 @@ require_once './include/common.php';
 
 //url => https://www.nseindia.com/products-services/indices-nifty500-index
 
-$filename = 'data/500.csv'; // Replace with your file name or path
+$filename = 'data/700.csv'; // Replace with your file name or path
 
 // Open the CSV file for reading
 $file = fopen($filename, 'r');
