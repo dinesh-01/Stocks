@@ -23,7 +23,7 @@ require_once './template/header.php';
      <td>Stock Name</td>
      <td>
        <input type="hidden" name="id" value="<?php echo $id ?>" />
-       <input type="text" name="stock_name" readonly value="<?php echo $data['sName']?>"></td>
+       <input type="text" name="stock_name"  value="<?php echo $data['sName']?>"></td>
  </tr>
  
  <tr>

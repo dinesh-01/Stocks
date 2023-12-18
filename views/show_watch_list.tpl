@@ -10,18 +10,21 @@
             <th> No </th>
             <th>Stock Name</th>
             <th>TV SingleLayout</th>
+            <!--
             <th>Options</th>
             <th>ChartInk</th>
+
             <th> T.Open </th>
-            <th> T.Close </th>
-            <th> T.High </th>
+            <th> T.High </th
             <th> T.Low </th>
+            --!>
+            <th> T.Close </th>
             <th> Change </th>
             <th> Volume </th>
             <th> TurnOver </th>
             <th>Action</th>
             <th>Priority</th>
-            <th> Notes </th>
+            <th> Status </th>
             </tr>
 
 {foreach $datas as $value name=count}
@@ -35,13 +38,18 @@
         </td>
 
         <td><a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'}" target="_blank">Single Layout</a></td>
-        <td><a href="https://www.google.com/search?q={$value.sName}%20grow%20option%20chain" target="_blank">List</a></td>
 
+        <!--
+        <td><a href="https://www.google.com/search?q={$value.sName}%20grow%20option%20chain" target="_blank">List</a></td>
         <td><a href="{$value.curl}" target="_blank">ChartInk</a></td>
+
+
         <td>{$value.currOpen}</td>
-        <td>{$value.currClose}</td>
         <td>{$value.currHigh}</td>
         <td>{$value.currLow}</td>
+        --!>
+        <td>{$value.currClose}</td>
+
          <td>{$value.pChange}</td>
         <td>{$value.volume}</td>
         <td> {$value.turnover}</td>
@@ -54,7 +62,17 @@
             <option value="3" {if $value.priority eq 3}   selected="selected"  {/if}> 3 </option>
            </select>
         </td>
-        <td>{$value.notes}</td>
+
+        {if $value.order_status eq '0'}
+            <td><a href="update_stock_price.php?id={$value.id}"><button value="buy">BUY</button></a></td>
+        {/if}
+
+        {if $value.order_status eq '1'}
+            <td>Completed</td>
+        {/if}
+
+
+
     </tr>
 
 

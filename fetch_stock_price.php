@@ -15,27 +15,20 @@ $client = new GuzzleHttp\Client([
 
 $date = date('d-m-Y');
 
-#reseting the dailyentry
- /* $query = "UPDATE stocklistbackup SET `dailyEntry`='no', `qbuy`='0',`qvolume`='0',
-                     `current_volume`='0',`qtotal`='0',`stock_signal`='=> SELECT <=',
-                     `order_type`='LIMIT',`target`='0',`stop_loss`='0' ";
+  #reseting the order_status
+  $query = "UPDATE stocklistbackup SET `order_status`='0' ";
   $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
-
- */
 
   $delete_query = "DELETE FROM stockvalues WHERE `createdDate` = '$date'";
   $delete_result = mysqli_query($GLOBALS['mysqlConnect'],$delete_query);
 
+  $query  = "Select DISTINCT cSymbol from stocklistbackup";
+  $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
+  $row    = mysqli_fetch_all($result);
 
 
 
-$query  = "Select DISTINCT cSymbol from stocklistbackup";
-$result = mysqli_query($GLOBALS['mysqlConnect'],$query);
-$row    = mysqli_fetch_all($result);
-
-
-
-foreach ($row as $record) {
+  foreach ($row as $record) {
 
         $api_symbol = $record[0];
 

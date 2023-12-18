@@ -3,7 +3,7 @@
 function watch_list_query($type,$priority=1) {
 
 	 $query = "Select stocklistbackup.id as id,stocklistbackup.ntype as ntype,stocklistbackup.notes as notes,stocklistbackup.cSymbol as cSymbol,
-               stocklistbackup.sName as sName,stocklistbackup.murl as murl,stocklistbackup.curl as curl,stocklistbackup.tickertape as ttape,
+               stocklistbackup.sName as sName,stocklistbackup.murl as murl,stocklistbackup.order_status as order_status,stocklistbackup.curl as curl,stocklistbackup.tickertape as ttape,
                stocklistbackup.priority as priority,stockvalues.open as currOpen,stockvalues.high as currHigh,
                stockvalues.low as currLow,stockvalues.close as currClose,stockvalues.schange as pChange,
                stockvalues.volume as volume From stocklistbackup INNER JOIN  stockvalues 

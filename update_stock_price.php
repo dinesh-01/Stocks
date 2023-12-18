@@ -13,45 +13,66 @@ require_once './include/common.php';
         'headers' => $headers
     ]);
 
+    //Fetching stock Symbol
+    $id = $_GET['id'];
+    $query  = "Select cSymbol from stocklistbackup where id=$id";
+    $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
+    $row    = mysqli_fetch_row($result);
 
-    $url    = $_GET['trading_view_url'];
-    $price  = $_GET['price'];
-    $option = $_GET['option'];
+    //Symbol
+    $symbol = $row[0];
+
+    $end_point = "https://api.kite.trade/quote?i=NSE:$symbol";
+    $res = $client->request('GET', $end_point);
+    $response = $res->getBody()->getContents();
+    $response = (json_decode($response, true));
+
+    $last_price = $response['data']["NSE:$symbol"]['last_price'];
+    $last_price = str_replace(",", "", $last_price); //last price
+
+
+
+    $quantity = (ALLOCATE_PRICE / $last_price) ;
+    $quantity = (int)$quantity; //quantity
+
+
     $date = date('d-m-Y');
 
 
-    $quantity = (ALLOCATE_PRICE / $price) ;
-    $quantity = (int)$quantity;
 
-  // fetching symbol from the url
-    $split_array = explode(":",$url);
-    $symbol = $split_array[2];
 
-   // Triggering API
-    $end_point = "https://api.kite.trade/orders/regular";
 
-   $res = $client->request('POST', $end_point, [
-    'form_params' => [
-        'tradingsymbol' => $symbol,
-        'exchange' => 'NSE',
-        'transaction_type' => $option,
-        'order_type' => 'MARKET',
-        'quantity' => $quantity,
-        'product' => 'CNC',
-        'validity' => 'DAY'
+// Triggering API
+$end_point = "https://api.kite.trade/orders/regular";
 
-    ]
-  ]);
+$res = $client->request('POST', $end_point, [
+'form_params' => [
+    'tradingsymbol' => $symbol,
+    'exchange' => 'NSE',
+    'transaction_type' => "BUY",
+    'order_type' => 'MARKET',
+    'quantity' => $quantity,
+    'product' => 'CNC',
+    'validity' => 'DAY'
+
+]
+]);
 
     $response = $res->getBody()->getContents();
     $response = (json_decode($response,true));
 
-        //Fetching order id
-        $order_id = $response['data']['order_id'];
-        $query  = "INSERT INTO stockAmo(symbol, order_id, quanity, created_date) VALUES ('$symbol','$order_id','$quantity','$date')";
-        $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
-        echo "$symbol Executed Successfully";
+    //Fetching order id
+    $order_id = $response['data']['order_id'];
+    $query  = "INSERT INTO stockAmo(symbol, order_id, quanity, created_date) VALUES ('$symbol','$order_id','$quantity','$date')";
+    $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
+    //Updating in stocklistbackup
+    $query = "UPDATE `stocklistbackup` SET `order_status`='1' WHERE id = $id";
+    $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
+
+
+    header("location:list_watch.php");
+    exit;
 
 
 
