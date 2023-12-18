@@ -14,9 +14,11 @@ $i = 0;
 
 foreach ($data as $value) {
 
-    $value  = $value['volume'];
-    $close = $value['currClose'];
-    $amount = $value * $close;
+     $volume  = $value['volume'];
+     $close   = $value['currClose'];
+
+
+    $amount = $volume * $close;
     $turnover = convert_value_term($amount);
     $data[$i]['turnover'] = $turnover;
     $i++;

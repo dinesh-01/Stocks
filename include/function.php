@@ -45,41 +45,47 @@ function get_future_link($symbol,$param) {
 function convert_value_term($value) {
 
     $value = round($value, 0);
-    $single_digit = substr($value,0,1);
     $two_digit = substr($value,0,2);
     $turn_over = "0";
 
-
     if(strlen($value) == 6) {
-        return $turn_over = $single_digit . " lakh";
+        $digit = substr($value,0,1);
+        return $turn_over = $digit . " lakh";
     }
 
     if(strlen($value) == 7) {
-        return $turn_over = $two_digit . " lakhs";
+        $digit = substr($value,0,2);
+        return $turn_over = $digit . " lakhs";
     }
 
     if(strlen($value) == 8) {
-        return $turn_over = $single_digit . " crore";
+        $digit = substr($value,0,3);
+        return $turn_over = $digit . " lakhs";
     }
 
     if(strlen($value) == 9) {
-        return $turn_over = $two_digit . " crores";
+        $digit = substr($value,0,4);
+        return $turn_over = $digit . " lakhs";
     }
 
     if(strlen($value) == 10) {
-        return $turn_over = $single_digit . " million";
+        $digit = substr($value,0,5);
+        return $turn_over = $digit . " lakhs";
     }
 
     if(strlen($value) == 11) {
-        return $turn_over = $two_digit . " millions";
+        $digit = substr($value,0,6);
+        return $turn_over = $digit . " lakhs";
     }
 
     if(strlen($value) == 12) {
-        return $turn_over = $single_digit . "trillion";
+        $digit = substr($value,0,7);
+        return $turn_over = $digit . "lakhs";
     }
 
     if(strlen($value) == 13) {
-        return $turn_over = $two_digit . "trillions";
+        $digit = substr($value,0,8);
+        return $turn_over = $digit . "lakhs";
     }
 
 
