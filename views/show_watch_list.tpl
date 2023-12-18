@@ -32,7 +32,7 @@
     <tr class="show">
         <td> {$smarty.foreach.count.iteration} </td>
         <td>
-            <a href="edit_stock.php?id={$value.id}" title="{$value.notes}" target="blank">{$value.sName} [{$value.ntype}]</a>
+            <a href = "https://in.tradingview.com/symbols/NSE-{$value.cSymbol}" target="_blank">{$value.cSymbol}</a></td>
             <input type="hidden" id="sname" value="{$value.sName}"/>
             <input type="hidden" id="sid" value="{$value.id}"/>
         </td>
