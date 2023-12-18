@@ -18,6 +18,7 @@
             <th> T.Low </th>
             <th> Change </th>
             <th> Volume </th>
+            <th> TurnOver </th>
             <th>Action</th>
             <th>Priority</th>
             <th> Notes </th>
@@ -43,6 +44,7 @@
         <td>{$value.currLow}</td>
          <td>{$value.pChange}</td>
         <td>{$value.volume}</td>
+        <td> {$value.turnover}</td>
         <td><a href="javascript:void(0)" id="{$value.id}" class="unwatch" title="unwatch">UnWatch</a></td>
         <!--    <td> <a href="trend_list_view.php?sid={$value.id}"  target="_blank"> View Trends</a></td> -->
         <td>
