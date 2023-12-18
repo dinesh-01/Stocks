@@ -9,11 +9,24 @@ require_once './include/common.php';
     $data       =  watch_list_query($type);
 
 //Rending to tbl file
+
+$i = 0;
+
+foreach ($data as $value) {
+
+    $value  = $value['volume'];
+    $close = $value['currClose'];
+    $amount = $value * $close;
+    $turnover = convert_value_term($amount);
+    $data[$i]['turnover'] = $turnover;
+    $i++;
+
+
+}
+
+
+//Rending to tbl file
 $smarty->assign("datas",$data);
-
-
-
-
 $smarty->display("show_watch_list.tpl");
 
 ?>

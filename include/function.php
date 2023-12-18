@@ -16,7 +16,6 @@ if($type=="symbol") {
 }
 
 
-
 function get_future_link($symbol,$param) {
 
     $param = strtolower($param);
@@ -38,6 +37,52 @@ function get_future_link($symbol,$param) {
     }
 
     return $turl;
+
+
+}
+
+
+function convert_value_term($value) {
+
+    $value = round($value, 0);
+    $single_digit = substr($value,0,1);
+    $two_digit = substr($value,0,2);
+    $turn_over = "0";
+
+
+    if(strlen($value) == 6) {
+        return $turn_over = $single_digit . " lakh";
+    }
+
+    if(strlen($value) == 7) {
+        return $turn_over = $two_digit . " lakhs";
+    }
+
+    if(strlen($value) == 8) {
+        return $turn_over = $single_digit . " crore";
+    }
+
+    if(strlen($value) == 9) {
+        return $turn_over = $two_digit . " crores";
+    }
+
+    if(strlen($value) == 10) {
+        return $turn_over = $single_digit . " million";
+    }
+
+    if(strlen($value) == 11) {
+        return $turn_over = $two_digit . " millions";
+    }
+
+    if(strlen($value) == 12) {
+        return $turn_over = $single_digit . "trillion";
+    }
+
+    if(strlen($value) == 13) {
+        return $turn_over = $two_digit . "trillions";
+    }
+
+
 
 
 }
