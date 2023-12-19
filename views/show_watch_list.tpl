@@ -8,8 +8,9 @@
   <table class="gridtable">
             <tr>
             <th> No </th>
-            <th>Stock Name</th>
-            <th>TV SingleLayout</th>
+            <th> Name</th>
+            <th> Type</th>
+            <th> Chart </th>
             <!--
             <th>Options</th>
             <th>ChartInk</th>
@@ -32,10 +33,21 @@
     <tr class="show">
         <td> {$smarty.foreach.count.iteration} </td>
         <td>
-            <a href = "https://in.tradingview.com/symbols/NSE-{$value.cSymbol}" target="_blank">{$value.cSymbol}</a></td>
+            <a href = "edit_stock.php?id={$value.id}" target="_blank">{$value.cSymbol}</a></td>
             <input type="hidden" id="sname" value="{$value.sName}"/>
             <input type="hidden" id="sid" value="{$value.id}"/>
         </td>
+
+        {if $value.ntype eq 'option'}
+            <td><a href="https://www.google.com/search?q={$value.cSymbol}+ grow+ option+chain" target="_blank">Option</a></td>
+        {/if}
+
+        {if $value.ntype eq 'N500'}
+            <td><a href="https://in.tradingview.com/symbols/NSE-{$value.cSymbol}" target="_blank">{$value.ntype}</a></td>
+        {/if}
+
+
+
 
         <td><a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'}" target="_blank">Single Layout</a></td>
 

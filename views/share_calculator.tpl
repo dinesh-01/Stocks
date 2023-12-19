@@ -16,12 +16,7 @@
     <th> No </th>
     <th>Symbol</th>
     <th>Trend Analysis</th>
-    <th>Price Selection</th>
- <!--   <th>Current Volume </th>
-    <th>Place Volume</th>
-     <th>Buy Price</th>
-    <th> Total </th>
-    <th> Signal</th> -->
+    <th>Type</th>
     <th>Priority</th>
     <th>Action</th>
    <!-- <th> Reset </th> -->
@@ -38,17 +33,15 @@
             <input type="hidden" id="sid" value="{$value.id}"/>
             <a href = "https://in.tradingview.com/symbols/NSE-{$value.symbol}" target="_blank">{$value.symbol}</a></td>
         <td><a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'}" target="_blank">Trend Layout</a></td>
-        <td><a href="https://in.tradingview.com/chart/AINnrOTv/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'}" target="_blank">Price Layout</a></td>
-    <!--    <td>  {$value.current_volume}  </td>
-        <td>  <input type="text" name="qvolume" id="qvolume{$value.id}" size="7" value="{$value.qvolume}"
-        onkeyup="show_calculator('{$value.id}')" />  </td>
-        <td>  <input type="text" name="qbuy" id="qbuy{$value.id}" size="7" value="{$value.qbuy}"
-        onkeyup="show_calculator('{$value.id}')" />  </td>
-        <td>  <input type="text" name="qtotal" id="qtotal{$value.id}" size="7" value="60000" readonly="readonly"  /> </td>
-        <td>
-            {html_options onchange="show_calculator('{$value.id}')" name="stock_signal" id="stock_signal{$value.id}" options=$stock_signal selected="{$value.stock_signal}"}
-        </td>
-        -->
+
+        {if $value.ntype eq 'option'}
+            <td><a href="https://www.google.com/search?q={$value.cSymbol}+ grow+ option+chain" target="_blank">Option</a></td>
+        {/if}
+
+        {if $value.ntype eq 'N500'}
+            <td><a href="https://in.tradingview.com/symbols/NSE-{$value.cSymbol}" target="_blank">{$value.ntype}</a></td>
+        {/if}
+
         <td>
 
             <select name="pri" id="pri{$value.id}" onchange="change_priority('{$value.id}');">
