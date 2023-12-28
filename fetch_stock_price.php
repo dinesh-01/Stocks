@@ -22,7 +22,7 @@ $date = date('d-m-Y');
   $delete_query = "DELETE FROM stockvalues WHERE `createdDate` = '$date'";
   $delete_result = mysqli_query($GLOBALS['mysqlConnect'],$delete_query);
 
-  $query  = "Select DISTINCT cSymbol from stocklistbackup";
+  $query  = "Select cSymbol from stocklistbackup";
   $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
   $row    = mysqli_fetch_all($result);
 
@@ -91,7 +91,7 @@ $date = date('d-m-Y');
             echo "$api_symbol  Completed - $chng";
             echo "\n";
 
-            sleep(0.5);
+            sleep(1);
 
 
     }

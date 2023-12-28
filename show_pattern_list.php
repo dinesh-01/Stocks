@@ -47,7 +47,7 @@ require_once './include/common.php';
     <th> NO </th>
     <th>Stock Name</th>
     <th>TradingView</th>
-    <th>ChartInk</th>
+    <th>Type</th>
     <th>Action</th>
 </tr>
 
@@ -60,7 +60,7 @@ require_once './include/common.php';
 
     if($type == "stocks") {
 
-        $field     =  array("sName,murl,curl,id,cSymbol,tickertape,dtype");
+        $field     =  array("sName,murl,curl,id,cSymbol,tickertape,dtype,ntype");
         $table     =  "stocklistbackup";
         $condition =  "isWatch = 'no'";
         $order     =  "ntype";
@@ -210,7 +210,7 @@ foreach ($data as $value) {
 
     <td><a href="<?php echo $turl ?>" target="_blank">TradingView</a></td>
 
-    <td><a href="<?php echo $value['curl']?>" target="_blank">ChartInk</a></td>
+    <td><?php echo $value['ntype'] ?></td>
     <td><a href="javascript:void(0)" id="<?php echo $value['id']  ?>" class="watch" title="watch">WatchList</a></td>
 </tr>
 
