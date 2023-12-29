@@ -10,6 +10,9 @@ return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'PhpToken' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php',
     'Stringable' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
+    'Threading\\Multiple' => $vendorDir . '/alfallouji/php_multithread/Threading/Multiple.php',
+    'Threading\\Task\\Base' => $vendorDir . '/alfallouji/php_multithread/Threading/Task/Base.php',
+    'Threading\\Task\\Example' => $vendorDir . '/alfallouji/php_multithread/Threading/Task/Sample.php',
     'UnhandledMatchError' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
     'ValueError' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
 );

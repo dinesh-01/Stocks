@@ -117,6 +117,9 @@ class ComposerStaticInit8c983ac399e99db50191aa0266797dc0
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php',
         'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
+        'Threading\\Multiple' => __DIR__ . '/..' . '/alfallouji/php_multithread/Threading/Multiple.php',
+        'Threading\\Task\\Base' => __DIR__ . '/..' . '/alfallouji/php_multithread/Threading/Task/Base.php',
+        'Threading\\Task\\Example' => __DIR__ . '/..' . '/alfallouji/php_multithread/Threading/Task/Sample.php',
         'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
         'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
     );
