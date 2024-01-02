@@ -25,7 +25,7 @@ $date = date('d-m-Y');
   $query  = "Select cSymbol from stocklistbackup";
   $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
   $row    = mysqli_fetch_all($result);
-
+  $i = 1;
 
 
   foreach ($row as $record) {
@@ -91,7 +91,12 @@ $date = date('d-m-Y');
             echo "$api_symbol  Completed - $chng";
             echo "\n";
 
-            sleep(1);
+           if( ($i % 5) == 0 ) {
+               sleep(1);
+           }
+
+           $i++;
+
 
 
     }
