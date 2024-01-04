@@ -16,13 +16,13 @@ $client = new GuzzleHttp\Client([
 $date = date('d-m-Y');
 
   #reseting the order_status
-  $query = "UPDATE stocklistbackup SET `order_status`='0' ";
+  $query = "UPDATE stocklist SET `order_status`='0' ";
   $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
   $delete_query = "DELETE FROM stockvalues WHERE `createdDate` = '$date'";
   $delete_result = mysqli_query($GLOBALS['mysqlConnect'],$delete_query);
 
-  $query  = "Select cSymbol from stocklistbackup";
+  $query  = "Select cSymbol from stocklist";
   $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
   $row    = mysqli_fetch_all($result);
   $i = 1;
@@ -75,7 +75,7 @@ $date = date('d-m-Y');
             $chng = number_format($chng, 1);
 
 
-            $query = "Select id from stocklistbackup where cSymbol = '$api_symbol' ";
+            $query = "Select id from stocklist where cSymbol = '$api_symbol' ";
             $result = mysqli_query($GLOBALS['mysqlConnect'], $query);
             $id = $result->fetch_all(MYSQLI_ASSOC);
             $sid = $id[0]['id'];
@@ -84,7 +84,7 @@ $date = date('d-m-Y');
     VALUES ('$sid','$open','$high','$allhigh','$low','$alllow','$close','$chng','$chng_percentage','$volume','$value',1,'$date')";
             $result = mysqli_query($GLOBALS['mysqlConnect'], $query);
 
-            $query = "UPDATE stocklistbackup SET dailyEntry='yes',current_volume='$volume' WHERE id = '$sid'";
+            $query = "UPDATE stocklist SET dailyEntry='yes',current_volume='$volume' WHERE id = '$sid'";
             $result = mysqli_query($GLOBALS['mysqlConnect'], $query);
 
 

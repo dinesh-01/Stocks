@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `stocklistbackup`
+-- Table structure for table `stocklist`
 --
 
-CREATE TABLE `stocklistbackup` (
+CREATE TABLE `stocklist` (
   `id` int(11) NOT NULL,
   `sName` varchar(100) DEFAULT NULL,
   `cSymbol` text,
@@ -50,10 +50,10 @@ CREATE TABLE `stocklistbackup` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `stocklistbackup`
+-- Dumping data for table `stocklist`
 --
 
-INSERT INTO `stocklistbackup` (`id`, `sName`, `cSymbol`, `industry`, `murl`, `curl`, `priority`, `notes`, `cPattern`, `isWatch`, `sType`, `ntype`, `sEntry`, `qbuy`, `qvolume`, `qtotal`, `dailyEntry`, `createdDate`, `createdBy`) VALUES
+INSERT INTO `stocklist` (`id`, `sName`, `cSymbol`, `industry`, `murl`, `curl`, `priority`, `notes`, `cPattern`, `isWatch`, `sType`, `ntype`, `sEntry`, `qbuy`, `qvolume`, `qtotal`, `dailyEntry`, `createdDate`, `createdBy`) VALUES
 (1, '3M India Ltd.', '3MINDIA', 'Diversified', 'https://www.google.com/search?q=3MINDIA+moneycontrol', 'https://chartink.com/stocks/3MINDIA.html', 1, NULL, NULL, 'no', 'nifty', 'N500', 'old', NULL, NULL, NULL, 'yes', '2022-12-10 10:24:52', NULL),
 (2, 'ABB India Ltd.', 'ABB', 'Capital Goods', 'https://www.google.com/search?q=ABB+moneycontrol', 'https://chartink.com/stocks/ABB.html', 1, NULL, NULL, 'no', 'nifty', 'N500', 'old', NULL, NULL, NULL, 'yes', '2022-12-10 10:24:52', NULL),
 (3, 'ACC Ltd.', 'ACC', 'Construction Materials', 'https://www.google.com/search?q=ACC+moneycontrol', 'https://chartink.com/stocks/ACC.html', 1, NULL, NULL, 'no', 'nifty', 'N500', 'old', NULL, NULL, NULL, 'yes', '2022-12-10 10:24:52', NULL),
@@ -243,7 +243,7 @@ INSERT INTO `stocklistbackup` (`id`, `sName`, `cSymbol`, `industry`, `murl`, `cu
 (187, 'HDFC Asset Management Company Ltd.', 'HDFCAMC', 'Financial Services', 'https://www.google.com/search?q=HDFCAMC+moneycontrol', 'https://chartink.com/stocks/HDFCAMC.html', 1, NULL, NULL, 'no', 'nifty', 'N500', 'old', NULL, NULL, NULL, 'yes', '2022-12-10 10:24:53', NULL),
 (188, 'HDFC Bank Ltd.', 'HDFCBANK', 'Financial Services', 'https://www.google.com/search?q=HDFCBANK+moneycontrol', 'https://chartink.com/stocks/HDFCBANK.html', 1, NULL, NULL, 'no', 'nifty', 'N500', 'old', NULL, NULL, NULL, 'yes', '2022-12-10 10:24:53', NULL),
 (189, 'HDFC Life Insurance Company Ltd.', 'HDFCLIFE', 'Financial Services', 'https://www.google.com/search?q=HDFCLIFE+moneycontrol', 'https://chartink.com/stocks/HDFCLIFE.html', 1, NULL, NULL, 'no', 'nifty', 'N500', 'old', NULL, NULL, NULL, 'yes', '2022-12-10 10:24:53', NULL);
-INSERT INTO `stocklistbackup` (`id`, `sName`, `cSymbol`, `industry`, `murl`, `curl`, `priority`, `notes`, `cPattern`, `isWatch`, `sType`, `ntype`, `sEntry`, `qbuy`, `qvolume`, `qtotal`, `dailyEntry`, `createdDate`, `createdBy`) VALUES
+INSERT INTO `stocklist` (`id`, `sName`, `cSymbol`, `industry`, `murl`, `curl`, `priority`, `notes`, `cPattern`, `isWatch`, `sType`, `ntype`, `sEntry`, `qbuy`, `qvolume`, `qtotal`, `dailyEntry`, `createdDate`, `createdBy`) VALUES
 (190, 'HFCL Ltd.', 'HFCL', 'Telecommunication', 'https://www.google.com/search?q=HFCL+moneycontrol', 'https://chartink.com/stocks/HFCL.html', 1, NULL, NULL, 'no', 'nifty', 'N500', 'old', NULL, NULL, NULL, 'yes', '2022-12-10 10:24:53', NULL),
 (191, 'HLE Glascoat Ltd.', 'HLEGLAS', 'Capital Goods', 'https://www.google.com/search?q=HLEGLAS+moneycontrol', 'https://chartink.com/stocks/HLEGLAS.html', 1, NULL, NULL, 'no', 'nifty', 'N500', 'old', NULL, NULL, NULL, 'yes', '2022-12-10 10:24:53', NULL),
 (192, 'Happiest Minds Technologies Ltd.', 'HAPPSTMNDS', 'Information Technology', 'https://www.google.com/search?q=HAPPSTMNDS+moneycontrol', 'https://chartink.com/stocks/HAPPSTMNDS.html', 1, NULL, NULL, 'no', 'nifty', 'N500', 'old', NULL, NULL, NULL, 'yes', '2022-12-10 10:24:53', NULL),
@@ -434,7 +434,7 @@ INSERT INTO `stocklistbackup` (`id`, `sName`, `cSymbol`, `industry`, `murl`, `cu
 (377, 'RattanIndia Enterprises Ltd.', 'RTNINDIA', 'Services', 'https://www.google.com/search?q=RTNINDIA+moneycontrol', 'https://chartink.com/stocks/RTNINDIA.html', 1, NULL, NULL, 'no', 'nifty', 'N500', 'old', NULL, NULL, NULL, 'yes', '2022-12-10 10:24:55', NULL),
 (378, 'Raymond Ltd.', 'RAYMOND', 'Textiles', 'https://www.google.com/search?q=RAYMOND+moneycontrol', 'https://chartink.com/stocks/RAYMOND.html', 1, NULL, NULL, 'no', 'nifty', 'N500', 'old', NULL, NULL, NULL, 'yes', '2022-12-10 10:24:55', NULL),
 (379, 'Redington Ltd.', 'REDINGTON', 'Services', 'https://www.google.com/search?q=REDINGTON+moneycontrol', 'https://chartink.com/stocks/REDINGTON.html', 1, NULL, NULL, 'no', 'nifty', 'N500', 'old', NULL, NULL, NULL, 'yes', '2022-12-10 10:24:55', NULL);
-INSERT INTO `stocklistbackup` (`id`, `sName`, `cSymbol`, `industry`, `murl`, `curl`, `priority`, `notes`, `cPattern`, `isWatch`, `sType`, `ntype`, `sEntry`, `qbuy`, `qvolume`, `qtotal`, `dailyEntry`, `createdDate`, `createdBy`) VALUES
+INSERT INTO `stocklist` (`id`, `sName`, `cSymbol`, `industry`, `murl`, `curl`, `priority`, `notes`, `cPattern`, `isWatch`, `sType`, `ntype`, `sEntry`, `qbuy`, `qvolume`, `qtotal`, `dailyEntry`, `createdDate`, `createdBy`) VALUES
 (380, 'Relaxo Footwears Ltd.', 'RELAXO', 'Consumer Durables', 'https://www.google.com/search?q=RELAXO+moneycontrol', 'https://chartink.com/stocks/RELAXO.html', 1, NULL, NULL, 'no', 'nifty', 'N500', 'old', NULL, NULL, NULL, 'yes', '2022-12-10 10:24:55', NULL),
 (381, 'Reliance Industries Ltd.', 'RELIANCE', 'Oil Gas & Consumable Fuels', 'https://www.google.com/search?q=RELIANCE+moneycontrol', 'https://chartink.com/stocks/RELIANCE.html', 1, NULL, NULL, 'no', 'nifty', 'N500', 'old', NULL, NULL, NULL, 'yes', '2022-12-10 10:24:55', NULL),
 (382, 'Restaurant Brands Asia Ltd.', 'RBA', 'Consumer Services', 'https://www.google.com/search?q=RBA+moneycontrol', 'https://chartink.com/stocks/RBA.html', 1, NULL, NULL, 'no', 'nifty', 'N500', 'old', NULL, NULL, NULL, 'yes', '2022-12-10 10:24:55', NULL),
@@ -1089,9 +1089,9 @@ INSERT INTO `stockvalues` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLo
 --
 
 --
--- Indexes for table `stocklistbackup`
+-- Indexes for table `stocklist`
 --
-ALTER TABLE `stocklistbackup`
+ALTER TABLE `stocklist`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1105,9 +1105,9 @@ ALTER TABLE `stockvalues`
 --
 
 --
--- AUTO_INCREMENT for table `stocklistbackup`
+-- AUTO_INCREMENT for table `stocklist`
 --
-ALTER TABLE `stocklistbackup`
+ALTER TABLE `stocklist`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=500;
 
 --

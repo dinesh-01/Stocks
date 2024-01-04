@@ -18,7 +18,7 @@ $field = array('qbuy' => $sqbuy,'qvolume' => $sqvolume, 'qtotal' => $sqtotal,
                 'stock_signal' => $stock_signal, 'order_type' => $order_type, 'stop_loss' => $stop_loss,
                 'target' => $target);
 
- $table = "stocklistbackup";
+ $table = "stocklist";
  $condition = "id = $sid";
  $arugment  =  array( "field" => $field , "table" => $table, "condition" => $condition);
  update($arugment);

@@ -179,10 +179,10 @@ INSERT INTO `stockbeeslist` (`id`, `sName`, `cSymbol`, `industry`, `murl`, `mcur
 -- --------------------------------------------------------
 
 --
--- Table structure for table `stocklistbackup`
+-- Table structure for table `stocklist`
 --
 
-CREATE TABLE `stocklistbackup` (
+CREATE TABLE `stocklist` (
   `id` int(11) NOT NULL,
   `sName` varchar(100) DEFAULT NULL,
   `cSymbol` text,
@@ -213,10 +213,10 @@ CREATE TABLE `stocklistbackup` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `stocklistbackup`
+-- Dumping data for table `stocklist`
 --
 
-INSERT INTO `stocklistbackup` (`id`, `sName`, `cSymbol`, `industry`, `murl`, `mcurl`, `curl`, `tickertape`, `priority`, `notes`, `cPattern`, `isWatch`, `sType`, `ntype`, `sEntry`, `qbuy`, `qvolume`, `current_volume`, `dtype`, `qtotal`, `dailyEntry`, `stock_signal`, `order_type`, `target`, `stop_loss`, `createdDate`, `createdBy`) VALUES
+INSERT INTO `stocklist` (`id`, `sName`, `cSymbol`, `industry`, `murl`, `mcurl`, `curl`, `tickertape`, `priority`, `notes`, `cPattern`, `isWatch`, `sType`, `ntype`, `sEntry`, `qbuy`, `qvolume`, `current_volume`, `dtype`, `qtotal`, `dailyEntry`, `stock_signal`, `order_type`, `target`, `stop_loss`, `createdDate`, `createdBy`) VALUES
 (10, 'Adani Enterprises Ltd.', 'ADANIENT', 'Metals & Mining', 'https://www.google.com/search?q=ADANIENT+moneycontrol', 'https://www.moneycontrol.com/india/stockpricequote/trading/adanienterprises/AE13', 'https://chartink.com/stocks/ADANIENT.html', 'https://www.moneycontrol.com/india/stockpricequote/trading/adanienterprises/AE13', 2, NULL, NULL, 'no', 'nifty', 'N50', 'old', 0, 0, '6959428', 'stocks', 0, 'yes', '=> SELECT <=', 'LIMIT', '0', '0', '2022-12-10 10:24:52', NULL),
 (12, 'Adani Ports and Special Economic Zone Ltd.', 'ADANIPORTS', 'Services', 'https://www.google.com/search?q=ADANIPORTS+moneycontrol', 'https://www.moneycontrol.com/india/stockpricequote/infrastructure-general/adaniportsspecialeconomiczone/MPS', 'https://chartink.com/stocks/ADANIPORTS.html', 'https://groww.in/stocks/adani-ports-and-special-economic-zone-ltd', 1, NULL, NULL, 'no', 'nifty', 'N50', 'old', 0, 0, '12202462', 'stocks', 0, 'yes', '=> SELECT <=', 'LIMIT', '0', '0', '2022-12-10 10:24:52', NULL),
 (33, 'Apollo Hospitals Enterprise Ltd.', 'APOLLOHOSP', 'Healthcare', 'https://www.google.com/search?q=APOLLOHOSP+moneycontrol', 'https://www.moneycontrol.com/india/stockpricequote/hospitalsmedical-services/apollohospitalsenterprises/AHE', 'https://chartink.com/stocks/APOLLOHOSP.html', 'https://groww.in/stocks/apollo-hospitals-enterprise-ltd', 2, NULL, NULL, 'no', 'nifty', 'N50', 'old', 0, 0, '456382', 'stocks', 0, 'yes', '=> SELECT <=', 'LIMIT', '0', '0', '2022-12-10 10:24:53', NULL),
@@ -360,7 +360,7 @@ INSERT INTO `stocklistbackup` (`id`, `sName`, `cSymbol`, `industry`, `murl`, `mc
 (1081, 'BATAINDIA', 'BATAINDIA', '', '', 'https://www.google.com/search?q=BATAINDIA+moneycontrol', 'https://chartink.com/stocks/BATAINDIA.html', '', 2, NULL, NULL, 'no', 'nifty', 'N100', 'old', 0, 0, '253597', 'stocks', 0, 'yes', '=> SELECT <=', 'LIMIT', '0', '0', '2023-09-08 15:48:24', NULL),
 (1083, 'ZYDUSLIFE', 'ZYDUSLIFE', '', '', 'https://www.google.com/search?q=ZYDUSLIFE+moneycontrol', 'https://chartink.com/stocks/ZYDUSLIFE.html', '', 1, 'Long Bearish engulfing pattern plus long weck', NULL, 'yes', 'nifty', 'N100', 'old', 0, 0, '2333950', 'stocks', 0, 'yes', '=> SELECT <=', 'LIMIT', '0', '0', '2023-09-08 15:48:24', NULL),
 (1086, 'NAVINFLUOR', 'NAVINFLUOR', '', '', 'https://www.google.com/search?q=NAVINFLUOR+moneycontrol', 'https://chartink.com/stocks/NAVINFLUOR.html', '', 2, NULL, NULL, 'no', 'nifty', 'N100', 'old', 0, 0, '130517', 'stocks', 0, 'yes', '=> SELECT <=', 'LIMIT', '0', '0', '2023-09-08 15:48:24', NULL);
-INSERT INTO `stocklistbackup` (`id`, `sName`, `cSymbol`, `industry`, `murl`, `mcurl`, `curl`, `tickertape`, `priority`, `notes`, `cPattern`, `isWatch`, `sType`, `ntype`, `sEntry`, `qbuy`, `qvolume`, `current_volume`, `dtype`, `qtotal`, `dailyEntry`, `stock_signal`, `order_type`, `target`, `stop_loss`, `createdDate`, `createdBy`) VALUES
+INSERT INTO `stocklist` (`id`, `sName`, `cSymbol`, `industry`, `murl`, `mcurl`, `curl`, `tickertape`, `priority`, `notes`, `cPattern`, `isWatch`, `sType`, `ntype`, `sEntry`, `qbuy`, `qvolume`, `current_volume`, `dtype`, `qtotal`, `dailyEntry`, `stock_signal`, `order_type`, `target`, `stop_loss`, `createdDate`, `createdBy`) VALUES
 (1087, 'SYNGENE', 'SYNGENE', '', '', 'https://www.google.com/search?q=SYNGENE+moneycontrol', 'https://chartink.com/stocks/SYNGENE.html', '', 2, '', NULL, 'yes', 'nifty', 'N100', 'old', 0, 0, '942614', 'stocks', 0, 'yes', '=> SELECT <=', 'LIMIT', '0', '0', '2023-09-08 15:48:24', NULL),
 (1090, 'SRF', 'SRF', '', '', 'https://www.google.com/search?q=SRF+moneycontrol', 'https://chartink.com/stocks/SRF.html', '', 1, NULL, NULL, 'no', 'nifty', 'N100', 'old', 0, 0, '316577', 'stocks', 0, 'yes', '=> SELECT <=', 'LIMIT', '0', '0', '2023-09-08 15:48:24', NULL),
 (1091, 'ABFRL', 'ABFRL', '', '', 'https://www.google.com/search?q=ABFRL+moneycontrol', 'https://chartink.com/stocks/ABFRL.html', '', 1, NULL, NULL, 'no', 'nifty', 'N100', 'old', 0, 0, '2051559', 'stocks', 0, 'yes', '=> SELECT <=', 'LIMIT', '0', '0', '2023-09-08 15:48:24', NULL),
@@ -406,10 +406,10 @@ INSERT INTO `stocklistbackup` (`id`, `sName`, `cSymbol`, `industry`, `murl`, `mc
 -- --------------------------------------------------------
 
 --
--- Table structure for table `stocklistbackupfutures`
+-- Table structure for table `stocklistfutures`
 --
 
-CREATE TABLE `stocklistbackupfutures` (
+CREATE TABLE `stocklistfutures` (
   `id` int(11) NOT NULL,
   `sName` varchar(100) DEFAULT NULL,
   `cSymbol` text,
@@ -423,10 +423,10 @@ CREATE TABLE `stocklistbackupfutures` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `stocklistbackupfutures`
+-- Dumping data for table `stocklistfutures`
 --
 
-INSERT INTO `stocklistbackupfutures` (`id`, `sName`, `cSymbol`, `expiry`, `lot_size`, `isWatch`, `current_volume`, `dtype`, `createdDate`, `createdBy`) VALUES
+INSERT INTO `stocklistfutures` (`id`, `sName`, `cSymbol`, `expiry`, `lot_size`, `isWatch`, `current_volume`, `dtype`, `createdDate`, `createdBy`) VALUES
 (1, 'NIFTY', 'NIFTY23DECFUT', '28/12/23', '50', 'yes', '1027150', 'futures', '2023-11-05 07:07:42', NULL),
 (2, 'NIFTY', 'NIFTY23NOVFUT', '30/11/23', '50', 'no', '3182500', 'futures', '2023-11-05 07:07:43', NULL),
 (4, 'BANKNIFTY', 'BANKNIFTY23DECFUT', '28/12/23', '15', 'yes', '376065', 'futures', '2023-11-05 07:07:45', NULL),
@@ -10364,15 +10364,15 @@ ALTER TABLE `stockbeeslist`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `stocklistbackup`
+-- Indexes for table `stocklist`
 --
-ALTER TABLE `stocklistbackup`
+ALTER TABLE `stocklist`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `stocklistbackupfutures`
+-- Indexes for table `stocklistfutures`
 --
-ALTER TABLE `stocklistbackupfutures`
+ALTER TABLE `stocklistfutures`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -10410,15 +10410,15 @@ ALTER TABLE `stockbeeslist`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 
 --
--- AUTO_INCREMENT for table `stocklistbackup`
+-- AUTO_INCREMENT for table `stocklist`
 --
-ALTER TABLE `stocklistbackup`
+ALTER TABLE `stocklist`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1691;
 
 --
--- AUTO_INCREMENT for table `stocklistbackupfutures`
+-- AUTO_INCREMENT for table `stocklistfutures`
 --
-ALTER TABLE `stocklistbackupfutures`
+ALTER TABLE `stocklistfutures`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=563;
 
 --

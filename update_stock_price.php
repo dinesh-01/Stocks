@@ -16,7 +16,7 @@ require_once './include/common.php';
 
     //Fetching stock Symbol
     $id = $_GET['id'];
-    $query  = "Select cSymbol from stocklistbackup where id=$id";
+    $query  = "Select cSymbol from stocklist where id=$id";
     $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
     $row    = mysqli_fetch_row($result);
 
@@ -93,8 +93,8 @@ require_once './include/common.php';
     $query  = "INSERT INTO stockAmo(symbol, order_id, quanity, price, created_date) VALUES ('$symbol','$order_id','$quantity','$price','$date')";
     $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
-    //Updating in stocklistbackup
-    $query = "UPDATE `stocklistbackup` SET `order_status`='1' WHERE id = $id";
+    //Updating in stocklist
+    $query = "UPDATE `stocklist` SET `order_status`='1' WHERE id = $id";
     $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 

@@ -61,7 +61,7 @@ require_once './include/common.php';
     if($type == "stocks") {
 
         $field     =  array("sName,murl,curl,id,cSymbol,tickertape,dtype,ntype");
-        $table     =  "stocklistbackup";
+        $table     =  "stocklist";
         $condition =  "isWatch = 'no'";
         $order     =  "ntype";
         $arugment  =  array( "field" => $field , "table" => $table, "condition" => $condition,"order" => $order);
@@ -73,7 +73,7 @@ require_once './include/common.php';
     if($type == "futures") {
 
         $field     =  array("sName,cSymbol,expiry,id,lot_size,dtype");
-        $table     =  "stocklistbackupfutures";
+        $table     =  "stocklistfutures";
         $condition =  "isWatch = 'no'";
         $arugment  =  array( "field" => $field , "table" => $table, "condition" => $condition);
         $data      =  select($arugment,"many");

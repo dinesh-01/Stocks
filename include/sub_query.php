@@ -2,13 +2,13 @@
 
 function watch_list_query($type,$priority=1) {
 
-	 $query = "Select stocklistbackup.id as id,stocklistbackup.ntype as ntype,stocklistbackup.notes as notes,stocklistbackup.cSymbol as cSymbol,
-               stocklistbackup.sName as sName,stocklistbackup.murl as murl,stocklistbackup.order_status as order_status,stocklistbackup.curl as curl,stocklistbackup.tickertape as ttape,
-               stocklistbackup.priority as priority,stockvalues.open as currOpen,stockvalues.high as currHigh,
+	 $query = "Select stocklist.id as id,stocklist.ntype as ntype,stocklist.notes as notes,stocklist.cSymbol as cSymbol,
+               stocklist.sName as sName,stocklist.murl as murl,stocklist.order_status as order_status,stocklist.curl as curl,stocklist.tickertape as ttape,
+               stocklist.priority as priority,stockvalues.open as currOpen,stockvalues.high as currHigh,
                stockvalues.low as currLow,stockvalues.close as currClose,stockvalues.schange as pChange,
-               stockvalues.volume as volume From stocklistbackup INNER JOIN  stockvalues 
-               WHERE stocklistbackup.id = stockvalues.sid AND stocklistbackup.isWatch = 'yes' AND stocklistbackup.priority = '$priority'  AND stocklistbackup.sType = '$type' AND stockvalues.id = (SELECT MAX(id) from stockvalues 
-               where sid = stocklistbackup.id) order by stocklistbackup.sName asc";
+               stockvalues.volume as volume From stocklist INNER JOIN  stockvalues 
+               WHERE stocklist.id = stockvalues.sid AND stocklist.isWatch = 'yes' AND stocklist.priority = '$priority'  AND stocklist.sType = '$type' AND stockvalues.id = (SELECT MAX(id) from stockvalues 
+               where sid = stocklist.id) order by stocklist.sName asc";
 
 	$result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
@@ -25,18 +25,18 @@ function company_list_query($type) {
 
 
     if($type == "nifty") {
-       $catagory = "stocklistbackup.sType = '$type'";
+       $catagory = "stocklist.sType = '$type'";
     }
 
     if($type == "N50") {
-        $catagory = "stocklistbackup.ntype = '$type'";
+        $catagory = "stocklist.ntype = '$type'";
     }
 
-    $query = "Select stocklistbackup.id as id,stocklistbackup.ntype as ntype,stocklistbackup.cSymbol as cSymbol,stocklistbackup.notes as notes,stocklistbackup.sName as sName,
-               stocklistbackup.murl as murl,stocklistbackup.curl as curl,stockvalues.open as currOpen,
+    $query = "Select stocklist.id as id,stocklist.ntype as ntype,stocklist.cSymbol as cSymbol,stocklist.notes as notes,stocklist.sName as sName,
+               stocklist.murl as murl,stocklist.curl as curl,stockvalues.open as currOpen,
                stockvalues.high as currHigh,stockvalues.low as currLow,stockvalues.close as currClose,
-               stockvalues.schange as pChange,stockvalues.volume as volume From stocklistbackup 
-               INNER JOIN  stockvalues WHERE stocklistbackup.id = stockvalues.sid AND $catagory  AND stocklistbackup.isWatch = 'no' order by stockvalues.id DESC LIMIT 0,50";
+               stockvalues.schange as pChange,stockvalues.volume as volume From stocklist 
+               INNER JOIN  stockvalues WHERE stocklist.id = stockvalues.sid AND $catagory  AND stocklist.isWatch = 'no' order by stockvalues.id DESC LIMIT 0,50";
     $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 	while($row = mysqli_fetch_assoc($result)) {
@@ -62,7 +62,7 @@ function company_list_bees_query($type) {
 
 function company_list_future_query($type) {
 
-    $query = "SELECT * FROM `stocklistbackupfutures` where `isWatch` = '$type'";
+    $query = "SELECT * FROM `stocklistfutures` where `isWatch` = '$type'";
     $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
     while($row = mysqli_fetch_assoc($result)) {
@@ -77,7 +77,7 @@ function company_list_future_query($type) {
 function company_list_range_query($r1,$r2) {
 
 
-  $query = "Select stocklistbackup.id as id,stocklistbackup.ntype as ntype,stocklistbackup.cSymbol as cSymbol,stocklistbackup.notes as notes,stocklistbackup.sName as sName,stocklistbackup.murl as murl,stocklistbackup.curl as curl,stockvalues.open as currOpen,stockvalues.high as currHigh,stockvalues.low as currLow,stockvalues.close as currClose,stockvalues.schange as pChange,stockvalues.volume as volume From stocklistbackup INNER JOIN  stockvalues WHERE stocklistbackup.id = stockvalues.sid   AND stocklistbackup.isWatch = 'no' AND stockvalues.id = (SELECT MAX(id) from stockvalues where sid = stocklistbackup.id) and stockvalues.low BETWEEN $r1 AND $r2 order by stockvalues.volume desc";
+  $query = "Select stocklist.id as id,stocklist.ntype as ntype,stocklist.cSymbol as cSymbol,stocklist.notes as notes,stocklist.sName as sName,stocklist.murl as murl,stocklist.curl as curl,stockvalues.open as currOpen,stockvalues.high as currHigh,stockvalues.low as currLow,stockvalues.close as currClose,stockvalues.schange as pChange,stockvalues.volume as volume From stocklist INNER JOIN  stockvalues WHERE stocklist.id = stockvalues.sid   AND stocklist.isWatch = 'no' AND stockvalues.id = (SELECT MAX(id) from stockvalues where sid = stocklist.id) and stockvalues.low BETWEEN $r1 AND $r2 order by stockvalues.volume desc";
 
 	$result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
@@ -91,7 +91,7 @@ function company_list_range_query($r1,$r2) {
 
 function search_single_company_query($string) {
 
-$query = "Select stocklistbackup.id as id,stocklistbackup.ntype as ntype,stocklistbackup.notes as notes,stocklistbackup.cSymbol as cSymbol,stocklistbackup.sName as sName,stocklistbackup.murl as murl,stocklistbackup.curl as curl,stockvalues.open as currOpen,stockvalues.high as currHigh,stockvalues.low as currLow,stockvalues.close as currClose,stockvalues.schange as pChange,stockvalues.volume as volume From stocklistbackup INNER JOIN  stockvalues WHERE stocklistbackup.id = stockvalues.sid   AND stocklistbackup.isWatch = 'no' AND stockvalues.id = (SELECT MAX(id) from stockvalues where sid = stocklistbackup.id) AND  stocklistbackup.sName like '%$string%'order by stockvalues.volume desc";
+$query = "Select stocklist.id as id,stocklist.ntype as ntype,stocklist.notes as notes,stocklist.cSymbol as cSymbol,stocklist.sName as sName,stocklist.murl as murl,stocklist.curl as curl,stockvalues.open as currOpen,stockvalues.high as currHigh,stockvalues.low as currLow,stockvalues.close as currClose,stockvalues.schange as pChange,stockvalues.volume as volume From stocklist INNER JOIN  stockvalues WHERE stocklist.id = stockvalues.sid   AND stocklist.isWatch = 'no' AND stockvalues.id = (SELECT MAX(id) from stockvalues where sid = stocklist.id) AND  stocklist.sName like '%$string%'order by stockvalues.volume desc";
 
 	$result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
@@ -106,7 +106,7 @@ $query = "Select stocklistbackup.id as id,stocklistbackup.ntype as ntype,stockli
 
 function search_single_company_feature_query($string) {
 
-    $query = "select * from stocklistbackupfutures where isWatch='no' and cSymbol like '%$string%'";
+    $query = "select * from stocklistfutures where isWatch='no' and cSymbol like '%$string%'";
     $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
     while($row = mysqli_fetch_assoc($result)) {

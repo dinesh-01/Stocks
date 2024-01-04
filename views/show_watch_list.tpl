@@ -11,15 +11,7 @@
             <th> Name</th>
             <th> Type</th>
             <th> Chart </th>
-            <!--
-            <th>Options</th>
-            <th>ChartInk</th>
-
-            <th> T.Open </th>
-            <th> T.High </th
-            <th> T.Low </th>
-            --!>
-            <th> T.Close </th>
+                <th> T.Close </th>
             <th> Change </th>
             <th> Volume </th>
             <th> TurnOver </th>
@@ -38,13 +30,7 @@
             <input type="hidden" id="sid" value="{$value.id}"/>
         </td>
 
-        {if $value.ntype eq 'option'}
             <td><a href="https://www.google.com/search?q={$value.cSymbol}+ grow+ option+chain" target="_blank">Option</a></td>
-        {/if}
-
-        {if $value.ntype eq 'N500'}
-            <td><a href="https://in.tradingview.com/symbols/NSE-{$value.cSymbol}" target="_blank">{$value.ntype}</a></td>
-        {/if}
 
 
 
