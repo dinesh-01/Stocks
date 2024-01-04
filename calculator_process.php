@@ -19,6 +19,8 @@ if($option == "put") {
  $final_amount = $amount - $amount_value;
 }
 
+$final_amount = round($final_amount, 1);
+
 header("location:calculator.php?amount=".$final_amount);
 exit;
 
