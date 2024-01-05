@@ -10,6 +10,7 @@
             <th> No </th>
             <th> Name</th>
             <th> Type</th>
+            <th> Order</th>
             <th> Chart </th>
                 <th> T.Close </th>
             <th> Change </th>
@@ -33,7 +34,14 @@
             <td><a href="https://www.google.com/search?q={$value.cSymbol}+ grow+ option+chain" target="_blank">Option</a></td>
 
 
+        <td>
 
+            <a href="stock_options_orders.php?s={$value.cSymbol}&o=CE" target="_blank">CALL</a>
+            ||
+            <a href="stock_options_orders.php?s={$value.cSymbol}&o=PE" target="_blank">PUT</a>
+
+
+        </td>
 
         <td><a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'}" target="_blank">Single Layout</a></td>
 

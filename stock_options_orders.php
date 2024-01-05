@@ -1,0 +1,87 @@
+<?php
+
+//including common files
+require_once './template/header.php';
+require_once './include/common.php';
+
+// setting up end headers
+$headers = [
+    'Content-Type' => 'application/json',
+    'X-Kite-Version' => '3',
+    'Authorization' => 'token '.KEY.':'.TOKEN
+];
+
+$client = new GuzzleHttp\Client([
+    'headers' => $headers
+]);
+
+
+$symbol = $_GET['s'];
+$type = $_GET['o'];
+
+$end_point = "https://api.kite.trade/quote?i=NSE:$symbol";
+$res = $client->request('GET', $end_point);
+$response = $res->getBody()->getContents();
+$response = (json_decode($response, true));
+
+if(str_contains($symbol,"%26")) {
+    $api_symbol = str_replace("%26", "&", $symbol);
+}
+
+$current_price = $response['data']["NSE:$symbol"]['last_price'];
+$current_price = str_replace(",", "", $current_price);
+
+
+$percentage_value = 1 / 100 ;
+$amount_value = $current_price * $percentage_value;
+
+
+$final_amount = $current_price + $amount_value;
+$range2 = round($final_amount, 0);
+
+$final_amount = $current_price - $amount_value;
+$range1 = round($final_amount, 0);
+
+
+$query = "Select * from stockOption where name = '$symbol' 
+                            and strike BETWEEN $range1 AND $range2 
+                            and tradingsymbol LIKE '%JAN%'
+                            and instrument_type = '$type' ";
+$result = mysqli_query($GLOBALS['mysqlConnect'], $query);
+$datas = $result->fetch_all(MYSQLI_ASSOC);
+$i = 0;
+
+foreach ($datas as $data) {
+
+
+    $tradingsymbol = $data['tradingsymbol'];
+    $end_point = "https://api.kite.trade/quote?i=NFO:$tradingsymbol";
+    $res = $client->request('GET', $end_point);
+    $response = $res->getBody()->getContents();
+    $response = (json_decode($response, true));
+
+    $last_price = $response["data"]["NFO:".$tradingsymbol]["last_price"];
+    $datas[$i]['last_price'] = $last_price;
+
+    $amount = $last_price * $data['lot_size'];
+    $lot    = (ALLOCATE_PRICE / $amount) ;
+    $lot    = (int)$lot; //quantity
+    $datas[$i]['lot'] = $lot * $data['lot_size'];
+    $i++;
+
+    $details['stock_price'] = $current_price;
+    $details['name'] = $data['name'];
+
+
+}
+
+
+
+$smarty->assign("datas",$datas);
+$smarty->assign("details",$details);
+
+$smarty->display("show_options_orders.tpl");
+
+
+
+?>
