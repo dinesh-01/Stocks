@@ -67,10 +67,25 @@ foreach ($datas as $data) {
     $lot    = (ALLOCATE_PRICE / $amount) ;
     $lot    = (int)$lot; //quantity
     $datas[$i]['lot'] = $lot * $data['lot_size'];
+
+
+    $query  = "Select id from optionAmo where symbol='$tradingsymbol'";
+    $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
+    $row = mysqli_num_rows($result);
+
+    if($row) {
+        $datas[$i]['order_status'] = "1";
+    } else {
+        $datas[$i]['order_status'] = "0";
+    }
+
     $i++;
 
     $details['stock_price'] = $current_price;
     $details['name'] = $data['name'];
+
+
+
 
 
 }

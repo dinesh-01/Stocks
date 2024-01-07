@@ -9,6 +9,7 @@
   <table class="gridtable">
           <tr>
               <th>Symbol : <a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$details.name|replace:'-':'_'}" target="_blank">{$details.name}</a></th>
+              <th><a href="https://www.google.com/search?q={$details.name}+ grow+ option+chain" target="_blank">Option Chain</a></th>
            <th>Price : {$details.stock_price}</th>
           </tr>
             <tr>
@@ -26,7 +27,14 @@
         <td>{$value.last_price}</td>
         <td>{$value.lot_size}</a></td>
         <td>{$value.lot}</a></td>
-        <td><a href="update_option_price.php?id={$value.id}"><button value="buy">BUY</button></a></td>
+        {if $value.order_status eq '0'}
+            <td><a href="order_option.php?option_symbol={$value.tradingsymbol}&lot_size={$value.lot}&s={$details.name}&o={$value.instrument_type}"><button value="buy">BUY</button></a></td>
+        {/if}
+
+        {if $value.order_status eq '1'}
+            <td>Completed</td>
+        {/if}
+
     </tr>
 
 
