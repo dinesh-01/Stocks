@@ -22,29 +22,29 @@ $data      =  select($arugment,"many");
 
 foreach ($data as $value) {
 
+    #fetch order details
+    $order_id = $value['order_id'];
+    $symbol   = $value['symbol'];
+    $quantity = $value['quanity'];
     $last_price = $value['price'];
-    $symbol     = $value['symbol'];
-    $quantity   = $value['quanity'];
 
+    $target_percentage = (3/100) ;
+    $target_diff =  $last_price * $target_percentage;
+    $target = $last_price + $target_diff;
+    $target =  number_format($target,1);
+    $target = str_replace(",","",$target);
 
-    $stop_loss_percentage = (10/100) ;
-    $stop_loss_diff =  $last_price * $stop_loss_percentage;
-    $stop_loss = $last_price - $stop_loss_diff;
-    $stop_loss = number_format($stop_loss ,1);
-    $stop_loss = str_replace(",","",$stop_loss);
-
-
-    //Set Stoploss
-    $end_point = "https://api.kite.trade/orders/regular";
+    //Set target
+    $end_point = "https://api.kite.trade/orders/amo";
     $res = $client->request('POST', $end_point, [
         'form_params' => [
             'tradingsymbol' => $symbol,
             'exchange' => 'NFO',
             'transaction_type' => "SELL",
-            'order_type' => 'SL-M',
-            'trigger_price' => $stop_loss,
+            'order_type' => 'LIMIT',
+            'price' => $target,
             'quantity' => $quantity,
-            'product' => 'CNC',
+            'product' => 'NRML',
             'validity' => 'DAY'
 
         ]
@@ -55,13 +55,14 @@ foreach ($data as $value) {
 
     //Fetching order id
     $order_id = $response['data']['order_id'];
-    echo "StopLose Order for $symbol : $order_id";
+    echo "Target for $symbol : $target";
     echo "\n";
+
 
 
     #reseting the dailyentry
     $id = $value['id'];
-    $query = "UPDATE `optionAmo` SET `stop_loss`='$stop_loss' WHERE id = '$id'";
+    $query = "UPDATE `optionAmo` SET `price`='$last_price',`target`='$target' WHERE id = '$id'";
     $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 

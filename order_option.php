@@ -30,7 +30,7 @@ require_once './include/common.php';
     $last_price = $response['data']["NFO:$symbol"]['last_price'];
     $last_price = str_replace(",", "", $last_price); //last price
 
-    $percentage_value = 0.1 / 100 ;
+    $percentage_value = 0.5 / 100 ;
     $amount_value = $last_price * $percentage_value;
     $final_amount = $last_price + $amount_value;
     $final_amount = round($final_amount, 1);
@@ -38,7 +38,6 @@ require_once './include/common.php';
 
     $date = date('d-m-Y');
 
-   $price = $final_amount;
 
 
     //Place Order
@@ -75,19 +74,20 @@ require_once './include/common.php';
     $response = (json_decode($response,true));
 
 
+
     $length = count($response['data']);
     $length =  $length-1;
 
 
     //Fetching average price
-    $price = $response['data'][$length]['average_price'];
+     $price = $response['data'][$length]['average_price'];
 
 
 
 
     //Update for AMO
-    $query  = "INSERT INTO optionAmo(symbol, order_id, quanity, price, created_date) VALUES ('$symbol','$order_id','$quantity','$price','$date')";
-    $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
+     $query  = "INSERT INTO optionAmo(symbol, order_id, quanity, price, created_date) VALUES ('$symbol','$order_id','$quantity','$price','$date')";
+     $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 
 

@@ -19,20 +19,23 @@ $client = new GuzzleHttp\Client([
 $symbol = $_GET['s'];
 $type = $_GET['o'];
 
-$end_point = "https://api.kite.trade/quote?i=NSE:$symbol";
+if(str_contains($symbol,"_")) {
+    $symbol = str_replace("_", "&", $symbol);
+    $api_symbol = str_replace("&", "%26", $symbol);
+    $end_point = "https://api.kite.trade/quote?i=NSE:$api_symbol";
+}else{
+    $end_point = "https://api.kite.trade/quote?i=NSE:$symbol";
+}
+
+
 $res = $client->request('GET', $end_point);
 $response = $res->getBody()->getContents();
 $response = (json_decode($response, true));
-
-if(str_contains($symbol,"%26")) {
-    $api_symbol = str_replace("%26", "&", $symbol);
-}
-
 $current_price = $response['data']["NSE:$symbol"]['last_price'];
 $current_price = str_replace(",", "", $current_price);
 
 
-$percentage_value = 1 / 100 ;
+$percentage_value = 2 / 100 ;
 $amount_value = $current_price * $percentage_value;
 
 
@@ -43,7 +46,8 @@ $final_amount = $current_price - $amount_value;
 $range1 = round($final_amount, 0);
 
 
-$query = "Select * from stockOption where name = '$symbol' 
+
+ $query = "Select * from stockOption where name = '$symbol' 
                             and strike BETWEEN $range1 AND $range2 
                             and tradingsymbol LIKE '%JAN%'
                             and instrument_type = '$type' ";
@@ -55,10 +59,20 @@ foreach ($datas as $data) {
 
 
     $tradingsymbol = $data['tradingsymbol'];
-    $end_point = "https://api.kite.trade/quote?i=NFO:$tradingsymbol";
+
+
+    if(str_contains($tradingsymbol,"&")) {
+        $option_tradingsymbol = str_replace("&", "%26", $tradingsymbol);
+        $end_point = "https://api.kite.trade/quote?i=NFO:$option_tradingsymbol";
+    }else{
+        $end_point = "https://api.kite.trade/quote?i=NFO:$tradingsymbol";
+    }
+
+
     $res = $client->request('GET', $end_point);
     $response = $res->getBody()->getContents();
     $response = (json_decode($response, true));
+
 
     $last_price = $response["data"]["NFO:".$tradingsymbol]["last_price"];
     $datas[$i]['last_price'] = $last_price;
