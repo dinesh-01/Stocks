@@ -16,9 +16,12 @@ require_once './include/common.php';
 
 $field     =  array("id,order_id,symbol,price,quanity,stop_loss,target,created_date");
 $table     =  "optionAmo";
-$arugment  =  array( "field" => $field , "table" => $table);
+$condition =  "status = 'open'";
+$arugment  =  array( "field" => $field , "table" => $table, 'condition' => $condition);
 $data      =  select($arugment,"many");
 
+
+print_r($data);
 
 foreach ($data as $value) {
 
@@ -62,7 +65,7 @@ foreach ($data as $value) {
 
     #reseting the dailyentry
     $id = $value['id'];
-    $query = "UPDATE `optionAmo` SET `price`='$last_price',`target`='$target' WHERE id = '$id'";
+    $query = "UPDATE `optionAmo` SET `price`='$last_price',`target`='$target', `status`= 'completed' WHERE id = '$id'";
     $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 
