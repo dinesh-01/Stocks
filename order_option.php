@@ -2,6 +2,8 @@
 require_once './include/common.php';
 
 
+
+
     // setting up end headers
     $headers = [
         'Content-Type' => 'application/json',
@@ -20,6 +22,13 @@ require_once './include/common.php';
     $s = $_GET['s'];
     $o = $_GET['o'];
 
+    if($o == "CE") {
+        $order_decide_type = "regular";
+    }
+
+    if($o == "PE") {
+        $order_decide_type = "amo";
+    }
 
 
     $end_point = "https://api.kite.trade/quote?i=NFO:$symbol";
@@ -41,7 +50,7 @@ require_once './include/common.php';
 
 
     //Place Order
-    $end_point = "https://api.kite.trade/orders/regular";
+    $end_point = "https://api.kite.trade/orders/$order_decide_type";
 
     $res = $client->request('POST', $end_point, [
     'form_params' => [
@@ -64,8 +73,6 @@ require_once './include/common.php';
     $order_id = $response['data']['order_id'];
 
 
-
-
     //Fetch Average Price
     $end_point = "https://api.kite.trade/orders/$order_id";
     $res = $client->request('GET', $end_point);
@@ -83,8 +90,6 @@ require_once './include/common.php';
      $price = $response['data'][$length]['average_price'];
 
 
-
-
     //Update for AMO
      $query  = "INSERT INTO optionAmo(symbol, order_id, quanity, price, created_date) VALUES ('$symbol','$order_id','$quantity','$price','$date')";
      $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
@@ -93,16 +98,6 @@ require_once './include/common.php';
 
     header("location:stock_options_orders.php?s=$s&o=$o");
     exit;
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -21,7 +21,16 @@ $arugment  =  array( "field" => $field , "table" => $table, 'condition' => $cond
 $data      =  select($arugment,"many");
 
 
-print_r($data);
+$order_decide = date("hi");
+$order_decide = ltrim($order_decide, '0');
+
+
+if( ($order_decide > 914) && ($order_decide < 330) ) {
+    $order_decide_type = "regular";
+}else{
+    $order_decide_type = "amo";
+}
+
 
 foreach ($data as $value) {
 
@@ -31,14 +40,14 @@ foreach ($data as $value) {
     $quantity = $value['quanity'];
     $last_price = $value['price'];
 
-    $target_percentage = (3/100) ;
+    $target_percentage = (7/100) ;
     $target_diff =  $last_price * $target_percentage;
     $target = $last_price + $target_diff;
     $target =  number_format($target,1);
     $target = str_replace(",","",$target);
 
     //Set target
-    $end_point = "https://api.kite.trade/orders/amo";
+    $end_point = "https://api.kite.trade/orders/$order_decide_type";
     $res = $client->request('POST', $end_point, [
         'form_params' => [
             'tradingsymbol' => $symbol,
@@ -65,7 +74,7 @@ foreach ($data as $value) {
 
     #reseting the dailyentry
     $id = $value['id'];
-    $query = "UPDATE `optionAmo` SET `price`='$last_price',`target`='$target', `status`= 'completed' WHERE id = '$id'";
+    $query = "UPDATE `optionAmo` SET `order_id`='$order_id', `price`='$last_price',`target`='$target', `status`= 'completed' WHERE id = '$id'";
     $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 
