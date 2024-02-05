@@ -21,7 +21,7 @@ if ($file) {
   while (($row = fgetcsv($file)) !== false) {
 
     $csymbol = $row[0];
-    echo $query = "UPDATE stocklistbackup SET ntype='N50'  where Csymbol = '$csymbol'";
+    echo $query = "UPDATE stocklist SET ntype='N50'  where Csymbol = '$csymbol'";
     $result = mysqli_query($GLOBALS['mysqlConnect'], $query);
     $query = mysqli_fetch_assoc($result);
     echo "\n";

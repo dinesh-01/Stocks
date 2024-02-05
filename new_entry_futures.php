@@ -23,7 +23,7 @@ foreach ($records as $record) {
    $expiry  = $record[5];
    $lot_size = $record[8];
 
-  echo $query  = "INSERT INTO stocklistbackupfutures(sName, cSymbol, expiry, lot_size) VALUES ('$sname','$symbol','$expiry','$lot_size')";
+  echo $query  = "INSERT INTO stocklistfutures(sName, cSymbol, expiry, lot_size) VALUES ('$sname','$symbol','$expiry','$lot_size')";
   $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
   echo "\n";
   sleep(1);

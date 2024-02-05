@@ -15,7 +15,7 @@ require_once './include/common.php';
 
 
 $field     =  array("id,order_id,symbol,price,quanity,stop_loss,target,created_date");
-$table     =  "stockAmo";
+$table     =  "optionAmo";
 $arugment  =  array( "field" => $field , "table" => $table);
 $data      =  select($arugment,"many");
 
@@ -27,7 +27,7 @@ foreach ($data as $value) {
     $quantity   = $value['quanity'];
 
 
-    $stop_loss_percentage = (0.5/100) ;
+    $stop_loss_percentage = (10/100) ;
     $stop_loss_diff =  $last_price * $stop_loss_percentage;
     $stop_loss = $last_price - $stop_loss_diff;
     $stop_loss = number_format($stop_loss ,1);
@@ -39,7 +39,7 @@ foreach ($data as $value) {
     $res = $client->request('POST', $end_point, [
         'form_params' => [
             'tradingsymbol' => $symbol,
-            'exchange' => 'NSE',
+            'exchange' => 'NFO',
             'transaction_type' => "SELL",
             'order_type' => 'SL-M',
             'trigger_price' => $stop_loss,
@@ -61,7 +61,7 @@ foreach ($data as $value) {
 
     #reseting the dailyentry
     $id = $value['id'];
-    $query = "UPDATE `stockAmo` SET `stop_loss`='$stop_loss' WHERE id = '$id'";
+    $query = "UPDATE `optionAmo` SET `stop_loss`='$stop_loss' WHERE id = '$id'";
     $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 

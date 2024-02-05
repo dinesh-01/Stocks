@@ -2,6 +2,8 @@
 require_once './include/common.php';
 
 
+
+
     // setting up end headers
     $headers = [
         'Content-Type' => 'application/json',
@@ -15,50 +17,50 @@ require_once './include/common.php';
 
 
     //Fetching stock Symbol
-    $id = $_GET['id'];
-    $query  = "Select cSymbol from stocklist where id=$id";
-    $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
-    $row    = mysqli_fetch_row($result);
+    $symbol = $_GET['option_symbol'];
+    $quantity = $_GET['lot_size'];
+    $s = $_GET['s'];
+    $o = $_GET['o'];
 
-    //Symbol
-    $symbol = $row[0];
+    if($o == "CE") {
+        $order_decide_type = "regular";
+    }
 
-    $end_point = "https://api.kite.trade/quote?i=NSE:$symbol";
+    if($o == "PE") {
+        $order_decide_type = "amo";
+    }
+
+
+    $end_point = "https://api.kite.trade/quote?i=NFO:$symbol";
     $res = $client->request('GET', $end_point);
     $response = $res->getBody()->getContents();
     $response = (json_decode($response, true));
 
-    $last_price = $response['data']["NSE:$symbol"]['last_price'];
+    $last_price = $response['data']["NFO:$symbol"]['last_price'];
     $last_price = str_replace(",", "", $last_price); //last price
 
-
-
-    $quantity = (ALLOCATE_PRICE / $last_price) ;
-    $quantity = (int)$quantity; //quantity
-
-
-    $percentage_value = 0.1 / 100 ;
+    $percentage_value = 0.5 / 100 ;
     $amount_value = $last_price * $percentage_value;
     $final_amount = $last_price + $amount_value;
     $final_amount = round($final_amount, 1);
 
 
-
     $date = date('d-m-Y');
 
 
+
     //Place Order
-    $end_point = "https://api.kite.trade/orders/regular";
+    $end_point = "https://api.kite.trade/orders/$order_decide_type";
 
     $res = $client->request('POST', $end_point, [
     'form_params' => [
         'tradingsymbol' => $symbol,
-        'exchange' => 'NSE',
+        'exchange' => 'NFO',
         'transaction_type' => "BUY",
         'order_type' => 'LIMIT',
         'quantity' => $quantity,
         'price' => $final_amount,
-        'product' => 'CNC',
+        'product' => 'NRML',
         'validity' => 'DAY'
 
     ]
@@ -71,8 +73,6 @@ require_once './include/common.php';
     $order_id = $response['data']['order_id'];
 
 
-
-
     //Fetch Average Price
     $end_point = "https://api.kite.trade/orders/$order_id";
     $res = $client->request('GET', $end_point);
@@ -81,36 +81,23 @@ require_once './include/common.php';
     $response = (json_decode($response,true));
 
 
+
     $length = count($response['data']);
     $length =  $length-1;
 
 
     //Fetching average price
-    $price = $response['data'][$length]['average_price'];
+     $price = $response['data'][$length]['average_price'];
 
 
     //Update for AMO
-    $query  = "INSERT INTO stockAmo(symbol, order_id, quanity, price, created_date) VALUES ('$symbol','$order_id','$quantity','$price','$date')";
-    $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
-
-    //Updating in stocklist
-    $query = "UPDATE `stocklist` SET `order_status`='1' WHERE id = $id";
-    $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
+     $query  = "INSERT INTO optionAmo(symbol, order_id, quanity, price, created_date) VALUES ('$symbol','$order_id','$quantity','$price','$date')";
+     $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 
-    header("location:list_watch.php");
+
+    header("location:stock_options_orders.php?s=$s&o=$o");
     exit;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
