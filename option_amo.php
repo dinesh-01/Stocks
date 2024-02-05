@@ -2,7 +2,15 @@
 require_once './include/common.php';
 
 
-    // setting up end headers
+if ( (time() > strtotime("09:15:00")) &&  (time() < strtotime("15:30:00"))  ) {
+    $order_decide_type = "regular";
+}else{
+    $order_decide_type = "amo";
+}
+
+
+
+// setting up end headers
     $headers = [
         'Content-Type' => 'application/json',
         'X-Kite-Version' => '3',
@@ -21,15 +29,9 @@ $arugment  =  array( "field" => $field , "table" => $table, 'condition' => $cond
 $data      =  select($arugment,"many");
 
 
-$order_decide = date("hi");
-$order_decide = ltrim($order_decide, '0');
 
 
-if( ($order_decide > 914) && ($order_decide < 330) ) {
-    $order_decide_type = "regular";
-}else{
-    $order_decide_type = "amo";
-}
+
 
 
 foreach ($data as $value) {
