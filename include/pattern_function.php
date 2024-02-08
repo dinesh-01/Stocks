@@ -667,14 +667,7 @@ function longbearish($company,$trade) {
 function get_value_price($company,$pattern="",$trade="stocks") {
 
 
-    if($trade == "stocks") {
-        $table     =  "stockvalues";
-    }
-
-    if($trade == "futures") {
-        $table     =  "stockvaluesfutures";
-    }
-
+    $table     =  "stockvalues";
     $field     =  array("open,close,low,high,allLow,schange");
     $condition =  "sid='$company'";
     

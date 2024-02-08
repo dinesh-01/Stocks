@@ -22,6 +22,7 @@ require_once './include/common.php';
     $s = $_GET['s'];
     $o = $_GET['o'];
 
+
     if($o == "CE") {
         $order_decide_type = "regular";
     }
@@ -29,6 +30,8 @@ require_once './include/common.php';
     if($o == "PE") {
         $order_decide_type = "amo";
     }
+
+
 
 
     $end_point = "https://api.kite.trade/quote?i=NFO:$symbol";
@@ -91,13 +94,14 @@ require_once './include/common.php';
 
 
     //Update for AMO
-     $query  = "INSERT INTO optionAmo(symbol, order_id, quanity, price, created_date) VALUES ('$symbol','$order_id','$quantity','$price','$date')";
+     $query  = "INSERT INTO optionAmo(symbol, order_id, quanity, price, created_date) VALUES ('$symbol','$order_id','$quantity','$final_amount','$date')";
      $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 
 
     header("location:stock_options_orders.php?s=$s&o=$o");
     exit;
+
 
 
 

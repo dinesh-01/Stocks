@@ -13,7 +13,7 @@ require_once './template/header.php';
     <th>
        <select name="type" id="type">
            <option value="stocks" selected="selected"> -- Stocks -- </option>
-           <option value="futures"> -- Futures -- </option>
+           <option value="equity"> -- Equity -- </option>
        </select>
    </th>
 </tr>

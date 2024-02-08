@@ -1,3 +1,4 @@
+
 <script type="text/javascript">
  
  $(function() {
@@ -6,20 +7,10 @@
  var w_id = element.attr("id");
  var info = 'id=' + w_id;
  var dtype = $("#dtype").val();
- var wurl = ""
-
- if(dtype == "stocks") {
-     wurl = "watch_list_process.php"
- }
-
- if(dtype == "futures") {
-     wurl = "watch_list_process_futures.php"
- }
-
 
      $.ajax({
     type: "POST",
-    url: wurl,
+    url: "watch_list_process.php",
     data: info,
     success: function(){}
  });
@@ -36,6 +27,8 @@
 
 //including common files
 require_once './include/common.php';
+global $stockListTable;
+
 
 ?>
 
@@ -54,32 +47,24 @@ require_once './include/common.php';
 
 <?php
 
-//Checking stock already exists in table
     $type      =  $_POST['t'];
     $pattern   =  $_POST['p'];
 
     if($type == "stocks") {
-
-        $field     =  array("sName,murl,curl,id,cSymbol,tickertape,dtype,ntype");
-        $table     =  "stocklist";
-        $condition =  "isWatch = 'no'";
-        $order     =  "ntype";
-        $arugment  =  array( "field" => $field , "table" => $table, "condition" => $condition,"order" => $order);
-        $data      =  select($arugment,"many");
-
-
+        $condition =  "isWatch = 'no' and ntype != 'equity'";
     }
 
-    if($type == "futures") {
-
-        $field     =  array("sName,cSymbol,expiry,id,lot_size,dtype");
-        $table     =  "stocklistfutures";
-        $condition =  "isWatch = 'no'";
-        $arugment  =  array( "field" => $field , "table" => $table, "condition" => $condition);
-        $data      =  select($arugment,"many");
-
-
+    if($type == "equity") {
+        $condition =  "isWatch = 'no' and ntype = 'equity'";
     }
+
+
+
+$field     =  array("sName,murl,curl,id,cSymbol,tickertape,dtype,ntype");
+$table     =  "$stockListTable";
+$order     =  "ntype";
+$arugment  =  array( "field" => $field , "table" => $table, "condition" => $condition,"order" => $order);
+$data      =  select($arugment,"many");
 
  $c=1;
 
@@ -169,7 +154,6 @@ foreach ($data as $value) {
 
     $param = $value['cSymbol'];
 
-        if($type == "stocks") {
 
             if(str_contains($param,"&")) {
                 $param = str_replace("&", "_", $param);
@@ -180,31 +164,8 @@ foreach ($data as $value) {
             }
 
             $turl = "https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A$param";
-        }
-
-        if($type == "futures") {
-
-            $param = strtolower($param);
-            $currentmonth = strtolower(date('M'));
-            $nextmonth = strtolower(date('M',strtotime('first day of +1 month')));
-            $futuremonth = strtolower(date('M',strtotime('first day of +2 month')));
-            $symbol = $value['sName'];
 
 
-            if(str_contains($param, $currentmonth)) {
-                $turl = "https://in.tradingview.com/chart/AINnrOTv/?symbol=NSE%3A".$symbol."X2023";
-            }
-
-            if(str_contains($param, $nextmonth)) {
-                $turl = "https://in.tradingview.com/chart/AINnrOTv/?symbol=NSE%3A".$symbol."Z2023";
-            }
-
-            if(str_contains($param, $futuremonth)) {
-                $turl = "https://in.tradingview.com/chart/AINnrOTv/?symbol=NSE%3A".$symbol."f2024";
-            }
-
-
-        }
 
     ?>
 

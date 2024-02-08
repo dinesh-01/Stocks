@@ -31,7 +31,7 @@
             <input type="hidden" id="sid" value="{$value.id}"/>
         </td>
 
-            <td><a href="https://www.google.com/search?q={$value.cSymbol}+ grow+ option+chain" target="_blank">Option</a></td>
+            <td><a href="https://www.google.com/search?q={$value.cSymbol}+ grow+ option+chain" target="_blank">{$value.ntype|capitalize}</a></td>
 
 
         <td>

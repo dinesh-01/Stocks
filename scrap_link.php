@@ -19,7 +19,7 @@ $window->maximize();
 
 
 
-$query  = "Select Csymbol,id,murl from stocklist where mcurl = '' ";
+$query  = "Select Csymbol,id,murl from $stockListTable where mcurl = '' ";
 $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 $row = mysqli_fetch_all($result);
 
@@ -36,7 +36,7 @@ foreach ($row as $data) {
   sleep(10);
   $ticker_url =  $driver->getCurrentURL();
 
-  echo $query = "UPDATE stocklist SET mcurl='$ticker_url' WHERE id = '$sid'";
+  echo $query = "UPDATE $stockListTable SET mcurl='$ticker_url' WHERE id = '$sid'";
   echo "\n";
   $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
