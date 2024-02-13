@@ -16,7 +16,7 @@
     <th> No </th>
     <th>Symbol</th>
     <th>Trend Analysis</th>
-    <th>Type</th>
+    <th>Future Analysis</th>
     <th>Priority</th>
     <th>Action</th>
    <!-- <th> Reset </th> -->
@@ -33,8 +33,8 @@
             <input type="hidden" id="sid" value="{$value.id}"/>
             <a href = "https://in.tradingview.com/symbols/NSE-{$value.symbol}" target="_blank">{$value.symbol}</a></td>
         <td><a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'|replace:'&':'_'}" target="_blank">Trend Layout</a></td>
+        <td><a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'|replace:'&':'_'}1%21" target="_blank">Future Layout</a></td>
 
-            <td><a href="https://www.google.com/search?q={$value.cSymbol}+ grow+ option+chain" target="_blank">Option</a></td>
 
 
 

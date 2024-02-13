@@ -1,35 +1,43 @@
 <?php
+
+//including common files
 require_once './include/common.php';
 
+// setting up end headers
+$headers = [
+    'Content-Type' => 'application/json',
+    'X-Kite-Version' => '3',
+    'Authorization' => 'token '.KEY.':'.TOKEN
+];
 
-//url => https://www.nseindia.com/products-services/indices-nifty500-index
+$client = new GuzzleHttp\Client([
+    'headers' => $headers
+]);
 
-$filename = 'data/futures.csv'; // Replace with your file name or path
 
-// Open the CSV file for reading
-$file = fopen($filename, 'r');
+$end_point = "https://api.kite.trade/instruments/NFO";
+$res = $client->request('GET', $end_point);
+$response = $res->getBody()->getContents();
+$future_list = explode(PHP_EOL, $response);
 
-while (($line = fgetcsv($file)) !== FALSE) {
-  $records[] =  $line;
+foreach ($future_list as $list) {
+
+    if(str_contains($list,"FUT")) {
+        $list = str_replace('"','',$list);
+        $entry =  explode(",", $list);
+
+        //stock futures entry
+        $query  = "INSERT INTO stockFuture(instrument_token, exchange_token, tradingsymbol, name, last_price, expiry, strike, tick_size, lot_size, instrument_type, segment, exchan)
+        VALUES ('$entry[0]','$entry[1]','$entry[2]','$entry[3]','$entry[4]','$entry[5]','$entry[6]','$entry[7]','$entry[8]','$entry[9]','$entry[10]','$entry[11]')";
+        $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
+
+        echo $entry[2]." Completed";
+        echo "\n";
+
+
+    }
+
 }
-fclose($file);
 
-array_shift($records); // Removing header
-
-foreach ($records as $record) {
-
-   $symbol  = $record[2];
-   $sname   = $record[3];
-   $expiry  = $record[5];
-   $lot_size = $record[8];
-
-  echo $query  = "INSERT INTO stocklistfutures(sName, cSymbol, expiry, lot_size) VALUES ('$sname','$symbol','$expiry','$lot_size')";
-  $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
-  echo "\n";
-  sleep(1);
-
-
-
-}
 
 ?>

@@ -21,7 +21,7 @@ require_once './template/header.php';
  
  <tr>
      <td>Percentage</td>
-     <td><input type="text" name="percentage"  value="0.25"></td>
+     <td><input type="text" name="percentage"  value="0.50"></td>
  </tr>
  
 <tr>

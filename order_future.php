@@ -14,19 +14,9 @@ require_once './include/common.php';
 
 
     //Fetching stock Symbol
-    $symbol = $_GET['option_symbol'];
+    $symbol = $_GET['future_symbol'];
     $quantity = $_GET['lot_size'];
     $s = $_GET['s'];
-    $o = $_GET['o'];
-
-    if($o == "CE") {
-        $order_decide_type = "regular";
-    }
-
-    if($o == "PE") {
-        $order_decide_type = "amo";
-    }
-
 
     $end_point = "https://api.kite.trade/quote?i=NFO:$symbol";
     $res = $client->request('GET', $end_point);
@@ -35,26 +25,20 @@ require_once './include/common.php';
 
     $last_price = $response['data']["NFO:$symbol"]['last_price'];
     $last_price = str_replace(",", "", $last_price); //last price
-
-    $percentage_value = 0.5 / 100 ;
-    $amount_value = $last_price * $percentage_value;
-    $final_amount = $last_price + $amount_value;
-    $final_amount = round($final_amount, 1);
+    $final_amount = round($last_price, 1);
 
 
     $date = date('d-m-Y');
 
-
-
     //Place Order
-    $end_point = "https://api.kite.trade/orders/$order_decide_type";
+    $end_point = "https://api.kite.trade/orders/regular";
 
     $res = $client->request('POST', $end_point, [
     'form_params' => [
         'tradingsymbol' => $symbol,
         'exchange' => 'NFO',
         'transaction_type' => "BUY",
-        'order_type' => 'LIMIT',
+        'order_type' => 'MARKET',
         'quantity' => $quantity,
         'price' => $final_amount,
         'product' => 'NRML',
@@ -88,12 +72,12 @@ require_once './include/common.php';
 
 
     //Update for AMO
-     $query  = "INSERT INTO optionAmo(symbol, order_id, quanity, price, created_date) VALUES ('$symbol','$order_id','$quantity','$price','$date')";
+     $query  = "INSERT INTO futureAmo(symbol, order_id, quanity, price, created_date) VALUES ('$symbol','$order_id','$quantity','$price','$date')";
      $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 
 
-    header("location:stock_options_orders.php?s=$s&o=$o");
+    header("location:stock_future_orders.php?s=$s");
     exit;
 
 

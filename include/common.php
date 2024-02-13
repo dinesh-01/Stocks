@@ -4,6 +4,8 @@
 //error_reporting(E_ALL);
 //ini_set('display_errors', 'On');
 
+date_default_timezone_set("Asia/Calcutta");
+
 
 //including common files
   require_once 'vendor/autoload.php';
@@ -19,3 +21,14 @@ $smarty = new Smarty();
 $smarty->caching = false;
 $smarty->force_compile - false;
 $smarty->template_dir = 'views';
+
+
+define('TOKEN', 'lfQlprMarngxlrvWgpjNul23Xg4NxzLz');
+define('KEY', 'asx9hj1ykmv09kgc');
+define('ALLOCATE_PRICE',100000);
+define('OPTION_MONTH','FEB');
+
+
+
+
+
