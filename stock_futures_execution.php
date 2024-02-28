@@ -53,6 +53,9 @@ foreach ($datas as $data) {
     $datas[$i]['price_diff'] = $last_price - $data['price'];
     $datas[$i]['amount_diff'] = round($datas[$i]['price_diff'],1) *  $data['quanity'];
 
+    //Expected profit
+    $datas[$i]['expected_profit'] = round(($data['target'] - $data['price']),1) *  $data['quanity'];
+
 
 
     $i++;

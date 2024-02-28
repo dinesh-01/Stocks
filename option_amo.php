@@ -42,7 +42,7 @@ foreach ($data as $value) {
     $quantity = $value['quanity'];
     $last_price = $value['price'];
 
-    $target_percentage = (7/100) ;
+    $target_percentage = (15/100) ;
     $target_diff =  $last_price * $target_percentage;
     $target = $last_price + $target_diff;
     $target =  number_format($target,1);

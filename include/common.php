@@ -23,7 +23,7 @@ $smarty->force_compile - false;
 $smarty->template_dir = 'views';
 
 
-define('TOKEN', 'lfQlprMarngxlrvWgpjNul23Xg4NxzLz');
+define('TOKEN', 'zSaKeOS96ZQg2g35GPjVF60iVvp54paP');
 define('KEY', 'asx9hj1ykmv09kgc');
 define('ALLOCATE_PRICE',100000);
 define('OPTION_MONTH','FEB');

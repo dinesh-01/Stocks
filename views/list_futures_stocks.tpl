@@ -46,7 +46,7 @@
               <tr class="show">
                   <td> 4 </td>
                   <td>
-                      <a href="https://www.tradingview.com/chart/AINnrOTv/?symbol=NSE%3AFINNIFTY1%21"  target="blank">FINNIFTY</a>
+                      <a href="https://www.tradingview.com/chart/AINnrOTv/?symbol=NSE%3AFINNIFTY2%21"  target="blank">FINNIFTY</a>
                   </td>
                   <td><a href="https://www.google.com/search?q={$value.sName}%20grow%20option%20chain" target="_blank">List</a></td>
 

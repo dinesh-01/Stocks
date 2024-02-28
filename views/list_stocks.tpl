@@ -21,13 +21,16 @@ Company name :- <input type="text" id="cname" onkeyup="search_company()">
 <br/>
  <br/>
 
+
+
+
 <div id="show_list">
   <table class="gridtable">
             <tr>
             <th> No </th>
             <th>Stock Name</th>
-            <th>TradingView</th>
-            <th>ChartInk</th>
+            <th>Stock</th>
+            <th>Future</th>
             <th> T.Open </th>
             <th> T.Close </th>
             <th> T.High </th>
@@ -43,14 +46,14 @@ Company name :- <input type="text" id="cname" onkeyup="search_company()">
 
 
     <tr class="show">
-        <td> {$smarty.foreach.count.iteration} </td>    
+        <td> {$smarty.foreach.count.iteration} </td>
         <td>
             <a href="edit_stock.php?id={$value.id}" title="{$value.notes}" target="blank">{$value.sName} [{$value.ntype}]</a>
             <input type="hidden" id="sname" value="{$value.sName}"/> 
             <input type="hidden" id="sid" value="{$value.id}"/> 
         </td>
-        <td><a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'}" target="_blank">Single Layout</a></td>
-        <td><a href="{$value.curl}" target="_blank">ChartInk</a></td>
+        <td><a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'}" target="_blank">Stock Layout</a></td>
+        <td><a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'}2%21"  target="_blank">Future Layout</a></td>
         <td>{$value.currOpen}</td>
         <td>{$value.currClose}</td>
         <td>{$value.currHigh}</td>

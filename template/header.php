@@ -32,6 +32,7 @@
     <th><a href="list_bees_stocks.php?list=yes">Bees Stocks</a></th> -->
     <th><a href="calculator.php">Calculator</a></th>
     <th><a href="pattern.php">CandleStick</a>
+    <th><a href="link.php" target="_blank">Links</a>
     <th><a href="token.php">Generate Token</a>
  <!--   <th><a href="https://zerodha.com/brokerage-calculator" target="blank">brokerage</a></th> -->
 

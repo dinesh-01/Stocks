@@ -10,7 +10,8 @@
             <th> No </th>
             <th> Name</th>
             <th> Order</th>
-            <th> Chart </th>
+            <th> Stock chart </th>
+                <th> Future chart </th>
                 <th> T.Close </th>
             <th> Change </th>
             <th> Volume </th>
@@ -40,6 +41,7 @@
         </td>
 
         <td><a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'|replace:'&':'_'}" target="_blank">Trend Layout</a></td>
+        <td><a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'}2%21"  target="_blank">Future Layout</a></td>
 
         <!--
         <td><a href="https://www.google.com/search?q={$value.sName}%20grow%20option%20chain" target="_blank">List</a></td>

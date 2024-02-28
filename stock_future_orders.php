@@ -34,7 +34,7 @@ $current_price = $response['data']["NSE:$symbol"]['last_price'];
 $current_price = str_replace(",", "", $current_price);
 
 
-$query = "Select * from stockfuture where name = '$symbol' and tradingsymbol LIKE '%FEB%' ";
+$query = "Select * from stockfuture where name = '$symbol' and tradingsymbol LIKE '%MAR%' ";
 $result = mysqli_query($GLOBALS['mysqlConnect'], $query);
 $datas = $result->fetch_all(MYSQLI_ASSOC);
 $i = 0;

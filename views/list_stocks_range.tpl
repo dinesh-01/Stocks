@@ -10,8 +10,8 @@
             <tr>
             <th> No </th>
             <th>Stock Name</th>
-                <th>TradingView</th>
-            <th>ChartInk</th>
+                <th>Stock</th>
+            <th>Future</th>
             <th> T.Open </th>
             <th> T.Close </th>
             <th> T.High </th>
@@ -24,7 +24,9 @@
 {foreach $datas as $value name=count}
 
 
-
+   <!-- https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'}2%21
+    <br/>
+    -->
 
     <tr class="show">
         <td> {$smarty.foreach.count.iteration} </td>    
@@ -34,7 +36,8 @@
             <input type="hidden" id="sid" value="{$value.id}"/> 
         </td>
         <td><a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'}" target="_blank">Single Layout</a></td>
-        <td><a href="{$value.curl}" target="_blank">ChartInk</a></td>
+        <td><a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'}2%21"  target="_blank">Future Layout</a></td>
+
         <td>{$value.currOpen}</td>
         <td>{$value.currClose}</td>
         <td>{$value.currHigh}</td>
