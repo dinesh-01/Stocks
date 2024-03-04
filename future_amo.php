@@ -1,6 +1,11 @@
 <?php
 require_once './include/common.php';
 
+if ( (time() > strtotime("09:15:00")) &&  (time() < strtotime("15:30:00"))  ) {
+    $order_decide_type = "regular";
+}else{
+    $order_decide_type = "amo";
+}
 
 // setting up end headers
     $headers = [
@@ -37,7 +42,7 @@ foreach ($data as $value) {
     $target = str_replace(",","",$target);
 
     //Set target
-    $end_point = "https://api.kite.trade/orders/amo";
+    $end_point = "https://api.kite.trade/orders/$order_decide_type";
     $res = $client->request('POST', $end_point, [
         'form_params' => [
             'tradingsymbol' => $symbol,

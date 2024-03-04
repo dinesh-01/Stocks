@@ -91,9 +91,12 @@ $date = date('d-m-Y');
             echo "$api_symbol  Completed - $chng";
             echo "\n";
 
+          /*
            if( ($i % 5) == 0 ) {
                sleep(1);
            }
+
+          */
 
            $i++;
 

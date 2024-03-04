@@ -9,7 +9,7 @@ $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 while($row = mysqli_fetch_assoc($result)) {
     $td =  $row['cSymbol'];
-    echo "https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A".$td."2%21";
+    echo "https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A".$td."1%21";
     echo "<br/>";
 }
 

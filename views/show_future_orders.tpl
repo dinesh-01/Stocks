@@ -24,7 +24,7 @@
 {foreach $datas as $value name=count}
 
     <tr class="show">
-         <td><a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.name}2%21" target="_blank">{$value.tradingsymbol}</a></td>
+         <td><a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.name}1%21" target="_blank">{$value.tradingsymbol}</a></td>
         <td>{$value.last_price}</td>
         <td>{$value.lot_size}</a></td>
         <td>{$value.strike}</a></td>

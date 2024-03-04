@@ -24,7 +24,7 @@
 {foreach $datas as $value name=count}
 
 
-   <!-- https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'}2%21
+   <!-- https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'}1%21
     <br/>
     -->
 
@@ -36,7 +36,7 @@
             <input type="hidden" id="sid" value="{$value.id}"/> 
         </td>
         <td><a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'}" target="_blank">Single Layout</a></td>
-        <td><a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'}2%21"  target="_blank">Future Layout</a></td>
+        <td><a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'}1%21"  target="_blank">Future Layout</a></td>
 
         <td>{$value.currOpen}</td>
         <td>{$value.currClose}</td>

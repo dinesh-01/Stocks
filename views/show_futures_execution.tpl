@@ -20,7 +20,7 @@
     <tr class="show">
         <td> {$smarty.foreach.count.iteration} </td>
         <td><a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.stock_symbol|replace:'-':'_'}" target="_blank">{$value.stock_symbol}</a></td>
-        <td><a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.stock_symbol|replace:'-':'_'}2%21" target="_blank">{$value.symbol}</a></td>
+        <td><a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.stock_symbol|replace:'-':'_'}1%21" target="_blank">{$value.symbol}</a></td>
         <td>{$value.quanity}</td>
         <td>{$value.price}</a></td>
         <td>{$value.last_price}</a></td>
