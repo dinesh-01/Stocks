@@ -16,7 +16,8 @@ require_once './include/common.php';
 
 $field     =  array("id,order_id,symbol,price,quanity,stop_loss,target,created_date");
 $table     =  "optionAmo";
-$arugment  =  array( "field" => $field , "table" => $table);
+$condition =  "status = 'open'";
+$arugment  =  array( "field" => $field , "table" => $table, 'condition' => $condition);
 $data      =  select($arugment,"many");
 
 
@@ -27,7 +28,7 @@ foreach ($data as $value) {
     $quantity   = $value['quanity'];
 
 
-    $stop_loss_percentage = (10/100) ;
+    $stop_loss_percentage = (9/100) ;
     $stop_loss_diff =  $last_price * $stop_loss_percentage;
     $stop_loss = $last_price - $stop_loss_diff;
     $stop_loss = number_format($stop_loss ,1);

@@ -84,19 +84,19 @@ $date = date('d-m-Y');
     VALUES ('$sid','$open','$high','$allhigh','$low','$alllow','$close','$chng','$chng_percentage','$volume','$value',1,'$date')";
             $result = mysqli_query($GLOBALS['mysqlConnect'], $query);
 
-            $query = "UPDATE stocklist SET dailyEntry='yes',current_volume='$volume' WHERE id = '$sid'";
+            $query = "UPDATE stocklist SET dailyEntry='yes',current_volume='$volume',qbuy='$chng' WHERE id = '$sid'";
             $result = mysqli_query($GLOBALS['mysqlConnect'], $query);
 
 
             echo "$api_symbol  Completed - $chng";
             echo "\n";
 
-          /*
-           if( ($i % 5) == 0 ) {
+
+           if( ($i % 10) == 0 ) {
                sleep(1);
            }
 
-          */
+
 
            $i++;
 
