@@ -8,11 +8,12 @@ $id   = $_POST['id'];
 $stock_name = $_POST['stock_name'];
 $curl = $_POST['curl'];
 $murl = $_POST['murl'];
+
 $notes = mysqli_real_escape_string($GLOBALS['mysqlConnect'],$_POST['notes']);
 $date = date('d-m-Y');
 
 
-$field = array('curl' => $curl,'murl' => $murl, 'notes' => $notes );
+$field = array('curl' => $curl,'murl' => $murl, 'grow' => $notes );
 $table = "stocklist";
 $condition = "id = $id";
 $arugment  =  array( "field" => $field , "table" => $table, "condition" => $condition);

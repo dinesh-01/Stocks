@@ -10,7 +10,7 @@ require_once './include/common.php';
     $type      =  "nifty";
     $field     =  array("id,sName,murl,curl,ntype,tickertape,id,qbuy,qvolume,qtotal,cSymbol,current_volume,stock_signal,order_type,stop_loss,target");
     $table     =  "stocklist";
-    $order     =  "ntype";
+    $order     =  "sName";
     $condition =  "isWatch = 'yes' and priority = 2";
     $arugment  =  array( "field" => $field , "table" => $table, "condition" => $condition,"order" => $order);
     $data      =  select($arugment,"many");

@@ -5,7 +5,7 @@ require_once './template/header.php';
 
  //Checking stock already exists in table
     $id      =    $_GET['id'];
-    $field     =  array("sName,murl,curl,cSymbol,notes");
+    $field     =  array("sName,murl,curl,cSymbol,grow");
     $table     =  "stocklist";
     $condition =  "id='$id'";
     $arugment  =  array( "field" => $field , "table" => $table, "condition" => $condition);
@@ -37,8 +37,8 @@ require_once './template/header.php';
  </tr>
 
  <tr>
-     <td>Notes</td>
-     <td><textarea name="notes" rows="5" cols="50"><?php echo $data['notes']?></textarea></td>
+     <td>Grow Link</td>
+     <td><textarea name="notes" rows="5" cols="50"><?php echo $data['grow']?></textarea></td>
  </tr>
  <tr>
      <td>Company Info</td>

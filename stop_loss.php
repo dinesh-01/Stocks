@@ -28,7 +28,13 @@ foreach ($data as $value) {
     $quantity   = $value['quanity'];
 
 
-    $stop_loss_percentage = (9/100) ;
+    $stop_loss_trigger_percentage = (9/100) ;
+    $stop_loss_diff =  $last_price * $stop_loss_trigger_percentage;
+    $stop_loss_trigger = $last_price - $stop_loss_diff;
+    $stop_loss_trigger = number_format($stop_loss_trigger ,1);
+    $stop_loss_trigger = str_replace(",","",$stop_loss_trigger);
+
+    $stop_loss_percentage = (10/100) ;
     $stop_loss_diff =  $last_price * $stop_loss_percentage;
     $stop_loss = $last_price - $stop_loss_diff;
     $stop_loss = number_format($stop_loss ,1);
@@ -42,10 +48,11 @@ foreach ($data as $value) {
             'tradingsymbol' => $symbol,
             'exchange' => 'NFO',
             'transaction_type' => "SELL",
-            'order_type' => 'SL-M',
-            'trigger_price' => $stop_loss,
+            'order_type' => 'SL',
+            'price' => $stop_loss,
+            'trigger_price' => $stop_loss_trigger,
             'quantity' => $quantity,
-            'product' => 'CNC',
+            'product' => 'NRML',
             'validity' => 'DAY'
 
         ]
@@ -56,13 +63,13 @@ foreach ($data as $value) {
 
     //Fetching order id
     $order_id = $response['data']['order_id'];
-    echo "StopLose Order for $symbol : $order_id";
+    echo "StopLose Order for $symbol : $stop_loss";
     echo "\n";
 
 
     #reseting the dailyentry
     $id = $value['id'];
-    $query = "UPDATE `optionAmo` SET `stop_loss`='$stop_loss' WHERE id = '$id'";
+    $query = "UPDATE `optionAmo` SET `order_id`='$order_id', `price`='$last_price',`stop_loss`='$stop_loss', `status`= 'completed' WHERE id = '$id'";
     $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 

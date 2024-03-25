@@ -4,8 +4,10 @@ require_once './include/common.php';
 
 if ( (time() > strtotime("09:15:00")) &&  (time() < strtotime("15:30:00"))  ) {
     $order_decide_type = "regular";
+    $per = "5%";
 }else{
     $order_decide_type = "amo";
+    $per = "9%";
 }
 
 
@@ -42,7 +44,7 @@ foreach ($data as $value) {
     $quantity = $value['quanity'];
     $last_price = $value['price'];
 
-    $target_percentage = (9/100) ;
+    $target_percentage = ($per/100) ;
     $target_diff =  $last_price * $target_percentage;
     $target = $last_price + $target_diff;
     $target =  number_format($target,1);

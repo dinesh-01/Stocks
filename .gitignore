@@ -5,3 +5,4 @@ data/*.csv
 data/.DS_Store
 cache/*
 vendor/*/
+include/common.php

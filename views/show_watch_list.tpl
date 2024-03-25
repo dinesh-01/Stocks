@@ -6,21 +6,22 @@
 <center>
 <div id="show_list">
   <table class="gridtable">
-            <tr>
-            <th> No </th>
-            <th> Name</th>
-            <th> Option </th>
-            <th> Future </th>
-            <th> Stock chart </th>
-                <th> Future chart </th>
-                <th> T.Close </th>
-            <th> Change </th>
-            <th> Volume </th>
-            <th> TurnOver </th>
-            <th>Action</th>
-            <th>Priority</th>
-            <th> Status </th>
-            </tr>
+        <tr>
+        <th> No </th>
+        <th> Name</th>
+    <th> Option </th>
+            <!--      <th> Future </th> -->
+        <th> Stock chart </th>
+      <!--      <th> Future chart </th>  -->
+        <th>  List </th>
+        <th> T.Close </th>
+        <th> Change </th>
+        <th> Volume </th>
+        <th> TurnOver </th>
+        <th>Action</th>
+        <th>Priority</th>
+        <th> Status </th>
+        </tr>
 
 {foreach $datas as $value name=count}
 
@@ -31,6 +32,8 @@
             <input type="hidden" id="sname" value="{$value.sName}"/>
             <input type="hidden" id="sid" value="{$value.id}"/>
         </td>
+
+
 
         <td>
 
@@ -43,18 +46,23 @@
 
 
 
-        <td>
-
-            <a href="stock_future_orders.php?s={$value.cSymbol|replace:'-':'_'|replace:'&':'_'}" target="_blank">Future</a>
-
-
-        </td>
-
+        <!--
+ <td>  <a href="stock_future_orders.php?s={$value.cSymbol|replace:'-':'_'|replace:'&':'_'}" target="_blank">Future</a> </td>
+         -->
         <td><a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'|replace:'&':'_'}" target="_blank">Trend Layout</a></td>
-        <td><a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'}1%21"  target="_blank">Future Layout</a></td>
+        <!-- <td><a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'}1%21"  target="_blank">Future Layout</a></td> -->
+
+
+        {if $value.grow eq ''}
+
+            <td><a href="https://www.google.com/search?q={$value.sName}%20grow%20option%20chain" target="_blank">List</a></td>
+        {else}
+
+            <td><a href="{$value.grow}" target="_blank">List</a></td>
+        {/if}
+
 
         <!--
-        <td><a href="https://www.google.com/search?q={$value.sName}%20grow%20option%20chain" target="_blank">List</a></td>
         <td><a href="{$value.curl}" target="_blank">ChartInk</a></td>
 
 

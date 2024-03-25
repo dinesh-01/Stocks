@@ -1,8 +1,17 @@
 source .bash_profile
 cd /Applications/MAMP/htdocs/stocks
-
 php composer.phar install
 
 
 
+
+
+
+For all new instrument
 https://api.kite.trade/instruments/NFO
+
+
+Update this every week
+For New Options entry
+http://localhost:8888/phpMyAdmin5/index.php?route=/table/operations&db=analytics&table=stockOption
+php new_entry_options.php

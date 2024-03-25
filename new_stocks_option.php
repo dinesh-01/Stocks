@@ -1,7 +1,7 @@
 <?php
 require_once './include/common.php';
 
-$query = "SELECT DISTINCT name FROM stockFuture";
+$query = "SELECT DISTINCT name FROM stockOption";
 $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 $records = mysqli_fetch_all($result);
 
