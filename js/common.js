@@ -134,3 +134,21 @@ pri = $('#pri'+id).val();
 
 
 }
+
+function book_percentage(order_id,book_id) {
+
+
+    pri = $('#book_percentage'+book_id).val();
+    $.post("option_amo_update_percentage.php", {order_id: order_id,pri: pri},function(data){});
+
+
+}
+
+function select_option() {
+
+
+    pri = $('#stocks').val();
+    data = "<a href='stock_options_orders.php?s="+pri+"&o=CE' target='_blank'>CALL</a> || <a href='stock_options_orders.php?s="+pri+"&o=PE' target='_blank'>PUT</a>"
+    $('#option_view').html(data);
+
+}

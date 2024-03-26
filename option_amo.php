@@ -2,12 +2,11 @@
 require_once './include/common.php';
 
 
+
 if ( (time() > strtotime("09:15:00")) &&  (time() < strtotime("15:30:00"))  ) {
     $order_decide_type = "regular";
-    $per = "5%";
 }else{
     $order_decide_type = "amo";
-    $per = "9%";
 }
 
 
@@ -30,12 +29,6 @@ $condition =  "status = 'open'";
 $arugment  =  array( "field" => $field , "table" => $table, 'condition' => $condition);
 $data      =  select($arugment,"many");
 
-
-
-
-
-
-
 foreach ($data as $value) {
 
     #fetch order details
@@ -43,6 +36,7 @@ foreach ($data as $value) {
     $symbol   = $value['symbol'];
     $quantity = $value['quanity'];
     $last_price = $value['price'];
+    $per = $value['book_percentage'];
 
     $target_percentage = ($per/100) ;
     $target_diff =  $last_price * $target_percentage;

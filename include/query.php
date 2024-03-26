@@ -15,7 +15,7 @@
 			$now     = date("Y-m-d");
 
 			$values.= "'".USER."','$now'";
-		        $results = "INSERT INTO $table ($columns) VALUES ($values)";
+		       echo $results = "INSERT INTO $table ($columns) VALUES ($values)";
                         mysqli_query($GLOBALS['mysqlConnect'],$results);
                         return mysqli_insert_id();
   }

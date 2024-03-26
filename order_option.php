@@ -46,7 +46,6 @@ require_once './include/common.php';
     $date = date('d-m-Y');
 
 
-
     //Place Order
     $end_point = "https://api.kite.trade/orders/$order_decide_type";
 
@@ -69,6 +68,9 @@ require_once './include/common.php';
 
     //Fetching order id
     $order_id = $response['data']['order_id'];
+
+
+//$order_id = "2018776543322";
 
    /*
     //Fetch Average Price

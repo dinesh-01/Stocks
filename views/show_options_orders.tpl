@@ -17,6 +17,7 @@
             <th> Option Price </th>
             <th> Lot-Size </th>
             <th> Lot-Size To Buy </th>
+                <th>Total Lot Amount </th>
             <th> Status </th>
             </tr>
 
@@ -27,6 +28,8 @@
         <td>{$value.last_price}</td>
         <td>{$value.lot_size}</a></td>
         <td>{$value.lot}</a></td>
+        <td>{$value.total_lot_prize}</a></td>
+
         {if $value.order_status eq '0'}
             <td><a href="order_option.php?option_symbol={$value.tradingsymbol}&lot_size={$value.lot}&s={$details.name}&o={$value.instrument_type}"><button value="buy">BUY</button></a></td>
         {/if}

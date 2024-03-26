@@ -45,11 +45,12 @@ $range2 = round($final_amount, 0);
 $final_amount = $current_price - $amount_value;
 $range1 = round($final_amount, 0);
 
-
+$month = OPTION_MONTH ;
+$month = "%".$month."%";
 
  $query = "Select * from stockOption where name = '$symbol' 
                             and strike BETWEEN $range1 AND $range2 
-                            and tradingsymbol LIKE '%MAR%'
+                            and tradingsymbol LIKE '$month'
                             and instrument_type = '$type' ";
 $result = mysqli_query($GLOBALS['mysqlConnect'], $query);
 $datas = $result->fetch_all(MYSQLI_ASSOC);
@@ -81,6 +82,7 @@ foreach ($datas as $data) {
     $lot    = (ALLOCATE_PRICE / $amount) ;
     $lot    = (int)$lot; //quantity
     $datas[$i]['lot'] = $lot * $data['lot_size'];
+    $datas[$i]['total_lot_prize']  =  $datas[$i]['lot'] * $datas[$i]['last_price'];
 
 
     $query  = "Select id from optionAmo where symbol='$tradingsymbol'";

@@ -52,12 +52,14 @@ foreach ($datas as $data) {
     $datas[$i]['stock_symbol'] = $stock_symbol;
     $datas[$i]['price_diff'] = $last_price - $data['price'];
     $datas[$i]['amount_diff'] = round($datas[$i]['price_diff'],1) *  $data['quanity'];
-
-
+    $datas[$i]['book_percentage'] = $data['book_percentage'];
 
     $i++;
 
 }
+
+$smarty->assign('percentage_list', array(1,2,3,4,5,6,7,8,9,0,-1,-2,-3,-4,-5,-6,-7,-8,-9));
+
 
 
 $smarty->assign("datas",$datas);

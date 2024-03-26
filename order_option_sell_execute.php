@@ -22,6 +22,7 @@ $data     = mysqli_fetch_assoc($result);
 
 $symbol = $data['symbol'];
 $quantity = $data['quanity'];
+$book_percentage = $data['book_percentage'];
 
 
 
@@ -35,12 +36,10 @@ $last_price = str_replace(",", "", $last_price); //last price
 
 
 
-$percentage_value = 0.25 / 100 ;
+$percentage_value = $book_percentage / 100 ;
 $amount_value = $last_price * $percentage_value;
-$final_amount = $last_price - $amount_value;
+$final_amount = $last_price + $amount_value;
 $final_amount = round($final_amount, 1);
-
-
 
 //Place Order
 $end_point = "https://api.kite.trade/orders/regular/$order_id";
@@ -59,8 +58,11 @@ $response = $res->getBody()->getContents();
 $response = (json_decode($response,true));
 
 
+
 $query = "UPDATE `optionAmo` SET `target`='$final_amount' WHERE order_id='$order_id'";
 $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
+
+
 
 header("location:stock_options_execution.php");
 exit;
