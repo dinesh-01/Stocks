@@ -18,7 +18,6 @@
     <th>Trend Analysis</th>
     <th>Price Selection</th>
     <th>Priority</th>
-    <th>Support</th>
     <th>Action</th>
 </tr>
 
@@ -43,14 +42,6 @@
                 <option value="4" {if $value.priority eq 4}   selected="selected"  {/if}> 4 </option>
             </select>
         </td>
-
-        <td>
-            <input type="texbox" id="support_value{$value.id}" value="{$value.support_value}" size="10">
-            <button onclick="add_support('{$value.id}');"> ADD </button> &nbsp;
-            <button onclick="add_support('{$value.id}');"> CLEAR </button>
-
-        </td>
-
         <td><a href="javascript:void(0)" id="{$value.id}" class="unwatch" title="unwatch">UnWatch</a></td>
     </tr>
 

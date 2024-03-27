@@ -8,7 +8,7 @@ require_once './include/common.php';
 
 //Watchlist stocks in share calculator
     $type      =  "nifty";
-    $field     =  array("id,sName,murl,curl,ntype,tickertape,id,qbuy,qvolume,qtotal,cSymbol,current_volume,stock_signal,order_type,stop_loss,target");
+    $field     =  array("id,sName,murl,curl,ntype,support_value,tickertape,id,qbuy,qvolume,qtotal,cSymbol,current_volume,stock_signal,order_type,stop_loss,target");
     $table     =  "stocklist";
     $order     =  "sName";
     $condition =  "isWatch = 'yes' and priority = 2";

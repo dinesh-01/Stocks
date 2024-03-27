@@ -9,8 +9,8 @@
         <tr>
         <th> No </th>
         <th> Name</th>
-    <th> Option </th>
-            <!--      <th> Future </th> -->
+            <!--   <th> Option </th>
+                         <th> Future </th> -->
         <th> Stock chart </th>
       <!--      <th> Future chart </th>  -->
         <th>  List </th>
@@ -20,6 +20,7 @@
         <th> TurnOver </th>
         <th>Action</th>
         <th>Priority</th>
+        <th>Support</th>
         <th> Status </th>
         </tr>
 
@@ -34,6 +35,7 @@
         </td>
 
 
+        <!--
 
         <td>
 
@@ -46,7 +48,6 @@
 
 
 
-        <!--
  <td>  <a href="stock_future_orders.php?s={$value.cSymbol|replace:'-':'_'|replace:'&':'_'}" target="_blank">Future</a> </td>
          -->
         <td><a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'|replace:'&':'_'}" target="_blank">Trend Layout</a></td>
@@ -82,7 +83,15 @@
             <option value="1" {if $value.priority eq 1}   selected="selected"  {/if}> 1 </option>
             <option value="2" {if $value.priority eq 2}   selected="selected"  {/if}> 2 </option>
             <option value="3" {if $value.priority eq 3}   selected="selected"  {/if}> 3 </option>
+            <option value="4" {if $value.priority eq 4}   selected="selected"  {/if}> 4 </option>
            </select>
+        </td>
+
+        <td>
+            <input type="texbox" id="support_value{$value.id}" value="{$value.support_value}" size="10">
+            <button onclick="add_support('{$value.id}');"> ADD </button> &nbsp;
+            <button onclick="add_support('{$value.id}');"> CLEAR </button>
+
         </td>
 
         {if $value.order_status eq '0'}
@@ -92,7 +101,6 @@
         {if $value.order_status eq '1'}
             <td>Completed</td>
         {/if}
-
 
 
     </tr>

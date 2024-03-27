@@ -134,3 +134,12 @@ pri = $('#pri'+id).val();
 
 
 }
+
+
+function add_support(id) {
+
+    support_value = $('#support_value'+id).val();
+    $.post("add_support_value.php", {support_value: support_value,id: id},function(data){});
+
+
+}

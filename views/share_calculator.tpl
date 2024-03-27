@@ -18,6 +18,7 @@
     <th>Trend Analysis</th>
     <th>Future Analysis</th>
     <th>Priority</th>
+    <th>Support</th>
     <th>Action</th>
    <!-- <th> Reset </th> -->
 </tr>
@@ -44,7 +45,15 @@
                 <option value="1"  > 1 </option>
                 <option value="2" selected="selected" }> 2 </option>
                 <option value="3" > 3 </option>
+                <option value="4" > 4 </option>
             </select>
+        </td>
+
+        <td>
+            <input type="texbox" id="support_value{$value.id}" value="{$value.support_value}" size="10">
+            <button onclick="add_support('{$value.id}');"> ADD </button> &nbsp;
+            <button onclick="add_support('{$value.id}');"> CLEAR </button>
+
         </td>
 
         <td><a href="javascript:void(0)" id="{$value.id}" class="unwatch" title="unwatch">UnWatch</a></td>
