@@ -56,7 +56,7 @@ require_once './include/common.php';
         'exchange' => 'NFO',
         'transaction_type' => "BUY",
         'order_type' => 'LIMIT',
-        'quantity' => $quantity,
+        'quantity' => $QUANTITY,
         'price' => $final_amount,
         'product' => 'NRML',
         'validity' => 'DAY'
