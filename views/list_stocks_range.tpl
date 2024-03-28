@@ -18,6 +18,7 @@
             <th> T.Low </th>
             <th> Change </th>
             <th> Volume </th>
+                <th>Support</th>
             <th>Action</th>
             </tr>
         
@@ -44,6 +45,12 @@
         <td>{$value.currLow}</td>
          <td>{$value.pChange}</td>
         <td>{$value.volume}</td>
+        <td>
+            <input type="texbox" id="support_value{$value.id}" value="{$value.support_value}" size="10">
+            <button onclick="add_support('{$value.id}');"> ADD </button> &nbsp;
+            <button onclick="add_support('{$value.id}');"> CLEAR </button>
+
+        </td>
         <td><a href="javascript:void(0)" id="{$value.id}" class="watch" title="watch">WatchList</a></td>
     </tr>
 
