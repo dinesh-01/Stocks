@@ -1,3 +1,5 @@
+<link rel = "stylesheet" type = "text/css" href = "css/show_watch_list.css" />
+<script src="js/show_watch_list.js"></script>
 
 
 
@@ -5,6 +7,9 @@
 <center>
 <div id="show_list">
   <table class="gridtable">
+      <tr>
+          <th colspan="2"><a href="clean_support_trend.php">Reset Support</a> </th>
+      </tr>
         <tr>
         <th> No </th>
         <th> Stock  </th>
@@ -32,6 +37,7 @@
 
         <td>{$value.last_price}</td>
         <td>{$value.support_value}</td>
+
 
 
 

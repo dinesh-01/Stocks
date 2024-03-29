@@ -1,11 +1,5 @@
-
 <?php
-
-//including common files
-
 require_once './include/common.php';
-require_once './template/header.php';
-
 
 
 $headers = [
@@ -21,34 +15,34 @@ $client = new GuzzleHttp\Client([
 
 $date = date('d-m-Y');
 
-//Getting all stocks
+  //Getting all stocks
 
-$query  = "SELECT `cSymbol`,`support_value`,`grow`, `support_signal`,`id` from stocklist";
-$result = mysqli_query($GLOBALS['mysqlConnect'],$query);
-$row    = mysqli_fetch_all($result);
-$i = 1;
+  $query  = "SELECT `cSymbol`,`support_value`,`grow`, `support_signal`,`id` from stocklist";
+  $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
+  $row    = mysqli_fetch_all($result);
+  $i = 1;
 
-//Concating all stocks at onces
-foreach ($row as $record) {
+  //Concating all stocks at onces
+  foreach ($row as $record) {
 
-    $api_symbol = $record[0];
+      $api_symbol = $record[0];
 
-    if (str_contains($api_symbol, "&")) {
-        $api_symbol = str_replace("&", "%26", $api_symbol);
-    }
-
-
-    $all_stocks[] = "i=NSE:" . $api_symbol;
-
-}
+      if (str_contains($api_symbol, "&")) {
+          $api_symbol = str_replace("&", "%26", $api_symbol);
+      }
 
 
-//Got all data from kite instruments
-$all_stocks = implode("&",$all_stocks);
-$end_point = "https://api.kite.trade/quote?$all_stocks";
-$res = $client->request('GET', $end_point);
-$response = $res->getBody()->getContents();
-$response = (json_decode($response, true));
+      $all_stocks[] = "i=NSE:" . $api_symbol;
+
+  }
+
+
+    //Got all data from kite instruments
+    $all_stocks = implode("&",$all_stocks);
+    $end_point = "https://api.kite.trade/quote?$all_stocks";
+    $res = $client->request('GET', $end_point);
+    $response = $res->getBody()->getContents();
+    $response = (json_decode($response, true));
 
 
 //Updating in Database
@@ -58,7 +52,6 @@ foreach ($row as $record) {
     $support_value = $record[1];
     $grow          = $record[2];
     $support_signal = $record[3];
-    $id = $record[4];
 
 
     if(str_contains($api_symbol,"%26")) {
@@ -79,7 +72,6 @@ foreach ($row as $record) {
             $match[$i]['last_price'] = $last_price;
             $match[$i]['support_value'] = $support_value;
             $match[$i]['grow'] = $grow;
-            $match[$i]['id'] = $id;
 
             $query  = "UPDATE `stocklist` SET `support_signal`='1' WHERE `cSymbol` = '$api_symbol'";
             $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
@@ -95,10 +87,18 @@ foreach ($row as $record) {
 
 }
 
+print_r($match);
 
 
-//Rending to tbl file
-$smarty->assign("datas",$match);
-$smarty->display("support_monitor.tpl");
+
+
+
+
+
+
+
+
+
+
 
 ?>

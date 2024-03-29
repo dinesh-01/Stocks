@@ -15,3 +15,20 @@ Update this every week
 For New Options entry
 http://localhost:8888/phpMyAdmin5/index.php?route=/table/operations&db=analytics&table=stockOption
 php new_entry_options.php
+
+
+
+ /*
+
+              if($support_signal != 1) {
+
+                  //Sending alert to mobile
+                  $twilio = new Client(TWILIO_SID, TWILIO_TOKEN);
+
+                  $message = $twilio->messages
+                      ->create("+919962541005", // to
+                          array(
+                              "from" => "+13187262477",
+                              "body" => "$api_symbol reached Support Level"
+);
+*/
