@@ -9,8 +9,8 @@
         <tr>
         <th> No </th>
         <th> Name</th>
-            <!--   <th> Option </th>
-                         <th> Future </th> -->
+              <th> Option </th>
+            <!--       <th> Future </th> -->
         <th> Stock chart </th>
       <!--      <th> Future chart </th>  -->
         <th>  List </th>
@@ -35,7 +35,6 @@
         </td>
 
 
-        <!--
 
         <td>
 
@@ -45,10 +44,8 @@
 
 
         </td>
-
-
-
- <td>  <a href="stock_future_orders.php?s={$value.cSymbol|replace:'-':'_'|replace:'&':'_'}" target="_blank">Future</a> </td>
+        <!--
+          <td>  <a href="stock_future_orders.php?s={$value.cSymbol|replace:'-':'_'|replace:'&':'_'}" target="_blank">Future</a> </td>
          -->
         <td><a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'|replace:'&':'_'}" target="_blank">Trend Layout</a></td>
         <!-- <td><a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'}1%21"  target="_blank">Future Layout</a></td> -->

@@ -16,6 +16,7 @@
         <th> Option Chain </th>
         <th> Current Level </th>
         <th> Support Level  </th>
+        <th> Watch List</th>
 
         </tr>
 
@@ -35,8 +36,20 @@
             <td><a href="{$value.grow}" target="_blank">List</a></td>
         {/if}
 
+
+
+
+
         <td>{$value.last_price}</td>
         <td>{$value.support_value}</td>
+
+        {if $value.isWatch eq 'yes'}
+
+            <td>Present</td>
+        {else}
+
+            <td><a href="watch_list_process.php?id={$value.id}&redirect=yes">Add</a></td>
+        {/if}
 
 
 

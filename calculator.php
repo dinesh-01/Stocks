@@ -18,24 +18,22 @@ require_once './template/header.php';
        <input type="text" name="amount" autocomplete="off">
      </td>
  </tr>
- 
+
  <tr>
      <td>Percentage</td>
-     <td><input type="text" name="percentage"  value="10"></td>
+     <td><input type="text" name="percentage"  value="15"></td>
  </tr>
  
-<tr>
-     <td>Option</td>
-     <td><input type="radio" id="call" name="option" checked="checked" value="call">
-         <label for="call">BUY</label><br>
-         <input type="radio" id="put" name="option" value="put">
-         <label for="put">SELL</label><br>
-     </td>
- </tr>
+
 
      <tr>
-         <td>Execute Amount</td>
-         <td><?php echo  $_GET['amount'] ?></td>
+         <td>Target</td>
+         <td><?php echo  $_GET['target'] ?></td>
+     </tr>
+
+     <tr>
+         <td>Stop Loss</td>
+         <td><?php echo  $_GET['stop'] ?></td>
      </tr>
 
 

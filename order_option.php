@@ -37,7 +37,7 @@ require_once './include/common.php';
     $last_price = $response['data']["NFO:$symbol"]['last_price'];
     $last_price = str_replace(",", "", $last_price); //last price
 
-    $percentage_value = 0.25 / 100 ;
+    $percentage_value = 1 / 100 ;
     $amount_value = $last_price * $percentage_value;
     $final_amount = $last_price + $amount_value;
     $final_amount = round($final_amount, 1);
@@ -56,7 +56,7 @@ require_once './include/common.php';
         'exchange' => 'NFO',
         'transaction_type' => "BUY",
         'order_type' => 'LIMIT',
-        'quantity' => $QUANTITY,
+        'quantity' => $quantity,
         'price' => $final_amount,
         'product' => 'NRML',
         'validity' => 'DAY'
@@ -70,7 +70,7 @@ require_once './include/common.php';
     //Fetching order id
     $order_id = $response['data']['order_id'];
 
-   /*
+
     //Fetch Average Price
     $end_point = "https://api.kite.trade/orders/$order_id";
     $res = $client->request('GET', $end_point);
@@ -86,10 +86,10 @@ require_once './include/common.php';
 
     //Fetching average price
      $price = $response['data'][$length]['average_price'];
-   */
+
 
     //Update for AMO
-     $query  = "INSERT INTO optionAmo(symbol, order_id, quanity, price, created_date) VALUES ('$symbol','$order_id','$quantity','$final_amount','$date')";
+     $query  = "INSERT INTO optionAmo(symbol, order_id, quanity, price, created_date) VALUES ('$symbol','$order_id','$quantity','$price','$date')";
      $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 

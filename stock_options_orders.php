@@ -49,7 +49,7 @@ $range1 = round($final_amount, 0);
 
  $query = "Select * from stockOption where name = '$symbol' 
                             and strike BETWEEN $range1 AND $range2 
-                            and tradingsymbol LIKE '%MAR%'
+                            and tradingsymbol LIKE '%APR%'
                             and instrument_type = '$type' ";
 $result = mysqli_query($GLOBALS['mysqlConnect'], $query);
 $datas = $result->fetch_all(MYSQLI_ASSOC);

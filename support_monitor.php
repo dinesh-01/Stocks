@@ -23,7 +23,7 @@ $date = date('d-m-Y');
 
 //Getting all stocks
 
-$query  = "SELECT `cSymbol`,`support_value`,`grow`, `support_signal`,`id` from stocklist";
+$query  = "SELECT `cSymbol`,`support_value`,`grow`, `support_signal`,`id`,`isWatch` from stocklist";
 $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 $row    = mysqli_fetch_all($result);
 $i = 1;
@@ -59,6 +59,7 @@ foreach ($row as $record) {
     $grow          = $record[2];
     $support_signal = $record[3];
     $id = $record[4];
+    $watch_status = $record[5];
 
 
     if(str_contains($api_symbol,"%26")) {
@@ -80,6 +81,8 @@ foreach ($row as $record) {
             $match[$i]['support_value'] = $support_value;
             $match[$i]['grow'] = $grow;
             $match[$i]['id'] = $id;
+            $match[$i]['isWatch'] = $watch_status;
+
 
             $query  = "UPDATE `stocklist` SET `support_signal`='1' WHERE `cSymbol` = '$api_symbol'";
             $result = mysqli_query($GLOBALS['mysqlConnect'],$query);

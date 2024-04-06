@@ -13,10 +13,12 @@ require_once './include/common.php';
         'headers' => $headers
     ]);
 
+$order_id = $_GET['id'];
+
 
 $field     =  array("id,order_id,symbol,price,quanity,stop_loss,target,created_date");
 $table     =  "optionAmo";
-$condition =  "sl_order_id = ''";
+$condition =  "order_id = '$order_id'";
 $arugment  =  array( "field" => $field , "table" => $table, 'condition' => $condition);
 $data      =  select($arugment,"many");
 
@@ -63,8 +65,7 @@ foreach ($data as $value) {
 
     //Fetching order id
     $order_id = $response['data']['order_id'];
-    echo "StopLose Order for $symbol : $stop_loss";
-    echo "\n";
+
 
 
     #reseting the dailyentry
@@ -72,10 +73,11 @@ foreach ($data as $value) {
     $query = "UPDATE `optionAmo` SET `sl_order_id`='$order_id', `stop_loss`='$stop_loss' WHERE id = '$id'";
     $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
-
-
-
 }
+
+
+header("location:stock_options_execution.php");
+exit;
 
 
 
