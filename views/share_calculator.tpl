@@ -18,7 +18,7 @@
     <th>Trend Analysis</th>
     <th>Future Analysis</th>
     <th>Priority</th>
-    <th>Support</th>
+    <th>Monitor</th>
     <th>Action</th>
    <!-- <th> Reset </th> -->
 </tr>
@@ -50,9 +50,9 @@
         </td>
 
         <td>
-            <input type="texbox" id="support_value{$value.id}" value="{$value.support_value}" size="10">
+            Support <input type="texbox" id="support_value{$value.id}" value="{$value.support_value}" size="7">
+            Resistance <input type="texbox" id="resistance_value{$value.id}" value="{$value.resistance_value}" size="7">
             <button onclick="add_support('{$value.id}');"> ADD </button> &nbsp;
-            <button onclick="add_support('{$value.id}');"> CLEAR </button>
 
         </td>
 

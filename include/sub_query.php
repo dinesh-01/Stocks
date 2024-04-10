@@ -2,7 +2,7 @@
 
 function watch_list_query($type,$priority=1) {
 
-	 $query = "Select stocklist.id as id,stocklist.ntype as ntype,stocklist.notes as notes,stocklist.cSymbol as cSymbol,stocklist.support_value as support_value,
+	 $query = "Select stocklist.id as id,stocklist.ntype as ntype,stocklist.notes as notes,stocklist.cSymbol as cSymbol,stocklist.support_value as support_value,stocklist.resistance_value as resistance_value,
                stocklist.sName as sName,stocklist.murl as murl,stocklist.grow as grow,stocklist.order_status as order_status,stocklist.curl as curl,stocklist.tickertape as ttape,
                stocklist.priority as priority,stockvalues.open as currOpen,stockvalues.high as currHigh,
                stockvalues.low as currLow,stockvalues.close as currClose,stockvalues.schange as pChange,
@@ -77,7 +77,7 @@ function company_list_future_query($type) {
 function company_list_range_query($r1,$r2) {
 
 
-  $query = "Select stocklist.id as id,stocklist.ntype as ntype,stocklist.cSymbol as cSymbol,stocklist.notes as notes,stocklist.support_value as support_value,stocklist.sName as sName,stocklist.murl as murl,stocklist.curl as curl,stockvalues.open as currOpen,stockvalues.high as currHigh,stockvalues.low as currLow,stockvalues.close as currClose,stockvalues.schange as pChange,stockvalues.volume as volume From stocklist INNER JOIN  stockvalues WHERE stocklist.id = stockvalues.sid   AND stocklist.isWatch = 'no' AND stockvalues.id = (SELECT MAX(id) from stockvalues where sid = stocklist.id) and stockvalues.low BETWEEN $r1 AND $r2 order by stocklist.cSymbol";
+  $query = "Select stocklist.id as id,stocklist.ntype as ntype,stocklist.cSymbol as cSymbol,stocklist.notes as notes,stocklist.support_value as support_value,stocklist.resistance_value as resistance_value,stocklist.sName as sName,stocklist.murl as murl,stocklist.curl as curl,stockvalues.open as currOpen,stockvalues.high as currHigh,stockvalues.low as currLow,stockvalues.close as currClose,stockvalues.schange as pChange,stockvalues.volume as volume From stocklist INNER JOIN  stockvalues WHERE stocklist.id = stockvalues.sid   AND stocklist.isWatch = 'no' AND stockvalues.id = (SELECT MAX(id) from stockvalues where sid = stocklist.id) and stockvalues.low BETWEEN $r1 AND $r2 order by stocklist.cSymbol";
 
 	$result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 

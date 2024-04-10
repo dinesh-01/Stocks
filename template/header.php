@@ -25,6 +25,7 @@
     <th><a href="checklist_stock.php">Wishlist Stocks</a>
     <th><a href="news_stock.php">News Stocks</a>
     <th><a href="support_monitor.php">Support Monitor</a></th>
+    <th><a href="resistance_monitor.php">Resistance Monitor</a></th>
 
     <th><a href="list_stocks.php?t=N50">Stock Lists</a></th>
   <th><a href="list_futures_stocks.php?list=yes">Index</a></th>

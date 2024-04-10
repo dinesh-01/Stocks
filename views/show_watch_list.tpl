@@ -18,10 +18,11 @@
         <th> Change </th>
         <th> Volume </th>
         <th> TurnOver </th>
-        <th>Action</th>
+
         <th>Priority</th>
-        <th>Support</th>
+        <th>Monitor</th>
         <th> Status </th>
+            <th>Action</th>
         </tr>
 
 {foreach $datas as $value name=count}
@@ -73,7 +74,6 @@
          <td>{$value.pChange}</td>
         <td>{$value.volume}</td>
         <td> {$value.turnover}</td>
-        <td><a href="javascript:void(0)" id="{$value.id}" class="unwatch" title="unwatch">UnWatch</a></td>
         <!--    <td> <a href="trend_list_view.php?sid={$value.id}"  target="_blank"> View Trends</a></td> -->
         <td>
            <select name="pri" id="pri{$value.id}" onchange="change_priority('{$value.id}');">
@@ -85,9 +85,9 @@
         </td>
 
         <td>
-            <input type="texbox" id="support_value{$value.id}" value="{$value.support_value}" size="10">
+            Support <input type="texbox" id="support_value{$value.id}" value="{$value.support_value}" size="7">
+            Resistance <input type="texbox" id="resistance_value{$value.id}" value="{$value.resistance_value}" size="7">
             <button onclick="add_support('{$value.id}');"> ADD </button> &nbsp;
-            <button onclick="add_support('{$value.id}');"> CLEAR </button>
 
         </td>
 
@@ -98,6 +98,9 @@
         {if $value.order_status eq '1'}
             <td>Completed</td>
         {/if}
+
+        <td><a href="javascript:void(0)" id="{$value.id}" class="unwatch" title="unwatch">UnWatch</a></td>
+
 
 
     </tr>
