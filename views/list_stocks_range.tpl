@@ -18,7 +18,7 @@
             <th> T.Low </th>
             <th> Change </th>
             <th> Volume </th>
-                <th>Monitor</th>
+          <!--      <th>Monitor</th>  -->
             <th>Action</th>
             </tr>
         
@@ -45,12 +45,14 @@
         <td>{$value.currLow}</td>
          <td>{$value.pChange}</td>
         <td>{$value.volume}</td>
-        <td>
+     <!--   <td>
             Support <input type="texbox" id="support_value{$value.id}" value="{$value.support_value}" size="7">
             Resistance <input type="texbox" id="resistance_value{$value.id}" value="{$value.resistance_value}" size="7">
             <button onclick="add_support('{$value.id}');"> ADD </button> &nbsp;
 
         </td>
+
+     -->
         <td><a href="javascript:void(0)" id="{$value.id}" class="watch" title="watch">WatchList</a></td>
     </tr>
 

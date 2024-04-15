@@ -24,16 +24,17 @@
     <th><a href="share_calculator.php">Monitor Stocks</a>
     <th><a href="checklist_stock.php">Wishlist Stocks</a>
     <th><a href="news_stock.php">News Stocks</a>
-    <th><a href="support_monitor.php">Support Monitor</a></th>
-    <th><a href="resistance_monitor.php">Resistance Monitor</a></th>
+        <!--  <th><a href="support_monitor.php">Support Monitor</a></th>
+         <th><a href="resistance_monitor.php">Resistance Monitor</a></th>
+         -->
+    <th><a href="stock_execution.php">Orders</a></th>
+         <th><a href="list_stocks.php?t=N50">Stock Lists</a></th>
+    <!--  <th><a href="list_futures_stocks.php?list=yes">Index</a></th>
+          <th><a href="stock_options_execution.php">Option Orders</a></th>
+        <!--  <th><a href="stock_futures_execution.php">Futures Orders</a> </th>
+     <!-- <th><a href="list_futures_stocks.php?list=no">Futures List</a></th>
 
-    <th><a href="list_stocks.php?t=N50">Stock Lists</a></th>
-  <th><a href="list_futures_stocks.php?list=yes">Index</a></th>
-      <th><a href="stock_options_execution.php">Option Orders</a></th>
-    <!--  <th><a href="stock_futures_execution.php">Futures Orders</a> </th>
- <!-- <th><a href="list_futures_stocks.php?list=no">Futures List</a></th>
-
-  <th><a href="list_bees_stocks.php?list=yes">Bees Stocks</a></th> -->
+      <th><a href="list_bees_stocks.php?list=yes">Bees Stocks</a></th> -->
     <th><a href="calculator.php">Calculator</a></th>
     <th><a href="pattern.php">CandleStick</a>
         <!--  <th><a href="link.php" target="_blank">Links</a> -->

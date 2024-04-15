@@ -38,7 +38,7 @@ foreach ($records as $record) {
 
      echo $query  = "INSERT INTO stocklist(sName, cSymbol, mcurl, murl, curl, tickertape, industry, ntype) VALUES ('$company','$company','$money_control','','$charink','','','N500')";
      $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
-     sleep(1);
+
 
     echo "\n";
 

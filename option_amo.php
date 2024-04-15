@@ -4,7 +4,7 @@ require_once './include/common.php';
 
 if ( (time() > strtotime("09:15:00")) &&  (time() < strtotime("15:30:00"))  ) {
     $order_decide_type = "regular";
-    $per = "5%";
+    $per = "10%";
 }else{
     $order_decide_type = "amo";
     $per = "9%";

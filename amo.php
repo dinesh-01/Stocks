@@ -28,7 +28,7 @@ foreach ($data as $value) {
     $quantity = $value['quanity'];
     $last_price = $value['price'];
 
-    $target_percentage = (1/100) ;
+    $target_percentage = (1.5/100) ;
     $target_diff =  $last_price * $target_percentage;
     $target = $last_price + $target_diff;
     $target =  number_format($target,1);
@@ -62,7 +62,7 @@ foreach ($data as $value) {
 
     #reseting the dailyentry
     $id = $value['id'];
-    $query = "UPDATE `stockAmo` SET `price`='$last_price',`target`='$target' WHERE id = '$id'";
+    $query = "UPDATE `stockAmo` SET `order_id`='$order_id',`price`='$last_price',`target`='$target' WHERE id = '$id'";
     $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 

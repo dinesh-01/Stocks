@@ -9,8 +9,8 @@
         <tr>
         <th> No </th>
         <th> Name</th>
-              <th> Option </th>
-            <!--       <th> Future </th> -->
+            <!--     <th> Option </th>
+                  <th> Future </th> -->
         <th> Stock chart </th>
       <!--      <th> Future chart </th>  -->
         <th>  List </th>
@@ -20,34 +20,34 @@
         <th> TurnOver </th>
 
         <th>Priority</th>
-        <th>Monitor</th>
-        <th> Status </th>
-            <th>Action</th>
-        </tr>
+            <!--   <th>Monitor</th> -->
+            <th> Status </th>
+                <th>Action</th>
+            </tr>
 
-{foreach $datas as $value name=count}
+    {foreach $datas as $value name=count}
 
-    <tr class="show">
-        <td> {$smarty.foreach.count.iteration} </td>
-        <td>
-            <a href = "edit_stock.php?id={$value.id}" target="_blank">{$value.cSymbol}</a></td>
-            <input type="hidden" id="sname" value="{$value.sName}"/>
-            <input type="hidden" id="sid" value="{$value.id}"/>
-        </td>
-
-
-
-        <td>
-
-            <a href="stock_options_orders.php?s={$value.cSymbol|replace:'-':'_'|replace:'&':'_'}&o=CE" target="_blank">CALL</a>
-            ||
-            <a href="stock_options_orders.php?s={$value.cSymbol|replace:'-':'_'|replace:'&':'_'}&o=PE" target="_blank">PUT</a>
+        <tr class="show">
+            <td> {$smarty.foreach.count.iteration} </td>
+            <td>
+                <a href = "edit_stock.php?id={$value.id}" target="_blank">{$value.cSymbol}</a></td>
+                <input type="hidden" id="sname" value="{$value.sName}"/>
+                <input type="hidden" id="sid" value="{$value.id}"/>
+            </td>
 
 
-        </td>
-        <!--
-          <td>  <a href="stock_future_orders.php?s={$value.cSymbol|replace:'-':'_'|replace:'&':'_'}" target="_blank">Future</a> </td>
-         -->
+            <!--
+            <td>
+
+                <a href="stock_options_orders.php?s={$value.cSymbol|replace:'-':'_'|replace:'&':'_'}&o=CE" target="_blank">CALL</a>
+                ||
+                <a href="stock_options_orders.php?s={$value.cSymbol|replace:'-':'_'|replace:'&':'_'}&o=PE" target="_blank">PUT</a>
+
+
+            </td>
+
+              <td>  <a href="stock_future_orders.php?s={$value.cSymbol|replace:'-':'_'|replace:'&':'_'}" target="_blank">Future</a> </td>
+             -->
         <td><a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'|replace:'&':'_'}" target="_blank">Trend Layout</a></td>
         <!-- <td><a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'}1%21"  target="_blank">Future Layout</a></td> -->
 
@@ -84,12 +84,16 @@
            </select>
         </td>
 
+            <!--
+
         <td>
             Support <input type="texbox" id="support_value{$value.id}" value="{$value.support_value}" size="7">
             Resistance <input type="texbox" id="resistance_value{$value.id}" value="{$value.resistance_value}" size="7">
             <button onclick="add_support('{$value.id}');"> ADD </button> &nbsp;
 
         </td>
+
+        -->
 
         {if $value.order_status eq '0'}
             <td><a href="update_stock_price.php?id={$value.id}"><button value="buy">BUY</button></a></td>
