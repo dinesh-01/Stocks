@@ -70,11 +70,12 @@
        <script type="text/javascript">
            window.onload=show_calculator('{$value.id}')
        </script>
+       -->
 
 
 {/foreach}
 
- <!--
+        <!--
 <tr >
     <td colspan="4"><b>All Total</b></td>
     <td colspan="10" ><span id="ttotals">{$totals}</span></td>

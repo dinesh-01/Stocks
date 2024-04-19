@@ -48,47 +48,22 @@ function hammer($type,$company,$trade) {
   if($type == "phammer") {
 
      if($open == $high) {
-
-         // Calculate the real body size
-         $realBody = abs($close - $open);
-
-         // Calculate the shadow sizes
-         $upperShadow = $high - max($open, $close);
-         $lowerShadow = min($open, $close) - $low;
-
-         // Check if it's a positive hammer pattern
-         if ($lowerShadow >= 2 * $realBody && $upperShadow < $realBody && $change >= 0) {
              $result = true;
-         }
-
      }
 
-
-
    }
+
 
    //Negative Hammer
    if($type == "nhammer") {
 
     if($close == $low) {
-
-        // Calculate the real body size
-        $realBody = abs($close - $open);
-
-        // Calculate the shadow sizes
-        $upperShadow = $high - max($open, $close);
-        $lowerShadow = min($open, $close) - $low;
-
-        // Check if it's a negative hammer pattern
-        if ($upperShadow >= 2 * $realBody && $lowerShadow < $realBody) {
-            $result = true;
+         $result = true;
         }
 
     }
 
 
-
-   }
 
    return $result;
 }

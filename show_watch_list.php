@@ -14,8 +14,20 @@ $i = 0;
 
 foreach ($data as $value) {
 
+
      $volume  = $value['volume'];
      $close   = $value['currClose'];
+     $symbol  = $value['cSymbol'];
+
+    $query  = "Select `symbol` from stockAmo where `symbol`= '$symbol'";
+    $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
+    $row    = mysqli_num_rows($result);
+
+    if($row > 0) {
+        $data[$i]['order_place_status'] = 1;
+    }else{
+        $data[$i]['order_place_status'] = 0;
+    }
 
 
     $amount = $volume * $close;

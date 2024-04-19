@@ -22,7 +22,7 @@ $query = "Select * from stockAmo";
 $result = mysqli_query($GLOBALS['mysqlConnect'], $query);
 $datas = $result->fetch_all(MYSQLI_ASSOC);
 $i = 0;
-
+$amount = 0;
 foreach ($datas as $data) {
 
 
@@ -51,7 +51,23 @@ foreach ($datas as $data) {
     $datas[$i]['stock_symbol'] = $stock_symbol;
     $datas[$i]['price_diff'] = $last_price - $data['price'];
     $datas[$i]['amount_diff'] = round($datas[$i]['price_diff'],1) *  $data['quanity'];
+    $datas[$i]['invested'] = intval($data['price'] * $data['quanity']);
+    $amount = $amount +  $datas[$i]['invested'];
 
+    //Actuall profit or loss
+    $commission_amount = $datas[$i]['amount_diff'] * 0.25;
+
+    if($datas[$i]['amount_diff'] > 0) {
+        $actual_profit_loss = $datas[$i]['amount_diff'] - $commission_amount;
+    }else{
+        $actual_profit_loss = $datas[$i]['amount_diff'] + $commission_amount;
+    }
+
+
+
+
+
+    $datas[$i]['actual_profit_loss'] = round($actual_profit_loss);
 
 
     $i++;
@@ -59,7 +75,25 @@ foreach ($datas as $data) {
 }
 
 
+
+
+
+//List all the option orders
+$query = "Select * from stockIncome";
+$result = mysqli_query($GLOBALS['mysqlConnect'], $query);
+$results = $result->fetch_all(MYSQLI_ASSOC);
+$ledgers = 0;
+foreach ($results as $result) {
+    $ledgers = $ledgers + $result['amount'];
+}
+
+
+
 $smarty->assign("datas",$datas);
+$smarty->assign("total_invested",$amount);
+$remaining = 300000 - $amount;
+$smarty->assign("remaining_invested",$remaining);
+$smarty->assign("ledger",$ledgers);
 $smarty->display("show_execution.tpl");
 
 

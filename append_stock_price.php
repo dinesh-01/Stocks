@@ -15,13 +15,8 @@ require_once './include/common.php';
 
 
     //Fetching stock Symbol
-    $id = $_GET['id'];
-    $query  = "Select cSymbol from stocklist where id=$id";
-    $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
-    $row    = mysqli_fetch_row($result);
+    $symbol    = $_GET['s'];
 
-    //Symbol
-    $symbol = $row[0];
 
     $end_point = "https://api.kite.trade/quote?i=NSE:$symbol";
     $res = $client->request('GET', $end_point);
@@ -71,17 +66,42 @@ require_once './include/common.php';
     $order_id = $response['data']['order_id'];
 
 
+
+
+    //Fetch Average Price
+    $end_point = "https://api.kite.trade/orders/$order_id";
+    $res = $client->request('GET', $end_point);
+
+    $response = $res->getBody()->getContents();
+    $response = (json_decode($response,true));
+
+
+    $length = count($response['data']);
+    $length =  $length-1;
+
+
     //Fetching average price
     $price = $final_amount;
 
 
-    //Update for AMO
-    $query  = "INSERT INTO stockAmo(symbol, order_id, quanity, price, created_date) VALUES ('$symbol','$order_id','$quantity','$price','$date')";
+    $field     =  array("id,quanity","price");
+    $table     =  "stockAmo";
+    $condition =  "symbol = '$symbol'";
+    $arugment  =  array( "field" => $field , "table" => $table, 'condition' => $condition);
+    $data      =  select($arugment,"one");
+
+    $previous_quantity = $data['quanity'];
+    $id = $data['id'];
+    $final_quantity =  $previous_quantity + $quantity;
+    $price = ($data['price'] + $final_amount) / 2 ;
+    $price = (int) $price;
+
+
+
+//Update for AMO
+    $query = "UPDATE `stockAmo` SET `price`='$price',`quanity`='$final_quantity' WHERE id = '$id'";
     $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
-    //Updating in stocklist
-    $query = "UPDATE `stocklist` SET `order_status`='1' WHERE id = $id";
-    $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 
     header("location:list_watch.php");

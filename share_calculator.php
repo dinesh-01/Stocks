@@ -69,6 +69,7 @@ require_once './include/common.php';
                 )
         );
 
+
     $smarty->assign("datas",$data);
     $smarty->assign("total", $tdata['totals'] );
     $smarty->display("share_calculator.tpl");

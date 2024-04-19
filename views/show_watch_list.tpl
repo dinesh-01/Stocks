@@ -28,9 +28,12 @@
     {foreach $datas as $value name=count}
 
         <tr class="show">
-            <td> {$smarty.foreach.count.iteration} </td>
             <td>
-                <a href = "edit_stock.php?id={$value.id}" target="_blank">{$value.cSymbol}</a></td>
+                <a href = "edit_stock.php?id={$value.id}" target="_blank">{$smarty.foreach.count.iteration}</a>
+            </td>
+            <td>
+                <a href = "https://in.tradingview.com/symbols/NSE-{$value.cSymbol}" target="_blank">{$value.cSymbol}</a>
+            </td>
                 <input type="hidden" id="sname" value="{$value.sName}"/>
                 <input type="hidden" id="sid" value="{$value.id}"/>
             </td>
@@ -95,12 +98,12 @@
 
         -->
 
-        {if $value.order_status eq '0'}
+        {if $value.order_place_status eq '0'}
             <td><a href="update_stock_price.php?id={$value.id}"><button value="buy">BUY</button></a></td>
         {/if}
 
-        {if $value.order_status eq '1'}
-            <td>Completed</td>
+        {if $value.order_place_status eq '1'}
+            <td><a href="append_stock_price.php?s={$value.cSymbol}"><button value="update">UPDATE</button></a></td>
         {/if}
 
         <td><a href="javascript:void(0)" id="{$value.id}" class="unwatch" title="unwatch">UnWatch</a></td>

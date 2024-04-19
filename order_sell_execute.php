@@ -30,7 +30,7 @@ $res = $client->request('GET', $end_point);
 $response = $res->getBody()->getContents();
 $response = (json_decode($response, true));
 
-$last_price = $response['data']["NFO:$symbol"]['last_price'];
+$last_price = $response['data']["NSE:$symbol"]['last_price'];
 $last_price = str_replace(",", "", $last_price); //last price
 
 
