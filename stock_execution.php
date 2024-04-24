@@ -18,7 +18,7 @@ $client = new GuzzleHttp\Client([
 
 
 //List all the option orders
-$query = "Select * from stockAmo";
+$query = "Select * from stockAmo order by `symbol` asc";
 $result = mysqli_query($GLOBALS['mysqlConnect'], $query);
 $datas = $result->fetch_all(MYSQLI_ASSOC);
 $i = 0;
