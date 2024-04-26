@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
 
 $field     = array('isWatch' => 'yes', 'priority' => 2);
-$table     = "stocklist";
+$table     = "stocklistbackup";
 $condition = "id = $id";
 $order     =  "volume desc";
 $arugment  =  array( "field" => $field , "table" => $table, "condition" => $condition);

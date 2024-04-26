@@ -2,7 +2,7 @@
 require_once './include/common.php';
 
 //Fetching stock Symbol
-$query  = "UPDATE `stocklist` SET `support_signal`='0'";
+$query  = "UPDATE `stocklistbackup` SET `support_signal`='0'";
 $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 

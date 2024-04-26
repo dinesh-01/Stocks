@@ -16,10 +16,10 @@ $client = new GuzzleHttp\Client([
 
 $date = date('d-m-Y');
 
-$delete_query = "DELETE FROM stockvaluesfutures WHERE `createdDate` = '$date'";
+$delete_query = "DELETE FROM stockvaluesbackupfutures WHERE `createdDate` = '$date'";
 $delete_result = mysqli_query($GLOBALS['mysqlConnect'],$delete_query);
 
-$query  = "Select id,cSymbol from stocklistfutures";
+$query  = "Select id,cSymbol from stocklistbackupfutures";
 $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 $data    = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
@@ -67,11 +67,11 @@ $data    = mysqli_fetch_all($result, MYSQLI_ASSOC);
         $chng = number_format($chng,1);
 
 
-         $query = "INSERT INTO stockvaluesfutures(sid, open, high, allHigh, low, allLow, close, schange, schangePercent, volume, stockValues, addClear, createdDate)
+         $query = "INSERT INTO stockvaluesbackupfutures(sid, open, high, allHigh, low, allLow, close, schange, schangePercent, volume, stockvaluesbackup, addClear, createdDate)
     VALUES ('$sid','$open','$high','$allhigh','$low','$alllow','$close','$chng','$chng_percentage','$volume','$value',2,'$date')";
         $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
-        $query = "UPDATE stocklistfutures SET current_volume='$volume' WHERE id = '$sid'";
+        $query = "UPDATE stocklistbackupfutures SET current_volume='$volume' WHERE id = '$sid'";
         $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 

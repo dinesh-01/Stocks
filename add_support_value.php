@@ -7,7 +7,7 @@ $support = $_POST['support_value'];
 $resistance = $_POST['resistance_value'];
 
 $field     = array('support_value' => $support,'resistance_value' => $resistance);
-$table     = "stocklist";
+$table     = "stocklistbackup";
 $condition = "id = $id";
 $arugment  =  array( "field" => $field , "table" => $table, "condition" => $condition);
 update($arugment);

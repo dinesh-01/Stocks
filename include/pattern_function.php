@@ -643,11 +643,11 @@ function get_value_price($company,$pattern="",$trade="stocks") {
 
 
     if($trade == "stocks") {
-        $table     =  "stockvalues";
+        $table     =  "stockvaluesbackup";
     }
 
     if($trade == "futures") {
-        $table     =  "stockvaluesfutures";
+        $table     =  "stockvaluesbackupfutures";
     }
 
     $field     =  array("open,close,low,high,allLow,schange");

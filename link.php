@@ -6,7 +6,7 @@ require_once './include/common.php';
 $t = $_GET['t'];
 
 //Checking stock already exists in table
-$query = "SELECT * FROM `stocklist` where `isWatch` = 'no' order by cSymbol";
+$query = "SELECT * FROM `stocklistbackup` where `isWatch` = 'no' order by cSymbol";
 $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 while($row = mysqli_fetch_assoc($result)) {

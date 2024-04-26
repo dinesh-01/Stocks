@@ -13,7 +13,7 @@ $notes       = $_POST['notes'];
 $companyinfo = $_POST['company_info'];
 
 $field       =  array("sName"=>$sname,"cSymbol"=>$companyinfo,"murl"=>$murl,"curl"=>$curl,"notes"=>$notes,"sType"=>$type);
-insert($field , "stocklist"); //Adding in record
+insert($field , "stocklistbackup"); //Adding in record
       
  header("location:add_stocks.php?msg=$sname added successfully");
  exit;

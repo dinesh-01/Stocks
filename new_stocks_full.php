@@ -25,7 +25,7 @@ foreach ($records as $record) {
 
   //$symbol = urlencode($symbol);
 
-  $query  = "Select id from stocklistbackup where Csymbol = '$symbol'";
+  $query  = "Select id from stocklistbackupbackup where Csymbol = '$symbol'";
   $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
   $row    = mysqli_fetch_assoc($result);
 
@@ -34,7 +34,7 @@ foreach ($records as $record) {
     $money_control = "https://www.google.com/search?q=".$company."+moneycontrol";
     $charink = "https://chartink.com/stocks/$symbol.html";
 
-     echo $query  = "INSERT INTO stocklistbackup(sName, cSymbol, mcurl, murl, curl, tickertape, industry, ntype) VALUES ('$company','$symbol','$money_control','','$charink','','','equity')";
+     echo $query  = "INSERT INTO stocklistbackupbackup(sName, cSymbol, mcurl, murl, curl, tickertape, industry, ntype) VALUES ('$company','$symbol','$money_control','','$charink','','','equity')";
      $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 
