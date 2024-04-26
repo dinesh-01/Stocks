@@ -53,23 +53,7 @@ foreach ($datas as $data) {
     $datas[$i]['amount_diff'] = round($datas[$i]['price_diff'],1) *  $data['quanity'];
     $datas[$i]['invested'] = intval($data['price'] * $data['quanity']);
     $amount = $amount +  $datas[$i]['invested'];
-
-    //Actuall profit or loss
-    $commission_amount = $datas[$i]['amount_diff'] * 0.25;
-
-    if($datas[$i]['amount_diff'] > 0) {
-        $actual_profit_loss = $datas[$i]['amount_diff'] - $commission_amount;
-    }else{
-        $actual_profit_loss = $datas[$i]['amount_diff'] + $commission_amount;
-    }
-
-
-
-
-
-    $datas[$i]['actual_profit_loss'] = round($actual_profit_loss);
-
-
+    $datas[$i]['actual_profit_loss'] = $datas[$i]['amount_diff'];
     $i++;
 
 }
@@ -87,11 +71,15 @@ foreach ($results as $result) {
     $ledgers = $ledgers + $result['amount'];
 }
 
+$ledgers =  number_format($ledgers,1);
+$ledgers = str_replace(",", "", $ledgers); //last price
+
+
 
 
 $smarty->assign("datas",$datas);
 $smarty->assign("total_invested",$amount);
-$remaining = 300000 - $amount;
+$remaining = 400000 - $amount;
 $smarty->assign("remaining_invested",$remaining);
 $smarty->assign("ledger",$ledgers);
 $smarty->display("show_execution.tpl");

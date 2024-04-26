@@ -4,7 +4,7 @@ require_once './include/common.php';
 
 //url => https://www.nseindia.com/products-services/indices-nifty500-index
 
-$filename = 'data/700.csv'; // Replace with your file name or path
+$filename = 'data/all_stocks.csv'; // Replace with your file name or path
 
 // Open the CSV file for reading
 $file = fopen($filename, 'r');
@@ -18,25 +18,23 @@ array_shift($records); // Removing header
 
 foreach ($records as $record) {
 
-   $company = $record[0];
-   $symbol =  $record[2];
+   $company = $record[2];
+   $symbol =  $record[1];
    $stockType = $record[1];
 
 
   //$symbol = urlencode($symbol);
 
-  $query  = "Select id from stocklist where Csymbol = '$company'";
+  $query  = "Select id from stocklistbackup where Csymbol = '$symbol'";
   $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
   $row    = mysqli_fetch_assoc($result);
 
   if(empty($row['id'])) {
 
-   $company = mysqli_real_escape_string($GLOBALS['mysqlConnect'],$company);
-
     $money_control = "https://www.google.com/search?q=".$company."+moneycontrol";
-    $charink = "https://chartink.com/stocks/$company.html";
+    $charink = "https://chartink.com/stocks/$symbol.html";
 
-     echo $query  = "INSERT INTO stocklist(sName, cSymbol, mcurl, murl, curl, tickertape, industry, ntype) VALUES ('$company','$company','$money_control','','$charink','','','N500')";
+     echo $query  = "INSERT INTO stocklistbackup(sName, cSymbol, mcurl, murl, curl, tickertape, industry, ntype) VALUES ('$company','$symbol','$money_control','','$charink','','','equity')";
      $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 

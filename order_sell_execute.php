@@ -35,21 +35,13 @@ $last_price = str_replace(",", "", $last_price); //last price
 
 
 
-$percentage_value = 0.1 / 100 ;
-$amount_value = $last_price * $percentage_value;
-$final_amount = $last_price - $amount_value;
-$final_amount = round($final_amount, 1);
-
-
-
 //Place Order
 $end_point = "https://api.kite.trade/orders/regular/$order_id";
 
 $res = $client->request('PUT', $end_point, [
     'form_params' => [
-        'order_type' => 'LIMIT',
+        'order_type' => 'MARKET',
         'quantity' => $quantity,
-        'price' => $final_amount,
         'validity' => 'DAY'
 
     ]
@@ -59,7 +51,29 @@ $response = $res->getBody()->getContents();
 $response = (json_decode($response,true));
 
 
-$query = "UPDATE `stockAmo` SET `target`='$final_amount' WHERE order_id='$order_id'";
+//Fetching order id
+$order_id = $response['data']['order_id'];
+
+//Fetch Average Price
+$end_point = "https://api.kite.trade/orders/$order_id";
+$res = $client->request('GET', $end_point);
+
+$response = $res->getBody()->getContents();
+$response = (json_decode($response,true));
+
+
+$length = count($response['data']);
+$length =  $length-1;
+
+$price = $response['data'][$length]['average_price'];
+$price = str_replace(",", "", $price); //last price
+$price =  number_format($price,1);
+
+
+
+
+
+$query = "UPDATE `stockAmo` SET `target`='$price' WHERE order_id='$order_id'";
 $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 header("location:stock_execution.php");

@@ -32,13 +32,6 @@ require_once './include/common.php';
     $quantity = (int)$quantity; //quantity
 
 
-    $percentage_value = 0.1 / 100 ;
-    $amount_value = $last_price * $percentage_value;
-    $final_amount = $last_price + $amount_value;
-    $final_amount = round($final_amount, 1);
-
-
-
     $date = date('d-m-Y');
 
 
@@ -50,9 +43,8 @@ require_once './include/common.php';
         'tradingsymbol' => $symbol,
         'exchange' => 'NSE',
         'transaction_type' => "BUY",
-        'order_type' => 'LIMIT',
+        'order_type' => 'MARKET',
         'quantity' => $quantity,
-        'price' => $final_amount,
         'product' => 'CNC',
         'validity' => 'DAY'
 
@@ -81,7 +73,9 @@ require_once './include/common.php';
 
 
     //Fetching average price
-    $price = $final_amount;
+    $price = $response['data'][$length]['average_price'];
+    $price =  number_format($price,1);
+    $price = str_replace(",", "", $price); //last price
 
 
     $field     =  array("id,quanity","price");
@@ -93,7 +87,7 @@ require_once './include/common.php';
     $previous_quantity = $data['quanity'];
     $id = $data['id'];
     $final_quantity =  $previous_quantity + $quantity;
-    $price = ($data['price'] + $final_amount) / 2 ;
+    $price = ($data['price'] + $price) / 2 ;
     $price = (int) $price;
 
 
