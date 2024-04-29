@@ -8,6 +8,7 @@
             <th>  Quantity </th>
             <th>  Price </th>
             <th>  Market </th>
+            <th> Percent </th>
            <!-- <th>  Status</th> -->
                 <th>  Returns </th>
             <th>  Invested </th>
@@ -24,7 +25,7 @@
         <td>{$value.quanity}</td>
         <td>{$value.price}</td>
         <td>{$value.last_price}</td>
-
+        <td>{$value.change_percentage} </td>
         <!--
         <td>
 
