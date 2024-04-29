@@ -54,6 +54,9 @@ foreach ($datas as $data) {
     $datas[$i]['invested'] = intval($data['price'] * $data['quanity']);
     $amount = $amount +  $datas[$i]['invested'];
     $datas[$i]['actual_profit_loss'] = $datas[$i]['amount_diff'];
+
+    $percentage = ( ($datas[$i]['amount_diff'] / $datas[$i]['invested']) * 100 );
+    $datas[$i]['change_percentage'] = round($percentage,2);
     $i++;
 
 }
