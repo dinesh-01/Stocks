@@ -20,7 +20,7 @@
 {foreach $datas as $value name=count}
 
     <tr class="show">
-        <td> {$smarty.foreach.count.iteration} </td>
+        <td><a href = "edit_amo_stock.php?id={$value.id}" target="_blank">{$smarty.foreach.count.iteration}</a></td>
         <td><a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.stock_symbol|replace:'-':'_'}" target="_blank">{$value.stock_symbol}</a></td>
         <td>{$value.quanity}</td>
         <td>{$value.price}</td>

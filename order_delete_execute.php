@@ -17,22 +17,33 @@ $client = new GuzzleHttp\Client([
 $order_id = $_GET['id'];
 
 
-$query = "SELECT `sl_order_id` FROM `stockAmo` where order_id='$order_id'";
+$query = "SELECT `symbol`,`price`,`quanity` FROM `stockAmo` where order_id='$order_id'";
 $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 $data = mysqli_fetch_row($result);
-$sl_id =  $data[0];
+$symbol = $data[0];
+$order_price =  $data[1];
+$quanity = $data[2];
 
 
-if(!empty($sl_id)) {
+//Get Last traded price
+$end_point = "https://api.kite.trade/orders/$order_id";
+$res = $client->request('GET',$end_point);
+$response = $res->getBody()->getContents();
+$response = (json_decode($response, true));
+$length = count($response['data']);
+$length =  $length-1;
 
-    //delete SL Order
-    $end_point = "https://api.kite.trade/orders/regular/$sl_id";
-    $res = $client->request('DELETE',$end_point);
-}
 
-
+//Fetching average price
+$average_price = $response['data'][$length]['average_price'];
+$date = date('d-m-Y');
+$tran_price = $average_price - $order_price;
+$result_price = $quanity * $tran_price;
 
 $query = "DELETE from stockAmo where order_id='$order_id'";
+$result = mysqli_query($GLOBALS['mysqlConnect'],$query);
+
+echo $query = "INSERT INTO `stockIncome` ( `symbol`, `amount`, `createdDate`) VALUES ('$symbol', '$result_price', '$date')";
 $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 

@@ -29,10 +29,11 @@
          -->
     <th><a href="stock_execution.php">Orders</a></th>
          <th><a href="list_stocks.php?t=N50">Stock Lists</a></th>
+    <th><a href="list_futures_stocks.php?list=no">Global List</a></th>
     <!--  <th><a href="list_futures_stocks.php?list=yes">Index</a></th>
           <th><a href="stock_options_execution.php">Option Orders</a></th>
         <!--  <th><a href="stock_futures_execution.php">Futures Orders</a> </th>
-     <!-- <th><a href="list_futures_stocks.php?list=no">Futures List</a></th>
+     <!--
 
       <th><a href="list_bees_stocks.php?list=yes">Bees Stocks</a></th> -->
     <th><a href="calculator.php">Calculator</a></th>

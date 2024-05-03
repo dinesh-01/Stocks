@@ -82,7 +82,7 @@ $ledgers = str_replace(",", "", $ledgers); //last price
 
 $smarty->assign("datas",$datas);
 $smarty->assign("total_invested",$amount);
-$remaining = 400000 - $amount;
+$remaining = 500000 - $amount;
 $smarty->assign("remaining_invested",$remaining);
 $smarty->assign("ledger",$ledgers);
 $smarty->display("show_execution.tpl");

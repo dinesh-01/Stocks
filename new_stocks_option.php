@@ -14,13 +14,15 @@ foreach ($records as $record) {
 
   //$symbol = urlencode($symbol);
 
-  $query  = "Select id from stocklistbackup where Csymbol = '$company'";
-  $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
-  $row    = mysqli_fetch_assoc($result);
 
-  if(empty($row['id'])) {
 
-   $company = mysqli_real_escape_string($GLOBALS['mysqlConnect'],$company);
+     echo $query = "UPDATE `stocklistbackup` SET `ntype`='option' WHERE `cSymbol` = '$company'";
+     $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
+
+
+
+  /*
+    $company = mysqli_real_escape_string($GLOBALS['mysqlConnect'],$company);
 
     $money_control = "https://www.google.com/search?q=".$company."+moneycontrol";
     $charink = "https://chartink.com/stocks/$company.html";
@@ -29,9 +31,12 @@ foreach ($records as $record) {
      $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
      sleep(1);
 
+  */
     echo "\n";
 
-  }
+
+
+
 
 }
 

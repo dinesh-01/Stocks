@@ -32,7 +32,17 @@
                 <a href = "edit_stock.php?id={$value.id}" target="_blank">{$smarty.foreach.count.iteration}</a>
             </td>
             <td>
-                <a href = "https://in.tradingview.com/symbols/NSE-{$value.cSymbol}" target="_blank">{$value.cSymbol}</a>
+                <a href = "https://in.tradingview.com/symbols/NSE-{$value.cSymbol}" target="_blank">
+
+                    {if $value.ntype eq 'option'}
+                        <b>{$value.sName}</b>
+                    {/if}
+
+                    {if $value.ntype eq 'equity'}
+                        {$value.sName}
+                    {/if}
+
+                </a>
             </td>
                 <input type="hidden" id="sname" value="{$value.sName}"/>
                 <input type="hidden" id="sid" value="{$value.id}"/>

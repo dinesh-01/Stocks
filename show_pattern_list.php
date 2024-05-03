@@ -46,6 +46,7 @@ require_once './include/common.php';
 <tr>
     <th> NO </th>
     <th>Stock Name</th>
+    <th>ChartInk</th>
     <th>TradingView</th>
     <th>Type</th>
     <th>Action</th>
@@ -208,6 +209,7 @@ foreach ($data as $value) {
 
     ?>
 
+    <td><a href="<?php echo $value['curl'] ?>" target="_blank">Chatink</a></td>
     <td><a href="<?php echo $turl ?>" target="_blank">TradingView</a></td>
 
     <td><?php echo $value['ntype'] ?></td>
