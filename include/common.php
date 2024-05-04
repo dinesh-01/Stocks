@@ -18,16 +18,15 @@ require_once 'pattern_function.php';
 //Adding smarty template
 require_once 'smarty/libs/Smarty.class.php';
 $smarty = new Smarty();
-$smarty->force_compile = true;
+$smarty->caching = false;
+$smarty->force_compile - false;
 $smarty->template_dir = 'views';
 
 
-define('TOKEN', 'CAFVj0oll33JwwudBTjDDV6hpzvsWIXI');
-define('KEY', 'asx9hj1ykmv09kgc');
-define('ALLOCATE_PRICE',50000);
-define('OPTION_MONTH','MAY');
-define ('TWILIO_SID','ACfae6d012234d7f7af49afbe88e254447');
-define ('TWILIO_TOKEN','b8ce01a7e52e46d86ef3604128d7f9de');
+define('TOKEN', 'xxx');
+define('KEY', 'xx');
+define('ALLOCATE_PRICE',100000);
+define('OPTION_MONTH','MAR');
 
 
 
