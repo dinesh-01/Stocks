@@ -11,7 +11,7 @@
             <th> Order Market </th>
             <th> Current Status</th>
             <th> Execute  </th>
-                <th> Execute SL </th>
+          <!--      <th> Execute SL </th> -->
             <th> Delete Order</th>
             </tr>
 
@@ -34,7 +34,7 @@
 
         </td>
         <td><a href="order_option_sell_execute.php?id={$value.order_id}"><button value="sell">SELL</button></a></td>
-        <td><a href="order_option_sl.php?id={$value.order_id}"><button value="sl">STOPLOSS</button></a></td>
+        <!--<td><a href="order_option_sl.php?id={$value.order_id}"><button value="sl">STOPLOSS</button></a></td> -->
         <td><a href="order_option_delete_execute.php?id={$value.order_id}"><button value="delete">DELETE</button></a></td>
     </tr>
 
