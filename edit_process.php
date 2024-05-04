@@ -14,7 +14,7 @@ $date = date('d-m-Y');
 
 
 $field = array('curl' => $curl,'murl' => $murl, 'grow' => $notes );
-$table = "stocklistbackup";
+$table = "stocklistIntra";
 $condition = "id = $id";
 $arugment  =  array( "field" => $field , "table" => $table, "condition" => $condition);
 update($arugment);

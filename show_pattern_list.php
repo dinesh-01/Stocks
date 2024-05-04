@@ -62,7 +62,7 @@ require_once './include/common.php';
     if($type == "stocks") {
 
         $field     =  array("sName,murl,curl,id,cSymbol,tickertape,dtype,ntype");
-        $table     =  "stocklistbackup";
+        $table     =  "stocklistIntra";
         $condition =  "isWatch = 'no'";
         $order     =  "ntype";
         $arugment  =  array( "field" => $field , "table" => $table, "condition" => $condition,"order" => $order);
@@ -74,7 +74,7 @@ require_once './include/common.php';
     if($type == "futures") {
 
         $field     =  array("sName,cSymbol,expiry,id,lot_size,dtype");
-        $table     =  "stocklistbackupfutures";
+        $table     =  "stocklistIntrafutures";
         $condition =  "isWatch = 'no'";
         $arugment  =  array( "field" => $field , "table" => $table, "condition" => $condition);
         $data      =  select($arugment,"many");
@@ -180,7 +180,7 @@ foreach ($data as $value) {
                 $param = str_replace("-", "_", $param);
             }
 
-            $turl = "https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A$param";
+            $turl = "https://in.tradingview.com/chart/AINnrOTv/?symbol=NSE%3A$param";
         }
 
         if($type == "futures") {

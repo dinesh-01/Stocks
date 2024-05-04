@@ -17,7 +17,7 @@ $client = new GuzzleHttp\Client([
 $order_id = $_GET['id'];
 
 
-$query = "SELECT `symbol`,`price`,`quanity` FROM `stockAmo` where order_id='$order_id'";
+$query = "SELECT `symbol`,`price`,`quanity` FROM `stockAmoIntra` where order_id='$order_id'";
 $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 $data = mysqli_fetch_row($result);
 $symbol = $data[0];
@@ -40,7 +40,7 @@ $date = date('d-m-Y');
 $tran_price = $average_price - $order_price;
 $result_price = $quanity * $tran_price;
 
-$query = "DELETE from stockAmo where order_id='$order_id'";
+$query = "DELETE from stockAmoIntra where order_id='$order_id'";
 $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 echo $query = "INSERT INTO `stockIncome` ( `symbol`, `amount`, `createdDate`) VALUES ('$symbol', '$result_price', '$date')";

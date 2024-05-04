@@ -6,7 +6,7 @@ require_once './include/common.php';
 $t = $_GET['t'];
 
 //Checking stock already exists in table
-$query = "SELECT * FROM `stocklistbackup` where `isWatch` = 'no' order by cSymbol";
+$query = "SELECT * FROM `stocklistIntra` where `isWatch` = 'no' order by cSymbol";
 $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 while($row = mysqli_fetch_assoc($result)) {
@@ -21,7 +21,7 @@ while($row = mysqli_fetch_assoc($result)) {
   if($t == 'profit') {
 
       if($row['qbuy'] > 0) {
-          echo "https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A".$td;
+          echo "https://in.tradingview.com/chart/AINnrOTv/?symbol=NSE%3A".$td;
           echo "<br/>";
       }
 
@@ -30,7 +30,7 @@ while($row = mysqli_fetch_assoc($result)) {
     if($t == 'loss') {
 
         if($row['qbuy'] < 0) {
-            echo "https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A".$td;
+            echo "https://in.tradingview.com/chart/AINnrOTv/?symbol=NSE%3A".$td;
             echo "<br/>";
         }
 

@@ -17,7 +17,7 @@ $date = date('d-m-Y');
 
   //Getting all stocks
 
-  $query  = "SELECT `cSymbol`,`support_value`,`grow`, `support_signal`,`id` from stocklistbackup";
+  $query  = "SELECT `cSymbol`,`support_value`,`grow`, `support_signal`,`id` from stocklistIntra";
   $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
   $row    = mysqli_fetch_all($result);
   $i = 1;
@@ -73,7 +73,7 @@ foreach ($row as $record) {
             $match[$i]['support_value'] = $support_value;
             $match[$i]['grow'] = $grow;
 
-            $query  = "UPDATE `stocklistbackup` SET `support_signal`='1' WHERE `cSymbol` = '$api_symbol'";
+            $query  = "UPDATE `stocklistIntra` SET `support_signal`='1' WHERE `cSymbol` = '$api_symbol'";
             $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 

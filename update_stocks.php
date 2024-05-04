@@ -15,7 +15,7 @@ array_shift($records); // Removing header
 foreach ($records as $record) {
 
     $symbol =  $record[0];
-    echo  $query  = "UPDATE stocklistbackup SET ntype = 'N50' WHERE cSymbol = '$symbol';";
+    echo  $query  = "UPDATE stocklistIntra SET ntype = 'N50' WHERE cSymbol = '$symbol';";
     $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
     echo "\n";

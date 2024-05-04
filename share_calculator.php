@@ -9,7 +9,7 @@ require_once './include/common.php';
 //Watchlist stocks in share calculator
     $type      =  "nifty";
     $field     =  array("id,sName,murl,curl,ntype,support_value,resistance_value,tickertape,id,qbuy,qvolume,qtotal,cSymbol,current_volume,stock_signal,order_type,stop_loss,target");
-    $table     =  "stocklistbackup";
+    $table     =  "stocklistIntra";
     $order     =  "sName";
     $condition =  "isWatch = 'yes' and priority = 2";
     $arugment  =  array( "field" => $field , "table" => $table, "condition" => $condition,"order" => $order);
@@ -31,7 +31,7 @@ require_once './include/common.php';
           if(empty($value['qbuy']) ) {
 
               $field = array("close");
-              $table = "stockvaluesbackup";
+              $table = "stockvaluesIntra";
               $order = "id desc limit 0,1";
               $condition = "sid = '$sid' ";
               $vrugment = array("field" => $field, "table" => $table, "condition" => $condition, "order" => $order);

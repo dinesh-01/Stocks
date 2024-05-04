@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `stockAmo`
+-- Table structure for table `stockAmoIntra`
 --
 
-CREATE TABLE `stockAmo` (
+CREATE TABLE `stockAmoIntra` (
   `id` int(11) NOT NULL,
   `order_id` varchar(100) NOT NULL,
   `symbol` varchar(100) NOT NULL,
@@ -39,10 +39,10 @@ CREATE TABLE `stockAmo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `stockAmo`
+-- Dumping data for table `stockAmoIntra`
 --
 
-INSERT INTO `stockAmo` (`id`, `order_id`, `symbol`, `price`, `quanity`, `stop_loss`, `target`, `created_date`) VALUES
+INSERT INTO `stockAmoIntra` (`id`, `order_id`, `symbol`, `price`, `quanity`, `stop_loss`, `target`, `created_date`) VALUES
 (23, '231115202892007', 'RHIM', '690.00', '179', NULL, '696.9', '15-11-2023'),
 (24, '231116203057827', 'BALAMINES', '2031.56', '59', NULL, '2051.9', '16-11-2023');
 
@@ -179,10 +179,10 @@ INSERT INTO `stockbeeslist` (`id`, `sName`, `cSymbol`, `industry`, `murl`, `mcur
 -- --------------------------------------------------------
 
 --
--- Table structure for table `stocklistbackup`
+-- Table structure for table `stocklistIntra`
 --
 
-CREATE TABLE `stocklistbackup` (
+CREATE TABLE `stocklistIntra` (
   `id` int(11) NOT NULL,
   `sName` varchar(100) DEFAULT NULL,
   `cSymbol` text,
@@ -213,10 +213,10 @@ CREATE TABLE `stocklistbackup` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `stocklistbackup`
+-- Dumping data for table `stocklistIntra`
 --
 
-INSERT INTO `stocklistbackup` (`id`, `sName`, `cSymbol`, `industry`, `murl`, `mcurl`, `curl`, `tickertape`, `priority`, `notes`, `cPattern`, `isWatch`, `sType`, `ntype`, `sEntry`, `qbuy`, `qvolume`, `current_volume`, `dtype`, `qtotal`, `dailyEntry`, `stock_signal`, `order_type`, `target`, `stop_loss`, `createdDate`, `createdBy`) VALUES
+INSERT INTO `stocklistIntra` (`id`, `sName`, `cSymbol`, `industry`, `murl`, `mcurl`, `curl`, `tickertape`, `priority`, `notes`, `cPattern`, `isWatch`, `sType`, `ntype`, `sEntry`, `qbuy`, `qvolume`, `current_volume`, `dtype`, `qtotal`, `dailyEntry`, `stock_signal`, `order_type`, `target`, `stop_loss`, `createdDate`, `createdBy`) VALUES
 (10, 'Adani Enterprises Ltd.', 'ADANIENT', 'Metals & Mining', 'https://www.google.com/search?q=ADANIENT+moneycontrol', 'https://www.moneycontrol.com/india/stockpricequote/trading/adanienterprises/AE13', 'https://chartink.com/stocks/ADANIENT.html', 'https://www.moneycontrol.com/india/stockpricequote/trading/adanienterprises/AE13', 2, NULL, NULL, 'no', 'nifty', 'N50', 'old', 0, 0, '6959428', 'stocks', 0, 'yes', '=> SELECT <=', 'LIMIT', '0', '0', '2022-12-10 10:24:52', NULL),
 (12, 'Adani Ports and Special Economic Zone Ltd.', 'ADANIPORTS', 'Services', 'https://www.google.com/search?q=ADANIPORTS+moneycontrol', 'https://www.moneycontrol.com/india/stockpricequote/infrastructure-general/adaniportsspecialeconomiczone/MPS', 'https://chartink.com/stocks/ADANIPORTS.html', 'https://groww.in/stocks/adani-ports-and-special-economic-zone-ltd', 1, NULL, NULL, 'no', 'nifty', 'N50', 'old', 0, 0, '12202462', 'stocks', 0, 'yes', '=> SELECT <=', 'LIMIT', '0', '0', '2022-12-10 10:24:52', NULL),
 (33, 'Apollo Hospitals Enterprise Ltd.', 'APOLLOHOSP', 'Healthcare', 'https://www.google.com/search?q=APOLLOHOSP+moneycontrol', 'https://www.moneycontrol.com/india/stockpricequote/hospitalsmedical-services/apollohospitalsenterprises/AHE', 'https://chartink.com/stocks/APOLLOHOSP.html', 'https://groww.in/stocks/apollo-hospitals-enterprise-ltd', 2, NULL, NULL, 'no', 'nifty', 'N50', 'old', 0, 0, '456382', 'stocks', 0, 'yes', '=> SELECT <=', 'LIMIT', '0', '0', '2022-12-10 10:24:53', NULL),
@@ -360,7 +360,7 @@ INSERT INTO `stocklistbackup` (`id`, `sName`, `cSymbol`, `industry`, `murl`, `mc
 (1081, 'BATAINDIA', 'BATAINDIA', '', '', 'https://www.google.com/search?q=BATAINDIA+moneycontrol', 'https://chartink.com/stocks/BATAINDIA.html', '', 2, NULL, NULL, 'no', 'nifty', 'N100', 'old', 0, 0, '253597', 'stocks', 0, 'yes', '=> SELECT <=', 'LIMIT', '0', '0', '2023-09-08 15:48:24', NULL),
 (1083, 'ZYDUSLIFE', 'ZYDUSLIFE', '', '', 'https://www.google.com/search?q=ZYDUSLIFE+moneycontrol', 'https://chartink.com/stocks/ZYDUSLIFE.html', '', 1, 'Long Bearish engulfing pattern plus long weck', NULL, 'yes', 'nifty', 'N100', 'old', 0, 0, '2333950', 'stocks', 0, 'yes', '=> SELECT <=', 'LIMIT', '0', '0', '2023-09-08 15:48:24', NULL),
 (1086, 'NAVINFLUOR', 'NAVINFLUOR', '', '', 'https://www.google.com/search?q=NAVINFLUOR+moneycontrol', 'https://chartink.com/stocks/NAVINFLUOR.html', '', 2, NULL, NULL, 'no', 'nifty', 'N100', 'old', 0, 0, '130517', 'stocks', 0, 'yes', '=> SELECT <=', 'LIMIT', '0', '0', '2023-09-08 15:48:24', NULL);
-INSERT INTO `stocklistbackup` (`id`, `sName`, `cSymbol`, `industry`, `murl`, `mcurl`, `curl`, `tickertape`, `priority`, `notes`, `cPattern`, `isWatch`, `sType`, `ntype`, `sEntry`, `qbuy`, `qvolume`, `current_volume`, `dtype`, `qtotal`, `dailyEntry`, `stock_signal`, `order_type`, `target`, `stop_loss`, `createdDate`, `createdBy`) VALUES
+INSERT INTO `stocklistIntra` (`id`, `sName`, `cSymbol`, `industry`, `murl`, `mcurl`, `curl`, `tickertape`, `priority`, `notes`, `cPattern`, `isWatch`, `sType`, `ntype`, `sEntry`, `qbuy`, `qvolume`, `current_volume`, `dtype`, `qtotal`, `dailyEntry`, `stock_signal`, `order_type`, `target`, `stop_loss`, `createdDate`, `createdBy`) VALUES
 (1087, 'SYNGENE', 'SYNGENE', '', '', 'https://www.google.com/search?q=SYNGENE+moneycontrol', 'https://chartink.com/stocks/SYNGENE.html', '', 2, '', NULL, 'yes', 'nifty', 'N100', 'old', 0, 0, '942614', 'stocks', 0, 'yes', '=> SELECT <=', 'LIMIT', '0', '0', '2023-09-08 15:48:24', NULL),
 (1090, 'SRF', 'SRF', '', '', 'https://www.google.com/search?q=SRF+moneycontrol', 'https://chartink.com/stocks/SRF.html', '', 1, NULL, NULL, 'no', 'nifty', 'N100', 'old', 0, 0, '316577', 'stocks', 0, 'yes', '=> SELECT <=', 'LIMIT', '0', '0', '2023-09-08 15:48:24', NULL),
 (1091, 'ABFRL', 'ABFRL', '', '', 'https://www.google.com/search?q=ABFRL+moneycontrol', 'https://chartink.com/stocks/ABFRL.html', '', 1, NULL, NULL, 'no', 'nifty', 'N100', 'old', 0, 0, '2051559', 'stocks', 0, 'yes', '=> SELECT <=', 'LIMIT', '0', '0', '2023-09-08 15:48:24', NULL),
@@ -406,10 +406,10 @@ INSERT INTO `stocklistbackup` (`id`, `sName`, `cSymbol`, `industry`, `murl`, `mc
 -- --------------------------------------------------------
 
 --
--- Table structure for table `stocklistbackupfutures`
+-- Table structure for table `stocklistIntrafutures`
 --
 
-CREATE TABLE `stocklistbackupfutures` (
+CREATE TABLE `stocklistIntrafutures` (
   `id` int(11) NOT NULL,
   `sName` varchar(100) DEFAULT NULL,
   `cSymbol` text,
@@ -423,10 +423,10 @@ CREATE TABLE `stocklistbackupfutures` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `stocklistbackupfutures`
+-- Dumping data for table `stocklistIntrafutures`
 --
 
-INSERT INTO `stocklistbackupfutures` (`id`, `sName`, `cSymbol`, `expiry`, `lot_size`, `isWatch`, `current_volume`, `dtype`, `createdDate`, `createdBy`) VALUES
+INSERT INTO `stocklistIntrafutures` (`id`, `sName`, `cSymbol`, `expiry`, `lot_size`, `isWatch`, `current_volume`, `dtype`, `createdDate`, `createdBy`) VALUES
 (1, 'NIFTY', 'NIFTY23DECFUT', '28/12/23', '50', 'yes', '1027150', 'futures', '2023-11-05 07:07:42', NULL),
 (2, 'NIFTY', 'NIFTY23NOVFUT', '30/11/23', '50', 'no', '3182500', 'futures', '2023-11-05 07:07:43', NULL),
 (4, 'BANKNIFTY', 'BANKNIFTY23DECFUT', '28/12/23', '15', 'yes', '376065', 'futures', '2023-11-05 07:07:45', NULL),
@@ -868,10 +868,10 @@ INSERT INTO `stockTrend` (`id`, `sid`, `stock_name`, `chart_ink`, `notes`, `tren
 -- --------------------------------------------------------
 
 --
--- Table structure for table `stockvaluesbackup`
+-- Table structure for table `stockvaluesIntra`
 --
 
-CREATE TABLE `stockvaluesbackup` (
+CREATE TABLE `stockvaluesIntra` (
   `id` int(11) NOT NULL,
   `sid` int(11) NOT NULL,
   `open` varchar(100) NOT NULL,
@@ -883,16 +883,16 @@ CREATE TABLE `stockvaluesbackup` (
   `schange` varchar(100) NOT NULL,
   `schangePercent` varchar(100) NOT NULL,
   `volume` varchar(100) NOT NULL,
-  `stockvaluesbackup` varchar(100) NOT NULL,
+  `stockvaluesIntra` varchar(100) NOT NULL,
   `addClear` int(11) NOT NULL,
   `createdDate` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `stockvaluesbackup`
+-- Dumping data for table `stockvaluesIntra`
 --
 
-INSERT INTO `stockvaluesbackup` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesbackup`, `addClear`, `createdDate`) VALUES
+INSERT INTO `stockvaluesIntra` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesIntra`, `addClear`, `createdDate`) VALUES
 (8626, 1395, '524.1', '549.9', '0', '522.8', '0', '548', '26.7', '0', '3970254', '0', 2, '16-11-2023'),
 (8627, 957, '310', '315.75', '0', '306', '0', '310.3', '-0.1', '0', '16593003', '0', 2, '16-11-2023'),
 (8628, 1396, '859.7', '898.65', '0', '848.5', '0', '891.2', '30.2', '0', '1234929', '0', 2, '16-11-2023'),
@@ -1372,7 +1372,7 @@ INSERT INTO `stockvaluesbackup` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, 
 (9102, 1673, '4169', '4172.6', '0', '4048.7', '0', '4070.55', '-81.3', '0', '203402', '0', 2, '16-11-2023'),
 (9103, 1674, '3179.7', '3298', '0', '3131', '0', '3272.8', '99.4', '0', '156570', '0', 2, '16-11-2023'),
 (9104, 1675, '406', '421.1', '0', '405', '0', '417.2', '12.2', '0', '1221767', '0', 2, '16-11-2023');
-INSERT INTO `stockvaluesbackup` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesbackup`, `addClear`, `createdDate`) VALUES
+INSERT INTO `stockvaluesIntra` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesIntra`, `addClear`, `createdDate`) VALUES
 (9105, 1676, '930', '936.4', '0', '910', '0', '912.7', '-19.3', '0', '24724', '0', 2, '16-11-2023'),
 (9106, 1677, '2301', '2346', '0', '2261.4', '0', '2326.25', '23.9', '0', '1882695', '0', 2, '16-11-2023'),
 (9107, 1678, '642.95', '644.85', '0', '634', '0', '636.35', '-3.3', '0', '54437', '0', 2, '16-11-2023'),
@@ -1852,7 +1852,7 @@ INSERT INTO `stockvaluesbackup` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, 
 (9581, 1657, '1052.95', '1055.95', '0', '1044.5', '0', '1048.45', '-5.3', '0', '149295', '0', 2, '17-11-2023'),
 (9582, 972, '142.85', '146.5', '0', '141.8', '0', '146.1', '3.5', '0', '13496261', '0', 2, '17-11-2023'),
 (9583, 1394, '731.7', '745.15', '0', '715.35', '0', '718.85', '-11.7', '0', '636458', '0', 2, '17-11-2023');
-INSERT INTO `stockvaluesbackup` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesbackup`, `addClear`, `createdDate`) VALUES
+INSERT INTO `stockvaluesIntra` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesIntra`, `addClear`, `createdDate`) VALUES
 (9584, 449, '1212.2', '1213.95', '0', '1198', '0', '1202.75', '-4.5', '0', '1176628', '0', 2, '17-11-2023'),
 (9585, 1658, '4581.25', '4680', '0', '4549.15', '0', '4595.1', '18.1', '0', '43873', '0', 2, '17-11-2023'),
 (9586, 1659, '16395', '16431.5', '0', '16215.05', '0', '16286', '-8.9', '0', '2256', '0', 2, '17-11-2023'),
@@ -2326,7 +2326,7 @@ INSERT INTO `stockvaluesbackup` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, 
 (10945, 138, '3830.1', '3854.4', '0', '3805', '0', '3833.8', '-10.4', '0', '286194', '0', 2, '22-11-2023'),
 (10946, 993, '3250', '3255', '0', '3196', '0', '3206.8', '-54.8', '0', '146531', '0', 2, '22-11-2023'),
 (10947, 1447, '287.45', '287.45', '0', '281.55', '0', '283.1', '-2.5', '0', '2518341', '0', 2, '22-11-2023');
-INSERT INTO `stockvaluesbackup` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesbackup`, `addClear`, `createdDate`) VALUES
+INSERT INTO `stockvaluesIntra` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesIntra`, `addClear`, `createdDate`) VALUES
 (10948, 983, '146.95', '147.2', '0', '145.2', '0', '145.45', '-1.3', '0', '7738354', '0', 2, '22-11-2023'),
 (10949, 988, '125.05', '125.45', '0', '122.9', '0', '123.8', '-1.2', '0', '7738964', '0', 2, '22-11-2023'),
 (10950, 1609, '777.6', '790.85', '0', '773.5', '0', '776.25', '-1.4', '0', '1072580', '0', 2, '22-11-2023'),
@@ -2800,7 +2800,7 @@ INSERT INTO `stockvaluesbackup` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, 
 (11786, 1087, '736', '759.5', '0', '735.15', '0', '745.55', '9.8', '0', '1347234', '0', 2, '24-11-2023'),
 (11787, 1052, '967', '968.9', '0', '958', '0', '960.6', '-5.0', '0', '410255', '0', 2, '24-11-2023'),
 (11788, 1064, '1722.95', '1769.3', '0', '1715.1', '0', '1723.75', '6.2', '0', '2258443', '0', 2, '24-11-2023');
-INSERT INTO `stockvaluesbackup` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesbackup`, `addClear`, `createdDate`) VALUES
+INSERT INTO `stockvaluesIntra` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesIntra`, `addClear`, `createdDate`) VALUES
 (11789, 440, '934.7', '936.85', '0', '924', '0', '926.9', '-6.1', '0', '521207', '0', 2, '24-11-2023'),
 (11790, 444, '681.4', '681.95', '0', '671.25', '0', '673.7', '-6.3', '0', '6951690', '0', 2, '24-11-2023'),
 (11791, 975, '261.4', '261.9', '0', '257.05', '0', '258.15', '-2.6', '0', '7153583', '0', 2, '24-11-2023'),
@@ -3273,7 +3273,7 @@ INSERT INTO `stockvaluesbackup` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, 
 (13178, 209, '938.95', '940.85', '0', '928.2', '0', '934.95', '-4.6', '0', '23950292', '0', 2, '30-11-2023'),
 (13179, 1051, '1436.25', '1490', '0', '1436.25', '0', '1480', '39.4', '0', '1003720', '0', 2, '30-11-2023'),
 (13180, 984, '553.95', '569.4', '0', '552.55', '0', '562.6', '10.9', '0', '3217338', '0', 2, '30-11-2023');
-INSERT INTO `stockvaluesbackup` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesbackup`, `addClear`, `createdDate`) VALUES
+INSERT INTO `stockvaluesIntra` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesIntra`, `addClear`, `createdDate`) VALUES
 (13181, 1048, '13.2', '13.4', '0', '12.95', '0', '13.05', '-0.1', '0', '617533424', '0', 2, '30-11-2023'),
 (13182, 1516, '118.3', '118.9', '0', '117.3', '0', '118.45', '0.6', '0', '6388823', '0', 2, '30-11-2023'),
 (13183, 1079, '84.7', '86', '0', '84.1', '0', '85.2', '0.3', '0', '66683981', '0', 2, '30-11-2023'),
@@ -3757,7 +3757,7 @@ INSERT INTO `stockvaluesbackup` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, 
 (15579, 1023, '1999', '2003.3', '0', '1952.75', '0', '1971', '-20.0', '0', '397445', '0', 2, '05-12-2023'),
 (15580, 1464, '6753.95', '6845.05', '0', '6726.05', '0', '6781.35', '34.3', '0', '98480', '0', 2, '05-12-2023'),
 (15581, 992, '756', '767', '0', '744.2', '0', '760.95', '7.2', '0', '2286148', '0', 2, '05-12-2023');
-INSERT INTO `stockvaluesbackup` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesbackup`, `addClear`, `createdDate`) VALUES
+INSERT INTO `stockvaluesIntra` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesIntra`, `addClear`, `createdDate`) VALUES
 (15582, 1071, '1047.8', '1047.8', '0', '1012.75', '0', '1025.95', '-16.7', '0', '1328945', '0', 2, '05-12-2023'),
 (15583, 46, '1136.8', '1151.85', '0', '1127.15', '0', '1132.45', '6.9', '0', '15804808', '0', 2, '05-12-2023'),
 (15584, 49, '6194.05', '6194.05', '0', '6111.1', '0', '6140.1', '-61.6', '0', '565826', '0', 2, '05-12-2023'),
@@ -4228,7 +4228,7 @@ INSERT INTO `stockvaluesbackup` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, 
 (17705, 1027, '273.35', '278', '0', '270.9', '0', '274.15', '1.5', '0', '4582260', '0', 2, '07-12-2023'),
 (17706, 1559, '164.95', '167.5', '0', '162.5', '0', '166.25', '1.9', '0', '5751208', '0', 2, '07-12-2023'),
 (17707, 1022, '539.35', '539.5', '0', '526.5', '0', '533.55', '-6.0', '0', '2892095', '0', 2, '07-12-2023');
-INSERT INTO `stockvaluesbackup` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesbackup`, `addClear`, `createdDate`) VALUES
+INSERT INTO `stockvaluesIntra` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesIntra`, `addClear`, `createdDate`) VALUES
 (17708, 302, '10790', '10932.85', '0', '10635', '0', '10696.65', '70.9', '0', '704413', '0', 2, '07-12-2023'),
 (17709, 1028, '1061.95', '1073.7', '0', '1057.5', '0', '1066.05', '4.1', '0', '832078', '0', 2, '07-12-2023'),
 (17710, 1690, '3185', '3325', '0', '3165', '0', '3310.7', '137.2', '0', '1678152', '0', 2, '07-12-2023'),
@@ -4482,10 +4482,10 @@ INSERT INTO `stockvaluesbackup` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `stockvaluesbackupfutures`
+-- Table structure for table `stockvaluesIntrafutures`
 --
 
-CREATE TABLE `stockvaluesbackupfutures` (
+CREATE TABLE `stockvaluesIntrafutures` (
   `id` int(11) NOT NULL,
   `sid` int(11) NOT NULL,
   `open` varchar(100) NOT NULL,
@@ -4497,16 +4497,16 @@ CREATE TABLE `stockvaluesbackupfutures` (
   `schange` varchar(100) NOT NULL,
   `schangePercent` varchar(100) NOT NULL,
   `volume` varchar(100) NOT NULL,
-  `stockvaluesbackup` varchar(100) NOT NULL,
+  `stockvaluesIntra` varchar(100) NOT NULL,
   `addClear` int(11) NOT NULL,
   `createdDate` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `stockvaluesbackupfutures`
+-- Dumping data for table `stockvaluesIntrafutures`
 --
 
-INSERT INTO `stockvaluesbackupfutures` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesbackup`, `addClear`, `createdDate`) VALUES
+INSERT INTO `stockvaluesIntrafutures` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesIntra`, `addClear`, `createdDate`) VALUES
 (1, 1, '19443.95', '19465.9', '0', '19390.6', '0', '19401', '58.8', '0', '0', '0', 1, '05-11-2023'),
 (2, 2, '19340', '19413.4', '0', '19280', '0', '19296', '57.2', '0', '0', '0', 1, '05-11-2023'),
 (3, 3, '19536.95', '19562', '0', '19490.05', '0', '19507', '63.5', '0', '0', '0', 1, '05-11-2023'),
@@ -5027,7 +5027,7 @@ INSERT INTO `stockvaluesbackupfutures` (`id`, `sid`, `open`, `high`, `allHigh`, 
 (518, 518, '249.5', '250', '0', '248.8', '0', '248.8', '-0.2', '0', '0', '0', 1, '05-11-2023'),
 (519, 519, '120', '120', '0', '118.5', '0', '118.6', '-1.2', '0', '0', '0', 1, '05-11-2023'),
 (520, 520, '119.5', '119.5', '0', '117.8', '0', '117.95', '-1.1', '0', '0', '0', 1, '05-11-2023');
-INSERT INTO `stockvaluesbackupfutures` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesbackup`, `addClear`, `createdDate`) VALUES
+INSERT INTO `stockvaluesIntrafutures` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesIntra`, `addClear`, `createdDate`) VALUES
 (521, 521, '119.95', '120.25', '0', '119.1', '0', '119.1', '-1.2', '0', '0', '0', 1, '05-11-2023'),
 (522, 522, '3419.7', '3420.65', '0', '3387', '0', '3388.6', '-13.1', '0', '0', '0', 1, '05-11-2023'),
 (523, 523, '3390', '3402.7', '0', '3366.7', '0', '3372.25', '-10.3', '0', '0', '0', 1, '05-11-2023'),
@@ -5517,7 +5517,7 @@ INSERT INTO `stockvaluesbackupfutures` (`id`, `sid`, `open`, `high`, `allHigh`, 
 (1007, 101, '130.65', '131.3', '0', '128.65', '0', '129.5', '-1.3', '0', '28245000', '0', 1, '07-11-2023'),
 (1008, 103, '227.85', '228.15', '0', '226.1', '0', '227.9', '0.3', '0', '247500', '0', 1, '07-11-2023'),
 (1009, 104, '226', '226.85', '0', '224.6', '0', '226.15', '0.1', '0', '3920000', '0', 1, '07-11-2023');
-INSERT INTO `stockvaluesbackupfutures` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesbackup`, `addClear`, `createdDate`) VALUES
+INSERT INTO `stockvaluesIntrafutures` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesIntra`, `addClear`, `createdDate`) VALUES
 (1010, 106, '19662.5', '19809.95', '0', '19600', '0', '19773.05', '191.0', '0', '2600', '0', 1, '07-11-2023'),
 (1011, 107, '19604.3', '19800', '0', '19565', '0', '19718.1', '87.4', '0', '52150', '0', 1, '07-11-2023'),
 (1012, 109, '370.55', '377', '0', '369', '0', '376.5', '6.8', '0', '313200', '0', 1, '07-11-2023'),
@@ -5999,7 +5999,7 @@ INSERT INTO `stockvaluesbackupfutures` (`id`, `sid`, `open`, `high`, `allHigh`, 
 (1488, 258, '952.4', '953.6', '0', '944.75', '0', '945.5', '-10.9', '0', '1425200', '0', 1, '08-11-2023'),
 (1489, 259, '950.4', '950.9', '0', '939', '0', '939.3', '-11.1', '0', '19666500', '0', 1, '08-11-2023'),
 (1490, 261, '1378.5', '1379.9', '0', '1377.7', '0', '1379.9', '-8.3', '0', '3000', '0', 1, '08-11-2023');
-INSERT INTO `stockvaluesbackupfutures` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesbackup`, `addClear`, `createdDate`) VALUES
+INSERT INTO `stockvaluesIntrafutures` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesIntra`, `addClear`, `createdDate`) VALUES
 (1491, 262, '1391.95', '1391.95', '0', '1363.6', '0', '1372.85', '-9.9', '0', '487000', '0', 1, '08-11-2023'),
 (1492, 264, '541.55', '542', '0', '532.5', '0', '535.7', '-7.0', '0', '103500', '0', 1, '08-11-2023'),
 (1493, 265, '540.7', '542', '0', '528.8', '0', '532.2', '-7.3', '0', '2428500', '0', 1, '08-11-2023'),
@@ -6482,7 +6482,7 @@ INSERT INTO `stockvaluesbackupfutures` (`id`, `sid`, `open`, `high`, `allHigh`, 
 (2505, 417, '1249.4', '1274', '0', '1240', '0', '1270.3', '41.1', '0', '127400', '0', 1, '09-11-2023'),
 (2506, 418, '1229', '1270.4', '0', '1229', '0', '1262.25', '37.1', '0', '2209900', '0', 1, '09-11-2023'),
 (2507, 420, '4100', '4109.7', '0', '4092', '0', '4109.7', '-5.1', '0', '800', '0', 1, '09-11-2023');
-INSERT INTO `stockvaluesbackupfutures` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesbackup`, `addClear`, `createdDate`) VALUES
+INSERT INTO `stockvaluesIntrafutures` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesIntra`, `addClear`, `createdDate`) VALUES
 (2508, 421, '4114.15', '4114.15', '0', '4056', '0', '4077.75', '-16.1', '0', '66800', '0', 1, '09-11-2023'),
 (2509, 423, '196.7', '196.7', '0', '193.8', '0', '194.15', '-1.8', '0', '381150', '0', 1, '09-11-2023'),
 (2510, 424, '195.55', '195.8', '0', '192.45', '0', '193', '-1.8', '0', '9451750', '0', 1, '09-11-2023'),
@@ -6965,7 +6965,7 @@ INSERT INTO `stockvaluesbackupfutures` (`id`, `sid`, `open`, `high`, `allHigh`, 
 (4117, 13, '23998.6', '23998.6', '0', '23282.4', '0', '23313.7', '-599.4', '0', '1080', '0', 1, '13-11-2023'),
 (4118, 14, '23905.25', '23906.05', '0', '23104.35', '0', '23130', '-769.2', '0', '43480', '0', 1, '13-11-2023'),
 (4119, 16, '176.85', '180.1', '0', '176.7', '0', '180', '2.5', '0', '561600', '0', 1, '13-11-2023');
-INSERT INTO `stockvaluesbackupfutures` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesbackup`, `addClear`, `createdDate`) VALUES
+INSERT INTO `stockvaluesIntrafutures` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesIntra`, `addClear`, `createdDate`) VALUES
 (4120, 17, '175.9', '179.05', '0', '175.3', '0', '178.55', '2.2', '0', '9250200', '0', 1, '13-11-2023'),
 (4121, 19, '216.5', '219.15', '0', '211.5', '0', '214.25', '-2.2', '0', '2176200', '0', 1, '13-11-2023'),
 (4122, 20, '217.3', '220.45', '0', '212.55', '0', '215.5', '-2.1', '0', '13343200', '0', 1, '13-11-2023'),
@@ -7447,7 +7447,7 @@ INSERT INTO `stockvaluesbackupfutures` (`id`, `sid`, `open`, `high`, `allHigh`, 
 (4598, 170, '3515.65', '3550.95', '0', '3513.3', '0', '3537.55', '24.0', '0', '452000', '0', 1, '15-11-2023'),
 (4599, 172, '5307.65', '5398', '0', '5287.6', '0', '5308', '35.8', '0', '59000', '0', 1, '15-11-2023'),
 (4600, 173, '5292.85', '5372.95', '0', '5257', '0', '5281.55', '38.7', '0', '478800', '0', 1, '15-11-2023');
-INSERT INTO `stockvaluesbackupfutures` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesbackup`, `addClear`, `createdDate`) VALUES
+INSERT INTO `stockvaluesIntrafutures` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesIntra`, `addClear`, `createdDate`) VALUES
 (4601, 175, '617', '629.45', '0', '616.1', '0', '627.9', '15.2', '0', '892650', '0', 1, '15-11-2023'),
 (4602, 176, '614.35', '626.4', '0', '612.8', '0', '624.65', '15.4', '0', '14924250', '0', 1, '15-11-2023'),
 (4603, 178, '5452.2', '5495.6', '0', '5452.2', '0', '5470.05', '10.7', '0', '46750', '0', 1, '15-11-2023'),
@@ -7929,7 +7929,7 @@ INSERT INTO `stockvaluesbackupfutures` (`id`, `sid`, `open`, `high`, `allHigh`, 
 (5079, 327, '1785', '1795', '0', '1771.1', '0', '1783.5', '0.2', '0', '262000', '0', 2, '16-11-2023'),
 (5080, 328, '1761.55', '1784.8', '0', '1761.55', '0', '1772', '-0.4', '0', '3342800', '0', 2, '16-11-2023'),
 (5081, 330, '', '', '0', '', '0', '', '0.0', '0', '', '0', 2, '16-11-2023');
-INSERT INTO `stockvaluesbackupfutures` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesbackup`, `addClear`, `createdDate`) VALUES
+INSERT INTO `stockvaluesIntrafutures` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesIntra`, `addClear`, `createdDate`) VALUES
 (5082, 331, '', '', '0', '', '0', '', '0.0', '0', '', '0', 2, '16-11-2023'),
 (5083, 333, '2633.2', '2708.45', '0', '2631.15', '0', '2687', '53.8', '0', '47700', '0', 2, '16-11-2023'),
 (5084, 334, '2659.75', '2709.7', '0', '2637.85', '0', '2697.3', '59.4', '0', '830100', '0', 2, '16-11-2023'),
@@ -8410,7 +8410,7 @@ INSERT INTO `stockvaluesbackupfutures` (`id`, `sid`, `open`, `high`, `allHigh`, 
 (5559, 483, '26490.8', '26660', '0', '26350', '0', '26365.85', '12.2', '0', '700', '0', 2, '17-11-2023'),
 (5560, 484, '26100', '26590.7', '0', '26083', '0', '26247', '-36.0', '0', '32950', '0', 2, '17-11-2023'),
 (5561, 486, '2038.2', '2038.2', '0', '2000.45', '0', '2012.85', '-35.8', '0', '166200', '0', 2, '17-11-2023');
-INSERT INTO `stockvaluesbackupfutures` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesbackup`, `addClear`, `createdDate`) VALUES
+INSERT INTO `stockvaluesIntrafutures` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesIntra`, `addClear`, `createdDate`) VALUES
 (5562, 487, '2018.95', '2019.8', '0', '1987.2', '0', '2000.55', '-36.8', '0', '1505100', '0', 2, '17-11-2023'),
 (5563, 489, '3535', '3615.2', '0', '3535', '0', '3607.65', '48.8', '0', '221100', '0', 2, '17-11-2023'),
 (5564, 490, '3512.65', '3594', '0', '3506.95', '0', '3580.6', '47.0', '0', '890450', '0', 2, '17-11-2023'),
@@ -8889,7 +8889,7 @@ INSERT INTO `stockvaluesbackupfutures` (`id`, `sid`, `open`, `high`, `allHigh`, 
 (7165, 73, '2522.05', '2522.05', '0', '2482.15', '0', '2482.15', '-27.3', '0', '128700', '0', 2, '21-11-2023'),
 (7166, 74, '2514.85', '2515', '0', '2472.7', '0', '2479.7', '-22.4', '0', '716400', '0', 2, '21-11-2023'),
 (7167, 76, '449.95', '456.25', '0', '447.5', '0', '453.25', '4.7', '0', '1400000', '0', 2, '21-11-2023');
-INSERT INTO `stockvaluesbackupfutures` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesbackup`, `addClear`, `createdDate`) VALUES
+INSERT INTO `stockvaluesIntrafutures` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesIntra`, `addClear`, `createdDate`) VALUES
 (7168, 77, '447', '453.1', '0', '444.25', '0', '450.85', '5.3', '0', '4212800', '0', 2, '21-11-2023'),
 (7169, 79, '216.95', '217.2', '0', '215.1', '0', '215.7', '-0.3', '0', '3122500', '0', 2, '21-11-2023'),
 (7170, 80, '216.05', '216.05', '0', '213.6', '0', '214.4', '-0.1', '0', '7705000', '0', 2, '21-11-2023'),
@@ -9369,7 +9369,7 @@ INSERT INTO `stockvaluesbackupfutures` (`id`, `sid`, `open`, `high`, `allHigh`, 
 (8020, 227, '1308', '1310.55', '0', '1299', '0', '1308', '4.8', '0', '1205000', '0', 2, '22-11-2023'),
 (8021, 229, '1337.4', '1344', '0', '1332.35', '0', '1343', '6.5', '0', '337400', '0', 2, '22-11-2023'),
 (8022, 230, '1330', '1336.35', '0', '1324.4', '0', '1333.65', '5.3', '0', '2380700', '0', 2, '22-11-2023');
-INSERT INTO `stockvaluesbackupfutures` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesbackup`, `addClear`, `createdDate`) VALUES
+INSERT INTO `stockvaluesIntrafutures` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesIntra`, `addClear`, `createdDate`) VALUES
 (8023, 232, '2858.75', '2890.2', '0', '2823', '0', '2844', '-29.2', '0', '164700', '0', 2, '22-11-2023'),
 (8024, 233, '2874.3', '2907.05', '0', '2843.1', '0', '2860', '-28.7', '0', '689100', '0', 2, '22-11-2023'),
 (8025, 235, '1530.95', '1530.95', '0', '1515.2', '0', '1527.5', '-2.5', '0', '22044550', '0', 2, '22-11-2023'),
@@ -9848,7 +9848,7 @@ INSERT INTO `stockvaluesbackupfutures` (`id`, `sid`, `open`, `high`, `allHigh`, 
 (8874, 379, '977.1', '985', '0', '971.15', '0', '977.9', '3.5', '0', '816000', '0', 2, '23-11-2023'),
 (8875, 381, '1032.15', '1035.05', '0', '1025', '0', '1032.25', '0.0', '0', '231200', '0', 2, '23-11-2023'),
 (8876, 382, '1025.6', '1029.65', '0', '1018.05', '0', '1029', '3.0', '0', '521600', '0', 2, '23-11-2023');
-INSERT INTO `stockvaluesbackupfutures` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesbackup`, `addClear`, `createdDate`) VALUES
+INSERT INTO `stockvaluesIntrafutures` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesIntra`, `addClear`, `createdDate`) VALUES
 (8877, 384, '9501', '9514.8', '0', '9483.6', '0', '9501.8', '20.3', '0', '259875', '0', 2, '23-11-2023'),
 (8878, 385, '9509.95', '9530.45', '0', '9497.1', '0', '9513.85', '14.2', '0', '433125', '0', 2, '23-11-2023'),
 (8879, 387, '88.4', '89.25', '0', '88.4', '0', '88.95', '0.4', '0', '5545100', '0', 2, '23-11-2023'),
@@ -10323,7 +10323,7 @@ INSERT INTO `stockvaluesbackupfutures` (`id`, `sid`, `open`, `high`, `allHigh`, 
 (9724, 526, '1213.05', '1214.45', '0', '1197.65', '0', '1198.05', '-13.2', '0', '2654400', '0', 2, '24-11-2023'),
 (9725, 528, '3435.55', '3439.75', '0', '3411', '0', '3422.95', '-14.4', '0', '670500', '0', 2, '24-11-2023'),
 (9726, 529, '3410.7', '3417.5', '0', '3389.7', '0', '3403.4', '-12.7', '0', '1102125', '0', 2, '24-11-2023');
-INSERT INTO `stockvaluesbackupfutures` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesbackup`, `addClear`, `createdDate`) VALUES
+INSERT INTO `stockvaluesIntrafutures` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesIntra`, `addClear`, `createdDate`) VALUES
 (9727, 531, '2114.05', '2142', '0', '2101.55', '0', '2101.55', '-16.5', '0', '357500', '0', 2, '24-11-2023'),
 (9728, 532, '2104.65', '2135.45', '0', '2090.15', '0', '2094.95', '-12.9', '0', '626000', '0', 2, '24-11-2023'),
 (9729, 534, '2680.35', '2690', '0', '2657.7', '0', '2668.85', '-8.3', '0', '637600', '0', 2, '24-11-2023'),
@@ -10352,9 +10352,9 @@ INSERT INTO `stockvaluesbackupfutures` (`id`, `sid`, `open`, `high`, `allHigh`, 
 --
 
 --
--- Indexes for table `stockAmo`
+-- Indexes for table `stockAmoIntra`
 --
-ALTER TABLE `stockAmo`
+ALTER TABLE `stockAmoIntra`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -10364,15 +10364,15 @@ ALTER TABLE `stockbeeslist`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `stocklistbackup`
+-- Indexes for table `stocklistIntra`
 --
-ALTER TABLE `stocklistbackup`
+ALTER TABLE `stocklistIntra`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `stocklistbackupfutures`
+-- Indexes for table `stocklistIntrafutures`
 --
-ALTER TABLE `stocklistbackupfutures`
+ALTER TABLE `stocklistIntrafutures`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -10382,15 +10382,15 @@ ALTER TABLE `stockTrend`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `stockvaluesbackup`
+-- Indexes for table `stockvaluesIntra`
 --
-ALTER TABLE `stockvaluesbackup`
+ALTER TABLE `stockvaluesIntra`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `stockvaluesbackupfutures`
+-- Indexes for table `stockvaluesIntrafutures`
 --
-ALTER TABLE `stockvaluesbackupfutures`
+ALTER TABLE `stockvaluesIntrafutures`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -10398,9 +10398,9 @@ ALTER TABLE `stockvaluesbackupfutures`
 --
 
 --
--- AUTO_INCREMENT for table `stockAmo`
+-- AUTO_INCREMENT for table `stockAmoIntra`
 --
-ALTER TABLE `stockAmo`
+ALTER TABLE `stockAmoIntra`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
@@ -10410,15 +10410,15 @@ ALTER TABLE `stockbeeslist`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 
 --
--- AUTO_INCREMENT for table `stocklistbackup`
+-- AUTO_INCREMENT for table `stocklistIntra`
 --
-ALTER TABLE `stocklistbackup`
+ALTER TABLE `stocklistIntra`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1691;
 
 --
--- AUTO_INCREMENT for table `stocklistbackupfutures`
+-- AUTO_INCREMENT for table `stocklistIntrafutures`
 --
-ALTER TABLE `stocklistbackupfutures`
+ALTER TABLE `stocklistIntrafutures`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=563;
 
 --
@@ -10428,15 +10428,15 @@ ALTER TABLE `stockTrend`
   MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
--- AUTO_INCREMENT for table `stockvaluesbackup`
+-- AUTO_INCREMENT for table `stockvaluesIntra`
 --
-ALTER TABLE `stockvaluesbackup`
+ALTER TABLE `stockvaluesIntra`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18877;
 
 --
--- AUTO_INCREMENT for table `stockvaluesbackupfutures`
+-- AUTO_INCREMENT for table `stockvaluesIntrafutures`
 --
-ALTER TABLE `stockvaluesbackupfutures`
+ALTER TABLE `stockvaluesIntrafutures`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9749;
 COMMIT;
 

@@ -52,8 +52,8 @@ Company name :- <input type="text" id="cname" onkeyup="search_company()">
             <input type="hidden" id="sname" value="{$value.sName}"/> 
             <input type="hidden" id="sid" value="{$value.id}"/> 
         </td>
-        <td><a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'}" target="_blank">Stock Layout</a></td>
-        <td><a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'}1%21"  target="_blank">Future Layout</a></td>
+        <td><a href="https://in.tradingview.com/chart/AINnrOTv/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'}" target="_blank">Stock Layout</a></td>
+        <td><a href="https://in.tradingview.com/chart/AINnrOTv/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'}1%21"  target="_blank">Future Layout</a></td>
         <td>{$value.currOpen}</td>
         <td>{$value.currClose}</td>
         <td>{$value.currHigh}</td>

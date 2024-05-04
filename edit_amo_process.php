@@ -13,7 +13,7 @@ $date = date('d-m-Y');
 
 
 $field = array('price' => $price,'quanity' => $quanity);
-$table = "stockAmo";
+$table = "stockAmoIntra";
 $condition = "id = $id";
 $arugment  =  array( "field" => $field , "table" => $table, "condition" => $condition);
 update($arugment);

@@ -16,13 +16,13 @@ $client = new GuzzleHttp\Client([
 $date = date('d-m-Y');
 
   #reseting the order_status
-  $query = "UPDATE stocklistbackup SET `order_status`='0' ";
+  $query = "UPDATE stocklistIntra SET `order_status`='0' ";
   $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
-  $delete_query = "DELETE FROM stockvaluesbackup WHERE `createdDate` = '$date'";
+  $delete_query = "DELETE FROM stockvaluesIntra WHERE `createdDate` = '$date'";
   $delete_result = mysqli_query($GLOBALS['mysqlConnect'],$delete_query);
 
-  $query  = "Select cSymbol from stocklistbackup";
+  $query  = "Select cSymbol from stocklistIntra";
   $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
   $row    = mysqli_fetch_all($result);
   $i = 1;
@@ -75,16 +75,16 @@ $date = date('d-m-Y');
             $chng = number_format($chng, 1);
 
 
-            $query = "Select id from stocklistbackup where cSymbol = '$api_symbol' ";
+            $query = "Select id from stocklistIntra where cSymbol = '$api_symbol' ";
             $result = mysqli_query($GLOBALS['mysqlConnect'], $query);
             $id = $result->fetch_all(MYSQLI_ASSOC);
             $sid = $id[0]['id'];
 
-            $query = "INSERT INTO stockvaluesbackup(sid, open, high, allHigh, low, allLow, close, schange, schangePercent, volume, stockvaluesbackup, addClear, createdDate)
+            $query = "INSERT INTO stockvaluesIntra(sid, open, high, allHigh, low, allLow, close, schange, schangePercent, volume, stockvaluesIntra, addClear, createdDate)
     VALUES ('$sid','$open','$high','$allhigh','$low','$alllow','$close','$chng','$chng_percentage','$volume','$value',1,'$date')";
             $result = mysqli_query($GLOBALS['mysqlConnect'], $query);
 
-            $query = "UPDATE stocklistbackup SET dailyEntry='yes',current_volume='$volume',qbuy='$chng' WHERE id = '$sid'";
+            $query = "UPDATE stocklistIntra SET dailyEntry='yes',current_volume='$volume',qbuy='$chng' WHERE id = '$sid'";
             $result = mysqli_query($GLOBALS['mysqlConnect'], $query);
 
 

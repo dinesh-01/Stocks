@@ -17,10 +17,10 @@ $date = date('d-m-Y');
 
 
   #reseting the order_status
-  $query = "UPDATE stocklistbackup SET `order_status`='0' ";
+  $query = "UPDATE stocklistIntra SET `order_status`='0' ";
   $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
-  $delete_query = "DELETE FROM stockvaluesbackup WHERE `createdDate` = '$date'";
+  $delete_query = "DELETE FROM stockvaluesIntra WHERE `createdDate` = '$date'";
   $delete_result = mysqli_query($GLOBALS['mysqlConnect'],$delete_query);
 
 
@@ -37,7 +37,7 @@ $date = date('d-m-Y');
 
      $two_range = explode(",", $range);
 
-     $query = "Select cSymbol from stocklistbackup where id > $two_range[0] and id < $two_range[1]";
+     $query = "Select cSymbol from stocklistIntra where id > $two_range[0] and id < $two_range[1]";
      $result = mysqli_query($GLOBALS['mysqlConnect'], $query);
      $row = mysqli_fetch_all($result);
 
@@ -99,16 +99,16 @@ $date = date('d-m-Y');
          $chng = number_format($chng, 1);
 
 
-         $query = "Select id from stocklistbackup where cSymbol = '$api_symbol' ";
+         $query = "Select id from stocklistIntra where cSymbol = '$api_symbol' ";
          $result = mysqli_query($GLOBALS['mysqlConnect'], $query);
          $id = $result->fetch_all(MYSQLI_ASSOC);
          $sid = $id[0]['id'];
 
-         $query = "INSERT INTO stockvaluesbackup(sid, open, high, allHigh, low, allLow, close, schange, schangePercent, volume, stockValues, addClear, createdDate)
+       echo  $query = "INSERT INTO stockvaluesIntra(sid, open, high, allHigh, low, allLow, close, schange, schangePercent, volume, stockValues, addClear, createdDate)
      VALUES ('$sid','$open','$high','$allhigh','$low','$alllow','$close','$chng','$chng_percentage','$volume','$value',1,'$date')";
          $result = mysqli_query($GLOBALS['mysqlConnect'], $query);
 
-         $query = "UPDATE stocklistbackup SET dailyEntry='yes',current_volume='$volume',qbuy='$chng' WHERE id = '$sid'";
+         $query = "UPDATE stocklistIntra SET dailyEntry='yes',current_volume='$volume',qbuy='$chng' WHERE id = '$sid'";
          $result = mysqli_query($GLOBALS['mysqlConnect'], $query);
 
 
@@ -120,11 +120,10 @@ $date = date('d-m-Y');
      }
 
 
-     sleep(2);
  }
 
 
-//$delete_query = "DELETE FROM stockvaluesbackup WHERE `volume` = ''";
+//$delete_query = "DELETE FROM stockvaluesIntra WHERE `volume` = ''";
 //$delete_result = mysqli_query($GLOBALS['mysqlConnect'],$delete_query);
 
 

@@ -2,13 +2,13 @@
 
 function watch_list_query($type,$priority=1) {
 
-	 $query = "Select stocklistbackup.id as id,stocklistbackup.ntype as ntype,stocklistbackup.notes as notes,stocklistbackup.cSymbol as cSymbol,stocklistbackup.support_value as support_value,stocklistbackup.resistance_value as resistance_value,
-               stocklistbackup.sName as sName,stocklistbackup.murl as murl,stocklistbackup.grow as grow,stocklistbackup.order_status as order_status,stocklistbackup.curl as curl,stocklistbackup.tickertape as ttape,
-               stocklistbackup.priority as priority,stockvaluesbackup.open as currOpen,stockvaluesbackup.high as currHigh,
-               stockvaluesbackup.low as currLow,stockvaluesbackup.close as currClose,stockvaluesbackup.schange as pChange,
-               stockvaluesbackup.volume as volume From stocklistbackup INNER JOIN  stockvaluesbackup 
-               WHERE stocklistbackup.id = stockvaluesbackup.sid AND stocklistbackup.isWatch = 'yes' AND stocklistbackup.priority = '$priority'  AND stocklistbackup.sType = '$type' AND stockvaluesbackup.id = (SELECT MAX(id) from stockvaluesbackup 
-               where sid = stocklistbackup.id) order by stocklistbackup.sName asc";
+	 $query = "Select stocklistIntra.id as id,stocklistIntra.ntype as ntype,stocklistIntra.notes as notes,stocklistIntra.cSymbol as cSymbol,stocklistIntra.support_value as support_value,stocklistIntra.resistance_value as resistance_value,
+               stocklistIntra.sName as sName,stocklistIntra.murl as murl,stocklistIntra.grow as grow,stocklistIntra.order_status as order_status,stocklistIntra.curl as curl,stocklistIntra.tickertape as ttape,
+               stocklistIntra.priority as priority,stockvaluesIntra.open as currOpen,stockvaluesIntra.high as currHigh,
+               stockvaluesIntra.low as currLow,stockvaluesIntra.close as currClose,stockvaluesIntra.schange as pChange,
+               stockvaluesIntra.volume as volume From stocklistIntra INNER JOIN  stockvaluesIntra 
+               WHERE stocklistIntra.id = stockvaluesIntra.sid AND stocklistIntra.isWatch = 'yes' AND stocklistIntra.priority = '$priority'  AND stocklistIntra.sType = '$type' AND stockvaluesIntra.id = (SELECT MAX(id) from stockvaluesIntra 
+               where sid = stocklistIntra.id) order by stocklistIntra.sName asc";
 
 	$result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
@@ -25,18 +25,18 @@ function company_list_query($type) {
 
 
     if($type == "nifty") {
-       $catagory = "stocklistbackup.sType = '$type'";
+       $catagory = "stocklistIntra.sType = '$type'";
     }
 
     if($type == "N50") {
-        $catagory = "stocklistbackup.ntype = '$type'";
+        $catagory = "stocklistIntra.ntype = '$type'";
     }
 
-    $query = "Select stocklistbackup.id as id,stocklistbackup.ntype as ntype,stocklistbackup.cSymbol as cSymbol,stocklistbackup.notes as notes,stocklistbackup.sName as sName,
-               stocklistbackup.murl as murl,stocklistbackup.curl as curl,stockvaluesbackup.open as currOpen,
-               stockvaluesbackup.high as currHigh,stockvaluesbackup.low as currLow,stockvaluesbackup.close as currClose,
-               stockvaluesbackup.schange as pChange,stockvaluesbackup.volume as volume From stocklistbackup 
-               INNER JOIN  stockvaluesbackup WHERE stocklistbackup.id = stockvaluesbackup.sid AND $catagory  AND stocklistbackup.isWatch = 'no' order by stockvaluesbackup.id DESC LIMIT 0,50";
+    $query = "Select stocklistIntra.id as id,stocklistIntra.ntype as ntype,stocklistIntra.cSymbol as cSymbol,stocklistIntra.notes as notes,stocklistIntra.sName as sName,
+               stocklistIntra.murl as murl,stocklistIntra.curl as curl,stockvaluesIntra.open as currOpen,
+               stockvaluesIntra.high as currHigh,stockvaluesIntra.low as currLow,stockvaluesIntra.close as currClose,
+               stockvaluesIntra.schange as pChange,stockvaluesIntra.volume as volume From stocklistIntra 
+               INNER JOIN  stockvaluesIntra WHERE stocklistIntra.id = stockvaluesIntra.sid AND $catagory  AND stocklistIntra.isWatch = 'no' order by stockvaluesIntra.id DESC LIMIT 0,50";
     $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 	while($row = mysqli_fetch_assoc($result)) {
@@ -62,7 +62,7 @@ function company_list_bees_query($type) {
 
 function company_list_future_query($type) {
 
-    $query = "SELECT * FROM `stocklistbackupfutures` where `isWatch` = '$type'";
+    $query = "SELECT * FROM `stocklistIntrafutures` where `isWatch` = '$type'";
     $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
     while($row = mysqli_fetch_assoc($result)) {
@@ -77,7 +77,7 @@ function company_list_future_query($type) {
 function company_list_range_query($r1,$r2) {
 
 
-  $query = "Select stocklistbackup.id as id,stocklistbackup.ntype as ntype,stocklistbackup.cSymbol as cSymbol,stocklistbackup.notes as notes,stocklistbackup.support_value as support_value,stocklistbackup.resistance_value as resistance_value,stocklistbackup.sName as sName,stocklistbackup.murl as murl,stocklistbackup.curl as curl,stockvaluesbackup.open as currOpen,stockvaluesbackup.high as currHigh,stockvaluesbackup.low as currLow,stockvaluesbackup.close as currClose,stockvaluesbackup.schange as pChange,stockvaluesbackup.volume as volume From stocklistbackup INNER JOIN  stockvaluesbackup WHERE stocklistbackup.id = stockvaluesbackup.sid   AND stocklistbackup.isWatch = 'no' AND stockvaluesbackup.id = (SELECT MAX(id) from stockvaluesbackup where sid = stocklistbackup.id) and stockvaluesbackup.low BETWEEN $r1 AND $r2 order by stocklistbackup.cSymbol";
+  $query = "Select stocklistIntra.id as id,stocklistIntra.ntype as ntype,stocklistIntra.cSymbol as cSymbol,stocklistIntra.notes as notes,stocklistIntra.support_value as support_value,stocklistIntra.resistance_value as resistance_value,stocklistIntra.sName as sName,stocklistIntra.murl as murl,stocklistIntra.curl as curl,stockvaluesIntra.open as currOpen,stockvaluesIntra.high as currHigh,stockvaluesIntra.low as currLow,stockvaluesIntra.close as currClose,stockvaluesIntra.schange as pChange,stockvaluesIntra.volume as volume From stocklistIntra INNER JOIN  stockvaluesIntra WHERE stocklistIntra.id = stockvaluesIntra.sid   AND stocklistIntra.isWatch = 'no' AND stockvaluesIntra.id = (SELECT MAX(id) from stockvaluesIntra where sid = stocklistIntra.id) and stockvaluesIntra.low BETWEEN $r1 AND $r2 order by stocklistIntra.cSymbol";
 
 	$result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
@@ -91,7 +91,7 @@ function company_list_range_query($r1,$r2) {
 
 function search_single_company_query($string) {
 
-$query = "Select stocklistbackup.id as id,stocklistbackup.ntype as ntype,stocklistbackup.notes as notes,stocklistbackup.cSymbol as cSymbol,stocklistbackup.sName as sName,stocklistbackup.murl as murl,stocklistbackup.curl as curl,stockvaluesbackup.open as currOpen,stockvaluesbackup.high as currHigh,stockvaluesbackup.low as currLow,stockvaluesbackup.close as currClose,stockvaluesbackup.schange as pChange,stockvaluesbackup.volume as volume From stocklistbackup INNER JOIN  stockvaluesbackup WHERE stocklistbackup.id = stockvaluesbackup.sid   AND stocklistbackup.isWatch = 'no' AND stockvaluesbackup.id = (SELECT MAX(id) from stockvaluesbackup where sid = stocklistbackup.id) AND  stocklistbackup.sName like '%$string%'order by stockvaluesbackup.volume desc";
+$query = "Select stocklistIntra.id as id,stocklistIntra.ntype as ntype,stocklistIntra.notes as notes,stocklistIntra.cSymbol as cSymbol,stocklistIntra.sName as sName,stocklistIntra.murl as murl,stocklistIntra.curl as curl,stockvaluesIntra.open as currOpen,stockvaluesIntra.high as currHigh,stockvaluesIntra.low as currLow,stockvaluesIntra.close as currClose,stockvaluesIntra.schange as pChange,stockvaluesIntra.volume as volume From stocklistIntra INNER JOIN  stockvaluesIntra WHERE stocklistIntra.id = stockvaluesIntra.sid   AND stocklistIntra.isWatch = 'no' AND stockvaluesIntra.id = (SELECT MAX(id) from stockvaluesIntra where sid = stocklistIntra.id) AND  stocklistIntra.sName like '%$string%'order by stockvaluesIntra.volume desc";
 
 	$result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
@@ -106,7 +106,7 @@ $query = "Select stocklistbackup.id as id,stocklistbackup.ntype as ntype,stockli
 
 function search_single_company_feature_query($string) {
 
-    $query = "select * from stocklistbackupfutures where isWatch='no' and cSymbol like '%$string%'";
+    $query = "select * from stocklistIntrafutures where isWatch='no' and cSymbol like '%$string%'";
     $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
     while($row = mysqli_fetch_assoc($result)) {
@@ -123,7 +123,7 @@ function fetch_price_stocks($range1,$range2) {
 
     //Getting all stocks
 
-    $query  = "Select cSymbol from stocklistbackupbackup where id > $range1 and id < $range2";
+    $query  = "Select cSymbol from stocklistIntrabackup where id > $range1 and id < $range2";
     $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
     $row    = mysqli_fetch_all($result);
     $i = 1;

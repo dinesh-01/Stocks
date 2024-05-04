@@ -8,7 +8,7 @@
 <div id="show_list">
   <table class="gridtable">
           <tr>
-              <th>Symbol : <a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$details.name|replace:'-':'_'}" target="_blank">{$details.name}</a></th>
+              <th>Symbol : <a href="https://in.tradingview.com/chart/AINnrOTv/?symbol=NSE%3A{$details.name|replace:'-':'_'}" target="_blank">{$details.name}</a></th>
               <th><a href="https://www.google.com/search?q={$details.name}+ grow+ option+chain" target="_blank">Option Chain</a></th>
            <th>Price : {$details.stock_price}</th>
           </tr>

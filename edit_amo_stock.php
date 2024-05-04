@@ -6,7 +6,7 @@ require_once './template/header.php';
  //Checking stock already exists in table
     $id      =    $_GET['id'];
     $field     =  array("order_id,symbol,price,quanity,stop_loss,target,status");
-    $table     =  "stockAmo";
+    $table     =  "stockAmoIntra";
     $condition =  "id='$id'";
     $arugment  =  array( "field" => $field , "table" => $table, "condition" => $condition);
     $data      =  select($arugment,"one");

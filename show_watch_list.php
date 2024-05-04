@@ -19,7 +19,7 @@ foreach ($data as $value) {
      $close   = $value['currClose'];
      $symbol  = $value['cSymbol'];
 
-    $query  = "Select `symbol` from stockAmo where `symbol`= '$symbol'";
+    $query  = "Select `symbol` from stockAmoIntra where `symbol`= '$symbol'";
     $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
     $row    = mysqli_num_rows($result);
 

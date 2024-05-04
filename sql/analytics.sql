@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `stocklistbackup`
+-- Table structure for table `stocklistIntra`
 --
 
-CREATE TABLE `stocklistbackup` (
+CREATE TABLE `stocklistIntra` (
   `id` int(11) NOT NULL,
   `sName` varchar(100) DEFAULT NULL,
   `cSymbol` text,
@@ -50,10 +50,10 @@ CREATE TABLE `stocklistbackup` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `stocklistbackup`
+-- Dumping data for table `stocklistIntra`
 --
 
-INSERT INTO `stocklistbackup` (`id`, `sName`, `cSymbol`, `industry`, `murl`, `curl`, `priority`, `notes`, `cPattern`, `isWatch`, `sType`, `ntype`, `sEntry`, `qbuy`, `qvolume`, `qtotal`, `dailyEntry`, `createdDate`, `createdBy`) VALUES
+INSERT INTO `stocklistIntra` (`id`, `sName`, `cSymbol`, `industry`, `murl`, `curl`, `priority`, `notes`, `cPattern`, `isWatch`, `sType`, `ntype`, `sEntry`, `qbuy`, `qvolume`, `qtotal`, `dailyEntry`, `createdDate`, `createdBy`) VALUES
 (1, '3M India Ltd.', '3MINDIA', 'Diversified', 'https://www.google.com/search?q=3MINDIA+moneycontrol', 'https://chartink.com/stocks/3MINDIA.html', 1, NULL, NULL, 'no', 'nifty', 'N500', 'old', NULL, NULL, NULL, 'yes', '2022-12-10 10:24:52', NULL),
 (2, 'ABB India Ltd.', 'ABB', 'Capital Goods', 'https://www.google.com/search?q=ABB+moneycontrol', 'https://chartink.com/stocks/ABB.html', 1, NULL, NULL, 'no', 'nifty', 'N500', 'old', NULL, NULL, NULL, 'yes', '2022-12-10 10:24:52', NULL),
 (3, 'ACC Ltd.', 'ACC', 'Construction Materials', 'https://www.google.com/search?q=ACC+moneycontrol', 'https://chartink.com/stocks/ACC.html', 1, NULL, NULL, 'no', 'nifty', 'N500', 'old', NULL, NULL, NULL, 'yes', '2022-12-10 10:24:52', NULL),
@@ -243,7 +243,7 @@ INSERT INTO `stocklistbackup` (`id`, `sName`, `cSymbol`, `industry`, `murl`, `cu
 (187, 'HDFC Asset Management Company Ltd.', 'HDFCAMC', 'Financial Services', 'https://www.google.com/search?q=HDFCAMC+moneycontrol', 'https://chartink.com/stocks/HDFCAMC.html', 1, NULL, NULL, 'no', 'nifty', 'N500', 'old', NULL, NULL, NULL, 'yes', '2022-12-10 10:24:53', NULL),
 (188, 'HDFC Bank Ltd.', 'HDFCBANK', 'Financial Services', 'https://www.google.com/search?q=HDFCBANK+moneycontrol', 'https://chartink.com/stocks/HDFCBANK.html', 1, NULL, NULL, 'no', 'nifty', 'N500', 'old', NULL, NULL, NULL, 'yes', '2022-12-10 10:24:53', NULL),
 (189, 'HDFC Life Insurance Company Ltd.', 'HDFCLIFE', 'Financial Services', 'https://www.google.com/search?q=HDFCLIFE+moneycontrol', 'https://chartink.com/stocks/HDFCLIFE.html', 1, NULL, NULL, 'no', 'nifty', 'N500', 'old', NULL, NULL, NULL, 'yes', '2022-12-10 10:24:53', NULL);
-INSERT INTO `stocklistbackup` (`id`, `sName`, `cSymbol`, `industry`, `murl`, `curl`, `priority`, `notes`, `cPattern`, `isWatch`, `sType`, `ntype`, `sEntry`, `qbuy`, `qvolume`, `qtotal`, `dailyEntry`, `createdDate`, `createdBy`) VALUES
+INSERT INTO `stocklistIntra` (`id`, `sName`, `cSymbol`, `industry`, `murl`, `curl`, `priority`, `notes`, `cPattern`, `isWatch`, `sType`, `ntype`, `sEntry`, `qbuy`, `qvolume`, `qtotal`, `dailyEntry`, `createdDate`, `createdBy`) VALUES
 (190, 'HFCL Ltd.', 'HFCL', 'Telecommunication', 'https://www.google.com/search?q=HFCL+moneycontrol', 'https://chartink.com/stocks/HFCL.html', 1, NULL, NULL, 'no', 'nifty', 'N500', 'old', NULL, NULL, NULL, 'yes', '2022-12-10 10:24:53', NULL),
 (191, 'HLE Glascoat Ltd.', 'HLEGLAS', 'Capital Goods', 'https://www.google.com/search?q=HLEGLAS+moneycontrol', 'https://chartink.com/stocks/HLEGLAS.html', 1, NULL, NULL, 'no', 'nifty', 'N500', 'old', NULL, NULL, NULL, 'yes', '2022-12-10 10:24:53', NULL),
 (192, 'Happiest Minds Technologies Ltd.', 'HAPPSTMNDS', 'Information Technology', 'https://www.google.com/search?q=HAPPSTMNDS+moneycontrol', 'https://chartink.com/stocks/HAPPSTMNDS.html', 1, NULL, NULL, 'no', 'nifty', 'N500', 'old', NULL, NULL, NULL, 'yes', '2022-12-10 10:24:53', NULL),
@@ -434,7 +434,7 @@ INSERT INTO `stocklistbackup` (`id`, `sName`, `cSymbol`, `industry`, `murl`, `cu
 (377, 'RattanIndia Enterprises Ltd.', 'RTNINDIA', 'Services', 'https://www.google.com/search?q=RTNINDIA+moneycontrol', 'https://chartink.com/stocks/RTNINDIA.html', 1, NULL, NULL, 'no', 'nifty', 'N500', 'old', NULL, NULL, NULL, 'yes', '2022-12-10 10:24:55', NULL),
 (378, 'Raymond Ltd.', 'RAYMOND', 'Textiles', 'https://www.google.com/search?q=RAYMOND+moneycontrol', 'https://chartink.com/stocks/RAYMOND.html', 1, NULL, NULL, 'no', 'nifty', 'N500', 'old', NULL, NULL, NULL, 'yes', '2022-12-10 10:24:55', NULL),
 (379, 'Redington Ltd.', 'REDINGTON', 'Services', 'https://www.google.com/search?q=REDINGTON+moneycontrol', 'https://chartink.com/stocks/REDINGTON.html', 1, NULL, NULL, 'no', 'nifty', 'N500', 'old', NULL, NULL, NULL, 'yes', '2022-12-10 10:24:55', NULL);
-INSERT INTO `stocklistbackup` (`id`, `sName`, `cSymbol`, `industry`, `murl`, `curl`, `priority`, `notes`, `cPattern`, `isWatch`, `sType`, `ntype`, `sEntry`, `qbuy`, `qvolume`, `qtotal`, `dailyEntry`, `createdDate`, `createdBy`) VALUES
+INSERT INTO `stocklistIntra` (`id`, `sName`, `cSymbol`, `industry`, `murl`, `curl`, `priority`, `notes`, `cPattern`, `isWatch`, `sType`, `ntype`, `sEntry`, `qbuy`, `qvolume`, `qtotal`, `dailyEntry`, `createdDate`, `createdBy`) VALUES
 (380, 'Relaxo Footwears Ltd.', 'RELAXO', 'Consumer Durables', 'https://www.google.com/search?q=RELAXO+moneycontrol', 'https://chartink.com/stocks/RELAXO.html', 1, NULL, NULL, 'no', 'nifty', 'N500', 'old', NULL, NULL, NULL, 'yes', '2022-12-10 10:24:55', NULL),
 (381, 'Reliance Industries Ltd.', 'RELIANCE', 'Oil Gas & Consumable Fuels', 'https://www.google.com/search?q=RELIANCE+moneycontrol', 'https://chartink.com/stocks/RELIANCE.html', 1, NULL, NULL, 'no', 'nifty', 'N500', 'old', NULL, NULL, NULL, 'yes', '2022-12-10 10:24:55', NULL),
 (382, 'Restaurant Brands Asia Ltd.', 'RBA', 'Consumer Services', 'https://www.google.com/search?q=RBA+moneycontrol', 'https://chartink.com/stocks/RBA.html', 1, NULL, NULL, 'no', 'nifty', 'N500', 'old', NULL, NULL, NULL, 'yes', '2022-12-10 10:24:55', NULL),
@@ -559,10 +559,10 @@ INSERT INTO `stocklistbackup` (`id`, `sName`, `cSymbol`, `industry`, `murl`, `cu
 -- --------------------------------------------------------
 
 --
--- Table structure for table `stockvaluesbackup`
+-- Table structure for table `stockvaluesIntra`
 --
 
-CREATE TABLE `stockvaluesbackup` (
+CREATE TABLE `stockvaluesIntra` (
   `id` int(11) NOT NULL,
   `sid` int(11) NOT NULL,
   `open` varchar(100) NOT NULL,
@@ -574,15 +574,15 @@ CREATE TABLE `stockvaluesbackup` (
   `schange` varchar(100) NOT NULL,
   `schangePercent` varchar(100) NOT NULL,
   `volume` varchar(100) NOT NULL,
-  `stockvaluesbackup` varchar(100) NOT NULL,
+  `stockvaluesIntra` varchar(100) NOT NULL,
   `createdDate` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `stockvaluesbackup`
+-- Dumping data for table `stockvaluesIntra`
 --
 
-INSERT INTO `stockvaluesbackup` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesbackup`, `createdDate`) VALUES
+INSERT INTO `stockvaluesIntra` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesIntra`, `createdDate`) VALUES
 (1, 1, '23099.00', '23400.00', '26943.00', '22899.95', '17273.00', '23120.30', '240.55', '1.05%', '2013', '466.26', '10-12-2022'),
 (2, 2, '3010.00', '3035.80', '3446.30', '2940.00', '1944.60', '2976.65', '-18.35', '-0.61%', '329565', '9875.55', '10-12-2022'),
 (3, 3, '2638.00', '2642.40', '2785.00', '2594.90', '1900.00', '2619.50', '5.65', '0.22%', '491049', '12847.61', '10-12-2022'),
@@ -981,7 +981,7 @@ INSERT INTO `stockvaluesbackup` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, 
 (396, 396, '490.65', '499.70', '769.15', '472.00', '300.60', '481.70', '-11.45', '-2.32%', '408690', '1988.81', '10-12-2022'),
 (397, 397, '2621.40', '2621.40', '4055.00', '2569.75', '2535.95', '2578.40', '-20.35', '-0.78%', '7162', '185.59', '10-12-2022'),
 (398, 398, '301.70', '302.75', '606.00', '290.10', '272.00', '293.45', '-7.00', '-2.33%', '95211', '281.48', '10-12-2022');
-INSERT INTO `stockvaluesbackup` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesbackup`, `createdDate`) VALUES
+INSERT INTO `stockvaluesIntra` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, `allLow`, `close`, `schange`, `schangePercent`, `volume`, `stockvaluesIntra`, `createdDate`) VALUES
 (399, 399, '135.60', '135.75', '152.95', '129.50', '85.60', '130.30', '-4.55', '-3.37%', '1116168', '1482.83', '10-12-2022'),
 (400, 400, '680.10', '687.00', '820.00', '672.00', '302.45', '679.10', '-6.10', '-0.90%', '44285', '301.63', '10-12-2022'),
 (401, 401, '24484.00', '24612.90', '27936.75', '24206.10', '17865.20', '24441.55', '-74.00', '-0.30%', '22709', '5555.43', '10-12-2022'),
@@ -1089,15 +1089,15 @@ INSERT INTO `stockvaluesbackup` (`id`, `sid`, `open`, `high`, `allHigh`, `low`, 
 --
 
 --
--- Indexes for table `stocklistbackup`
+-- Indexes for table `stocklistIntra`
 --
-ALTER TABLE `stocklistbackup`
+ALTER TABLE `stocklistIntra`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `stockvaluesbackup`
+-- Indexes for table `stockvaluesIntra`
 --
-ALTER TABLE `stockvaluesbackup`
+ALTER TABLE `stockvaluesIntra`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1105,15 +1105,15 @@ ALTER TABLE `stockvaluesbackup`
 --
 
 --
--- AUTO_INCREMENT for table `stocklistbackup`
+-- AUTO_INCREMENT for table `stocklistIntra`
 --
-ALTER TABLE `stocklistbackup`
+ALTER TABLE `stocklistIntra`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=500;
 
 --
--- AUTO_INCREMENT for table `stockvaluesbackup`
+-- AUTO_INCREMENT for table `stockvaluesIntra`
 --
-ALTER TABLE `stockvaluesbackup`
+ALTER TABLE `stockvaluesIntra`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=500;
 COMMIT;
 

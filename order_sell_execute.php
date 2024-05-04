@@ -15,7 +15,7 @@ $client = new GuzzleHttp\Client([
 
 //Fetching stock Symbol
 $order_id = $_GET['id'];
-$query    = "SELECT * from stockAmo where order_id='$order_id'";
+$query    = "SELECT * from stockAmoIntra where order_id='$order_id'";
 $result   = mysqli_query($GLOBALS['mysqlConnect'],$query);
 $data     = mysqli_fetch_assoc($result);
 
@@ -73,7 +73,7 @@ $price =  number_format($price,1);
 
 
 
-$query = "UPDATE `stockAmo` SET `target`='$price' WHERE order_id='$order_id'";
+$query = "UPDATE `stockAmoIntra` SET `target`='$price' WHERE order_id='$order_id'";
 $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 header("location:stock_execution.php");

@@ -16,7 +16,7 @@ foreach ($records as $record) {
 
 
 
-     echo $query = "UPDATE `stocklistbackup` SET `ntype`='option' WHERE `cSymbol` = '$company'";
+     echo $query = "UPDATE `stocklistIntra` SET `ntype`='option' WHERE `cSymbol` = '$company'";
      $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 
@@ -27,7 +27,7 @@ foreach ($records as $record) {
     $money_control = "https://www.google.com/search?q=".$company."+moneycontrol";
     $charink = "https://chartink.com/stocks/$company.html";
 
-     echo $query  = "INSERT INTO stocklistbackup(sName, cSymbol, mcurl, murl, curl, tickertape, industry, ntype) VALUES ('$company','$company','$money_control','','$charink','','','option')";
+     echo $query  = "INSERT INTO stocklistIntra(sName, cSymbol, mcurl, murl, curl, tickertape, industry, ntype) VALUES ('$company','$company','$money_control','','$charink','','','option')";
      $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
      sleep(1);
 

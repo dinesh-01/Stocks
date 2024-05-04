@@ -8,7 +8,7 @@
 <div id="show_list">
   <table class="gridtable">
           <tr>
-               <th>Symbol : <a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$details.name|replace:'-':'_'}" target="_blank">{$details.name}</a></th>
+               <th>Symbol : <a href="https://in.tradingview.com/chart/AINnrOTv/?symbol=NSE%3A{$details.name|replace:'-':'_'}" target="_blank">{$details.name}</a></th>
                <th>Price : {$details.stock_price}</th>
                <th><a href="future_margin_update.php?s={$details.name|replace:'-':'_'}">Update Margin</a> </th>
           </tr>
@@ -24,7 +24,7 @@
 {foreach $datas as $value name=count}
 
     <tr class="show">
-         <td><a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.name}1%21" target="_blank">{$value.tradingsymbol}</a></td>
+         <td><a href="https://in.tradingview.com/chart/AINnrOTv/?symbol=NSE%3A{$value.name}1%21" target="_blank">{$value.tradingsymbol}</a></td>
         <td>{$value.last_price}</td>
         <td>{$value.lot_size}</a></td>
         <td>{$value.strike}</a></td>

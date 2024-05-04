@@ -25,7 +25,7 @@
     <tr class="show">
         <td> {$smarty.foreach.count.iteration} </td>
 
-        <td><a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'|replace:'&':'_'}" target="_blank">{$value.cSymbol}</a></td>
+        <td><a href="https://in.tradingview.com/chart/AINnrOTv/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'|replace:'&':'_'}" target="_blank">{$value.cSymbol}</a></td>
 
 
         {if $value.grow eq ''}

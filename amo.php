@@ -23,7 +23,7 @@ if ( (time() > strtotime("09:15:00")) &&  (time() < strtotime("15:30:00"))  ) {
 
 
 $field     =  array("id,order_id,symbol,price,quanity,stop_loss,target,created_date");
-$table     =  "stockAmo";
+$table     =  "stockAmoIntra";
 $condition =  "status = 'open'";
 $arugment  =  array( "field" => $field , "table" => $table, 'condition' => $condition);
 $data      =  select($arugment,"many");
@@ -71,7 +71,7 @@ foreach ($data as $value) {
 
     #reseting the dailyentry
     $id = $value['id'];
-    $query = "UPDATE `stockAmo` SET `order_id`='$order_id',`price`='$last_price',`target`='$target', `status`= 'completed' WHERE id = '$id'";
+    $query = "UPDATE `stockAmoIntra` SET `order_id`='$order_id',`price`='$last_price',`target`='$target', `status`= 'completed' WHERE id = '$id'";
     $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 

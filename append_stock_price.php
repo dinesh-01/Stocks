@@ -79,7 +79,7 @@ require_once './include/common.php';
 
 
     $field     =  array("id,quanity","price");
-    $table     =  "stockAmo";
+    $table     =  "stockAmoIntra";
     $condition =  "symbol = '$symbol'";
     $arugment  =  array( "field" => $field , "table" => $table, 'condition' => $condition);
     $data      =  select($arugment,"one");
@@ -93,7 +93,7 @@ require_once './include/common.php';
 
 
 //Update for AMO
-    $query = "UPDATE `stockAmo` SET `price`='$price',`quanity`='$final_quantity' WHERE id = '$id'";
+    $query = "UPDATE `stockAmoIntra` SET `price`='$price',`quanity`='$final_quantity' WHERE id = '$id'";
     $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 
