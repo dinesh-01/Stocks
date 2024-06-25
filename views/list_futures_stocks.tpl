@@ -18,7 +18,7 @@
               <tr class="show">
                   <td> 1 </td>
                   <td>
-                      <a href="https://in.tradingview.com/chart/AINnrOTv/?symbol=NSE%3ANIFTY"  target="blank">NIFTY</a>
+                      <a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3ANIFTY"  target="blank">NIFTY</a>
                   </td>
                   <td><a href="https://groww.in/options/nifty" target="_blank">List</a></td>
 
@@ -27,7 +27,7 @@
               <tr class="show">
                   <td> 2 </td>
                   <td>
-                      <a href="https://in.tradingview.com/chart/AINnrOTv/?symbol=NSE%3ABANKNIFTY"  target="blank">BANKNIFTY</a>
+                      <a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3ABANKNIFTY"  target="blank">BANKNIFTY</a>
                   </td>
                   <td><a href="https://groww.in/options/nifty-bank" target="_blank">List</a></td>
 
@@ -36,7 +36,7 @@
               <tr class="show">
                   <td> 3 </td>
                   <td>
-                      <a href="https://in.tradingview.com/chart/AINnrOTv/?symbol=NSE%3ANIFTY_MID_SELECT"  target="blank">NIFTYMIDCAP50</a>
+                      <a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3ANIFTY_MID_SELECT"  target="blank">NIFTYMIDCAP50</a>
                   </td>
                   <td><a href="https://groww.in/options/nifty-midcap-select" target="_blank">List</a></td>
 
@@ -46,7 +46,7 @@
               <tr class="show">
                   <td> 4 </td>
                   <td>
-                      <a href="https://www.tradingview.com/chart/AINnrOTv/?symbol=NSE%3AFINNIFTY1%21"  target="blank">FINNIFTY</a>
+                      <a href="https://www.tradingview.com/chart/bXKZrFip/?symbol=NSE%3AFINNIFTY1%21"  target="blank">FINNIFTY</a>
                   </td>
                   <td><a href="https://groww.in/options/nifty-financial-services" target="_blank">List</a></td>
 

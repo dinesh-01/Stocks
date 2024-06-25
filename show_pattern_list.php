@@ -193,15 +193,15 @@ foreach ($data as $value) {
 
 
             if(str_contains($param, $currentmonth)) {
-                $turl = "https://in.tradingview.com/chart/AINnrOTv/?symbol=NSE%3A".$symbol."X2023";
+                $turl = "https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A".$symbol."X2023";
             }
 
             if(str_contains($param, $nextmonth)) {
-                $turl = "https://in.tradingview.com/chart/AINnrOTv/?symbol=NSE%3A".$symbol."Z2023";
+                $turl = "https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A".$symbol."Z2023";
             }
 
             if(str_contains($param, $futuremonth)) {
-                $turl = "https://in.tradingview.com/chart/AINnrOTv/?symbol=NSE%3A".$symbol."f2024";
+                $turl = "https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A".$symbol."f2024";
             }
 
 

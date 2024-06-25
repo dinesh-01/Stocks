@@ -38,14 +38,12 @@ require_once './template/header.php';
            <optgroup label="Bearish Pattern">
                <option value="gdoji"> Grave Stone Doji </option>
 
-               <!--
                <option value="eveningstar"> Evening Star </option>
                <option value="darkcover"> Dark Cover </option>
                <option value="brpattern"> Bearish Engulfing Pattern </option>
                <option value="nhammer"> Hanging  </option>
                <option value="nwindow"> Falling Window</option>
                <option value="betrap"> BearishTrap Pattern </option>
-               -->
                </optgroup>
 
                <optgroup label="Decision Pattern">

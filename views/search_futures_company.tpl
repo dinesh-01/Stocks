@@ -26,7 +26,7 @@
                     <input type="hidden" id="sid" value="{$value.id}"/>
                 </td>
                 <td><a href="{$value.furl}" target="_blank">{$value.cSymbol}</a></td>
-                <td><a href="https://in.tradingview.com/chart/AINnrOTv/?symbol=NSE%3A{$value.sName}" target="_blank">{$value.sName}</a></td>
+                <td><a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.sName}" target="_blank">{$value.sName}</a></td>
                 <td>{$value.expiry}</td>
                 <td>{$value.lot_size}</td>
                 <td>{$value.current_volume}</td>

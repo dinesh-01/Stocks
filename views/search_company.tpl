@@ -33,7 +33,7 @@
             <input type="hidden" id="sname" value="{$value.sName}"/> 
             <input type="hidden" id="sid" value="{$value.id}"/> 
         </td>
-        <td><a href="https://in.tradingview.com/chart/cHaXKHh5/?symbol=NSE%3A{$value.cSymbol}" target="_blank">TradingView</a></td>
+        <td><a href="https://in.tradingview.com/chart/bXKZrFip/?symbol=NSE%3A{$value.cSymbol}" target="_blank">TradingView</a></td>
         <td><a href="{$value.curl}" target="_blank">ChartInk</a></td>
         <td>{$value.currOpen}</td>
         <td>{$value.currClose}</td>

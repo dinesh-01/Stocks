@@ -98,7 +98,7 @@ foreach ($row as $record) {
     $id = $result->fetch_all(MYSQLI_ASSOC);
     $sid = $id[0]['id'];
 
-    $query = "INSERT INTO stockvaluesbackup(sid, open, high, allHigh, low, allLow, close, schange, schangePercent, volume, stockvaluesbackup, addClear, createdDate)
+    $query = "INSERT INTO stockvaluesbackup(sid, open, high, allHigh, low, allLow, close, schange, schangePercent, volume, stockvalues, addClear, createdDate)
 VALUES ('$sid','$open','$high','$allhigh','$low','$alllow','$close','$chng','$chng_percentage','$volume','$value',1,'$date')";
     $result = mysqli_query($GLOBALS['mysqlConnect'], $query);
 
