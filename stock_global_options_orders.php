@@ -16,20 +16,46 @@ $client = new GuzzleHttp\Client([
 ]);
 
 
-$symbol = $_GET['s'];
+$global = $_GET['s'];
 $type = $_GET['o'];
 $cat = $_GET['t'];
 
 
-
-
-if(str_contains($symbol,"_")) {
-    $symbol = str_replace("_", "&", $symbol);
-    $api_symbol = str_replace("&", "%26", $symbol);
-    $end_point = "https://api.kite.trade/quote?i=NSE:$api_symbol";
-}else{
+if($global == 'NIFTY') {
+    $symbol = "NIFTY 50";
     $end_point = "https://api.kite.trade/quote?i=NSE:$symbol";
+    $expiry = '2024-06-27%';
 }
+
+if($global == 'BANKNIFTY') {
+    $symbol = "NIFTY BANK";
+    $end_point = "https://api.kite.trade/quote?i=NSE:$symbol";
+    $expiry = '2024-06-26%';
+}
+
+if($global == 'MIDCP') {
+    $symbol = "NIFTY MID SELECT";
+    $end_point = "https://api.kite.trade/quote?i=NSE:$symbol";
+    $expiry = '2024-07-01%';
+}
+
+
+if($global == 'FINNIFTY') {
+    $symbol = "NIFTY FIN SERVICE";
+    $end_point = "https://api.kite.trade/quote?i=NSE:$symbol";
+    $expiry = '2024-07-02%';
+
+}
+
+
+if($global == 'NIFTYNXT50') {
+    $symbol = "NIFTY NEXT 50";
+    $end_point = "https://api.kite.trade/quote?i=NSE:$symbol";
+    $expiry = '2024-05-31%';
+
+}
+
+
 
 
 $res = $client->request('GET', $end_point);
@@ -39,7 +65,7 @@ $current_price = $response['data']["NSE:$symbol"]['last_price'];
 $current_price = str_replace(",", "", $current_price);
 
 
-$percentage_value = 1 / 100 ;
+$percentage_value = 0.2 / 100 ;
 $amount_value = $current_price * $percentage_value;
 
 
@@ -50,17 +76,18 @@ $final_amount = $current_price - $amount_value;
 $range1 = round($final_amount, 0);
 
 
-if($cat == 'global') {
-  echo  $query = "SELECT * FROM `stockOption` WHERE `tradingsymbol` LIKE '$symbol%' 
-                                and `tradingsymbol` LIKE '%MAY%'
-                                and strike BETWEEN $range1 AND $range2 
-                                and instrument_type = '$type' ";
+if($type == "PE") {
+    $orderBy = "desc";
 }else{
-    $query = "Select * from stockOption where name = '$symbol' 
-                            and strike BETWEEN $range1 AND $range2 
-                            and tradingsymbol LIKE '%MAY%'
-                            and instrument_type = '$type' ";
+    $orderBy = "asc";
 }
+
+
+    $query = "SELECT * FROM `stockOption` WHERE `tradingsymbol` LIKE '$global%' 
+                                and `expiry` LIKE '$expiry'
+                                and strike BETWEEN $range1 AND $range2 
+                                and instrument_type = '$type' order by strike $orderBy";
+
 
 
 $result = mysqli_query($GLOBALS['mysqlConnect'], $query);

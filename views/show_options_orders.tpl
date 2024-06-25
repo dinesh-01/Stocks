@@ -14,19 +14,24 @@
           </tr>
             <tr>
             <th> Option Symbol </th>
+            <th> Strike Price</th>
             <th> Option Price </th>
             <th> Lot-Size </th>
             <th> Lot-Size To Buy </th>
+                <th> Expiry Date </th>
             <th> Status </th>
             </tr>
 
 {foreach $datas as $value name=count}
 
     <tr class="show">
-         <td><a href="https://www.google.com/search?q={$value.name}+ grow+ option+chain" target="_blank">{$value.tradingsymbol}</a></td>
+
+         <td><a href="https://groww.in/charts/options/nifty/{$value.tradingsymbol}?exchange=NSE" target="_blank">{$value.tradingsymbol}</a></td>
+         <td>{$value.strike}</td>
         <td>{$value.last_price}</td>
         <td>{$value.lot_size}</a></td>
         <td>{$value.lot}</a></td>
+        <td>{$value.expiry}</td>
         {if $value.order_status eq '0'}
             <td><a href="order_option.php?option_symbol={$value.tradingsymbol}&lot_size={$value.lot}&s={$details.name}&o={$value.instrument_type}"><button value="buy">BUY</button></a></td>
         {/if}

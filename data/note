@@ -1,5 +1,5 @@
 source .bash_profile
-cd /Applications/MAMP/htdocs/stocks
+cd /Applications/MAMP/htdocs/intra
 php composer.phar install
 
 

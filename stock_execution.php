@@ -66,7 +66,7 @@ foreach ($datas as $data) {
 
 
 //List all the option orders
-$query = "Select * from stockIncome";
+$query = "Select * from stockIntraIncome";
 $result = mysqli_query($GLOBALS['mysqlConnect'], $query);
 $results = $result->fetch_all(MYSQLI_ASSOC);
 $ledgers = 0;
@@ -82,7 +82,7 @@ $ledgers = str_replace(",", "", $ledgers); //last price
 
 $smarty->assign("datas",$datas);
 $smarty->assign("total_invested",$amount);
-$remaining = 500000 - $amount;
+$remaining = 100000 - $amount;
 $smarty->assign("remaining_invested",$remaining);
 $smarty->assign("ledger",$ledgers);
 $smarty->display("show_execution.tpl");

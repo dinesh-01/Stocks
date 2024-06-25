@@ -35,11 +35,11 @@ $last_price = str_replace(",", "", $last_price); //last price
 
 
 
-//$percentage_value = 0.25 / 100 ;
-//$amount_value = $last_price * $percentage_value;
-//$final_amount = $last_price - $amount_value;
-//$final_amount = round($final_amount, 1);
-$final_amount = $last_price;
+$percentage_value = 0.1 / 100 ;
+$amount_value = $last_price * $percentage_value;
+$final_amount = $last_price - $amount_value;
+$final_amount = round($final_amount, 1);
+//$final_amount = $last_price;
 
 
 
@@ -50,8 +50,8 @@ $end_point = "https://api.kite.trade/orders/regular/$order_id";
 $res = $client->request('PUT', $end_point, [
     'form_params' => [
         'order_type' => 'LIMIT',
-        'quantity' => $quantity,
         'price' => $final_amount,
+        'quantity' => $quantity,
         'validity' => 'DAY'
 
     ]
