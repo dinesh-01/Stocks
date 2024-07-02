@@ -41,6 +41,23 @@
 
 {/foreach}
 
+      <tr>
+          <td colspan="4">Overall</td>
+
+
+          <td colspan="4">
+
+              {if $overall_total gt 0}
+                  <font color="green">{$overall_total}</font>
+              {else}
+                  <font color="red">{$overall_total}</font>
+              {/if}
+
+          </td>
+          <td><a href="order_option_sell_execute_all.php"><button value="sell"><b>SELL&nbsp;ALL</b></button></a></td>
+
+      </tr>
+
 
 
 </table>
