@@ -7,3 +7,4 @@ cache/*
 vendor/*/
 include/common.php
 vendor/*
+vendor/composer/autoload_files.php

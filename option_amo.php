@@ -24,7 +24,7 @@ if ( (time() > strtotime("09:15:00")) &&  (time() < strtotime("15:30:00"))  ) {
     ]);
 
 
-$field     =  array("id,order_id,symbol,price,quanity,stop_loss,target,created_date");
+$field     =  array("id,order_id,symbol,price,quanity,stop_loss,target,iceberg_leg,created_date");
 $table     =  "optionAmo";
 $condition =  "status = 'open'";
 $arugment  =  array( "field" => $field , "table" => $table, 'condition' => $condition);
@@ -39,6 +39,7 @@ foreach ($data as $value) {
     $symbol   = $value['symbol'];
     $quantity = $value['quanity'];
     $last_price = $value['price'];
+    $iceberg_leg = $value['iceberg_leg'];
 
 
     if(empty($last_price) || is_null($last_price)) {
@@ -77,21 +78,26 @@ foreach ($data as $value) {
     $stoploss = str_replace(",","",$stoploss);
 
 
-    //Set target
-    $end_point = "https://api.kite.trade/orders/$order_decide_type";
-    $res = $client->request('POST', $end_point, [
-        'form_params' => [
-            'tradingsymbol' => $symbol,
-            'exchange' => 'NFO',
-            'transaction_type' => "SELL",
-            'order_type' => 'LIMIT',
-            'price' => $target,
-            'quantity' => $quantity,
-            'product' => 'NRML',
-            'validity' => 'DAY'
 
-        ]
-    ]);
+
+    //Set target
+
+
+        $end_point = "https://api.kite.trade/orders/regular";
+        $res = $client->request('POST', $end_point, [
+            'form_params' => [
+                'tradingsymbol' => $symbol,
+                'exchange' => 'NFO',
+                'transaction_type' => "SELL",
+                'order_type' => 'LIMIT',
+                'price' => $target,
+                'quantity' => $quantity,
+                'product' => 'NRML',
+                'validity' => 'DAY'
+
+            ]
+        ]);
+
 
     $response = $res->getBody()->getContents();
     $response = (json_decode($response,true));

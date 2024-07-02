@@ -22,6 +22,7 @@ $data     = mysqli_fetch_assoc($result);
 
 $symbol = $data['symbol'];
 $quantity = $data['quanity'];
+$iceberg_leg = $data['iceberg_leg'];
 
 
 
@@ -47,13 +48,10 @@ $final_amount = round($final_amount, 1);
 //Place Order
 $end_point = "https://api.kite.trade/orders/regular/$order_id";
 
+
 $res = $client->request('PUT', $end_point, [
     'form_params' => [
-        'order_type' => 'LIMIT',
-        'price' => $final_amount,
-        'quantity' => $quantity,
-        'validity' => 'DAY'
-
+         'price' => $final_amount
     ]
 ]);
 

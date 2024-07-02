@@ -24,19 +24,19 @@ $cat = $_GET['t'];
 if($global == 'NIFTY') {
     $symbol = "NIFTY 50";
     $end_point = "https://api.kite.trade/quote?i=NSE:$symbol";
-    $expiry = '2024-06-27%';
+    $expiry = '2024-07-04%';
 }
 
 if($global == 'BANKNIFTY') {
     $symbol = "NIFTY BANK";
     $end_point = "https://api.kite.trade/quote?i=NSE:$symbol";
-    $expiry = '2024-06-26%';
+    $expiry = '2024-07-03%';
 }
 
 if($global == 'MIDCP') {
     $symbol = "NIFTY MID SELECT";
     $end_point = "https://api.kite.trade/quote?i=NSE:$symbol";
-    $expiry = '2024-07-01%';
+    $expiry = '2024-07-08%';
 }
 
 

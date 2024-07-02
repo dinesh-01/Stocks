@@ -22,6 +22,7 @@ $query = "Select * from optionAmo";
 $result = mysqli_query($GLOBALS['mysqlConnect'], $query);
 $datas = $result->fetch_all(MYSQLI_ASSOC);
 $i = 0;
+$total = 0;
 
 foreach ($datas as $data) {
 
@@ -52,7 +53,7 @@ foreach ($datas as $data) {
     $datas[$i]['stock_symbol'] = $stock_symbol;
     $datas[$i]['price_diff'] = $last_price - $data['price'];
     $datas[$i]['amount_diff'] = round($datas[$i]['price_diff'],1) *  $data['quanity'];
-
+    $total = $total +  $datas[$i]['amount_diff'];
 
 
     $i++;
@@ -61,6 +62,8 @@ foreach ($datas as $data) {
 
 
 $smarty->assign("datas",$datas);
+$smarty->assign("overall_total", $total);
+
 $smarty->display("show_options_execution.tpl");
 
 
