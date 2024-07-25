@@ -19,31 +19,36 @@ $client = new GuzzleHttp\Client([
 $global = $_GET['s'];
 $type = $_GET['o'];
 $cat = $_GET['t'];
+$allocate_price = ALLOCATE_PRICE;
 
 
 if($global == 'NIFTY') {
     $symbol = "NIFTY 50";
     $end_point = "https://api.kite.trade/quote?i=NSE:$symbol";
-    $expiry = '2024-07-04%';
+    $expiry = '2024-08-01%';
+   // $allocate_price = EXPIRY_ALLOCATE_PRICE;
+
 }
 
 if($global == 'BANKNIFTY') {
     $symbol = "NIFTY BANK";
     $end_point = "https://api.kite.trade/quote?i=NSE:$symbol";
-    $expiry = '2024-07-03%';
+    $expiry = '2024-07-31%';
+
 }
 
 if($global == 'MIDCP') {
     $symbol = "NIFTY MID SELECT";
     $end_point = "https://api.kite.trade/quote?i=NSE:$symbol";
-    $expiry = '2024-07-08%';
+    $expiry = '2024-07-29%';
 }
 
 
 if($global == 'FINNIFTY') {
     $symbol = "NIFTY FIN SERVICE";
     $end_point = "https://api.kite.trade/quote?i=NSE:$symbol";
-    $expiry = '2024-07-02%';
+    $expiry = '2024-07-30%';
+
 
 }
 
@@ -65,7 +70,7 @@ $current_price = $response['data']["NSE:$symbol"]['last_price'];
 $current_price = str_replace(",", "", $current_price);
 
 
-$percentage_value = 0.2 / 100 ;
+$percentage_value = 1 / 100 ;
 $amount_value = $current_price * $percentage_value;
 
 
@@ -76,17 +81,25 @@ $final_amount = $current_price - $amount_value;
 $range1 = round($final_amount, 0);
 
 
+
+
 if($type == "PE") {
     $orderBy = "desc";
+    $query = "SELECT * FROM `stockOption` WHERE `tradingsymbol` LIKE '$global%' 
+                                and `expiry` LIKE '$expiry'
+                                and strike BETWEEN $current_price AND $range2 
+                                and instrument_type = '$type' order by strike $orderBy";
+
 }else{
     $orderBy = "asc";
+    $query = "SELECT * FROM `stockOption` WHERE `tradingsymbol` LIKE '$global%' 
+                                and `expiry` LIKE '$expiry'
+                                and strike BETWEEN $range1 AND $current_price 
+                                and instrument_type = '$type' order by strike $orderBy";
+
 }
 
 
-    $query = "SELECT * FROM `stockOption` WHERE `tradingsymbol` LIKE '$global%' 
-                                and `expiry` LIKE '$expiry'
-                                and strike BETWEEN $range1 AND $range2 
-                                and instrument_type = '$type' order by strike $orderBy";
 
 
 
@@ -112,12 +125,12 @@ foreach ($datas as $data) {
     $response = $res->getBody()->getContents();
     $response = (json_decode($response, true));
 
-
     $last_price = $response["data"]["NFO:".$tradingsymbol]["last_price"];
+    $datas[$i]['volume'] = $response["data"]["NFO:".$tradingsymbol]["volume"];
     $datas[$i]['last_price'] = $last_price;
 
     $amount = $last_price * $data['lot_size'];
-    $lot    = (ALLOCATE_PRICE / $amount) ;
+    $lot    = ($allocate_price / $amount) ;
     $lot    = (int)$lot; //quantity
     $datas[$i]['lot'] = $lot * $data['lot_size'];
 
@@ -132,10 +145,13 @@ foreach ($datas as $data) {
         $datas[$i]['order_status'] = "0";
     }
 
+
+
     $i++;
 
     $details['stock_price'] = $current_price;
     $details['name'] = $data['name'];
+
 
 
 

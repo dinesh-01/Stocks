@@ -1,9 +1,6 @@
 <?php
 require_once './include/common.php';
 
-
-
-
 // setting up end headers
 $headers = [
     'Content-Type' => 'application/json',
@@ -22,13 +19,19 @@ $result   = mysqli_query($GLOBALS['mysqlConnect'],$query);
 $data     = mysqli_fetch_assoc($result);
 
 
+//delete SL Order
+$sl_order_id = $data['sl_order_id'];
+
+if(!empty($sl_order_id) || !is_null($sl_order_id)) {
+    $end_point = "https://api.kite.trade/orders/regular/$order_id";
+    $res = $client->request('DELETE',$end_point);
+}
+
+
+
+
 $symbol = $data['symbol'];
 $quantity = $data['quanity'];
-$iceberg_leg = $data['iceberg_leg'];
-$per = $_GET['p'];
-
-
-
 
 $end_point = "https://api.kite.trade/quote?i=NFO:$symbol";
 $res = $client->request('GET', $end_point);
@@ -39,36 +42,29 @@ $last_price = $response['data']["NFO:$symbol"]['last_price'];
 $last_price = str_replace(",", "", $last_price); //last price
 
 
-
-$percentage_value = $per / 100 ;
+$percentage_value = 0.1 / 100 ;
 $amount_value = $last_price * $percentage_value;
-$final_amount = $last_price - $amount_value;
-$final_amount = round($final_amount, 1);
-
-$trigger_per = $per - 1;
-$percentage_value = $trigger_per / 100 ;
-$amount_value = $last_price * $percentage_value;
-$trigger_final_amount = $last_price - $amount_value;
-$trigger_final_amount = round($trigger_final_amount, 1);
 
 
-//Place Order
-$end_point = "https://api.kite.trade/orders/regular/$order_id";
+$final_amount = round($last_price - $amount_value,1);
 
 
-$res = $client->request('PUT', $end_point, [
+$end_point = "https://api.kite.trade/orders/regular";
+$res = $client->request('POST', $end_point, [
     'form_params' => [
-         'trigger_price' => $trigger_final_amount,
-         'price' => $final_amount
+        'tradingsymbol' => $symbol,
+        'exchange' => 'NFO',
+        'transaction_type' => "SELL",
+        'order_type' => 'LIMIT',
+        'price' => $final_amount,
+        'quantity' => $quantity,
+        'product' => 'NRML',
+        'validity' => 'DAY'
+
     ]
 ]);
 
-$response = $res->getBody()->getContents();
-$response = (json_decode($response,true));
 
-
-$query = "UPDATE `optionAmo` SET `target`='$final_amount' WHERE order_id='$order_id'";
-$result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 header("location:stock_options_execution.php");
 exit;

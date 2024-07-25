@@ -46,7 +46,7 @@
         </td>
         <td>{$value.invested}</td>
         <td><a href="order_sell_execute.php?id={$value.order_id}"><button value="sell">SELL</button></a></td>
-      <!--  <td><a href="order_option_sl.php?id={$value.order_id}"><button value="sl">STOPLOSS</button></a></td> -->
+      <!--  <td><a href="order_option_execute.php?id={$value.order_id}"><button value="sl">STOPLOSS</button></a></td> -->
         <td><a href="order_delete_execute.php?id={$value.order_id}"><button value="delete">DELETE</button></a></td>
     </tr>
 

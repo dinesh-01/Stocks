@@ -144,3 +144,11 @@ function add_support(id) {
 
 
 }
+
+
+function  trail_execute(id,per) {
+
+    perValue = $('#'+per).val();
+    window.location = "order_option_sell_execute.php?id="+id+"&p="+perValue;
+
+}

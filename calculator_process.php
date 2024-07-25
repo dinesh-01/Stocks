@@ -12,7 +12,7 @@ $amount_value = $amount * $target_percentage_value;
 $taget = $amount + $amount_value;
 
 
-$stop_loss_percentage_value = 10 / 100 ;
+$stop_loss_percentage_value = $percentage / 100 ;
 $amount_value = $amount * $stop_loss_percentage_value;
 $stop_loss = $amount - $amount_value;
 

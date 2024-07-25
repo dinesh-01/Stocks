@@ -10,8 +10,9 @@
             <th> Order Price </th>
             <th> Order Market </th>
             <th> Current Status</th>
-            <th> Execute  </th>
-          <!--      <th> Execute SL </th> -->
+            <th> Percentage </th>
+            <th> Trail SL  </th>
+            <th> SELL </th>
             <th> Delete Order</th>
             </tr>
 
@@ -33,8 +34,20 @@
             {/if}
 
         </td>
-        <td><a href="order_option_sell_execute.php?id={$value.order_id}"><button value="sell">SELL</button></a></td>
-        <!--<td><a href="order_option_sl.php?id={$value.order_id}"><button value="sl">STOPLOSS</button></a></td> -->
+        <td>
+
+            {if $value.percentage gt 0}
+                <font color="green">{$value.percentage}%</font>
+            {else}
+                <font color="red">{$value.percentage}%</font>
+            {/if}
+
+        </td>
+        <td>
+            {html_options name=foo id=$smarty.foreach.count.iteration options=$myOptions selected=$mySelect}
+            <button value="sell" onclick="trail_execute('{$value.order_id}','{$smarty.foreach.count.iteration}')">Trail SL</button>
+        </td>
+        <td><a href="order_option_execute.php?id={$value.order_id}"><button value="sl">SELL</button></a></td>
         <td><a href="order_option_delete_execute.php?id={$value.order_id}"><button value="delete">DELETE</button></a></td>
     </tr>
 

@@ -19,19 +19,7 @@ require_once './include/common.php';
     $o = $_GET['o']; //option_type
 
 
-    // Fetching last price of the symbol
-    $end_point = "https://api.kite.trade/quote?i=NFO:$symbol";
-    $res = $client->request('GET', $end_point);
-    $response = $res->getBody()->getContents();
-    $response = (json_decode($response, true));
 
-    $last_price = $response['data']["NFO:$symbol"]['last_price'];
-    $last_price = str_replace(",", "", $last_price); //last price
-
-    $percentage_value = 0.2 / 100 ;
-    $amount_value = $last_price * $percentage_value;
-    $final_amount = $last_price + $amount_value;
-    $final_amount = round($final_amount, 1);
     $date = date('d-m-Y');
 
 
@@ -41,7 +29,7 @@ require_once './include/common.php';
     }
 
     if($s=="MIDCPNIFTY") {
-        $lot = 2800;
+        $lot = 1800;
         $min_lot = 75;
     }
 
@@ -79,6 +67,21 @@ $quantity_split_total = 0;
          if($i==$split) {
               $quantity_split =   $quantity - $quantity_split_total;
            }
+
+
+      // Fetching last price of the symbol
+      $end_point = "https://api.kite.trade/quote?i=NFO:$symbol";
+      $res = $client->request('GET', $end_point);
+      $response = $res->getBody()->getContents();
+      $response = (json_decode($response, true));
+
+      $last_price = $response['data']["NFO:$symbol"]['last_price'];
+      $last_price = str_replace(",", "", $last_price); //last price
+
+      $percentage_value = 0.2 / 100 ;
+      $amount_value = $last_price * $percentage_value;
+      $final_amount = $last_price + $amount_value;
+      $final_amount = round($final_amount, 1);
 
 
     //Place Order

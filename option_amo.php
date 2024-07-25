@@ -4,7 +4,7 @@ require_once './include/common.php';
 
 if ( (time() > strtotime("09:15:00")) &&  (time() < strtotime("15:30:00"))  ) {
     $order_decide_type = "regular";
-    $per = "3%";
+    $per = "12%";
 }else{
     $order_decide_type = "amo";
     $per = "5%";
@@ -34,6 +34,8 @@ $data      =  select($arugment,"many");
 
 foreach ($data as $value) {
 
+
+
     #fetch order details
     $order_id = $value['order_id'];
     $symbol   = $value['symbol'];
@@ -43,6 +45,15 @@ foreach ($data as $value) {
 
 
     if(empty($last_price) || is_null($last_price)) {
+
+
+        $end_point = "https://api.kite.trade/quote?i=NFO:$symbol";
+        $res = $client->request('GET', $end_point);
+        $response = $res->getBody()->getContents();
+        $response = (json_decode($response, true));
+
+        $trigger_last_price = $response['data']["NFO:$symbol"]['last_price'];
+        $trigger_price = str_replace(",", "", $trigger_last_price); //last price
 
 
         //Fetch Average Price
@@ -71,45 +82,19 @@ foreach ($data as $value) {
     $target =  number_format($target,1);
     $target = str_replace(",","",$target);
 
+
     $stoploss_percentage = ($per/100) ;
-    $stoploss_diff =  $last_price * $target_percentage;
+    $stoploss_diff =  $last_price * $stoploss_percentage;
     $stoploss = $last_price - $stoploss_diff;
     $stoploss =  number_format($stoploss,1);
     $stoploss = str_replace(",","",$stoploss);
 
+    $trigger_per = $per - 1;
+    $percentage_value = $trigger_per / 100 ;
+    $amount_value = $last_price * $percentage_value;
+    $trigger_final_amount = $last_price - $amount_value;
+    $trigger_stoploss = round($trigger_final_amount, 1);
 
-
-
-    //Set target
-
-
-        $end_point = "https://api.kite.trade/orders/regular";
-        $res = $client->request('POST', $end_point, [
-            'form_params' => [
-                'tradingsymbol' => $symbol,
-                'exchange' => 'NFO',
-                'transaction_type' => "SELL",
-                'order_type' => 'LIMIT',
-                'price' => $target,
-                'quantity' => $quantity,
-                'product' => 'NRML',
-                'validity' => 'DAY'
-
-            ]
-        ]);
-
-
-    $response = $res->getBody()->getContents();
-    $response = (json_decode($response,true));
-
-
-    //Fetching order id
-    $order_id = $response['data']['order_id'];
-    echo "Target for $symbol : $target";
-    echo "\n";
-
-
-    /*
 
     //Set stoploss
     $end_point = "https://api.kite.trade/orders/$order_decide_type";
@@ -119,7 +104,7 @@ foreach ($data as $value) {
             'exchange' => 'NFO',
             'transaction_type' => "SELL",
             'order_type' => 'SL',
-            'trigger_price' => $stoploss,
+            'trigger_price' => $trigger_stoploss,
             'price' => $stoploss,
             'quantity' => $quantity,
             'product' => 'NRML',
@@ -137,16 +122,10 @@ foreach ($data as $value) {
     echo "\n";
 
 
-*/
-
-    $sl_order_id = "Sample";
-
-
     #reseting the dailyentry
     $id = $value['id'];
-    $query = "UPDATE `optionAmo` SET `order_id`='$order_id', `price`='$last_price',`target`='$target',`sl_order_id`='$sl_order_id', `status`= 'completed' WHERE id = '$id'";
+    $query = "UPDATE `optionAmo` SET `order_id`='$sl_order_id', `price`='$last_price',`target`='$target',`sl_order_id`='$sl_order_id', `status`= 'completed' WHERE id = '$id'";
     $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
-
 
 
 
