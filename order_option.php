@@ -29,7 +29,7 @@ require_once './include/common.php';
     }
 
     if($s=="MIDCPNIFTY") {
-        $lot = 1800;
+        $lot = 2800;
         $min_lot = 75;
     }
 
@@ -87,6 +87,8 @@ $quantity_split_total = 0;
     //Place Order
 
        $end_point = "https://api.kite.trade/orders/regular";
+
+
        $res = $client->request('POST', $end_point, [
            'form_params' => [
                'tradingsymbol' => $symbol,
@@ -101,9 +103,20 @@ $quantity_split_total = 0;
            ]
        ]);
 
+/*
+      $res = $client->request('POST', $end_point, [
+          'form_params' => [
+              'tradingsymbol' => $symbol,
+              'exchange' => 'NFO',
+              'transaction_type' => "BUY",
+              'order_type' => 'MARKET',
+              'quantity' => $quantity_split,
+              'product' => 'NRML',
+              'validity' => 'DAY'
 
-
-
+          ]
+      ]);
+*/
 
        $response = $res->getBody()->getContents();
        $response = (json_decode($response,true));

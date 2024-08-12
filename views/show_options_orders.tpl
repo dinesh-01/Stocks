@@ -3,7 +3,6 @@
 <script src="js/show_watch_list.js"></script>
 <br/>
 
-
 <center>
 <div id="show_list">
   <table class="gridtable">
@@ -51,5 +50,9 @@
 
 
 </table>
+    <br/>
+    <button onClick="history.go(0);">Refresh Page</button>
+
 </div>
 </center>
+

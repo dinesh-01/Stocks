@@ -4,10 +4,10 @@ require_once './include/common.php';
 
 if ( (time() > strtotime("09:15:00")) &&  (time() < strtotime("15:30:00"))  ) {
     $order_decide_type = "regular";
-    $per = "12%";
+    $per = "10%";
 }else{
     $order_decide_type = "amo";
-    $per = "5%";
+    $per = "7%";
 }
 
 
@@ -76,7 +76,7 @@ foreach ($data as $value) {
     }
 
 
-    $target_percentage = ($per/100) ;
+    $target_percentage = (2/100) ;
     $target_diff =  $last_price * $target_percentage;
     $target = $last_price + $target_diff;
     $target =  number_format($target,1);
@@ -94,6 +94,7 @@ foreach ($data as $value) {
     $amount_value = $last_price * $percentage_value;
     $trigger_final_amount = $last_price - $amount_value;
     $trigger_stoploss = round($trigger_final_amount, 1);
+
 
 
     //Set stoploss
@@ -121,10 +122,9 @@ foreach ($data as $value) {
     echo "Stoplss for $symbol : $stoploss";
     echo "\n";
 
-
     #reseting the dailyentry
     $id = $value['id'];
-    $query = "UPDATE `optionAmo` SET `order_id`='$sl_order_id', `price`='$last_price',`target`='$target',`sl_order_id`='$sl_order_id', `status`= 'completed' WHERE id = '$id'";
+    $query = "UPDATE `optionAmo` SET  `price`='$last_price',`target`='$target',`sl_order_id`='$sl_order_id' WHERE id = '$id'";
     $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 

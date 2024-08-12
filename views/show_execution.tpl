@@ -1,3 +1,5 @@
+<link rel="stylesheet" type="text/css"  href="css/all.css">
+
 <br/>
 <center>
 <div id="show_list">

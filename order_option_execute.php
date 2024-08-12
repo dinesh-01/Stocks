@@ -50,13 +50,28 @@ $final_amount = round($last_price - $amount_value,1);
 
 
 $end_point = "https://api.kite.trade/orders/regular";
-$res = $client->request('POST', $end_point, [
+
+/*$res = $client->request('POST', $end_point, [
     'form_params' => [
         'tradingsymbol' => $symbol,
         'exchange' => 'NFO',
         'transaction_type' => "SELL",
         'order_type' => 'LIMIT',
         'price' => $final_amount,
+        'quantity' => $quantity,
+        'product' => 'NRML',
+        'validity' => 'DAY'
+
+    ]
+]);
+*/
+
+$res = $client->request('POST', $end_point, [
+    'form_params' => [
+        'tradingsymbol' => $symbol,
+        'exchange' => 'NFO',
+        'transaction_type' => "SELL",
+        'order_type' => 'MARKET',
         'quantity' => $quantity,
         'product' => 'NRML',
         'validity' => 'DAY'

@@ -3,10 +3,6 @@ cd /Applications/MAMP/htdocs/intra
 php composer.phar install
 
 
-
-
-
-
 For all new instrument
 https://api.kite.trade/instruments/NFO
 
@@ -17,18 +13,10 @@ http://localhost:8888/phpMyAdmin5/index.php?route=/table/operations&db=analytics
 php new_entry_options.php
 
 
+Jenkins Command
+brew services start jenkins-lts
+/Users/disingh/.jenkins/workspace/Monitor-Order
 
- /*
 
-              if($support_signal != 1) {
 
-                  //Sending alert to mobile
-                  $twilio = new Client(TWILIO_SID, TWILIO_TOKEN);
 
-                  $message = $twilio->messages
-                      ->create("+919962541005", // to
-                          array(
-                              "from" => "+13187262477",
-                              "body" => "$api_symbol reached Support Level"
-);
-*/
