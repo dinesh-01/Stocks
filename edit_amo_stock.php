@@ -15,7 +15,7 @@ require_once './template/header.php';
 
 <br/>
 <center>
-<form action="edit_amo_process.php" method="post" enctype="multipart/form-data">
+<form action="order_amo_edit_process.php" method="post" enctype="multipart/form-data">
 
  <table class="gridtable">
 

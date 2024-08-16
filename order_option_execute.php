@@ -13,8 +13,8 @@ $client = new GuzzleHttp\Client([
 ]);
 
 //Fetching stock Symbol
-$order_id = $_GET['id'];
-$query    = "SELECT * from optionAmo where order_id='$order_id'";
+$id = $_GET['id'];
+$query    = "SELECT * from optionAmo where id='$id'";
 $result   = mysqli_query($GLOBALS['mysqlConnect'],$query);
 $data     = mysqli_fetch_assoc($result);
 
@@ -23,7 +23,7 @@ $data     = mysqli_fetch_assoc($result);
 $sl_order_id = $data['sl_order_id'];
 
 if(!empty($sl_order_id) || !is_null($sl_order_id)) {
-    $end_point = "https://api.kite.trade/orders/regular/$order_id";
+    $end_point = "https://api.kite.trade/orders/regular/$sl_order_id";
     $res = $client->request('DELETE',$end_point);
 }
 
@@ -51,7 +51,7 @@ $final_amount = round($last_price - $amount_value,1);
 
 $end_point = "https://api.kite.trade/orders/regular";
 
-/*$res = $client->request('POST', $end_point, [
+$res = $client->request('POST', $end_point, [
     'form_params' => [
         'tradingsymbol' => $symbol,
         'exchange' => 'NFO',
@@ -64,8 +64,9 @@ $end_point = "https://api.kite.trade/orders/regular";
 
     ]
 ]);
-*/
 
+
+/*
 $res = $client->request('POST', $end_point, [
     'form_params' => [
         'tradingsymbol' => $symbol,
@@ -78,7 +79,7 @@ $res = $client->request('POST', $end_point, [
 
     ]
 ]);
-
+*/
 
 
 header("location:stock_options_execution.php");

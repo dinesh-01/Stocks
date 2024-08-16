@@ -5,8 +5,7 @@ table.gridtable {
 	border-width: 1px;
 	border-color: #666666;
 	border-collapse: collapse;
-	resize: both;
-	overflow: auto;
+
 }
 table.gridtable th {
 	border-width: 1px;
@@ -14,8 +13,6 @@ table.gridtable th {
 	border-style: solid;
 	border-color: #666666;
 	background-color: #dedede;
-	resize: both;
-	overflow: auto;
 }
 table.gridtable td {
 	border-width: 1px;
@@ -23,6 +20,4 @@ table.gridtable td {
 	border-style: solid;
 	border-color: #666666;
 	background-color: #ffffff;
-	resize: both;
-	overflow: auto;
 }
