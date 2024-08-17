@@ -35,7 +35,7 @@
         <td>{$value.volume}</td>
         <td>{$value.expiry}</td>
         {if $value.order_status eq '0'}
-            <td><a href="order_option.php?option_symbol={$value.tradingsymbol}&lot_size={$value.lot}&s={$details.name}&o={$value.instrument_type}"><button value="buy">BUY</button></a></td>
+            <td><a href="order_option.php?option_symbol={$value.tradingsymbol}&lot_size={$value.lot}&s={$details.name}&o={$value.instrument_type}&i={$value.instrument_token}"><button value="buy">BUY</button></a></td>
         {/if}
 
         {if $value.order_status eq '1'}

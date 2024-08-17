@@ -45,6 +45,12 @@ require_once './template/header.php';
     <td><input type="text" name="trigger_value" autocomplete="off" value="<?php echo $data['trigger_value']?>"></td>
 
 </tr>
+
+     <tr>
+         <td>Last Price</td>
+         <td><input type="text" name="price" autocomplete="off" value="<?php echo $data['price']?>"></td>
+
+     </tr>
  
  <tr>
      <td>Target Percentage</td>

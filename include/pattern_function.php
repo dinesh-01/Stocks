@@ -1,10 +1,6 @@
 <?php
 
-function format($data) {
-    echo "<pre>";
-    print_r($data);
-    echo "</pre>";
-}
+
 
 function window($type,$company,$trade) {
 

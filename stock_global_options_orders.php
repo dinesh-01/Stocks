@@ -92,7 +92,7 @@ if($type == "PE") {
 
 }else{
     $orderBy = "asc";
-    $query = "SELECT * FROM `stockOption` WHERE `tradingsymbol` LIKE '$global%' 
+     $query = "SELECT * FROM `stockOption` WHERE `tradingsymbol` LIKE '$global%' 
                                 and `expiry` LIKE '$expiry'
                                 and strike BETWEEN $range1 AND $current_price 
                                 and instrument_type = '$type' order by strike $orderBy";
@@ -128,6 +128,7 @@ foreach ($datas as $data) {
     $last_price = $response["data"]["NFO:".$tradingsymbol]["last_price"];
     $datas[$i]['volume'] = $response["data"]["NFO:".$tradingsymbol]["volume"];
     $datas[$i]['last_price'] = $last_price;
+    $datas[$i]['instrument_token'] = $data['instrument_token'];
 
     $amount = $last_price * $data['lot_size'];
     $lot    = ($allocate_price / $amount) ;

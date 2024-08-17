@@ -1,5 +1,11 @@
 <?php
 
+function format($data) {
+    echo "<pre>";
+    print_r($data);
+    echo "</pre>";
+}
+
 function get_company_detail($company,$type) {
 
 $splitDetails = explode("|", $company);

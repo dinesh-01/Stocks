@@ -1,18 +1,6 @@
 <?php
 require_once './include/common.php';
 
-// setting up end headers
-$headers = [
-    'Content-Type' => 'application/json',
-    'X-Kite-Version' => '3',
-    'Authorization' => 'token '.KEY.':'.TOKEN
-];
-
-$client = new GuzzleHttp\Client([
-    'headers' => $headers
-]);
-
-
 
 $field     =  array("*");
 $table     =  "optionAmo";
@@ -33,19 +21,25 @@ foreach ($data as $value) {
    if(is_null($order_id) || empty($order_id)) {
 
        //Fetch Current Price of the index
-        $current_price = get_current_price_index($symbol);
+         $current_price = get_current_price_index($symbol);
 
-       if($trigger_value >= $current_price) {
+            if($trigger_value >= $current_price) {
 
-           $order_id = place_order_index($symbol,$quantity,"market");
-           $query = "UPDATE `optionAmo` SET `order_id`= '$order_id',`track_status` = 'Order Executed' WHERE id = '$id'";
-           $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
+                $order_id = place_order_index($symbol,$quantity,"market");
+                sleep(1);
+                $last_price = order_last_price($order_id);
 
-       }
+                $query = "UPDATE `optionAmo` SET `order_id`= '$order_id',`track_status` = 'Order Executed', `price` = '$last_price'  WHERE id = '$id'";
+                $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
+
+            }
+
+
 
        echo 'Order Executed';
 
    }
+
 
 }
 

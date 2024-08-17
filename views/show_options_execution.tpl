@@ -11,7 +11,8 @@
             <th> Order Market </th>
             <th> Current Status</th>
             <th> Percentage </th>
-            <th> Trail SL  </th>
+            <th> Order Status</th>
+           <!-- <th> Trail SL  </th> -->
             <th> SELL </th>
             <th> Delete Order</th>
             </tr>
@@ -21,7 +22,7 @@
     <tr class="show">
         <td><a href="order_amo_edit.php?id={$value.id}">{$smarty.foreach.count.iteration} </a>  </td>
         <td><a href="https://in.tradingview.com/chart/AINnrOTv/?symbol=NSE%3A{$value.stock_symbol|replace:'-':'_'}" target="_blank">{$value.stock_symbol}</a></td>
-        <td><a href="https://www.google.com/search?q={$value.stock_symbol}+ grow+ option+chain" target="_blank">{$value.symbol}</a></td>
+        <td><a href="https://groww.in/charts/options/nifty/{$value.symbol}?exchange=NSE" target="_blank">{$value.symbol}</td>
         <td>{$value.quanity}</td>
         <td>{$value.price}</td>
         <td>{$value.last_price}</td>
@@ -43,10 +44,14 @@
             {/if}
 
         </td>
+        <td>{$value.track_status}</td>
+
+        <!--
         <td>
             {html_options name=foo id=$smarty.foreach.count.iteration options=$myOptions selected=$mySelect}
             <button value="sell" onclick="trail_execute('{$value.order_id}','{$smarty.foreach.count.iteration}')">Trail SL</button>
         </td>
+        -->
         <td><a href="order_option_execute.php?id={$value.id}"><button value="sl">SELL</button></a></td>
         <td><a href="order_option_delete_execute.php?id={$value.id}"><button value="delete">DELETE</button></a></td>
     </tr>
