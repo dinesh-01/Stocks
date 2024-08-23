@@ -54,7 +54,7 @@ foreach ($datas as $data) {
     $datas[$i]['price_diff'] = $last_price - $data['price'];
     $datas[$i]['amount_diff'] = round($datas[$i]['price_diff'],1) *  $data['quanity'];
     //Overll Percentage
-    $datas[$i]['percentage'] = number_format(($datas[$i]['amount_diff'] / ALLOCATE_PRICE) * 100,1);
+    $datas[$i]['percentage'] = number_format(($datas[$i]['amount_diff'] / $data['total_value']) * 100,1);
     $total = $total +  $datas[$i]['amount_diff'];
 
 

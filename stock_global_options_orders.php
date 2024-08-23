@@ -70,14 +70,14 @@ $current_price = $response['data']["NSE:$symbol"]['last_price'];
 $current_price = str_replace(",", "", $current_price);
 
 
-$percentage_value = 1 / 100 ;
+$percentage_value = 0.5 / 100 ;
 $amount_value = $current_price * $percentage_value;
 
 
-$final_amount = $current_price + $amount_value;
+$final_amount = $current_price - $amount_value;
 $range2 = round($final_amount, 0);
 
-$final_amount = $current_price - $amount_value;
+$final_amount = $current_price + $amount_value;
 $range1 = round($final_amount, 0);
 
 
@@ -87,14 +87,14 @@ if($type == "PE") {
     $orderBy = "desc";
     $query = "SELECT * FROM `stockOption` WHERE `tradingsymbol` LIKE '$global%' 
                                 and `expiry` LIKE '$expiry'
-                                and strike BETWEEN $current_price AND $range2 
+                                and strike BETWEEN $range2 AND $range1 
                                 and instrument_type = '$type' order by strike $orderBy";
 
 }else{
     $orderBy = "asc";
-     $query = "SELECT * FROM `stockOption` WHERE `tradingsymbol` LIKE '$global%' 
+    $query = "SELECT * FROM `stockOption` WHERE `tradingsymbol` LIKE '$global%' 
                                 and `expiry` LIKE '$expiry'
-                                and strike BETWEEN $range1 AND $current_price 
+                                and strike BETWEEN $range2 AND $range1 
                                 and instrument_type = '$type' order by strike $orderBy";
 
 }

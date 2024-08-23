@@ -21,7 +21,7 @@ require_once './include/common.php';
 
     $date = date('d-m-Y');
     $date_param = date('Y-m-d');
-    $date_param = "2024-08-16";
+   // $date_param = "2024-08-16";
     $time_frame = TIME_FRAME.'minute';
 
 
@@ -45,9 +45,8 @@ require_once './include/common.php';
 
 
     $length = count($response['data']['candles']);
-    $length =  $length-1;
+    $length =  $length-2;
     $trigger_value =  $response['data']['candles'][$length][2];
-
 
 
    //Update order status
@@ -62,6 +61,7 @@ require_once './include/common.php';
 
     header("location:stock_global_options_orders.php?s=$s&o=$o");
     exit;
+
 
 
 ?>
