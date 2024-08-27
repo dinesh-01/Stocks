@@ -27,11 +27,10 @@ $date_param = date('Y-m-d');
 $order_id = place_order_buy_index($symbol,$quantity,"market");
 
 //Place Target order
-sleep(1);
+sleep(2);
 $last_price = order_last_price($order_id);
 $total_value = ceil($last_price * $quantity);
 $sell_order_id = place_order_sell_index($symbol,$quantity,$last_price);
-
 
 // $date_param = "2024-08-16";
 
@@ -58,7 +57,6 @@ $stoploss_value =  $response['data']['candles'][$length][3];
 
 
 
-//Update order status
 //Update order status
 $query  = "INSERT INTO optionAmo(order_id, sl_order_id, price, symbol, quanity, trigger_value, stop_loss_value, total_value,track_status, created_date) VALUES ('$order_id', '$sell_order_id' ,'$last_price' ,'$symbol','$quantity','$trigger_value','$stoploss_value','$total_value','Order Executed','$date')";
 $result = mysqli_query($GLOBALS['mysqlConnect'],$query);

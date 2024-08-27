@@ -10,9 +10,10 @@
             <th> Order Price </th>
             <th> Order Market </th>
             <th> Current Status</th>
+            <th> Stop Loss Price</th>
             <th> Percentage </th>
             <th> Order Status</th>
-         <th> Trail SL  </th>
+            <th> Trail SL  </th>
             <th> SELL </th>
             <th> Delete Order</th>
             </tr>
@@ -36,7 +37,9 @@
 
         </td>
         <td>
-
+            {$value.stop_loss_value}
+        </td>
+<td>
             {if $value.percentage gt 0}
                 <font color="green">{$value.percentage}%</font>
             {else}

@@ -58,6 +58,7 @@ foreach ($datas as $data) {
     $total = $total +  $datas[$i]['amount_diff'];
 
 
+
     $i++;
 
 }

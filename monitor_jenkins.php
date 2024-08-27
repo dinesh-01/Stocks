@@ -14,7 +14,7 @@ $client = new GuzzleHttp\Client([
 
 
 
-$field     =  array("id,order_id,sl_order_id,sl,tr,symbol,price,quanity,iceberg_leg,created_date");
+$field     =  array("*");
 $table     =  "optionAmo";
 $condition =  "status = 'open'";
 $arugment  =  array( "field" => $field , "table" => $table, 'condition' => $condition);
@@ -27,8 +27,7 @@ foreach ($data as $value) {
 
     $id = $value['id'];
     $sl_order_id = $value['sl_order_id'];
-    $sl_percent = $value['sl'];
-    $tr_percent = $value['tr'];
+    $stop_loss_value = $value['stop_loss_value'];
     $symbol   = $value['symbol'];
     $quantity = $value['quanity'];
     $price    = $value['price'];
@@ -45,91 +44,49 @@ foreach ($data as $value) {
        $length = count($response['data']);
        $length =  $length-1;
 
-       //Fetching average price
+       //Fetching Status
        $status = $response['data'][$length]['status'];
 
-       echo "STOPLOSS STATUS => $status";
+       echo "Target status => $status";
        echo "\n";
 
 
        if($status != 'COMPLETE') {
 
-           $target_percentage = ($tr_percent/100) ;
-           $target_diff =  $price * $target_percentage;
-           $target = $price + $target_diff;
-           $target =  number_format($target,1);
-           $target = str_replace(",","",$target);
 
-           echo "TARGET => $target"; //100
-           echo "\n";
-
-           $end_point = "https://api.kite.trade/quote?i=NFO:$symbol";
-           $res = $client->request('GET', $end_point);
-           $response = $res->getBody()->getContents();
-           $response = (json_decode($response, true));
-           $last_price = $response['data']["NFO:$symbol"]['last_price'];
-           $last_price = str_replace(",", "", $last_price); //last price
-
+           $last_price =  symbol_last_price($symbol);
            echo "LAST PRICE => $last_price"; //103
 
 
-           if($target < $last_price) {
+           if($last_price < $stop_loss_value) {
+
+               $last_price =  symbol_last_price($symbol);
+               $percentage_value = 0.1 / 100 ;
+               $amount_value = $last_price * $percentage_value;
+               $final_amount = round($last_price - $amount_value,1);
 
                $end_point = "https://api.kite.trade/orders/regular/$sl_order_id";
-               $res = $client->request('DELETE',$end_point);
-
-               $end_point = "https://api.kite.trade/orders/regular";
-
-
-               /*
-               $res = $client->request('POST', $end_point, [
+               $res = $client->request('PUT', $end_point, [
                    'form_params' => [
-                       'tradingsymbol' => $symbol,
-                       'exchange' => 'NFO',
-                       'transaction_type' => "SELL",
-                       'order_type' => 'MARKET',
-                       'quantity' => $quantity,
-                       'product' => 'NRML',
-                       'validity' => 'DAY'
-
-                   ]
-               ]);
-
-               */
-
-
-
-               $res = $client->request('POST', $end_point, [
-                   'form_params' => [
-                       'tradingsymbol' => $symbol,
-                       'exchange' => 'NFO',
-                       'transaction_type' => "SELL",
-                       'order_type' => 'LIMIT',
-                       'price' => $target,
-                       'quantity' => $quantity,
-                       'product' => 'NRML',
-                       'validity' => 'DAY'
-
+                       'price' => $final_amount
                    ]
                ]);
 
 
-
-
-               $query = "UPDATE `optionAmo` SET `status`= 'completed', `track_status` = 'Target Triggered :D' WHERE id = '$id'";
+               $query = "UPDATE `optionAmo` SET `status`= 'completed', `track_status` = 'SL Triggered' WHERE id = '$id'";
                $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
-               echo "Target Price Triggered :D";
+               echo "SL Triggered :(";
 
            }
 
 
        }else{
 
-           $query = "UPDATE `optionAmo` SET `status`= 'completed', `track_status` = 'SL Triggered :(' WHERE id = '$id'";
+           $query = "UPDATE `optionAmo` SET `status`= 'completed', `track_status` = 'Target Triggered' WHERE id = '$id'";
            $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
-           echo "Stoploss Triggered :(";
+           echo "Target Triggered :D";
        }
 
 

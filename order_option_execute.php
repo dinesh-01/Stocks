@@ -41,14 +41,7 @@ $amount_value = $last_price * $percentage_value;
 $final_amount = round($last_price - $amount_value,1);
 
 
-//Place Order
-if($iceberg_status == 'no') {
-    $order_type = 'regular';
-}else{
-    $order_type = 'iceberg';
-}
-
-$end_point = "https://api.kite.trade/orders/$order_type/$sl_order_id";
+$end_point = "https://api.kite.trade/orders/regular/$sl_order_id";
 
 $res = $client->request('PUT', $end_point, [
     'form_params' => [

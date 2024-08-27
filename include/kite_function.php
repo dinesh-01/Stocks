@@ -203,7 +203,6 @@ function place_order_buy_index_iceberg($symbol,$quantity,$leg,$type) {
 }
 
 
-
 function place_order_sell_index($symbol,$quantity,$last_price) {
 
     $headers = [
@@ -343,6 +342,29 @@ function order_last_price($order_id) {
     return $last_price;
 
 
+
+}
+
+function symbol_last_price($symbol) {
+
+    $headers = [
+        'Content-Type' => 'application/json',
+        'X-Kite-Version' => '3',
+        'Authorization' => 'token '.KEY.':'.TOKEN
+    ];
+
+    $client = new GuzzleHttp\Client([
+        'headers' => $headers
+    ]);
+
+
+    $end_point = "https://api.kite.trade/quote?i=NFO:$symbol";
+    $res = $client->request('GET', $end_point);
+    $response = $res->getBody()->getContents();
+    $response = (json_decode($response, true));
+    $last_price = $response['data']["NFO:$symbol"]['last_price'];
+    $last_price = str_replace(",", "", $last_price); //last price
+    return $last_price;
 
 }
 
