@@ -2,6 +2,8 @@ source .bash_profile
 cd /Applications/MAMP/htdocs/intra
 php composer.phar install
 
+/Users/disingh/pear/bin/pear
+
 
 For all new instrument
 https://api.kite.trade/instruments/NFO

@@ -56,6 +56,7 @@ foreach ($data as $value) {
 
            $last_price =  symbol_last_price($symbol);
            echo "LAST PRICE => $last_price"; //103
+           echo "\n";
 
 
            if($last_price < $stop_loss_value) {

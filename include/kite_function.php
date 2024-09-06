@@ -369,4 +369,28 @@ function symbol_last_price($symbol) {
 }
 
 
+function match_condition($type, $value, $last_price) {
+
+  $return = false;
+
+    if($type == 'support' ) {
+
+        if($last_price <= $value ) {
+            $return = true;
+        }
+
+    }
+
+    if($type == 'target') {
+
+        if($last_price >= $value) {
+            $return = true;
+        }
+
+    }
+
+    return $return;
+}
+
+
 ?>

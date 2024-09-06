@@ -25,7 +25,7 @@ $allocate_price = ALLOCATE_PRICE;
 if($global == 'NIFTY') {
     $symbol = "NIFTY 50";
     $end_point = "https://api.kite.trade/quote?i=NSE:$symbol";
-    $expiry = '2024-08-29%';
+    $expiry = '2024-09-12%';
    // $allocate_price = EXPIRY_ALLOCATE_PRICE;
 
 }
@@ -33,21 +33,21 @@ if($global == 'NIFTY') {
 if($global == 'BANKNIFTY') {
     $symbol = "NIFTY BANK";
     $end_point = "https://api.kite.trade/quote?i=NSE:$symbol";
-    $expiry = '2024-08-28%';
+    $expiry = '2024-09-11%';
 
 }
 
 if($global == 'MIDCP') {
     $symbol = "NIFTY MID SELECT";
     $end_point = "https://api.kite.trade/quote?i=NSE:$symbol";
-    $expiry = '2024-09-02%';
+    $expiry = '2024-09-09%';
 }
 
 
 if($global == 'FINNIFTY') {
     $symbol = "NIFTY FIN SERVICE";
     $end_point = "https://api.kite.trade/quote?i=NSE:$symbol";
-    $expiry = '2024-09-03%';
+    $expiry = '2024-09-10%';
 
 
 }
@@ -70,7 +70,7 @@ $current_price = $response['data']["NSE:$symbol"]['last_price'];
 $current_price = str_replace(",", "", $current_price);
 
 
-$percentage_value = 0.5 / 100 ;
+$percentage_value = 1 / 100 ;
 $amount_value = $current_price * $percentage_value;
 
 
@@ -85,17 +85,17 @@ $range1 = round($final_amount, 0);
 
 if($type == "PE") {
     $orderBy = "desc";
-    $query = "SELECT * FROM `stockOption` WHERE `tradingsymbol` LIKE '$global%' 
+     $query = "SELECT * FROM `stockOption` WHERE `tradingsymbol` LIKE '$global%' 
                                 and `expiry` LIKE '$expiry'
-                                and strike BETWEEN $range2 AND $range1 
-                                and instrument_type = '$type' order by strike $orderBy";
+                                and strike BETWEEN $current_price AND $range1 
+                                and instrument_type = '$type' order by strike $orderBy limit 0,4";
 
 }else{
     $orderBy = "asc";
     $query = "SELECT * FROM `stockOption` WHERE `tradingsymbol` LIKE '$global%' 
                                 and `expiry` LIKE '$expiry'
-                                and strike BETWEEN $range2 AND $range1 
-                                and instrument_type = '$type' order by strike $orderBy";
+                                and strike BETWEEN $range2 AND $current_price 
+                                and instrument_type = '$type' order by strike $orderBy limit 0,4";
 
 }
 

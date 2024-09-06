@@ -13,7 +13,9 @@
             <th> Stop Loss Price</th>
             <th> Percentage </th>
             <th> Order Status</th>
+            <!--
             <th> Trail SL  </th>
+            -->
             <th> SELL </th>
             <th> Delete Order</th>
             </tr>
@@ -49,11 +51,12 @@
         </td>
         <td>{$value.track_status}</td>
 
-
+<!--
         <td>
             {html_options name=foo id=$smarty.foreach.count.iteration options=$myOptions selected=$mySelect}
             <button value="sell" onclick="trail_execute('{$value.order_id}','{$smarty.foreach.count.iteration}')">Trail SL</button>
         </td>
+-->
         <td><a href="order_option_execute.php?id={$value.id}"><button value="sl">SELL</button></a></td>
         <td><a href="order_option_delete_execute.php?id={$value.id}"><button value="delete">DELETE</button></a></td>
     </tr>

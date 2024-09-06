@@ -120,7 +120,7 @@
       if(!empty($condition)) { $condition = "where $condition"; }
 
       //Update query
-      $query  = "update $table set $values $condition";
+    echo  $query  = "update $table set $values $condition";
       $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
       return $result;

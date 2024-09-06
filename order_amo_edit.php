@@ -47,44 +47,19 @@ require_once './template/header.php';
 </tr>
 
      <tr>
+         <td>Support Value</td>
+         <td><input type="text" name="support_value" autocomplete="off" value="<?php echo $data['support_value']?>"></td>
+
+     </tr>
+
+
+     <tr>
          <td>Last Price</td>
          <td><input type="text" name="price" autocomplete="off" value="<?php echo $data['price']?>"></td>
 
      </tr>
  
- <tr>
-     <td>Target Percentage</td>
-     <td>
-         <select name="tr" id="tr">
-             <?php
-             // Loop through options array and set selected for the matching value
-             foreach ($options as $value => $label) {
-                 $selected = ($label == $data['tr']) ? 'selected' : '';
-                 echo "<option value=\"$value\" $selected>$label</option>";
-             }
 
-             ?>
-         </select>
-
-     </td>
- </tr>
- 
-<tr>
-     <td>SL Percentage</td>
-    <td>
-        <select name="sl" id="sl">
-            <?php
-            // Loop through options array and set selected for the matching value
-            foreach ($options as $value => $label) {
-                $selected = ($label == $data['sl']) ? 'selected' : '';
-                echo "<option value=\"$value\" $selected>$label</option>";
-            }
-
-            ?>
-        </select>
-
-    </td>
- </tr>
 
 
 

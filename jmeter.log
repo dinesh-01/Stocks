@@ -1,0 +1,25 @@
+2024-09-03 16:32:28,636 INFO o.a.j.u.JMeterUtils: Setting Locale to en_EN
+2024-09-03 16:32:28,658 INFO o.a.j.JMeter: Loading user properties from: /usr/local/Cellar/jmeter/5.4.1/libexec/bin/user.properties
+2024-09-03 16:32:28,660 INFO o.a.j.JMeter: Loading system properties from: /usr/local/Cellar/jmeter/5.4.1/libexec/bin/system.properties
+2024-09-03 16:32:28,667 INFO o.a.j.JMeter: Copyright (c) 1998-2021 The Apache Software Foundation
+2024-09-03 16:32:28,667 INFO o.a.j.JMeter: Version 5.4.1
+2024-09-03 16:32:28,667 INFO o.a.j.JMeter: java.version=15.0.1
+2024-09-03 16:32:28,667 INFO o.a.j.JMeter: java.vm.name=OpenJDK 64-Bit Server VM
+2024-09-03 16:32:28,667 INFO o.a.j.JMeter: os.name=Mac OS X
+2024-09-03 16:32:28,667 INFO o.a.j.JMeter: os.arch=x86_64
+2024-09-03 16:32:28,667 INFO o.a.j.JMeter: os.version=10.16
+2024-09-03 16:32:28,667 INFO o.a.j.JMeter: file.encoding=UTF-8
+2024-09-03 16:32:28,667 INFO o.a.j.JMeter: java.awt.headless=null
+2024-09-03 16:32:28,668 INFO o.a.j.JMeter: Max memory     =1073741824
+2024-09-03 16:32:28,668 INFO o.a.j.JMeter: Available Processors =12
+2024-09-03 16:32:28,675 INFO o.a.j.JMeter: Default Locale=English (EN)
+2024-09-03 16:32:28,675 INFO o.a.j.JMeter: JMeter  Locale=English (EN)
+2024-09-03 16:32:28,675 INFO o.a.j.JMeter: JMeterHome=/usr/local/Cellar/jmeter/5.4.1/libexec
+2024-09-03 16:32:28,675 INFO o.a.j.JMeter: user.dir  =/Applications/MAMP/htdocs/intra
+2024-09-03 16:32:28,675 INFO o.a.j.JMeter: PWD       =/Applications/MAMP/htdocs/intra
+2024-09-03 16:32:28,684 INFO o.a.j.JMeter: IP: 10.20.39.112 Name: FWS-CHE-LT-5039.local FullName: 10.20.39.112
+2024-09-03 16:32:29,117 INFO o.a.j.JMeter: Setting LAF to: laf:com.apple.laf.AquaLookAndFeel
+2024-09-03 16:32:29,699 INFO o.a.j.JMeter: Loaded icon properties from org/apache/jmeter/images/icon.properties
+2024-09-03 16:32:30,780 INFO o.j.r.JARSourceHTTP: Found cached repo
+2024-09-03 16:32:30,971 INFO o.j.r.PluginManager: Plugins Status: [jpgc-graphs-basic=2.0, jpgc-casutg=2.10, jpgc-plugins-manager=1.7, jpgc-tst=2.6, websocket-samplers=1.2.8, jmeter-core=5.4.1, jmeter-ftp=5.4.1, jmeter-http=5.4.1, jmeter-jdbc=5.4.1, jmeter-jms=5.4.1, jmeter-junit=5.4.1, jmeter-java=5.4.1, jmeter-ldap=5.4.1, jmeter-mail=5.4.1, jmeter-mongodb=5.4.1, jmeter-native=5.4.1, jmeter-tcp=5.4.1, jmeter-components=5.4.1]
+2024-09-03 16:32:30,972 INFO o.j.r.PluginManagerMenuItem: Plugins Manager has upgrades: [jpgc-plugins-manager, websocket-samplers]

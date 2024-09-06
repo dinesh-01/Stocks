@@ -23,16 +23,6 @@ $date = date('d-m-Y');
 $date_param = date('Y-m-d');
 
 
-//Place Order
-$order_id = place_order_buy_index($symbol,$quantity,"market");
-
-//Place Target order
-sleep(1);
-$last_price = order_last_price($order_id);
-$total_value = ceil($last_price * $quantity);
-$sell_order_id = place_order_sell_index($symbol,$quantity,$last_price);
-
-
 // $date_param = "2024-08-16";
 
 if(TIME_FRAME > 1) {
@@ -43,7 +33,7 @@ if(TIME_FRAME > 1) {
 
 
 
-$end_point = "https://api.kite.trade/instruments/historical/$i/$time_frame?from=$date_param+09:15:00&to=$date_param+15:30:00";
+echo $end_point = "https://api.kite.trade/instruments/historical/$i/$time_frame?from=$date_param+09:15:00&to=$date_param+15:30:00";
 $res = $client->request('GET', $end_point);
 $response = $res->getBody()->getContents();
 $response = (json_decode($response,true));
@@ -54,13 +44,12 @@ $response = (json_decode($response,true));
 $length = count($response['data']['candles']);
 $length =  $length-2;
 $trigger_value =  $response['data']['candles'][$length][2];
-$stoploss_value =  $response['data']['candles'][$length][3];
+//$stoploss_value =  $response['data']['candles'][$length][3];
 
 
 
 //Update order status
-//Update order status
-$query  = "INSERT INTO optionAmo(order_id, sl_order_id, price, symbol, quanity, trigger_value, stop_loss_value, total_value,track_status, created_date) VALUES ('$order_id', '$sell_order_id' ,'$last_price' ,'$symbol','$quantity','$trigger_value','$stoploss_value','$total_value','Order Executed','$date')";
+$query  = "INSERT INTO optionAmo( symbol, quanity, trigger_value, track_status, created_date) VALUES ('$symbol','$quantity','$trigger_value','Order Pending','$date')";
 $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 
