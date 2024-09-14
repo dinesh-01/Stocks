@@ -17,23 +17,29 @@ $iceberg_status = 'no';
     $quantity = $value['quanity'];
     $trigger_value = $value['trigger_value'];
     $support_value = $value['support_value'];
+    $resistance_value = $value['resistance_value'];
 
 
 
         if(is_null($order_id) || empty($order_id)) {
 
            //Fetch Current Price of the index
-             $current_price = get_current_price_index($symbol);
+             $current_price = symbol_last_price($symbol);
              $condition = false;
+            // $condition = match_condition( $trigger_value , $current_price);
+
 
 
                if(!empty($support_value)) {
-                   $condition = match_condition('support', $support_value , $current_price);
+                   $condition = support_match_condition($symbol, $support_value);
+               } elseif(!empty($resistance_value)) {
+                   $condition = resistance_match_condition($symbol, $resistance_value);
                } else {
-                   $condition = match_condition('target', $trigger_value , $current_price);
+                   $condition = match_condition( $trigger_value , $current_price);
                }
 
-                if($condition == true) {
+
+                if($condition === true) {
 
                         $order_id = place_order_buy_index($symbol,$quantity,"market");
                         sleep(2);

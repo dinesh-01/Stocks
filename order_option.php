@@ -22,6 +22,18 @@ $i = $_GET['i'];
 $date = date('d-m-Y');
 $date_param = date('Y-m-d');
 
+/*
+
+//Place Order
+$order_id = place_order_buy_index($symbol,$quantity,"market");
+
+//Place Target order
+sleep(1);
+$last_price = order_last_price($order_id);
+$total_value = ceil($last_price * $quantity);
+$sell_order_id = place_order_sell_index($symbol,$quantity,$last_price);
+
+*/
 
 // $date_param = "2024-08-16";
 
@@ -33,7 +45,7 @@ if(TIME_FRAME > 1) {
 
 
 
-echo $end_point = "https://api.kite.trade/instruments/historical/$i/$time_frame?from=$date_param+09:15:00&to=$date_param+15:30:00";
+$end_point = "https://api.kite.trade/instruments/historical/$i/$time_frame?from=$date_param+09:15:00&to=$date_param+15:30:00";
 $res = $client->request('GET', $end_point);
 $response = $res->getBody()->getContents();
 $response = (json_decode($response,true));
@@ -47,6 +59,9 @@ $trigger_value =  $response['data']['candles'][$length][2];
 //$stoploss_value =  $response['data']['candles'][$length][3];
 
 
+$percentage_value = STOPLOSS_BOOKING / 100 ;
+$amount_value = $trigger_value * $percentage_value;
+$final_amount = round($trigger_value - $amount_value,1);
 
 //Update order status
 $query  = "INSERT INTO optionAmo( symbol, quanity, trigger_value, track_status, created_date) VALUES ('$symbol','$quantity','$trigger_value','Order Pending','$date')";

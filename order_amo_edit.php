@@ -54,8 +54,8 @@ require_once './template/header.php';
 
 
      <tr>
-         <td>Last Price</td>
-         <td><input type="text" name="price" autocomplete="off" value="<?php echo $data['price']?>"></td>
+         <td>Resistance Value</td>
+         <td><input type="text" name="resistance_value" autocomplete="off" value="<?php echo $data['resistance_value']?>"></td>
 
      </tr>
  

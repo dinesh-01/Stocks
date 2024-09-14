@@ -7,13 +7,14 @@ require_once './include/common.php';
 $id   = $_POST['id'];
 $trigger_value = $_POST['trigger_value'];
 $support_value = $_POST['support_value'];
+$resistance_value = $_POST['resistance_value'];
 
 $price = $_POST['price'];
 
 $date = date('d-m-Y');
 
 
-$field = array('trigger_value'=> $trigger_value,'support_value'=> $support_value,'price'=>$price);
+$field = array('trigger_value'=> $trigger_value,'support_value'=> $support_value,'resistance_value'=> $resistance_value,'price'=>$price);
 $table = "optionAmo";
 $condition = "id = $id";
 $arugment  =  array( "field" => $field , "table" => $table, "condition" => $condition);

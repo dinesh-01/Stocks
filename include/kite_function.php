@@ -6,7 +6,7 @@
 
 function get_current_price_index($symbol) {
 
-/*
+
     if (str_contains($symbol, "MIDCP")) {
         $symbol = 'NIFTY MID SELECT';
     }elseif (str_contains($symbol, "BANKNIFTY")) {
@@ -16,7 +16,7 @@ function get_current_price_index($symbol) {
     }else{
         $symbol = 'NIFTY 50';
     }
-*/
+
 
     $headers = [
         'Content-Type' => 'application/json',
@@ -28,14 +28,12 @@ function get_current_price_index($symbol) {
         'headers' => $headers
     ]);
 
-   // $end_point = "https://api.kite.trade/quote?i=NSE:$symbol";
-     $end_point = "https://api.kite.trade/quote?i=NFO:$symbol";
+    $end_point = "https://api.kite.trade/quote?i=NSE:$symbol";
     $res =   $client->request('GET', $end_point);
     $response = $res->getBody()->getContents();
     $response = (json_decode($response, true));
 
-  //  $current_price = $response['data']["NSE:$symbol"]['last_price'];
-    $current_price = $response["data"]["NFO:".$symbol]["last_price"];
+    $current_price = $response['data']["NSE:$symbol"]['last_price'];
     $current_price = str_replace(",", "", $current_price);
     return $current_price;
 
@@ -369,27 +367,46 @@ function symbol_last_price($symbol) {
 }
 
 
-function match_condition($type, $value, $last_price) {
+function match_condition( $trigger_value, $last_price) {
 
-  $return = false;
+    $return = false;
 
-    if($type == 'support' ) {
-
-        if($last_price <= $value ) {
+      if($last_price >= $trigger_value) {
             $return = true;
-        }
+      }
 
-    }
+    return $return;
 
-    if($type == 'target') {
+}
 
-        if($last_price >= $value) {
-            $return = true;
-        }
 
+function support_match_condition($symbol, $support_value) {
+
+    $return = false;
+   echo $index_price = get_current_price_index($symbol);
+
+    if($index_price <= $support_value) {
+        $return = true;
     }
 
     return $return;
+
+
+}
+
+
+function resistance_match_condition($symbol, $resistance_value) {
+
+    $return = false;
+    echo $index_price = get_current_price_index($symbol);
+
+    if($index_price >= $resistance_value) {
+        $return = true;
+    }
+
+    return $return;
+
+
 }
 
 

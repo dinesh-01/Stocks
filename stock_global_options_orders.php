@@ -25,7 +25,7 @@ $allocate_price = ALLOCATE_PRICE;
 if($global == 'NIFTY') {
     $symbol = "NIFTY 50";
     $end_point = "https://api.kite.trade/quote?i=NSE:$symbol";
-    $expiry = '2024-09-12%';
+    $expiry = '2024-09-19%';
    // $allocate_price = EXPIRY_ALLOCATE_PRICE;
 
 }
@@ -33,21 +33,21 @@ if($global == 'NIFTY') {
 if($global == 'BANKNIFTY') {
     $symbol = "NIFTY BANK";
     $end_point = "https://api.kite.trade/quote?i=NSE:$symbol";
-    $expiry = '2024-09-11%';
+    $expiry = '2024-09-18%';
 
 }
 
 if($global == 'MIDCP') {
     $symbol = "NIFTY MID SELECT";
     $end_point = "https://api.kite.trade/quote?i=NSE:$symbol";
-    $expiry = '2024-09-09%';
+    $expiry = '2024-09-16%';
 }
 
 
 if($global == 'FINNIFTY') {
     $symbol = "NIFTY FIN SERVICE";
     $end_point = "https://api.kite.trade/quote?i=NSE:$symbol";
-    $expiry = '2024-09-10%';
+    $expiry = '2024-09-17%';
 
 
 }
@@ -84,7 +84,7 @@ $range1 = round($final_amount, 0);
 
 
 if($type == "PE") {
-    $orderBy = "desc";
+     $orderBy = "desc";
      $query = "SELECT * FROM `stockOption` WHERE `tradingsymbol` LIKE '$global%' 
                                 and `expiry` LIKE '$expiry'
                                 and strike BETWEEN $current_price AND $range1 
