@@ -21,9 +21,17 @@ $data     = mysqli_fetch_assoc($result);
 
 //delete SL Order
 $sl_order_id = $data['sl_order_id'];
+
+if(!empty($sl_order_id) || !is_null($sl_order_id)) {
+    $end_point = "https://api.kite.trade/orders/regular/$sl_order_id";
+    $res = $client->request('DELETE',$end_point);
+}
+
+
+
+
 $symbol = $data['symbol'];
 $quantity = $data['quanity'];
-$iceberg_status = $data['iceberg_status'];
 
 $end_point = "https://api.kite.trade/quote?i=NFO:$symbol";
 $res = $client->request('GET', $end_point);
@@ -41,15 +49,8 @@ $amount_value = $last_price * $percentage_value;
 $final_amount = round($last_price - $amount_value,1);
 
 
-$end_point = "https://api.kite.trade/orders/regular/$sl_order_id";
+$end_point = "https://api.kite.trade/orders/regular";
 
-$res = $client->request('PUT', $end_point, [
-    'form_params' => [
-        'price' => $final_amount
-    ]
-]);
-
-/*
 $res = $client->request('POST', $end_point, [
     'form_params' => [
         'tradingsymbol' => $symbol,
@@ -64,8 +65,8 @@ $res = $client->request('POST', $end_point, [
     ]
 ]);
 
-*/
 
+/*
 $res = $client->request('POST', $end_point, [
     'form_params' => [
         'tradingsymbol' => $symbol,
@@ -78,7 +79,7 @@ $res = $client->request('POST', $end_point, [
 
     ]
 ]);
-
+*/
 
 
 header("location:stock_options_execution.php");
