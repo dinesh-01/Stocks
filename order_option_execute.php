@@ -64,6 +64,7 @@ $res = $client->request('POST', $end_point, [
     ]
 ]);
 
+*/
 
 $res = $client->request('POST', $end_point, [
     'form_params' => [
@@ -77,7 +78,7 @@ $res = $client->request('POST', $end_point, [
 
     ]
 ]);
-*/
+
 
 
 header("location:stock_options_execution.php");

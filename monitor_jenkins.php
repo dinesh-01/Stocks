@@ -31,7 +31,9 @@ foreach ($data as $value) {
     $symbol   = $value['symbol'];
     $quantity = $value['quanity'];
     $price    = $value['price'];
-    $iceberg_leg = $value['iceberg_leg'];
+    $total_value = $value['total_value'];
+    $current_sl = $value['current_sl'];
+    $next_sl = $value['next_sl'];
 
 
    if($sl_order_id != null || !empty($sl_order_id)) {
@@ -59,35 +61,47 @@ foreach ($data as $value) {
            echo "\n";
 
 
-           if($last_price < $stop_loss_value) {
+           $price_diff = $last_price - $price;
+           $amount_diff = round($price_diff,1) *  $quantity;
+           $current_percentage = number_format(($amount_diff / $total_value) * 100,1);
 
-               $last_price =  symbol_last_price($symbol);
-               $percentage_value = 0.1 / 100 ;
+
+
+
+           if($current_percentage >= $next_sl) { // 3 > 2
+
+               $percentage_value = $current_sl / 100 ;
                $amount_value = $last_price * $percentage_value;
                $final_amount = round($last_price - $amount_value,1);
 
                $end_point = "https://api.kite.trade/orders/regular/$sl_order_id";
                $res = $client->request('PUT', $end_point, [
                    'form_params' => [
+                       'trigger_price' => $last_price,
                        'price' => $final_amount
                    ]
                ]);
 
 
-               $query = "UPDATE `optionAmo` SET `status`= 'completed', `track_status` = 'SL Triggered' WHERE id = '$id'";
+               $current_sl = $current_sl + SL_INCREMENT;
+               $next_sl = $next_sl + SL_INCREMENT;
+
+
+
+               $query = "UPDATE `optionAmo` SET `current_sl` = '$current_sl', `next_sl` = '$next_sl', `track_status` = 'SL Updated' WHERE id = '$id'";
                $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
-               echo "SL Triggered :(";
+               echo "SL Updated";
 
            }
 
 
-       }else{
+       } else {
 
-           $query = "UPDATE `optionAmo` SET `status`= 'completed', `track_status` = 'Target Triggered' WHERE id = '$id'";
+           $query = "UPDATE `optionAmo` SET `status`= 'completed', `track_status` = 'SL Triggered' WHERE id = '$id'";
            $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
-           echo "Target Triggered :D";
+           echo "SL Triggered";
        }
 
 
