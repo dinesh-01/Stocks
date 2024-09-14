@@ -251,6 +251,64 @@ function place_order_sell_index($symbol,$quantity,$last_price) {
 
 }
 
+function place_stop_loss_index($symbol,$quantity,$last_price) {
+
+    $headers = [
+        'Content-Type' => 'application/json',
+        'X-Kite-Version' => '3',
+        'Authorization' => 'token '.KEY.':'.TOKEN
+    ];
+
+    $client = new GuzzleHttp\Client([
+        'headers' => $headers
+    ]);
+
+
+
+    $stop_loss_trigger_percentage_value = STOPLOSS_BOOKING - 2;
+    $stop_loss_trigger_percentage = ($stop_loss_trigger_percentage_value/100) ;
+    $stop_loss_diff =  $last_price * $stop_loss_trigger_percentage;
+    $stop_loss_trigger = $last_price - $stop_loss_diff;
+    $stop_loss_trigger = number_format($stop_loss_trigger ,1);
+    $stop_loss_trigger = str_replace(",","",$stop_loss_trigger);
+
+    $stop_loss_percentage = (STOPLOSS_BOOKING/100) ;
+    $stop_loss_diff =  $last_price * $stop_loss_percentage;
+    $stop_loss = $last_price - $stop_loss_diff;
+    $stop_loss = number_format($stop_loss ,1);
+    $stop_loss = str_replace(",","",$stop_loss);
+
+
+    //Set Stoploss
+    $end_point = "https://api.kite.trade/orders/regular";
+    $res = $client->request('POST', $end_point, [
+        'form_params' => [
+            'tradingsymbol' => $symbol,
+            'exchange' => 'NFO',
+            'transaction_type' => "SELL",
+            'order_type' => 'SL',
+            'price' => $stop_loss,
+            'trigger_price' => $stop_loss_trigger,
+            'quantity' => $quantity,
+            'product' => 'NRML',
+            'validity' => 'DAY'
+
+        ]
+    ]);
+
+    $response = $res->getBody()->getContents();
+    $response = (json_decode($response,true));
+
+    //Fetching order id
+    $order_id = $response['data']['order_id'];
+
+    return $order_id;
+
+
+}
+
+
+
 function place_order_sell_index_iceberg($symbol,$quantity,$leg) {
 
     $headers = [

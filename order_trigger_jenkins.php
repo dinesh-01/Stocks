@@ -26,15 +26,20 @@ $iceberg_status = 'no';
            //Fetch Current Price of the index
              $current_price = symbol_last_price($symbol);
              $condition = false;
-            // $condition = match_condition( $trigger_value , $current_price);
 
 
-
+               //Support
                if(!empty($support_value)) {
                    $condition = support_match_condition($symbol, $support_value);
-               } elseif(!empty($resistance_value)) {
+               }
+
+               //Resistance
+               elseif(!empty($resistance_value)) {
                    $condition = resistance_match_condition($symbol, $resistance_value);
-               } else {
+               }
+
+               //CandleStick
+               else {
                    $condition = match_condition( $trigger_value , $current_price);
                }
 
@@ -47,7 +52,9 @@ $iceberg_status = 'no';
                         $last_price = order_last_price($order_id);
                         $total_value = ceil($last_price * $quantity);
 
-                        $sell_order_id = place_order_sell_index($symbol,$quantity,$last_price);
+                       // $sell_order_id = place_order_sell_index($symbol,$quantity,$last_price);
+                        $sell_order_id = place_stop_loss_index($symbol,$quantity,$last_price);
+
 
                         $percentage_value = STOPLOSS_BOOKING / 100 ;
                         $amount_value = $last_price * $percentage_value;
