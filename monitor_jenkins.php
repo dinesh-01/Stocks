@@ -66,9 +66,10 @@ foreach ($data as $value) {
            $current_percentage = number_format(($amount_diff / $total_value) * 100,1);
 
 
-
-
            if($current_percentage >= $next_sl) { // 3 > 2
+
+
+               if(empty($current_sl) || $current_sl == 0) { $current_sl = -2; }
 
                $percentage_value = $current_sl / 100 ;
                $amount_value = $last_price * $percentage_value;
@@ -83,9 +84,10 @@ foreach ($data as $value) {
                ]);
 
 
+               if( $current_sl == -2) { $current_sl = 0; }
+
                $current_sl = $current_sl + SL_INCREMENT;
                $next_sl = $next_sl + SL_INCREMENT;
-
 
 
                $query = "UPDATE `optionAmo` SET `current_sl` = '$current_sl', `next_sl` = '$next_sl', `track_status` = 'SL Updated' WHERE id = '$id'";
