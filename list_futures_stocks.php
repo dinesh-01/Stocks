@@ -57,14 +57,14 @@ $client = new GuzzleHttp\Client([
       if($in == 'NIFTY MID SELECT') {
 
           $global = 'MIDCP';
-          $expiry = '2024-09-16%';
+          $expiry = '2024-09-23%';
 
       }
 
       if($in == 'NIFTY FIN SERVICE') {
 
           $global = 'FINNIFTY';
-          $expiry = '2024-09-17%';
+          $expiry = '2024-09-24%';
 
       }
 

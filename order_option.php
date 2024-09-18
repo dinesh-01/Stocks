@@ -59,10 +59,6 @@ $trigger_value =  $response['data']['candles'][$length][2];
 //$stoploss_value =  $response['data']['candles'][$length][3];
 
 
-$percentage_value = STOPLOSS_BOOKING / 100 ;
-$amount_value = $trigger_value * $percentage_value;
-$final_amount = round($trigger_value - $amount_value,1);
-
 //Update order status
 $query  = "INSERT INTO optionAmo( symbol, quanity, trigger_value, track_status, created_date) VALUES ('$symbol','$quantity','$trigger_value','Order Pending','$date')";
 $result = mysqli_query($GLOBALS['mysqlConnect'],$query);

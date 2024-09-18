@@ -61,14 +61,15 @@ function place_order_buy_index($symbol,$quantity,$type) {
         $res = $client->request('GET', $end_point);
         $response = $res->getBody()->getContents();
         $response = (json_decode($response, true));
-
         $last_price = $response['data']["NFO:$symbol"]['last_price'];
         $last_price = str_replace(",", "", $last_price); //last price
+        $final_amount = round($last_price, 1);
 
-        $percentage_value = 0.2 / 100 ;
-        $amount_value = $last_price * $percentage_value;
-        $final_amount = $last_price + $amount_value;
-        $final_amount = round($final_amount, 1);
+
+
+
+
+
 
         $end_point = "https://api.kite.trade/orders/regular";
 
@@ -265,7 +266,7 @@ function place_stop_loss_index($symbol,$quantity,$last_price) {
 
 
 
-    $stop_loss_trigger_percentage_value = STOPLOSS_BOOKING - 2;
+    $stop_loss_trigger_percentage_value = STOPLOSS_BOOKING - 1;
     $stop_loss_trigger_percentage = ($stop_loss_trigger_percentage_value/100) ;
     $stop_loss_diff =  $last_price * $stop_loss_trigger_percentage;
     $stop_loss_trigger = $last_price - $stop_loss_diff;
@@ -277,6 +278,60 @@ function place_stop_loss_index($symbol,$quantity,$last_price) {
     $stop_loss = $last_price - $stop_loss_diff;
     $stop_loss = number_format($stop_loss ,1);
     $stop_loss = str_replace(",","",$stop_loss);
+
+
+    //Set Stoploss
+    $end_point = "https://api.kite.trade/orders/regular";
+    $res = $client->request('POST', $end_point, [
+        'form_params' => [
+            'tradingsymbol' => $symbol,
+            'exchange' => 'NFO',
+            'transaction_type' => "SELL",
+            'order_type' => 'SL',
+            'price' => $stop_loss,
+            'trigger_price' => $stop_loss,
+            'quantity' => $quantity,
+            'product' => 'NRML',
+            'validity' => 'DAY'
+
+        ]
+    ]);
+
+    $response = $res->getBody()->getContents();
+    $response = (json_decode($response,true));
+
+    //Fetching order id
+    $order_id = $response['data']['order_id'];
+
+    return $order_id;
+
+
+}
+
+function place_stop_loss_index_sample($symbol,$quantity,$stop_loss_price) {
+
+    $headers = [
+        'Content-Type' => 'application/json',
+        'X-Kite-Version' => '3',
+        'Authorization' => 'token '.KEY.':'.TOKEN
+    ];
+
+    $client = new GuzzleHttp\Client([
+        'headers' => $headers
+    ]);
+
+
+
+
+    $stop_loss_trigger_percentage_value = STOPLOSS_BOOKING - 3;
+    $stop_loss_trigger_percentage = ($stop_loss_trigger_percentage_value/100) ;
+    $trigger_price = symbol_last_price($symbol);
+    $stop_loss_diff =  $trigger_price * $stop_loss_trigger_percentage;
+    $stop_loss_trigger = $trigger_price - $stop_loss_diff;
+    $stop_loss_trigger = number_format($stop_loss_trigger ,1);
+    $stop_loss_trigger = str_replace(",","",$stop_loss_trigger);
+
+    $stop_loss = str_replace(",","",$stop_loss_price);
 
 
     //Set Stoploss
@@ -306,7 +361,6 @@ function place_stop_loss_index($symbol,$quantity,$last_price) {
 
 
 }
-
 
 
 function place_order_sell_index_iceberg($symbol,$quantity,$leg) {
@@ -441,7 +495,7 @@ function match_condition( $trigger_value, $last_price) {
 function support_match_condition($symbol, $support_value) {
 
     $return = false;
-   echo $index_price = get_current_price_index($symbol);
+    $index_price = get_current_price_index($symbol);
 
     if($index_price <= $support_value) {
         $return = true;

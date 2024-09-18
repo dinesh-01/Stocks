@@ -40,14 +40,14 @@ if($global == 'BANKNIFTY') {
 if($global == 'MIDCP') {
     $symbol = "NIFTY MID SELECT";
     $end_point = "https://api.kite.trade/quote?i=NSE:$symbol";
-    $expiry = '2024-09-16%';
+    $expiry = '2024-09-23%';
 }
 
 
 if($global == 'FINNIFTY') {
     $symbol = "NIFTY FIN SERVICE";
     $end_point = "https://api.kite.trade/quote?i=NSE:$symbol";
-    $expiry = '2024-09-17%';
+    $expiry = '2024-09-24%';
 
 
 }
@@ -59,8 +59,6 @@ if($global == 'NIFTYNXT50') {
     $expiry = '2024-05-31%';
 
 }
-
-
 
 
 $res = $client->request('GET', $end_point);

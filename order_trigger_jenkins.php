@@ -46,24 +46,15 @@ $iceberg_status = 'no';
 
                 if($condition === true) {
 
-                        $order_id = place_order_buy_index($symbol,$quantity,"market");
-                        sleep(2);
-
-                        $last_price = order_last_price($order_id);
-                        $total_value = ceil($last_price * $quantity);
+                        $order_id = place_order_buy_index($symbol,$quantity,"limit");
 
                        // $sell_order_id = place_order_sell_index($symbol,$quantity,$last_price);
-                        $sell_order_id = place_stop_loss_index($symbol,$quantity,$last_price);
+                      //  $sell_order_id = place_stop_loss_index($symbol,$quantity,$last_price);
 
-
-                        $percentage_value = STOPLOSS_BOOKING / 100 ;
-                        $amount_value = $last_price * $percentage_value;
-                        $stoploss_value = round($last_price - $amount_value,1);
-
-                        $query = "UPDATE `optionAmo` SET `order_id`= '$order_id', `sl_order_id` = '$sell_order_id', `total_value` = '$total_value',`track_status` = 'Order Executed', `price` = '$last_price', `stop_loss_value` = '$stoploss_value'  WHERE id = '$id'";
+                        $query = "UPDATE `optionAmo` SET `order_id`= '$order_id',  `track_status` = 'Order Placed'  WHERE id = '$id'";
                         $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
-                        echo "Order Executed for Symbol : $symbol";
+                        echo "Order Placed for Symbol : $symbol";
 
                     } else {
 
