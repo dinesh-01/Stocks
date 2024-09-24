@@ -25,7 +25,7 @@ $allocate_price = ALLOCATE_PRICE;
 if($global == 'NIFTY') {
     $symbol = "NIFTY 50";
     $end_point = "https://api.kite.trade/quote?i=NSE:$symbol";
-    $expiry = '2024-09-19%';
+    $expiry = '2024-09-26%';
    // $allocate_price = EXPIRY_ALLOCATE_PRICE;
 
 }
@@ -33,14 +33,14 @@ if($global == 'NIFTY') {
 if($global == 'BANKNIFTY') {
     $symbol = "NIFTY BANK";
     $end_point = "https://api.kite.trade/quote?i=NSE:$symbol";
-    $expiry = '2024-09-18%';
+    $expiry = '2024-09-25%';
 
 }
 
 if($global == 'MIDCP') {
     $symbol = "NIFTY MID SELECT";
     $end_point = "https://api.kite.trade/quote?i=NSE:$symbol";
-    $expiry = '2024-09-23%';
+    $expiry = '2024-09-30%';
 }
 
 

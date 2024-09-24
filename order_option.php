@@ -55,7 +55,7 @@ $response = (json_decode($response,true));
 
 $length = count($response['data']['candles']);
 $length =  $length-2;
-$trigger_value =  $response['data']['candles'][$length][2];
+$trigger_value =  $response['data']['candles'][$length][4];
 //$stoploss_value =  $response['data']['candles'][$length][3];
 
 

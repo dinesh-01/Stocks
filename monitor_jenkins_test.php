@@ -38,6 +38,7 @@ foreach ($data as $value) {
 
    if($sl_order_id != null || !empty($sl_order_id)) {
 
+       /*
        $end_point = "https://api.kite.trade/orders/$sl_order_id";
        $res = $client->request('GET', $end_point);
        $response = $res->getBody()->getContents();
@@ -45,9 +46,10 @@ foreach ($data as $value) {
 
        $length = count($response['data']);
        $length =  $length-1;
+       */
 
        //Fetching Status
-       $status = $response['data'][$length]['status'];
+       $status = 'OPEN';
 
 
 
@@ -55,7 +57,7 @@ foreach ($data as $value) {
        if($status != 'COMPLETE') {
 
 
-           $last_price =  symbol_last_price($symbol);
+           $last_price =  '200';
 
 
 
@@ -63,7 +65,7 @@ foreach ($data as $value) {
            $amount_diff = round($price_diff,1) *  $quantity;
            $current_percentage = number_format(($amount_diff / $total_value) * 100,1);
 
-           echo "SL status => $status";
+           echo "Target status => $status";
            echo "\n";
 
            echo "Current Percentage => $current_percentage";
@@ -74,9 +76,10 @@ foreach ($data as $value) {
 
            echo "NEXT SL => $next_sl";
            echo "\n";
+           echo "\n";
+
 
            if($current_percentage >= $next_sl) { // 3 > 2
-
 
                if(empty($current_sl) || $current_sl == 0) {
                    $current_sl = PROFIT_BOOKING;
@@ -86,6 +89,9 @@ foreach ($data as $value) {
                $percentage_value = $current_sl / 100 ;
                $amount_value = $price * $percentage_value;
                $final_amount = round($price + $amount_value,1);
+
+               echo "Updated Percentage => $current_sl"; //103
+               echo "\n";
 
 
                echo "Booking PRICE => $final_amount"; //103
@@ -100,6 +106,7 @@ foreach ($data as $value) {
                $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 
+               /*
                $end_point = "https://api.kite.trade/orders/regular/$sl_order_id";
                $res = $client->request('PUT', $end_point, [
                    'form_params' => [
@@ -107,9 +114,10 @@ foreach ($data as $value) {
                        'price' => $final_amount
                    ]
                ]);
+              */
 
-
-               echo "**** SL Updated ****";
+               echo "*** SL Updated ***";
+               echo "\n";
                echo "\n";
 
            }

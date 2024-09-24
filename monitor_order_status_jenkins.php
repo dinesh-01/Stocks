@@ -57,7 +57,7 @@ foreach ($data as $value) {
                echo "\n";
 
 
-               if($status == 'COMPLETE' || $status != 'REJECTED' || $status != 'CANCELLED') {
+               if($status === 'COMPLETE') {
 
                    $last_price = order_last_price($order_id);
                    $total_value = ceil($last_price * $quantity);
