@@ -36,53 +36,61 @@ foreach ($data as $value) {
     $total_value = $value['total_value'];
     $current_sl = $value['current_sl'];
     $next_sl = $value['next_sl'];
+    $support_value = $value['support_value'];
+    $resistance_value = $value['resistance_value'];
 
 
     if($order_id != null || !empty($order_id)) {
 
         if($sl_order_id == null || empty($sl_order_id)) {
 
-               $end_point = "https://api.kite.trade/orders/$order_id";
-               $res = $client->request('GET', $end_point);
-               $response = $res->getBody()->getContents();
-               $response = (json_decode($response,true));
 
-               $length = count($response['data']);
-               $length =  $length-1;
+                  $end_point = "https://api.kite.trade/orders/$order_id";
+                  $res = $client->request('GET', $end_point);
+                  $response = $res->getBody()->getContents();
+                  $response = (json_decode($response,true));
 
-               //Fetching Status
-               $status = $response['data'][$length]['status'];
+                  $length = count($response['data']);
+                  $length =  $length-1;
 
-               echo "Order status => $status";
-               echo "\n";
+                  //Fetching Status
+                  $status = $response['data'][$length]['status'];
 
-
-               if($status === 'COMPLETE') {
-
-                   $last_price = order_last_price($order_id);
-                   $total_value = ceil($last_price * $quantity);
+                  echo "Order status => $status";
+                  echo "\n";
 
 
-                   // $sell_order_id = place_stop_loss_index_sample($symbol,$quantity,$stop_loss_value);
-                   $sell_order_id = place_stop_loss_index($symbol, $quantity, $last_price);
+                  if($status === 'COMPLETE') {
 
-                   $stop_loss_percentage = (STOPLOSS_BOOKING / 100);
-                   $stop_loss_diff = $last_price * $stop_loss_percentage;
-                   $stop_loss = $last_price - $stop_loss_diff;
-                   $stop_loss = number_format($stop_loss, 1);
-                   $stop_loss = str_replace(",", "", $stop_loss);
+                      $last_price = order_last_price($order_id);
+                      $total_value = ceil($last_price * $quantity);
 
 
-                   $query = "UPDATE `optionAmo` SET  `sl_order_id` = '$sell_order_id',`total_value` = '$total_value', `stop_loss_value` = '$stop_loss', `price` = '$last_price',  `track_status` = 'SL Placed'  WHERE id = '$id'";
-                   $result = mysqli_query($GLOBALS['mysqlConnect'], $query);
 
-                   echo "SL Placed => $status";
-                   echo "\n";
-                   echo "************";
-                   echo "\n";
-               }
+                          // $sell_order_id = place_stop_loss_index_sample($symbol,$quantity,$stop_loss_value);
+                          $sell_order_id = place_stop_loss_index($symbol, $quantity, $last_price);
 
-       }
+                          $stop_loss_percentage = (STOPLOSS_BOOKING / 100);
+                          $stop_loss_diff = $last_price * $stop_loss_percentage;
+                          $stop_loss = $last_price - $stop_loss_diff;
+                          $stop_loss = number_format($stop_loss, 1);
+                          $stop_loss = str_replace(",", "", $stop_loss);
+
+
+                          $query = "UPDATE `optionAmo` SET  `sl_order_id` = '$sell_order_id',`total_value` = '$total_value', `stop_loss_value` = '$stop_loss', `price` = '$last_price',  `track_status` = 'SL Placed'  WHERE id = '$id'";
+                          $result = mysqli_query($GLOBALS['mysqlConnect'], $query);
+
+                          echo "SL Placed => $status";
+                          echo "\n";
+                          echo "************";
+                          echo "\n";
+
+
+
+
+                  }
+
+        }
    }
 
 }

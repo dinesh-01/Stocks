@@ -28,6 +28,7 @@
 
 
          <td><a href="https://groww.in/charts/options/nifty/{$value.tradingsymbol}?exchange=NSE" target="_blank">{$value.tradingsymbol}</td>
+         <!-- <td><a href="https://in.tradingview.com/chart/AINnrOTv/?symbol={$value.url}" target="_blank">{$value.tradingsymbol}</td> -->
          <td>{$value.strike}</td>
         <td>{$value.last_price}</td>
         <td>{$value.lot_size}</td>

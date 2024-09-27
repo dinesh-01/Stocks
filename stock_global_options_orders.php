@@ -25,7 +25,7 @@ $allocate_price = ALLOCATE_PRICE;
 if($global == 'NIFTY') {
     $symbol = "NIFTY 50";
     $end_point = "https://api.kite.trade/quote?i=NSE:$symbol";
-    $expiry = '2024-09-26%';
+    $expiry = '2024-10-03%';
    // $allocate_price = EXPIRY_ALLOCATE_PRICE;
 
 }
@@ -33,7 +33,7 @@ if($global == 'NIFTY') {
 if($global == 'BANKNIFTY') {
     $symbol = "NIFTY BANK";
     $end_point = "https://api.kite.trade/quote?i=NSE:$symbol";
-    $expiry = '2024-09-25%';
+    $expiry = '2024-10-01%';
 
 }
 
@@ -47,7 +47,7 @@ if($global == 'MIDCP') {
 if($global == 'FINNIFTY') {
     $symbol = "NIFTY FIN SERVICE";
     $end_point = "https://api.kite.trade/quote?i=NSE:$symbol";
-    $expiry = '2024-09-24%';
+    $expiry = '2024-10-01%';
 
 
 }
@@ -108,7 +108,21 @@ $i = 0;
 foreach ($datas as $data) {
 
 
+
+    $year = explode("-",$data['expiry']);
+    $year = substr($year[0], 2);
+    $month = explode("-",$data['expiry']);
+    $month = $month[1];
+    $date = explode("-",$data['expiry']);
+    $date = $date[2];
+    $ins_type = $data['instrument_type'][0];
+    $strike = $data['strike'];
+
+
+    $tradingsymbol_trading_view = "NSE:".$data['name'].$year.$month.$date.$ins_type.$strike;
     $tradingsymbol = $data['tradingsymbol'];
+    $datas[$i]['url']  = $tradingsymbol_trading_view;
+
 
 
     if(str_contains($tradingsymbol,"&")) {

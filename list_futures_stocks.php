@@ -43,14 +43,14 @@ $client = new GuzzleHttp\Client([
       if($in == 'NIFTY 50') {
 
           $global = 'NIFTY';
-          $expiry = '2024-09-26%';
+          $expiry = '2024-10-03%';
 
       }
 
       if($in == 'NIFTY BANK') {
 
           $global = 'BANKNIFTY';
-          $expiry = '2024-09-25%';
+          $expiry = '2024-10-01%';
 
       }
 
@@ -64,7 +64,7 @@ $client = new GuzzleHttp\Client([
       if($in == 'NIFTY FIN SERVICE') {
 
           $global = 'FINNIFTY';
-          $expiry = '2024-09-24%';
+          $expiry = '2024-10-01%';
 
       }
 

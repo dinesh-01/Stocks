@@ -46,7 +46,7 @@ $iceberg_status = 'no';
 
                 if($condition === true) {
 
-                        $order_id = place_order_buy_index($symbol,$quantity,"limit");
+                        $order_id = place_order_buy_index($symbol,$quantity,ORDER_TYPE);
 
                        // $sell_order_id = place_order_sell_index($symbol,$quantity,$last_price);
                       //  $sell_order_id = place_stop_loss_index($symbol,$quantity,$last_price);

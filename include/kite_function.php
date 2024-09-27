@@ -39,7 +39,7 @@ function get_current_price_index($symbol) {
 
 }
 
-function place_order_buy_index($symbol,$quantity,$type) {
+function place_order_buy_index($symbol,$quantity,$type,$final_amount='') {
 
     $headers = [
         'Content-Type' => 'application/json',
@@ -57,17 +57,16 @@ function place_order_buy_index($symbol,$quantity,$type) {
 
     if($type == 'limit') {
 
-        $end_point = "https://api.kite.trade/quote?i=NFO:$symbol";
-        $res = $client->request('GET', $end_point);
-        $response = $res->getBody()->getContents();
-        $response = (json_decode($response, true));
-        $last_price = $response['data']["NFO:$symbol"]['last_price'];
-        $last_price = str_replace(",", "", $last_price); //last price
-        $final_amount = round($last_price, 1);
 
-
-
-
+        if(empty($final_amount)) {
+            $end_point = "https://api.kite.trade/quote?i=NFO:$symbol";
+            $res = $client->request('GET', $end_point);
+            $response = $res->getBody()->getContents();
+            $response = (json_decode($response, true));
+            $last_price = $response['data']["NFO:$symbol"]['last_price'];
+            $last_price = str_replace(",", "", $last_price); //last price
+            $final_amount = round($last_price, 1);
+        }
 
 
 
@@ -495,7 +494,7 @@ function match_condition( $trigger_value, $last_price) {
 function support_match_condition($symbol, $support_value) {
 
     $return = false;
-    $index_price = get_current_price_index($symbol);
+    echo $index_price = get_current_price_index($symbol);
 
     if($index_price <= $support_value) {
         $return = true;
