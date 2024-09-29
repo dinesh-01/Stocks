@@ -68,25 +68,23 @@ foreach ($data as $value) {
 
 
                           // $sell_order_id = place_stop_loss_index_sample($symbol,$quantity,$stop_loss_value);
-                          $sell_order_id = place_stop_loss_index($symbol, $quantity, $last_price);
+                         // $sell_order_id = place_stop_loss_index($symbol, $quantity, $last_price);
+                          $sell_order_id = place_order_sell_index($symbol,$quantity,$last_price);
 
-                          $stop_loss_percentage = (STOPLOSS_BOOKING / 100);
-                          $stop_loss_diff = $last_price * $stop_loss_percentage;
-                          $stop_loss = $last_price - $stop_loss_diff;
-                          $stop_loss = number_format($stop_loss, 1);
-                          $stop_loss = str_replace(",", "", $stop_loss);
+                          $last_price = str_replace(",", "", $last_price); //last price
+                          $percentage_value = PROFIT_BOOKING / 100 ;
+                          $amount_value = $last_price * $percentage_value;
+                          $final_amount = $last_price + $amount_value;
+                          $final_amount = round($final_amount, 1);
 
 
-                          $query = "UPDATE `optionAmo` SET  `sl_order_id` = '$sell_order_id',`total_value` = '$total_value', `stop_loss_value` = '$stop_loss', `price` = '$last_price',  `track_status` = 'SL Placed'  WHERE id = '$id'";
+                          $query = "UPDATE `optionAmo` SET  `sl_order_id` = '$sell_order_id',`total_value` = '$total_value', `stop_loss_value` = '$final_amount', `price` = '$last_price',  `track_status` = 'SL Placed'  WHERE id = '$id'";
                           $result = mysqli_query($GLOBALS['mysqlConnect'], $query);
 
-                          echo "SL Placed => $status";
+                          echo "Sell Order Placed => $status";
                           echo "\n";
                           echo "************";
                           echo "\n";
-
-
-
 
                   }
 

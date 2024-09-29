@@ -59,13 +59,19 @@ function place_order_buy_index($symbol,$quantity,$type,$final_amount='') {
 
 
         if(empty($final_amount)) {
+
             $end_point = "https://api.kite.trade/quote?i=NFO:$symbol";
             $res = $client->request('GET', $end_point);
             $response = $res->getBody()->getContents();
             $response = (json_decode($response, true));
             $last_price = $response['data']["NFO:$symbol"]['last_price'];
             $last_price = str_replace(",", "", $last_price); //last price
-            $final_amount = round($last_price, 1);
+
+            $percentage_value = 0.1 / 100 ;
+            $amount_value = $last_price * $percentage_value;
+            $final_amount = $last_price + $amount_value;
+            $final_amount = round($final_amount, 1);
+
         }
 
 

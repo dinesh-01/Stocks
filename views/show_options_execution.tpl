@@ -10,7 +10,7 @@
             <th> Order Price </th>
             <th> Order Market </th>
             <th> Current Status</th>
-            <th> Stop Loss Price</th>
+            <th> Exit Price</th>
             <th> Percentage </th>
             <th> Order Status</th>
             <!--
