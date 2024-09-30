@@ -20,33 +20,34 @@ $iceberg_status = 'no';
     $resistance_value = $value['resistance_value'];
 
 
+    $main_symbol = explode("24",$symbol);
+    $main_symbol = $main_symbol[0];
+
+
+
 
         if(is_null($order_id) || empty($order_id)) {
 
-           //Fetch Current Price of the index
-             $current_price = symbol_last_price($symbol);
+
              $condition = false;
 
 
                //Support
                if(!empty($support_value)) {
-                   $condition = support_match_condition($symbol, $support_value);
+                   $condition = support_match_condition($main_symbol, $support_value);
                }
 
                //Resistance
-               elseif(!empty($resistance_value)) {
-                   $condition = resistance_match_condition($symbol, $resistance_value);
-               }
+                if(!empty($resistance_value)) {
+                    $condition = resistance_match_condition($main_symbol, $resistance_value);
+                }
 
-               //CandleStick
-               else {
-                   $condition = match_condition( $trigger_value , $current_price);
-               }
+
 
 
                 if($condition === true) {
 
-                        $order_id = place_order_buy_index($symbol,$quantity,ORDER_TYPE, $trigger_value);
+                        $order_id = place_order_buy_index($symbol,$quantity,ORDER_TYPE);
 
                         $query = "UPDATE `optionAmo` SET `order_id`= '$order_id',  `track_status` = 'Order Placed'  WHERE id = '$id'";
                         $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
@@ -55,7 +56,7 @@ $iceberg_status = 'no';
 
                     } else {
 
-                      echo "Order Pending for Symbol : $symbol";
+                      echo " => Order Pending for Symbol : $symbol";
                       echo "\n";
                 }
 
@@ -63,6 +64,7 @@ $iceberg_status = 'no';
 
 
         }
+
 
    }
 

@@ -20,8 +20,8 @@
 <center>
 <table class="gridtable">
 <tr>
-    <!-- <th><a href="list_watch.php">Home</a></th>
-    <th><a href="share_calculator.php">Monitor Stocks</a>
+     <th><a href="list_watch.php">Home</a></th>
+   <!-- <th><a href="share_calculator.php">Monitor Stocks</a>
     <th><a href="checklist_stock.php">Wishlist Stocks</a>
     <th><a href="news_stock.php">News Stocks</a>
          <th><a href="support_monitor.php">Support Monitor</a></th>

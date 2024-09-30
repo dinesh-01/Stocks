@@ -55,12 +55,12 @@ if($type == 'CE') {
      $query = "Select * from stockOption where name = '$symbol' 
                             and strike > $current_price
                             and tradingsymbol LIKE '%OCT%'
-                            and instrument_type = '$type' limit 0,1 ";
+                            and instrument_type = '$type' limit 0,2 ";
 }else {
      $query = "Select * from stockOption where name = '$symbol' 
                             and strike < $current_price
                             and tradingsymbol LIKE '%OCT%'
-                            and instrument_type = '$type' limit 0,1 ";
+                            and instrument_type = '$type' limit 0,2 ";
 
 }
 
@@ -75,6 +75,19 @@ foreach ($datas as $data) {
 
 
     $tradingsymbol = $data['tradingsymbol'];
+
+    $year = explode("-",$data['expiry']);
+    $year = substr($year[0], 2);
+    $month = explode("-",$data['expiry']);
+    $month = $month[1];
+    $date = explode("-",$data['expiry']);
+    $date = $date[2];
+    $ins_type = $data['instrument_type'][0];
+    $strike = $data['strike'];
+
+
+    $tradingsymbol_trading_view = "NSE:".$data['name'].$year.$month.$date.$ins_type.$strike;
+    $datas[$i]['url']  = $tradingsymbol_trading_view;
 
 
     if(str_contains($tradingsymbol,"&")) {

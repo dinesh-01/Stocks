@@ -100,4 +100,23 @@ function convert_value_term($value) {
 }
 
 
+function percentgae_cal($price, $sign) {
+
+    $percentage_value = 0.05 / 100 ;
+    $amount_value = $price * $percentage_value;
+
+    if($sign == '+') {
+        $final_amount = $price + $amount_value;
+    }
+
+    if($sign == '-') {
+        $final_amount = $price - $amount_value;
+    }
+
+    $final_amount = round($final_amount, 1);
+    return $final_amount;
+
+}
+
+
 ?>

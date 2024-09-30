@@ -7,15 +7,7 @@
 function get_current_price_index($symbol) {
 
 
-    if (str_contains($symbol, "MIDCP")) {
-        $symbol = 'NIFTY MID SELECT';
-    }elseif (str_contains($symbol, "BANKNIFTY")) {
-        $symbol = 'NIFTY BANK';
-    }elseif (str_contains($symbol, "FINNIFTY")) {
-        $symbol = 'NIFTY FIN SERVICE';
-    }else{
-        $symbol = 'NIFTY 50';
-    }
+
 
 
     $headers = [
@@ -510,6 +502,8 @@ function support_match_condition($symbol, $support_value) {
 
 
 }
+
+
 
 
 function resistance_match_condition($symbol, $resistance_value) {

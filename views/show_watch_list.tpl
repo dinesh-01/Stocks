@@ -15,14 +15,9 @@
         <th> Stock chart </th>
       <!--      <th> Future chart </th>  -->
         <th>  List </th>
-        <th> T.Close </th>
-        <th> Change </th>
-        <th> Volume </th>
-        <th> TurnOver </th>
 
-        <th>Priority</th>
-            <!--   <th>Monitor</th> -->
-            <th> Status </th>
+
+
                 <th>Action</th>
             </tr>
 
@@ -59,7 +54,7 @@
 
               <td>  <a href="stock_future_orders.php?s={$value.cSymbol|replace:'-':'_'|replace:'&':'_'}" target="_blank">Future</a> </td>
              -->
-        <td><a href="https://in.tradingview.com/chart/AINnrOTv/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'|replace:'&':'_'}" target="_blank">Trend Layout</a></td>
+        <td><a href="https://in.tradingview.com/chart/RVTxbc5U/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'|replace:'&':'_'}" target="_blank">Trend Layout</a></td>
         <!-- <td><a href="https://in.tradingview.com/chart/AINnrOTv/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'}1%21"  target="_blank">Future Layout</a></td> -->
 
 
@@ -76,24 +71,9 @@
         <td><a href="{$value.curl}" target="_blank">ChartInk</a></td>
 
 
-        <td>{$value.currOpen}</td>
-        <td>{$value.currHigh}</td>
-        <td>{$value.currLow}</td>
-        --!>
-        <td>{$value.currClose}</td>
 
-         <td>{$value.pChange}</td>
-        <td>{$value.volume}</td>
-        <td> {$value.turnover}</td>
         <!--    <td> <a href="trend_list_view.php?sid={$value.id}"  target="_blank"> View Trends</a></td> -->
-        <td>
-           <select name="pri" id="pri{$value.id}" onchange="change_priority('{$value.id}');">
-            <option value="1" {if $value.priority eq 1}   selected="selected"  {/if}> 1 </option>
-            <option value="2" {if $value.priority eq 2}   selected="selected"  {/if}> 2 </option>
-            <option value="3" {if $value.priority eq 3}   selected="selected"  {/if}> 3 </option>
-            <option value="4" {if $value.priority eq 4}   selected="selected"  {/if}> 4 </option>
-           </select>
-        </td>
+
 
             <!--
 
@@ -106,13 +86,7 @@
 
         -->
 
-        {if $value.order_place_status eq '0'}
-            <td><a href="update_stock_price.php?id={$value.id}"><button value="buy">BUY</button></a></td>
-        {/if}
 
-        {if $value.order_place_status eq '1'}
-            <td><a href="append_stock_price.php?s={$value.cSymbol}"><button value="update">UPDATE</button></a></td>
-        {/if}
 
         <td><a href="javascript:void(0)" id="{$value.id}" class="unwatch" title="unwatch">UnWatch</a></td>
 
