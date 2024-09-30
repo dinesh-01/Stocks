@@ -50,17 +50,21 @@ $final_amount = $current_price - $amount_value;
 $range1 = round($final_amount, 0);
 
 
-if($cat == 'global') {
-  echo  $query = "SELECT * FROM `stockOption` WHERE `tradingsymbol` LIKE '$symbol%' 
-                                and `tradingsymbol` LIKE '%MAY%'
-                                and strike BETWEEN $range1 AND $range2 
-                                and instrument_type = '$type' ";
-}else{
-    $query = "Select * from stockOption where name = '$symbol' 
-                            and strike BETWEEN $range1 AND $range2 
-                            and tradingsymbol LIKE '%MAY%'
-                            and instrument_type = '$type' ";
+
+if($type == 'CE') {
+     $query = "Select * from stockOption where name = '$symbol' 
+                            and strike > $current_price
+                            and tradingsymbol LIKE '%OCT%'
+                            and instrument_type = '$type' limit 0,1 ";
+}else {
+     $query = "Select * from stockOption where name = '$symbol' 
+                            and strike < $current_price
+                            and tradingsymbol LIKE '%OCT%'
+                            and instrument_type = '$type' limit 0,1 ";
+
 }
+
+
 
 
 $result = mysqli_query($GLOBALS['mysqlConnect'], $query);

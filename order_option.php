@@ -22,6 +22,13 @@ $i = $_GET['i'];
 $date = date('d-m-Y');
 $date_param = date('Y-m-d');
 
+$current_time = new DateTime();
+$current_time->modify('+4 minutes');
+$exit_time = $current_time->format("H:i");
+
+
+
+
 
 if(TIME_FRAME > 1) {
     $time_frame = TIME_FRAME.'minute';
@@ -36,7 +43,7 @@ $res = $client->request('GET', $end_point);
 $response = $res->getBody()->getContents();
 $response = (json_decode($response,true));
 
-//format($response);
+//format($response['data']['candles']);
 
 
 $length = count($response['data']['candles']);
@@ -46,8 +53,9 @@ $trigger_value =  $response['data']['candles'][$length][4];
 
 
 
+
 //Update order status
-$query  = "INSERT INTO optionAmo( symbol, quanity, trigger_value, track_status, created_date) VALUES ('$symbol','$quantity','$trigger_value','Order Pending','$date')";
+$query  = "INSERT INTO optionAmo( symbol, quanity, trigger_value, track_status, exit_time, created_date) VALUES ('$symbol','$quantity','$trigger_value','$exit_time','Order Pending','$date')";
 $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 

@@ -67,7 +67,7 @@ function place_order_buy_index($symbol,$quantity,$type,$final_amount='') {
             $last_price = $response['data']["NFO:$symbol"]['last_price'];
             $last_price = str_replace(",", "", $last_price); //last price
 
-            $percentage_value = 0.1 / 100 ;
+            $percentage_value = 0.2 / 100 ;
             $amount_value = $last_price * $percentage_value;
             $final_amount = $last_price + $amount_value;
             $final_amount = round($final_amount, 1);

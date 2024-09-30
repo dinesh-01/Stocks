@@ -46,10 +46,7 @@ $iceberg_status = 'no';
 
                 if($condition === true) {
 
-                        $order_id = place_order_buy_index($symbol,$quantity,ORDER_TYPE);
-
-                        //$sell_order_id = place_order_sell_index($symbol,$quantity,$last_price);
-                      //  $sell_order_id = place_stop_loss_index($symbol,$quantity,$last_price);
+                        $order_id = place_order_buy_index($symbol,$quantity,ORDER_TYPE, $trigger_value);
 
                         $query = "UPDATE `optionAmo` SET `order_id`= '$order_id',  `track_status` = 'Order Placed'  WHERE id = '$id'";
                         $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
