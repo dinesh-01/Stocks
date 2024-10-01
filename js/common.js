@@ -14,7 +14,7 @@ function show_watch_list() {
 
  //id = $('#type').val();
 
-id = "nifty";
+id = "option";
 $('#show_result').html("<b>Loading...</b>");
 
    $.post("show_watch_list.php", {t: id},function(data){

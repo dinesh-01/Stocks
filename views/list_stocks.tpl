@@ -31,13 +31,7 @@ Company name :- <input type="text" id="cname" onkeyup="search_company()">
             <th>Stock Name</th>
             <th>Stock</th>
             <th>Future</th>
-            <th> T.Open </th>
-            <th> T.Close </th>
-            <th> T.High </th>
-            <th> T.Low </th>
-            <th> Change </th>
-            <th> Volume </th>
-            <th>Action</th>
+             <th>Action</th>
             </tr>
         
 {foreach $datas as $value name=count}
@@ -48,18 +42,12 @@ Company name :- <input type="text" id="cname" onkeyup="search_company()">
     <tr class="show">
         <td> {$smarty.foreach.count.iteration} </td>
         <td>
-            <a href="edit_stock.php?id={$value.id}" title="{$value.notes}" target="blank">{$value.sName} [{$value.ntype}]</a>
+            <a href="edit_stock.php?id={$value.id}" title="{$value.notes}" target="blank">{$value.sName}</a>
             <input type="hidden" id="sname" value="{$value.sName}"/> 
             <input type="hidden" id="sid" value="{$value.id}"/> 
         </td>
         <td><a href="https://in.tradingview.com/chart/RVTxbc5U/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'}" target="_blank">Stock Layout</a></td>
         <td><a href="https://in.tradingview.com/chart/RVTxbc5U/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'}1%21"  target="_blank">Future Layout</a></td>
-        <td>{$value.currOpen}</td>
-        <td>{$value.currClose}</td>
-        <td>{$value.currHigh}</td>
-        <td>{$value.currLow}</td>
-         <td>{$value.pChange}</td>
-        <td>{$value.volume}</td>
         <td><a href="javascript:void(0)" id="{$value.id}" class="watch" title="watch">WatchList</a></td>
     </tr>
 

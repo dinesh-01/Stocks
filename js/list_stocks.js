@@ -5,6 +5,8 @@
  var w_id = element.attr("id");
  var info = 'id=' + w_id;
 
+ alert(w_id);
+
   $.ajax({
     type: "POST",
     url: "watch_list_process.php",

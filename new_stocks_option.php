@@ -16,12 +16,12 @@ foreach ($records as $record) {
 
 
 
-     echo $query = "UPDATE `stocklistIntra` SET `ntype`='option' WHERE `cSymbol` = '$company'";
-     $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
+  //   echo $query = "UPDATE `stocklistIntra` SET `ntype`='option' WHERE `cSymbol` = '$company'";
+  //   $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 
 
-  /*
+
     $company = mysqli_real_escape_string($GLOBALS['mysqlConnect'],$company);
 
     $money_control = "https://www.google.com/search?q=".$company."+moneycontrol";
@@ -29,10 +29,7 @@ foreach ($records as $record) {
 
      echo $query  = "INSERT INTO stocklistIntra(sName, cSymbol, mcurl, murl, curl, tickertape, industry, ntype) VALUES ('$company','$company','$money_control','','$charink','','','option')";
      $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
-     sleep(1);
-
-  */
-    echo "\n";
+     echo "\n";
 
 
 

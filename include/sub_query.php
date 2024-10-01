@@ -2,13 +2,7 @@
 
 function watch_list_query($type,$priority=1) {
 
-	 $query = "Select stocklistIntra.id as id,stocklistIntra.ntype as ntype,stocklistIntra.notes as notes,stocklistIntra.cSymbol as cSymbol,stocklistIntra.support_value as support_value,stocklistIntra.resistance_value as resistance_value,
-               stocklistIntra.sName as sName,stocklistIntra.murl as murl,stocklistIntra.grow as grow,stocklistIntra.order_status as order_status,stocklistIntra.curl as curl,stocklistIntra.tickertape as ttape,
-               stocklistIntra.priority as priority,stockvaluesIntra.open as currOpen,stockvaluesIntra.high as currHigh,
-               stockvaluesIntra.low as currLow,stockvaluesIntra.close as currClose,stockvaluesIntra.schange as pChange,
-               stockvaluesIntra.volume as volume From stocklistIntra INNER JOIN  stockvaluesIntra 
-               WHERE stocklistIntra.id = stockvaluesIntra.sid AND stocklistIntra.isWatch = 'yes' AND stocklistIntra.priority = '$priority'  AND stocklistIntra.sType = '$type' AND stockvaluesIntra.id = (SELECT MAX(id) from stockvaluesIntra 
-               where sid = stocklistIntra.id) order by stocklistIntra.sName asc";
+	 $query = "select * from stocklistIntra where isWatch = 'yes'";
 
 	$result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
@@ -29,14 +23,10 @@ function company_list_query($type) {
     }
 
     if($type == "N50") {
-        $catagory = "stocklistIntra.ntype = '$type'";
+        $catagory = "stocklistIntra.ntype = 'option'";
     }
 
-    $query = "Select stocklistIntra.id as id,stocklistIntra.ntype as ntype,stocklistIntra.cSymbol as cSymbol,stocklistIntra.notes as notes,stocklistIntra.sName as sName,
-               stocklistIntra.murl as murl,stocklistIntra.curl as curl,stockvaluesIntra.open as currOpen,
-               stockvaluesIntra.high as currHigh,stockvaluesIntra.low as currLow,stockvaluesIntra.close as currClose,
-               stockvaluesIntra.schange as pChange,stockvaluesIntra.volume as volume From stocklistIntra 
-               INNER JOIN  stockvaluesIntra WHERE stocklistIntra.id = stockvaluesIntra.sid AND $catagory  AND stocklistIntra.isWatch = 'no' order by stockvaluesIntra.id DESC LIMIT 0,50";
+    $query = "Select * from stocklistIntra";
     $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 	while($row = mysqli_fetch_assoc($result)) {
