@@ -30,7 +30,7 @@ Company name :- <input type="text" id="cname" onkeyup="search_company()">
             <th> No </th>
             <th>Stock Name</th>
             <th>Stock</th>
-            <th>Future</th>
+            <th>ChatInk</th>
              <th>Action</th>
             </tr>
         
@@ -46,8 +46,8 @@ Company name :- <input type="text" id="cname" onkeyup="search_company()">
             <input type="hidden" id="sname" value="{$value.sName}"/> 
             <input type="hidden" id="sid" value="{$value.id}"/> 
         </td>
-        <td><a href="https://in.tradingview.com/chart/RVTxbc5U/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'}" target="_blank">Stock Layout</a></td>
-        <td><a href="https://in.tradingview.com/chart/RVTxbc5U/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'}1%21"  target="_blank">Future Layout</a></td>
+        <td><a href="https://in.tradingview.com/chart/RVTxbc5U/?symbol=NSE%3A{$value.cSymbol|replace:'-':'_'}" target="_blank">TradingView</a></td>
+        <td><a href="{$value.curl}"  target="_blank">ChartInk</a></td>
         <td><a href="javascript:void(0)" id="{$value.id}" class="watch" title="watch">WatchList</a></td>
     </tr>
 

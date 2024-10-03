@@ -78,7 +78,7 @@ foreach ($data as $value) {
                           $final_amount = round($final_amount, 1);
 
 
-                          $query = "UPDATE `optionAmo` SET  `sl_order_id` = '$sell_order_id',`total_value` = '$total_value', `stop_loss_value` = '$final_amount', `price` = '$last_price',  `track_status` = 'SL Placed'  WHERE id = '$id'";
+                          $query = "UPDATE `optionAmo` SET  `sl_order_id` = '$sell_order_id',`total_value` = '$total_value', `stop_loss_value` = '$final_amount', `price` = '$last_price',  `track_status` = 'Target Placed'  WHERE id = '$id'";
                           $result = mysqli_query($GLOBALS['mysqlConnect'], $query);
 
                           echo "Sell Order Placed => $status";

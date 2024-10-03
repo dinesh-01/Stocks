@@ -24,8 +24,8 @@
 
     <tr class="show">
         <td><a href="order_amo_edit.php?id={$value.id}">{$smarty.foreach.count.iteration} </a>  </td>
-        <td><a href="https://in.tradingview.com/chart/AINnrOTv/?symbol=NSE%3A{$value.stock_symbol|replace:'-':'_'}" target="_blank">{$value.stock_symbol}</a></td>
-        <td><a href="https://groww.in/charts/options/nifty/{$value.symbol}?exchange=NSE" target="_blank">{$value.symbol}</td>
+        <td><a href="https://in.tradingview.com/chart/RVTxbc5U/?symbol=NSE%3A{$value.stock_symbol|replace:'-':'_'}" target="_blank">{$value.stock_symbol}</a></td>
+        <td><a href="https://in.tradingview.com/chart/RVTxbc5U/?symbol={$value.url}" target="_blank">{$value.symbol}</td>
         <td>{$value.quanity}</td>
         <td>{$value.price}</td>
         <td>{$value.last_price}</td>

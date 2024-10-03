@@ -18,7 +18,7 @@ $client = new GuzzleHttp\Client([
 
 
 //List all the option orders
-$query = "Select * from optionAmo";
+$query = "Select * from optionAmo order by price DESC";
 $result = mysqli_query($GLOBALS['mysqlConnect'], $query);
 $datas = $result->fetch_all(MYSQLI_ASSOC);
 $i = 0;
@@ -28,6 +28,24 @@ foreach ($datas as $data) {
 
 
     $tradingsymbol = $data['symbol'];
+
+    $query = "Select * from stockOption where tradingsymbol = '$tradingsymbol'";
+    $result = mysqli_query($GLOBALS['mysqlConnect'], $query);
+    $url_data = mysqli_fetch_assoc($result);
+
+    //URL
+    $year = explode("-",$url_data['expiry']);
+    $year = substr($year[0], 2);
+    $month = explode("-",$url_data['expiry']);
+    $month = $month[1];
+    $date = explode("-",$url_data['expiry']);
+    $date = $date[2];
+    $ins_type = $url_data['instrument_type'][0];
+    $strike = $url_data['strike'];
+
+    $tradingsymbol_trading_view = "NSE:".$url_data['name'].$year.$month.$date.$ins_type.$strike;
+    $datas[$i]['url']  = $tradingsymbol_trading_view;
+
 
 
     if(str_contains($tradingsymbol,"&")) {

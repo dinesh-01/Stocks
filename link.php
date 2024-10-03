@@ -10,31 +10,13 @@ $query = "SELECT * FROM `stocklistIntra` where `isWatch` = 'no' order by cSymbol
 $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
 while($row = mysqli_fetch_assoc($result)) {
-    $td =  $row['cSymbol'];
-
-    if (str_contains($td, '&')) {
-        $td = str_replace('&','_',$td);
-        $td = str_replace('-','_',$td);
-    }
+    $link =  $row['curl'];
+    echo $link;
+    echo "<br/>";
 
 
-  if($t == 'profit') {
 
-      if($row['qbuy'] > 0) {
-          echo "https://in.tradingview.com/chart/AINnrOTv/?symbol=NSE%3A".$td;
-          echo "<br/>";
-      }
 
-  }
-
-    if($t == 'loss') {
-
-        if($row['qbuy'] < 0) {
-            echo "https://in.tradingview.com/chart/AINnrOTv/?symbol=NSE%3A".$td;
-            echo "<br/>";
-        }
-
-    }
 
 
 }
