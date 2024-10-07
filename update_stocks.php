@@ -4,7 +4,7 @@ require_once './include/common.php';
 
 //url => https://www.nseindia.com/products-services/indices-nifty500-index
 
-$file = fopen('data/nifty.csv', 'r');
+$file = fopen('data/nifty_new.csv', 'r');
 while (($line = fgetcsv($file)) !== FALSE) {
   $records[] =  $line;
 }
