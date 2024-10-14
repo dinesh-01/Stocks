@@ -18,7 +18,8 @@ $client = new GuzzleHttp\Client([
 
 
 //List all the option orders
-$query = "Select * from optionAmo order by price DESC";
+
+$query = "Select * from optionAmo ";
 $result = mysqli_query($GLOBALS['mysqlConnect'], $query);
 $datas = $result->fetch_all(MYSQLI_ASSOC);
 $i = 0;
@@ -75,7 +76,7 @@ foreach ($datas as $data) {
     $datas[$i]['percentage'] = number_format(($datas[$i]['amount_diff'] / $data['total_value']) * 100,1);
     $total = $total +  $datas[$i]['amount_diff'];
 
-
+  //  sleep(1);
 
     $i++;
 
