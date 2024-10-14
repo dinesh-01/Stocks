@@ -19,6 +19,7 @@
 
 
                 <th>Action</th>
+            <th>Option Status</th>
             </tr>
 
     {foreach $datas as $value name=count}
@@ -42,9 +43,9 @@
 
             <td>
 
-                <a href="stock_options_orders.php?s={$value.cSymbol|replace:'-':'_'|replace:'&':'_'}&o=CE" target="_blank">CALL</a>
+                <a href="select_option_stock.php?s={$value.cSymbol|replace:'-':'_'|replace:'&':'_'}&o=CE">CALL</a>
                 ||
-                <a href="stock_options_orders.php?s={$value.cSymbol|replace:'-':'_'|replace:'&':'_'}&o=PE" target="_blank">PUT</a>
+                <a href="select_option_stock.php?s={$value.cSymbol|replace:'-':'_'|replace:'&':'_'}&o=PE">PUT</a>
 
 
             </td>
@@ -90,6 +91,7 @@
 
         <td><a href="javascript:void(0)" id="{$value.id}" class="unwatch" title="unwatch">UnWatch</a></td>
 
+            <td>{$value.order_status}</td>
 
 
     </tr>

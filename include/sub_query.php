@@ -2,7 +2,7 @@
 
 function watch_list_query($type,$priority=1) {
 
-	 $query = "select * from stocklistIntra where isWatch = 'yes'";
+	 $query = "select * from stocklistIntra where isWatch = 'yes' order by order_status";
 
 	$result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 

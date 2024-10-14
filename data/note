@@ -1,5 +1,8 @@
 source .bash_profile
 cd /Applications/MAMP/htdocs/intra
+
+
+
 php composer.phar install
 
 /Users/disingh/pear/bin/pear
@@ -18,6 +21,15 @@ php new_entry_options.php
 Jenkins Command
 brew services start jenkins-lts
 /Users/disingh/.jenkins/workspace/Monitor-Order
+
+
+
+Clean Pre-Marker
+php order_sr_clean_jenkins.php
+
+
+Cron Job
+sh order_monitor.sh
 
 
 
