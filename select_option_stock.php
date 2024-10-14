@@ -35,35 +35,36 @@ if(str_contains($symbol,"_")) {
 $res = $client->request('GET', $end_point);
 $response = $res->getBody()->getContents();
 $response = (json_decode($response, true));
+
+
+
 $current_price = $response['data']["NSE:$symbol"]['last_price'];
-$current_price = str_replace(",", "", $current_price);
 
 
-$percentage_value = 1 / 100 ;
-$amount_value = $current_price * $percentage_value;
+$low_price     = $response['data']["NSE:$symbol"]['ohlc']['low'];
+$low_price = str_replace(",", "", $low_price);
+
+$high_price    = $response['data']["NSE:$symbol"]['ohlc']['high'];
+$high_price = str_replace(",", "", $high_price);
 
 
-$final_amount = $current_price + $amount_value;
-$range2 = round($final_amount, 0);
 
-$final_amount = $current_price - $amount_value;
-$range1 = round($final_amount, 0);
+
 
 
 
 if($type == 'CE') {
     $query = "Select * from stockOption where name = '$symbol' 
-                            and strike > $current_price
+                            and strike > $high_price
                             and tradingsymbol LIKE '%OCT%'
-                            and instrument_type = '$type' limit 0,1 ";
+                            and instrument_type = '$type' order by `strike` limit 0,1; ";
 }else {
     $query = "Select * from stockOption where name = '$symbol' 
-                            and strike < $current_price
+                            and strike < $low_price
                             and tradingsymbol LIKE '%OCT%'
-                            and instrument_type = '$type' limit 0,1 ";
+                            and instrument_type = '$type' order by `strike` desc limit 0,1; ";
 
 }
-
 
 
 
@@ -174,7 +175,6 @@ foreach ($datas as $data) {
 
 header("location:list_watch.php");
 exit;
-
 
 
 
