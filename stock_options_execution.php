@@ -19,11 +19,18 @@ $client = new GuzzleHttp\Client([
 
 //List all the option orders
 
-$query = "Select * from optionAmo ";
+//$query = "Select * from optionAmo ";
+$query = "Select * from optionAmo where order_id != ''";
 $result = mysqli_query($GLOBALS['mysqlConnect'], $query);
 $datas = $result->fetch_all(MYSQLI_ASSOC);
 $i = 0;
 $total = 0;
+
+
+
+
+
+
 
 foreach ($datas as $data) {
 
