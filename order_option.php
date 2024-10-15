@@ -45,6 +45,9 @@ $response = (json_decode($response,true));
 
 //format($response['data']['candles']);
 
+//[timestamp, open, high, low, close, volume].
+
+
 
 $length = count($response['data']['candles']);
 $length =  $length-2;
