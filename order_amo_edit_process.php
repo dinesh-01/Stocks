@@ -8,7 +8,7 @@ $id   = $_POST['id'];
 $trigger_value = $_POST['trigger_value'];
 $support_value = $_POST['support_value'];
 $resistance_value = $_POST['resistance_value'];
-
+$sl_order_id = $_POST['sl_order_id'];
 $price = $_POST['price'];
 
 $date = date('d-m-Y');

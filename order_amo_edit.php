@@ -58,6 +58,12 @@ require_once './template/header.php';
          <td><input type="text" name="resistance_value" autocomplete="off" value="<?php echo $data['resistance_value']?>"></td>
 
      </tr>
+
+     <tr>
+         <td>Sell ID</td>
+         <td><input type="text" name="sl_order_id" autocomplete="off" value="<?php echo $data['sl_order_id']?>"></td>
+
+     </tr>
  
 
 
