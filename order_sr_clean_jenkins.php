@@ -35,14 +35,17 @@ $iceberg_status = 'no';
 
         if($condition === true) {
 
+
+                /*
                 $query = "DELETE FROM optionAmo  WHERE id = '$id'";
                 $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
-
+                */
 
                 $query  = "UPDATE stocklistIntra SET order_status = 'Open' WHERE cSymbol = '$main_symbol'";
                 $result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 
-                echo "Clean Up : $symbol";
+
+                echo "Limit Reached Script : $symbol";
 
 
             }

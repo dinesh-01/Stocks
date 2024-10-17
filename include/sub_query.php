@@ -81,7 +81,7 @@ function company_list_range_query($r1,$r2) {
 
 function search_single_company_query($string) {
 
-$query = "Select stocklistIntra.id as id,stocklistIntra.ntype as ntype,stocklistIntra.notes as notes,stocklistIntra.cSymbol as cSymbol,stocklistIntra.sName as sName,stocklistIntra.murl as murl,stocklistIntra.curl as curl,stockvaluesIntra.open as currOpen,stockvaluesIntra.high as currHigh,stockvaluesIntra.low as currLow,stockvaluesIntra.close as currClose,stockvaluesIntra.schange as pChange,stockvaluesIntra.volume as volume From stocklistIntra INNER JOIN  stockvaluesIntra WHERE stocklistIntra.id = stockvaluesIntra.sid   AND stocklistIntra.isWatch = 'no' AND stockvaluesIntra.id = (SELECT MAX(id) from stockvaluesIntra where sid = stocklistIntra.id) AND  stocklistIntra.sName like '%$string%'order by stockvaluesIntra.volume desc";
+$query = "Select * from  stocklistIntra where stocklistIntra.sName like '%$string%'";
 
 	$result = mysqli_query($GLOBALS['mysqlConnect'],$query);
 

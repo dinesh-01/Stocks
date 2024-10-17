@@ -102,7 +102,7 @@ function convert_value_term($value) {
 
 function percentgae_cal($price, $sign) {
 
-    $percentage_value = 0.05 / 100 ;
+    $percentage_value = 0.10 / 100 ;
     $amount_value = $price * $percentage_value;
 
     if($sign == '+') {

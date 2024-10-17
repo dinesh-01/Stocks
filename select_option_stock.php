@@ -27,6 +27,7 @@ if(str_contains($symbol,"_")) {
     $symbol = str_replace("_", "&", $symbol);
     $api_symbol = str_replace("&", "%26", $symbol);
     $end_point = "https://api.kite.trade/quote?i=NSE:$api_symbol";
+  //  $symbol = $api_symbol;
 }else{
     $end_point = "https://api.kite.trade/quote?i=NSE:$symbol";
 }

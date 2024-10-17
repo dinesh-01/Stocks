@@ -72,7 +72,15 @@ foreach ($data as $value) {
                           $sell_order_id = place_order_sell_index($symbol,$quantity,$last_price);
 
                           $last_price = str_replace(",", "", $last_price); //last price
-                          $percentage_value = PROFIT_BOOKING / 100 ;
+
+                              if($last_price < 10) {
+                                  $profit_booking = 10;
+                              }else{
+                                  $profit_booking = PROFIT_BOOKING;
+                              }
+
+
+                          $percentage_value = $profit_booking / 100 ;
                           $amount_value = $last_price * $percentage_value;
                           $final_amount = $last_price + $amount_value;
                           $final_amount = round($final_amount, 1);
